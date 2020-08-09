@@ -10,7 +10,7 @@ jobs:
     runs-on: macOS-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Get latest version and build number
