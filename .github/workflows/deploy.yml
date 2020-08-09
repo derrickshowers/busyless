@@ -21,7 +21,7 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app && /usr/bin/xcodebuild -version
     - name: Build archive
-      run: xcodebuild -sdk iphoneos -project time-budget/TimeBudget.xcodeproj -configuration Release -scheme TimeBudget -derivedDataPath DerivedData -archivePath DerivedData/Archive/TimeBudget archive
+      run: xcodebuild -sdk iphoneos -project TimeBudget.xcodeproj -configuration Release -scheme TimeBudget -derivedDataPath DerivedData -archivePath DerivedData/Archive/TimeBudget archive
     - name: Export Archive
       run: xcodebuild -exportArchive -archivePath DerivedData/Archive/TimeBudget.xcarchive -exportOptionsPlist provisioning/App-Store.plist -exportPath DerivedData/ipa
     - name: Dump file hierarchy
