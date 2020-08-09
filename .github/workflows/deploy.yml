@@ -17,6 +17,10 @@ jobs:
         version: 0.0.1
     - name: Add & Commit
       uses: EndBug/add-and-commit@v4.4.0
+      with:
+        author_name: Auto Committer
+        author_email: automatic@version.bump
+        message: 'AUTOMATIC VERSION BUMP'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Install GPG
@@ -25,10 +29,6 @@ jobs:
       run: ls /Applications | grep Xcode
     - name: Handle provisioning
       run: ./provisioning/import_provisioning.sh
-      with:
-        author_name: Auto Committer
-        author_email: automatic@version.bump
-        message: 'AUTOMATIC VERSION BUMP'
       env:
         PROVISIONING_PASSWORD: ${{ secrets.provisioning_password }}
     - name: Select Xcode
