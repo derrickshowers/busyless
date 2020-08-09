@@ -10,12 +10,13 @@
 		E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* AppDelegate.swift */; };
 		E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */; };
 		E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC824DF7CD5006B7859 /* TimeBudget.xcdatamodeld */; };
-		E7947FCC24DF7CD5006B7859 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FCB24DF7CD5006B7859 /* ContentView.swift */; };
+		E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FCB24DF7CD5006B7859 /* DayView.swift */; };
 		E7947FCE24DF7CD6006B7859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FCD24DF7CD6006B7859 /* Assets.xcassets */; };
 		E7947FD124DF7CD6006B7859 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */; };
 		E7947FD424DF7CD6006B7859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */; };
 		E7947FDF24DF7CD6006B7859 /* TimeBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FDE24DF7CD6006B7859 /* TimeBudgetTests.swift */; };
 		E7947FEA24DF7CD6006B7859 /* TimeBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */; };
+		E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FF724DF8072006B7859 /* AddNewActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,7 @@
 		E7947FC424DF7CD5006B7859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E7947FC924DF7CD5006B7859 /* TimeBudget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeBudget.xcdatamodel; sourceTree = "<group>"; };
-		E7947FCB24DF7CD5006B7859 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E7947FCB24DF7CD5006B7859 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E7947FCD24DF7CD6006B7859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E7947FD324DF7CD6006B7859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		E7947FE524DF7CD6006B7859 /* TimeBudgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeBudgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBudgetUITests.swift; sourceTree = "<group>"; };
 		E7947FEB24DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7947FF724DF8072006B7859 /* AddNewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,8 @@
 			children = (
 				E7947FC424DF7CD5006B7859 /* AppDelegate.swift */,
 				E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */,
-				E7947FCB24DF7CD5006B7859 /* ContentView.swift */,
+				E7947FF724DF8072006B7859 /* AddNewActivityView.swift */,
+				E7947FCB24DF7CD5006B7859 /* DayView.swift */,
 				E7947FCD24DF7CD6006B7859 /* Assets.xcassets */,
 				E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */,
 				E7947FD524DF7CD6006B7859 /* Info.plist */,
@@ -272,8 +275,9 @@
 			files = (
 				E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */,
 				E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */,
-				E7947FCC24DF7CD5006B7859 /* ContentView.swift in Sources */,
+				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
 				E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */,
+				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  AddNewActivityView.swift
 //  TimeBudget
 //
 //  Created by Derrick Showers on 8/8/20.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct AddNewActivityView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text("Add a new activity.")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AddNewActivityView()
     }
 }
