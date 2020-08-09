@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Get latest version and build number
       uses: yanamura/ios-bump-version@v1
       with:
