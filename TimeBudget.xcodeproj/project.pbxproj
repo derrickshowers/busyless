@@ -19,6 +19,20 @@
 		E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FF724DF8072006B7859 /* AddNewActivityView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		E7F6115F24E2363500CFABC8 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		E7947FDB24DF7CD6006B7859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -152,8 +166,10 @@
 				E7947FBD24DF7CD5006B7859 /* Sources */,
 				E7947FBE24DF7CD5006B7859 /* Frameworks */,
 				E7947FBF24DF7CD5006B7859 /* Resources */,
+				E7F6116024E2365E00CFABC8 /* SwiftLint */,
 			);
 			buildRules = (
+				E7F6115F24E2363500CFABC8 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -267,6 +283,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E7F6116024E2365E00CFABC8 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E7947FBD24DF7CD5006B7859 /* Sources */ = {
