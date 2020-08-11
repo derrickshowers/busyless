@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E7072AFC24E32D2B0004E2CA /* Category+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7072AFB24E32D2B0004E2CA /* Category+.swift */; };
+		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
 		E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* AppDelegate.swift */; };
 		E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */; };
 		E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC824DF7CD5006B7859 /* TimeBudget.xcdatamodeld */; };
@@ -17,6 +19,9 @@
 		E7947FDF24DF7CD6006B7859 /* TimeBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FDE24DF7CD6006B7859 /* TimeBudgetTests.swift */; };
 		E7947FEA24DF7CD6006B7859 /* TimeBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */; };
 		E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FF724DF8072006B7859 /* AddNewActivityView.swift */; };
+		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
+		E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115B24E22F4200CFABC8 /* DurationPill.swift */; };
+		E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -51,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E7072AFB24E32D2B0004E2CA /* Category+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+.swift"; sourceTree = "<group>"; };
+		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E7947FC124DF7CD5006B7859 /* TimeBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7947FC424DF7CD5006B7859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +74,9 @@
 		E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBudgetUITests.swift; sourceTree = "<group>"; };
 		E7947FEB24DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FF724DF8072006B7859 /* AddNewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityView.swift; sourceTree = "<group>"; };
+		E7F6115924E22A2600CFABC8 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		E7F6115B24E22F4200CFABC8 /* DurationPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPill.swift; sourceTree = "<group>"; };
+		E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E7072AFA24E32D190004E2CA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E7072AFB24E32D2B0004E2CA /* Category+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E715087924E32A0E004B080A /* DayView */ = {
+			isa = PBXGroup;
+			children = (
+				E7F6115924E22A2600CFABC8 /* AddButton.swift */,
+				E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */,
+				E736236924E328BA00C6FFD3 /* CategoryRow.swift */,
+				E7F6115B24E22F4200CFABC8 /* DurationPill.swift */,
+			);
+			path = DayView;
+			sourceTree = "<group>";
+		};
 		E7947FB824DF7CD5006B7859 = {
 			isa = PBXGroup;
 			children = (
@@ -119,8 +148,9 @@
 			children = (
 				E7947FC424DF7CD5006B7859 /* AppDelegate.swift */,
 				E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */,
-				E7947FF724DF8072006B7859 /* AddNewActivityView.swift */,
-				E7947FCB24DF7CD5006B7859 /* DayView.swift */,
+				E7F6115824E229D200CFABC8 /* Containers */,
+				E7F6115724E229AB00CFABC8 /* Components */,
+				E7072AFA24E32D190004E2CA /* Extensions */,
 				E7947FCD24DF7CD6006B7859 /* Assets.xcassets */,
 				E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */,
 				E7947FD524DF7CD6006B7859 /* Info.plist */,
@@ -154,6 +184,23 @@
 				E7947FEB24DF7CD6006B7859 /* Info.plist */,
 			);
 			path = TimeBudgetUITests;
+			sourceTree = "<group>";
+		};
+		E7F6115724E229AB00CFABC8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E715087924E32A0E004B080A /* DayView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E7F6115824E229D200CFABC8 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				E7947FF724DF8072006B7859 /* AddNewActivityView.swift */,
+				E7947FCB24DF7CD5006B7859 /* DayView.swift */,
+			);
+			path = Containers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,7 +360,12 @@
 				E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */,
 				E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */,
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
+				E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */,
+				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
+				E7072AFC24E32D2B0004E2CA /* Category+.swift in Sources */,
+				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */,
+				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -465,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
