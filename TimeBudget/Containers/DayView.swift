@@ -11,41 +11,52 @@ import CoreData
 import os
 
 struct DayView: View {
-    @State private var showingAddNewActivityView = false
 
-    @Environment(\.managedObjectContext) var managedObjectContext
+    // MARK: - Constants
+    static let awakeDuration = 16
+
+    // MARK: - Private Properties
+    @State private var showingAddNewActivityView = false
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.managedObjectContext) private var managedObjectContext
     @FetchRequest(
         entity: Category.entity(),
         sortDescriptors: [
             NSSortDescriptor(keyPath: \Category.name, ascending: true)
         ]
-    ) var categories: FetchedResults<Category>
+    ) private var categories: FetchedResults<Category>
+    private var totalBudgetedDuration: Int {
+        var duration = 0
+        self.categories.forEach { (category: Category) in
+            duration += Int(category.dailyBudgetDuration)
+        }
+        return duration
+    }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(categories, id: \.name) {
-                        CategoryRow(category: $0)
-                    }
-                    .onDelete(perform: deleteCategory)
-                    AddNewCategoryRow { (newCategory: String) in
-                        self.addCategory(name: newCategory)
-                    }
+        VStack {
+            TodayStatus(awakeDuration: DayView.awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
+            List {
+                ForEach(categories, id: \.name) {
+                    CategoryRow(category: $0)
+                }
+                .onDelete(perform: deleteCategory)
+                AddNewCategoryRow { (newCategory: String) in
+                    self.addCategory(name: newCategory)
+                }
 
-                }
-                .onAppear {
-                    UITableView.appearance().separatorStyle = .none
-                }
-                HStack {
-                    Spacer()
-                    AddButton {
-                        self.showingAddNewActivityView.toggle()
-                    }
+            }
+            .onAppear {
+                UITableView.appearance().separatorStyle = .none
+            }
+            HStack {
+                Spacer()
+                AddButton {
+                    self.showingAddNewActivityView.toggle()
                 }
             }
-            .navigationBarTitle("Today")
         }
+        .navigationBarTitle("Today")
         .sheet(isPresented: $showingAddNewActivityView) {
             AddNewActivityView()
         }
@@ -78,7 +89,7 @@ struct DayView: View {
 
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return DayView().environment(\.managedObjectContext, context)
     }
 }

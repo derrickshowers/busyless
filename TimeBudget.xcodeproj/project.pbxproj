@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E7072AFC24E32D2B0004E2CA /* Category+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7072AFB24E32D2B0004E2CA /* Category+.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
+		E786CA4324E488FF00B27D8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4224E488FF00B27D8E /* MainView.swift */; };
+		E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4424E4967D00B27D8E /* TodayStatus.swift */; };
 		E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* AppDelegate.swift */; };
 		E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */; };
 		E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC824DF7CD5006B7859 /* TimeBudget.xcdatamodeld */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		E7072AFB24E32D2B0004E2CA /* Category+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+.swift"; sourceTree = "<group>"; };
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
+		E786CA4224E488FF00B27D8E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E786CA4424E4967D00B27D8E /* TodayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStatus.swift; sourceTree = "<group>"; };
 		E7947FC124DF7CD5006B7859 /* TimeBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7947FC424DF7CD5006B7859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */,
 				E736236924E328BA00C6FFD3 /* CategoryRow.swift */,
 				E7F6115B24E22F4200CFABC8 /* DurationPill.swift */,
+				E786CA4424E4967D00B27D8E /* TodayStatus.swift */,
 			);
 			path = DayView;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			children = (
 				E7947FF724DF8072006B7859 /* AddNewActivityView.swift */,
 				E7947FCB24DF7CD5006B7859 /* DayView.swift */,
+				E786CA4224E488FF00B27D8E /* MainView.swift */,
 			);
 			path = Containers;
 			sourceTree = "<group>";
@@ -362,8 +368,10 @@
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
 				E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */,
 				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
+				E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */,
 				E7072AFC24E32D2B0004E2CA /* Category+.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
+				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,

@@ -9,8 +9,11 @@
 import SwiftUI
 
 struct AddNewCategoryRow: View {
+
+    // MARK: - Public Properties
     let newCategoryAdded: (String) -> Void
 
+    // MARK: - Private Properties
     @State private var newCategory = ""
     @State private var isEditing = false
 

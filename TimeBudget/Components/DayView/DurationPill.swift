@@ -9,13 +9,14 @@
 import SwiftUI
 
 struct DurationPill: View {
-    let timeSpentDuration: Int
 
-    @Environment(\.managedObjectContext) var managedObjectContext
+    // MARK: - Public Properties
+    let timeSpentDuration: Int
     @Binding var dailyBudgetDuration: Int16
 
+    // MARK: - Private Properties
+    @Environment(\.managedObjectContext) private var managedObjectContext
     @State private var isEditing = false
-
     private var backgroundColor: Color {
         if timeSpentDuration <= dailyBudgetDuration {
             return Color.green

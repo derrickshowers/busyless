@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
         }
 
-        let dayView = DayView().environment(\.managedObjectContext, context)
+        let dayView = MainView().environment(\.managedObjectContext, context)
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = UIHostingController(rootView: dayView)
         self.window = window

@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CategoryRow: View {
+
+    // MARK: - Public Properties
     @ObservedObject var category = Category()
 
     var body: some View {
