@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E7072AFC24E32D2B0004E2CA /* Category+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7072AFB24E32D2B0004E2CA /* Category+.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
+		E786CA4324E488FF00B27D8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4224E488FF00B27D8E /* MainView.swift */; };
+		E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4424E4967D00B27D8E /* TodayStatus.swift */; };
 		E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* AppDelegate.swift */; };
 		E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */; };
 		E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC824DF7CD5006B7859 /* TimeBudget.xcdatamodeld */; };
@@ -22,6 +24,8 @@
 		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
 		E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115B24E22F4200CFABC8 /* DurationPill.swift */; };
 		E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */; };
+		E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */; };
+		E7FD703224E4C903001E2A95 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD703124E4C903001E2A95 /* UserDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -58,6 +62,8 @@
 /* Begin PBXFileReference section */
 		E7072AFB24E32D2B0004E2CA /* Category+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+.swift"; sourceTree = "<group>"; };
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
+		E786CA4224E488FF00B27D8E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E786CA4424E4967D00B27D8E /* TodayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStatus.swift; sourceTree = "<group>"; };
 		E7947FC124DF7CD5006B7859 /* TimeBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7947FC424DF7CD5006B7859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 		E7F6115924E22A2600CFABC8 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		E7F6115B24E22F4200CFABC8 /* DurationPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPill.swift; sourceTree = "<group>"; };
 		E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryRow.swift; sourceTree = "<group>"; };
+		E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E7FD703124E4C903001E2A95 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,7 @@
 				E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */,
 				E736236924E328BA00C6FFD3 /* CategoryRow.swift */,
 				E7F6115B24E22F4200CFABC8 /* DurationPill.swift */,
+				E786CA4424E4967D00B27D8E /* TodayStatus.swift */,
 			);
 			path = DayView;
 			sourceTree = "<group>";
@@ -150,7 +159,7 @@
 				E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */,
 				E7F6115824E229D200CFABC8 /* Containers */,
 				E7F6115724E229AB00CFABC8 /* Components */,
-				E7072AFA24E32D190004E2CA /* Extensions */,
+				E7FD702F24E4C8E0001E2A95 /* Utility */,
 				E7947FCD24DF7CD6006B7859 /* Assets.xcassets */,
 				E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */,
 				E7947FD524DF7CD6006B7859 /* Info.plist */,
@@ -199,8 +208,27 @@
 			children = (
 				E7947FF724DF8072006B7859 /* AddNewActivityView.swift */,
 				E7947FCB24DF7CD5006B7859 /* DayView.swift */,
+				E786CA4224E488FF00B27D8E /* MainView.swift */,
+				E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */,
 			);
 			path = Containers;
+			sourceTree = "<group>";
+		};
+		E7FD702F24E4C8E0001E2A95 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E7FD703024E4C8EF001E2A95 /* PropertyWrappers */,
+				E7072AFA24E32D190004E2CA /* Extensions */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E7FD703024E4C8EF001E2A95 /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				E7FD703124E4C903001E2A95 /* UserDefault.swift */,
+			);
+			path = PropertyWrappers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,11 +390,15 @@
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
 				E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */,
 				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
+				E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */,
 				E7072AFC24E32D2B0004E2CA /* Category+.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
+				E7FD703224E4C903001E2A95 /* UserDefault.swift in Sources */,
+				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E7947FCA24DF7CD5006B7859 /* TimeBudget.xcdatamodeld in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,
+				E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

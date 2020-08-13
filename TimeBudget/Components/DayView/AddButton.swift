@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct AddButton: View {
+
+    // MARK: - Public Properties
     let action: (() -> Void)
 
     var body: some View {
