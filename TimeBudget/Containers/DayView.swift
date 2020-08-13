@@ -12,9 +12,6 @@ import os
 
 struct DayView: View {
 
-    // MARK: - Constants
-    static let awakeDuration = 16
-
     // MARK: - Private Properties
     @State private var showingAddNewActivityView = false
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
@@ -32,10 +29,14 @@ struct DayView: View {
         }
         return duration
     }
+    private var awakeDuration: Int {
+        let difference = Calendar.current.dateComponents([.hour, .minute], from: SettingsView.wakeUpTime, to: SettingsView.sleepyTime)
+        return difference.hour ?? SettingsView.defaultAwakeTime
+    }
 
     var body: some View {
         VStack {
-            TodayStatus(awakeDuration: DayView.awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
+            TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
             List {
                 ForEach(categories, id: \.name) {
                     CategoryRow(category: $0)

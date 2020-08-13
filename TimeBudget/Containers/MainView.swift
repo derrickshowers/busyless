@@ -17,6 +17,12 @@ struct MainView: View {
                 NavigationLink(destination: DayView(), isActive: $isDayViewActive) {
                     Text("Today")
                 }
+                NavigationLink(destination: SettingsView()) {
+                    HStack {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                }
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)

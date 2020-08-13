@@ -22,29 +22,28 @@ struct TodayStatus: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Today's Status")
-                .font(.headline).foregroundColor(.white)
+                .font(Font.headline.lowercaseSmallCaps())
                 .padding(.bottom, 10)
             HStack {
-                Text("Total time awake")
+                Text("Total Time Awake")
                 Spacer()
                 Text("\(awakeDuration) hr(s)")
-            }.font(.caption).foregroundColor(.white)
+            }.font(Font.caption.smallCaps())
             HStack {
                 Text("Total time budgeted").foregroundColor(.white)
                 Spacer()
                 Text("\(totalBudgetedDuration) hr(s)")
-            }.font(.caption).foregroundColor(.white)
+            }.font(Font.caption.smallCaps())
             HStack {
-                Text("Percentage of time budgeted")
-                    .foregroundColor(.white)
+                Text("Percentage of awake time budgeted")
                 Spacer()
                 Text("\(String(format: "%.f", budgetedTimePercentage * 100))%")
-                    .foregroundColor(budgetedTimePercentage > 1 ? .red : .white)
-            }.font(.caption)
+            }.font(Font.caption.smallCaps())
         }
-        .padding(.vertical, 10)
+        .foregroundColor(.white)
+        .padding(.vertical, 15)
         .padding(.horizontal, 20)
-        .background(Color.blue)
+        .background(Color.blue.shadow(color: .gray, radius: 3, x: 0, y: 2))
 
     }
 }
