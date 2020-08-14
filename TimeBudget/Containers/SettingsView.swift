@@ -11,14 +11,22 @@ import SwiftUI
 struct SettingsView: View {
 
     // MARK: - Constants
+
     static var defaultAwakeTime = 8
 
     // MARK: - Private Properties
+
     @State private var wakeUpTime = SettingsView.wakeUpTime
+
     @State private var sleepyTime = SettingsView.sleepyTime
 
-    @UserDefault("wakeup_time", defaultValue: Date.today(withHour: 7)) static var wakeUpTime: Date
-    @UserDefault("sleepy_time", defaultValue: Date.today(withHour: 23)) static var sleepyTime: Date
+    @UserDefault("wakeup_time", defaultValue: Date.today(withHour: 7))
+    static var wakeUpTime: Date
+
+    @UserDefault("sleepy_time", defaultValue: Date.today(withHour: 23))
+    static var sleepyTime: Date
+
+    // MARK: - Lifecycle
 
     var body: some View {
         Form {

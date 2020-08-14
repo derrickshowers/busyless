@@ -9,7 +9,12 @@
 import SwiftUI
 
 struct MainView: View {
+
+    // MARK: - Private Properties
+
     @State private var isDayViewActive = true
+
+    // MARK: - Lifecycle
 
     var body: some View {
         NavigationView {

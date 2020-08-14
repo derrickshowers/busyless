@@ -11,12 +11,18 @@ import SwiftUI
 struct DurationPill: View {
 
     // MARK: - Public Properties
-    let timeSpentDuration: Int
+
     @Binding var dailyBudgetDuration: Int16
 
+    let timeSpentDuration: Int
+
     // MARK: - Private Properties
-    @Environment(\.managedObjectContext) private var managedObjectContext
+
     @State private var isEditing = false
+
+    @Environment(\.managedObjectContext)
+    private var managedObjectContext
+
     private var backgroundColor: Color {
         if timeSpentDuration <= dailyBudgetDuration {
             return Color.green
@@ -25,12 +31,14 @@ struct DurationPill: View {
         }
     }
 
+    // MARK: - Lifecycle
+
     var body: some View {
         HStack {
             if isEditing {
                 TextField("\(dailyBudgetDuration)", value: $dailyBudgetDuration, formatter: NumberFormatter()) {
                     self.isEditing.toggle()
-                    try? self.managedObjectContext.save()
+                    Category.save(with: self.managedObjectContext)
                 }
                 .padding(5)
                 .padding(.horizontal, 10)
@@ -59,8 +67,8 @@ struct DurationPill: View {
 struct DurationPill_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            DurationPill(timeSpentDuration: 5, dailyBudgetDuration: .constant(5)).padding()
-            DurationPill(timeSpentDuration: 6, dailyBudgetDuration: .constant(5)).padding()
+            DurationPill(dailyBudgetDuration: .constant(5), timeSpentDuration: 5).padding()
+            DurationPill(dailyBudgetDuration: .constant(5), timeSpentDuration: 6).padding()
         }
     }
 }

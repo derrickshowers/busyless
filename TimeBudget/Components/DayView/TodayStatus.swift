@@ -11,13 +11,17 @@ import SwiftUI
 struct TodayStatus: View {
 
     // MARK: - Public Properties
+
     let awakeDuration: Int
     let totalBudgetedDuration: Int
 
     // MARK: - Private Properties
+
     private var budgetedTimePercentage: Double {
         return Double(totalBudgetedDuration) / Double(awakeDuration)
     }
+
+    // MARK: - Lifecycle
 
     var body: some View {
         VStack(alignment: .leading) {

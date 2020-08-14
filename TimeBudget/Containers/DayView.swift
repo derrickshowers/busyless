@@ -13,15 +13,18 @@ import os
 struct DayView: View {
 
     // MARK: - Private Properties
+
     @State private var showingAddNewActivityView = false
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @Environment(\.managedObjectContext) private var managedObjectContext
-    @FetchRequest(
-        entity: Category.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \Category.name, ascending: true)
-        ]
-    ) private var categories: FetchedResults<Category>
+
+    @Environment(\.presentationMode)
+    private var presentationMode: Binding<PresentationMode>
+
+    @Environment(\.managedObjectContext)
+    private var managedObjectContext
+
+    @FetchRequest(fetchRequest: Category.allCategoriesFetchRequest)
+    private var categories: FetchedResults<Category>
+
     private var totalBudgetedDuration: Int {
         var duration = 0
         self.categories.forEach { (category: Category) in
@@ -29,10 +32,13 @@ struct DayView: View {
         }
         return duration
     }
+
     private var awakeDuration: Int {
         let difference = Calendar.current.dateComponents([.hour, .minute], from: SettingsView.wakeUpTime, to: SettingsView.sleepyTime)
         return difference.hour ?? SettingsView.defaultAwakeTime
     }
+
+    // MARK: - Lifecycle
 
     var body: some View {
         VStack {
@@ -59,32 +65,28 @@ struct DayView: View {
         }
         .navigationBarTitle("Today")
         .sheet(isPresented: $showingAddNewActivityView) {
-            AddNewActivityView()
+            AddNewActivityView(isPresented: self.$showingAddNewActivityView)
+                .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
+}
 
-    // MARK: - Core Data
+// MARK: - Core Data
 
-    private func save() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            os_log("Issue saving data")
-        }
-    }
+extension DayView {
 
     private func addCategory(name: String) {
         let category = Category(context: managedObjectContext)
         category.name = name
-        save()
+        Category.save(with: managedObjectContext)
     }
 
     private func deleteCategory(at offsets: IndexSet) {
-      offsets.forEach { index in
-        let category = self.categories[index]
-        self.managedObjectContext.delete(category)
-      }
-      save()
+        offsets.forEach { index in
+            let category = self.categories[index]
+            self.managedObjectContext.delete(category)
+        }
+        Category.save(with: managedObjectContext)
     }
 }
 
