@@ -26,11 +26,7 @@ struct DayView: View {
     private var categories: FetchedResults<Category>
 
     private var totalBudgetedDuration: Int {
-        var duration = 0
-        self.categories.forEach { (category: Category) in
-            duration += Int(category.dailyBudgetDuration)
-        }
-        return duration
+        return self.categories.reduce(0) { $0 + Int($1.dailyBudgetDuration) }
     }
 
     private var awakeDuration: Int {
@@ -92,6 +88,7 @@ extension DayView {
 
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return DayView().environment(\.managedObjectContext, context)
     }

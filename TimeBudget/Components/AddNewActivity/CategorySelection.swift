@@ -46,6 +46,7 @@ struct CategorySelection: View {
 
 struct CategorySelection_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return CategorySelection(selectedCategory: .constant(Category.mockCategory)).environment(\.managedObjectContext, context)
     }
