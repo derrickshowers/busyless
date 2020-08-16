@@ -11,15 +11,18 @@ import SwiftUI
 struct CategoryRow: View {
 
     // MARK: - Public Properties
+
     @ObservedObject var category = Category()
+
+    // MARK: - Lifecycle
 
     var body: some View {
         HStack {
             Text(category.name ?? "")
                 .opacity(0.8)
             Spacer()
-            DurationPill(timeSpentDuration: category.timeSpentDuration,
-                         dailyBudgetDuration: $category.dailyBudgetDuration)
+            DurationPill(dailyBudgetDuration: $category.dailyBudgetDuration,
+                         timeSpentDuration: category.timeSpentDuration)
         }
     }
 }

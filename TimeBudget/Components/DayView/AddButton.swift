@@ -11,7 +11,10 @@ import SwiftUI
 struct AddButton: View {
 
     // MARK: - Public Properties
+
     let action: (() -> Void)
+
+    // MARK: - Lifecycle
 
     var body: some View {
         Button(action: self.action, label: {
