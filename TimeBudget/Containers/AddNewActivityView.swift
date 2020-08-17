@@ -93,6 +93,7 @@ extension AddNewActivityView {
 
 struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return AddNewActivityView(isPresented: .constant(true)).environment(\.managedObjectContext, context)
     }

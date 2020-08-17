@@ -13,6 +13,7 @@ struct MainView: View {
     // MARK: - Private Properties
 
     @State private var isDayViewActive = true
+    @State private var isLogViewActive = false
 
     // MARK: - Lifecycle
 
@@ -21,6 +22,9 @@ struct MainView: View {
             List {
                 NavigationLink(destination: DayView(), isActive: $isDayViewActive) {
                     Text("Today")
+                }
+                NavigationLink(destination: LogView(), isActive: $isLogViewActive) {
+                    Text("Activity Log")
                 }
                 NavigationLink(destination: SettingsView()) {
                     HStack {
@@ -41,6 +45,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return MainView().environment(\.managedObjectContext, context)
     }
