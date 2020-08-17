@@ -12,13 +12,13 @@ struct TodayStatus: View {
 
     // MARK: - Public Properties
 
-    let awakeDuration: Int
-    let totalBudgetedDuration: Int
+    let awakeDuration: TimeInterval
+    let totalBudgetedDuration: TimeInterval
 
     // MARK: - Private Properties
 
-    private var budgetedTimePercentage: Double {
-        return Double(totalBudgetedDuration) / Double(awakeDuration)
+    private var budgetedTimePercentage: TimeInterval {
+        return totalBudgetedDuration / awakeDuration
     }
 
     // MARK: - Lifecycle
@@ -31,12 +31,12 @@ struct TodayStatus: View {
             HStack {
                 Text("Total Time Awake")
                 Spacer()
-                Text("\(awakeDuration) hr(s)")
+                Text(awakeDuration.hoursMinutesString)
             }.font(Font.caption.smallCaps())
             HStack {
                 Text("Total time budgeted").foregroundColor(.white)
                 Spacer()
-                Text("\(totalBudgetedDuration) hr(s)")
+                Text(totalBudgetedDuration.hoursMinutesString)
             }.font(Font.caption.smallCaps())
             HStack {
                 Text("Percentage of awake time budgeted")
@@ -55,8 +55,8 @@ struct TodayStatus: View {
 struct TodayStatus_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TodayStatus(awakeDuration: 16, totalBudgetedDuration: 8).padding()
-            TodayStatus(awakeDuration: 16, totalBudgetedDuration: 17).padding()
+            TodayStatus(awakeDuration: 16 * TimeInterval.oneHour, totalBudgetedDuration: 16 * TimeInterval.oneHour).padding()
+            TodayStatus(awakeDuration: 16 * TimeInterval.oneHour, totalBudgetedDuration: 8 * TimeInterval.oneHour).padding()
         }
     }
 }

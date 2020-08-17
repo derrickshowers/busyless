@@ -84,7 +84,7 @@ extension AddNewActivityView {
         let activity = Activity(context: managedObjectContext)
         activity.name = name
         activity.category = category
-        activity.duration = Int16(duration) ?? 0
+        activity.duration = (TimeInterval(duration) ?? 0) * TimeInterval.oneHour
         activity.notes = notes
         activity.createdAt = Date()
         Activity.save(with: managedObjectContext)

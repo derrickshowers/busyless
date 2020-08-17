@@ -10,10 +10,6 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    // MARK: - Constants
-
-    static var defaultAwakeTime = 8
-
     // MARK: - Private Properties
 
     @State private var wakeUpTime = SettingsView.wakeUpTime

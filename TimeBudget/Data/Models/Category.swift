@@ -12,12 +12,12 @@ import CoreData
 @objc(Category)
 class Category: NSManagedObject {
 
-    var timeSpentDuration: Int {
+    var timeSpentDuration: TimeInterval {
         let activities: Set<Activity>? = self.activities as? Set<Activity>
-        let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> Int in
+        let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> TimeInterval in
             if let date = activity.createdAt,
                 Calendar.current.isDateInToday(date) {
-                return totalDuration + Int(activity.duration)
+                return totalDuration + activity.duration
             }
             return totalDuration
         }
