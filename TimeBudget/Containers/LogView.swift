@@ -39,7 +39,7 @@ struct LogView: View {
                             HStack {
                                 Text(activity.category?.name ?? "")
                                 Text("•")
-                                Text("\(String(activity.duration)) hr(s)")
+                                Text(activity.duration.hoursMinutesString)
                             }
                             .font(.caption)
                             .foregroundColor(.gray)
@@ -70,7 +70,10 @@ struct LogView: View {
      sorted in exactly the same way, it will cause weird bugs like deleting by offset. See linked article below for details.
      https://stackoverflow.com/questions/59180698/how-to-properly-group-a-list-fetched-from-coredata-by-date/59182120#59182120
 
-     Note: I think the cleaner way to do this is use a computed property to return this `[[Activity]]` and then use that as the single SoT for all (incl. deletion)
+     Note: I think the cleaner way to do this is use a computed property to return this `[[Activity]]`and then use that as the
+     single SoT for all (incl. deletion).
+
+     Or better yet, just build a Core Data abstraction layer.
      */
     private func update(_ result: FetchedResults<Activity>) -> [[Activity]] {
         let groupingByDate: [String: [Activity]] = Dictionary(grouping: result) { (activity: Activity) in

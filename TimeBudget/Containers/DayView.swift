@@ -25,13 +25,13 @@ struct DayView: View {
     @FetchRequest(fetchRequest: Category.allCategoriesFetchRequest)
     private var categories: FetchedResults<Category>
 
-    private var totalBudgetedDuration: Int {
-        return self.categories.reduce(0) { $0 + Int($1.dailyBudgetDuration) }
+    private var totalBudgetedDuration: TimeInterval {
+        return self.categories.reduce(0) { $0 + $1.dailyBudgetDuration }
     }
 
-    private var awakeDuration: Int {
+    private var awakeDuration: TimeInterval {
         let difference = Calendar.current.dateComponents([.hour, .minute], from: SettingsView.wakeUpTime, to: SettingsView.sleepyTime)
-        return difference.hour ?? SettingsView.defaultAwakeTime
+        return TimeInterval(difference.hour ?? 0) * TimeInterval.oneHour
     }
 
     // MARK: - Lifecycle

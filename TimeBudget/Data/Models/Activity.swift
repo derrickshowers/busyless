@@ -33,7 +33,7 @@ extension Activity {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let activity = Activity(context: context)
         activity.createdAt = Date()
-        activity.duration = 1
+        activity.duration = TimeInterval.oneHour
         activity.name = "Test activity"
         activity.notes = "Some notes"
         return activity

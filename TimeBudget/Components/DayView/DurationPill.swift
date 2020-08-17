@@ -12,12 +12,13 @@ struct DurationPill: View {
 
     // MARK: - Public Properties
 
-    @Binding var dailyBudgetDuration: Int16
+    @Binding var dailyBudgetDuration: TimeInterval
 
-    let timeSpentDuration: Int
+    let timeSpentDuration: TimeInterval
 
     // MARK: - Private Properties
 
+    @State private var newDailyBudgetDuration = ""
     @State private var isEditing = false
 
     @Environment(\.managedObjectContext)
@@ -36,9 +37,14 @@ struct DurationPill: View {
     var body: some View {
         HStack {
             if isEditing {
-                TextField("\(dailyBudgetDuration)", value: $dailyBudgetDuration, formatter: NumberFormatter()) {
-                    self.isEditing.toggle()
-                    Category.save(with: self.managedObjectContext)
+                HStack(spacing: 0) {
+                    TextField("", text: $newDailyBudgetDuration) {
+                        self.dailyBudgetDuration = (TimeInterval(self.newDailyBudgetDuration) ?? 0) * 3600
+                        self.isEditing.toggle()
+                        Category.save(with: self.managedObjectContext)
+                    }
+                    .fixedSize()
+                    Text("hr")
                 }
                 .padding(5)
                 .padding(.horizontal, 10)
@@ -47,9 +53,8 @@ struct DurationPill: View {
                 .foregroundColor(Color.white)
                 .background(Color.gray)
                 .cornerRadius(20)
-                .fixedSize()
             } else {
-                Text("\(timeSpentDuration) / \(dailyBudgetDuration) hr(s)")
+                Text("\(timeSpentDuration.hoursMinutesString) / \(dailyBudgetDuration.hoursMinutesString)")
                     .padding(5)
                     .padding(.horizontal, 10)
                     .font(Font.caption.bold())
@@ -67,8 +72,7 @@ struct DurationPill: View {
 struct DurationPill_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            DurationPill(dailyBudgetDuration: .constant(5), timeSpentDuration: 5).padding()
-            DurationPill(dailyBudgetDuration: .constant(5), timeSpentDuration: 6).padding()
+            DurationPill(dailyBudgetDuration: .constant(TimeInterval.oneHour), timeSpentDuration: TimeInterval.oneHour).padding()
         }
     }
 }

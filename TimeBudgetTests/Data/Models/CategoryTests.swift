@@ -20,7 +20,7 @@ class CategoryTests: XCTestCase {
 
     func testTimeSpentDuration() throws {
         let categoryWithPastActivities = Category.mockCategoryWithPastActivities
-        XCTAssertTrue(category?.timeSpentDuration == 3)
+        XCTAssertTrue(category?.timeSpentDuration == 3 * TimeInterval.oneHour)
         XCTAssertTrue(categoryWithPastActivities.timeSpentDuration == 0)
     }
 
