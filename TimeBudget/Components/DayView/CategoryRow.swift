@@ -21,7 +21,7 @@ struct CategoryRow: View {
             Text(category.name ?? "")
                 .opacity(0.8)
             Spacer()
-            DurationPill(dailyBudgetDuration: $category.dailyBudgetDuration,
+            DurationPill(dailyBudgetDuration: category.dailyBudgetDuration,
                          timeSpentDuration: category.timeSpentDuration)
         }
     }

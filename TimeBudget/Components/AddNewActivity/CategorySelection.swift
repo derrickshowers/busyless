@@ -33,8 +33,7 @@ struct CategorySelection: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("\(category.name ?? "")")
-                })
-                    .foregroundColor(.black)
+                }).foregroundColor(Color(UIColor.systemGray))
             }
         }
         .onAppear {
@@ -48,6 +47,10 @@ struct CategorySelection_Previews: PreviewProvider {
     static var previews: some View {
         // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        return CategorySelection(selectedCategory: .constant(Category.mockCategory)).environment(\.managedObjectContext, context)
+        return Group {
+            CategorySelection(selectedCategory: .constant(Category.mockCategory))
+            CategorySelection(selectedCategory: .constant(Category.mockCategory))
+                .environment(\.colorScheme, .dark)
+        }.environment(\.managedObjectContext, context)
     }
 }

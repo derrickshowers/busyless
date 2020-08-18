@@ -40,8 +40,13 @@ struct DayView: View {
         VStack {
             TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
             List {
-                ForEach(categories, id: \.name) {
-                    CategoryRow(category: $0)
+                ForEach(categories, id: \.name) { category in
+                    ZStack {
+                        CategoryRow(category: category)
+                        NavigationLink(destination: CategoryDetailView(category: category)) {
+                            EmptyView()
+                        }
+                    }
                 }
                 .onDelete(perform: deleteCategory)
                 AddNewCategoryRow { (newCategory: String) in
