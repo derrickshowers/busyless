@@ -37,17 +37,17 @@ jobs:
       run: |
         xcodebuild \
           -sdk iphoneos \
-          -project TimeBudget.xcodeproj \
+          -project Busyless.xcodeproj \
           -configuration Release \
-          -scheme TimeBudget \
+          -scheme Busyless \
           -derivedDataPath DerivedData \
-          -archivePath DerivedData/Archive/TimeBudget \
+          -archivePath DerivedData/Archive/Busyless \
           archive
     - name: Export Archive
       run: |
         xcodebuild \
           -exportArchive \
-          -archivePath DerivedData/Archive/TimeBudget.xcarchive \
+          -archivePath DerivedData/Archive/Busyless.xcarchive \
           -exportOptionsPlist provisioning/App-Store.plist \
           -exportPath DerivedData/ipa
     - name: Dump file hierarchy
@@ -57,6 +57,6 @@ jobs:
         xcrun altool \
           --upload-app \
           --type ios \
-          --file DerivedData/ipa/TimeBudget.ipa \
+          --file DerivedData/ipa/Busyless.ipa \
           --username "${{ secrets.appstore_connect_username }}" \
           --password "${{ secrets.appstore_connect_password }}" --verbose
