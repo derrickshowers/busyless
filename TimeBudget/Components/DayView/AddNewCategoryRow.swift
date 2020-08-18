@@ -29,14 +29,11 @@ struct AddNewCategoryRow: View {
                         self.newCategoryAdded(self.newCategory)
                         self.newCategory = ""
                         self.isEditing = false
-                    })
-                        .font(.body)
-                        .foregroundColor(Color.black)
+                    }).font(.body)
                     Button(action: {
                         self.isEditing.toggle()
                     }, label: {
                         Image(systemName: "xmark.circle")
-                            .foregroundColor(Color.gray)
                     })
                 }
             } else {

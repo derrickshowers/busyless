@@ -42,36 +42,24 @@ struct AddNewActivityView: View {
                         HStack {
                             Text("Duration (in hours)")
                             TextField(duration, text: $duration)
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
                         }
 
                     }
                     Section(header: Text("NOTES")) {
                         TextView(text: $notes)
-                        .frame(height: 200.0)
+                            .frame(height: 200.0)
                     }
                 }
-                Button(action: {
-                    self.addActivity()
-                    self.isPresented = false
-                }, label: {
-                    HStack {
-                        Spacer()
-                        Text("Save")
-                        Spacer()
-                    }
-
-                })
-                    .frame(maxWidth: 400)
-                    .padding(.vertical, 10)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(5)
-                    .padding(.horizontal, 20)
-
             }
             .navigationBarTitle("Log New Activity")
+            .navigationBarItems(trailing: Button(action: {
+                self.addActivity()
+                self.isPresented = false
+            }, label: {
+                Text("Done")
+            }))
         }
     }
 }
@@ -95,6 +83,11 @@ struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
         // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        return AddNewActivityView(isPresented: .constant(true)).environment(\.managedObjectContext, context)
+        return Group {
+            AddNewActivityView(isPresented: .constant(true))
+            AddNewActivityView(isPresented: .constant(true))
+                .environment(\.colorScheme, .dark)
+
+        }.environment(\.managedObjectContext, context)
     }
 }

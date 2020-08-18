@@ -51,6 +51,9 @@ struct LogView: View {
                 }
             }
         }
+        .onAppear {
+            UITableView.appearance().separatorStyle = .none
+        }
         .navigationBarTitle("Activity Log")
     }
 
