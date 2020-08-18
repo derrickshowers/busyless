@@ -20,6 +20,7 @@ jobs:
       with:
         author_name: Auto Committer
         author_email: automatic@version.bump
+        force: true
         message: 'AUTOMATIC VERSION BUMP'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
