@@ -23,8 +23,8 @@
 		E7947FCE24DF7CD6006B7859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FCD24DF7CD6006B7859 /* Assets.xcassets */; };
 		E7947FD124DF7CD6006B7859 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */; };
 		E7947FD424DF7CD6006B7859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */; };
-		E7947FDF24DF7CD6006B7859 /* TimeBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FDE24DF7CD6006B7859 /* TimeBudgetTests.swift */; };
-		E7947FEA24DF7CD6006B7859 /* TimeBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */; };
+		E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */; };
+		E7947FEA24DF7CD6006B7859 /* BusylessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */; };
 		E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FF724DF8072006B7859 /* AddNewActivityView.swift */; };
 		E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
 		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
@@ -56,14 +56,14 @@
 			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E7947FC024DF7CD5006B7859;
-			remoteInfo = TimeBudget;
+			remoteInfo = Busyless;
 		};
 		E7947FE624DF7CD6006B7859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E7947FC024DF7CD5006B7859;
-			remoteInfo = TimeBudget;
+			remoteInfo = Busyless;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -87,10 +87,10 @@
 		E7947FD324DF7CD6006B7859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7947FD524DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FDA24DF7CD6006B7859 /* BusylessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusylessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7947FDE24DF7CD6006B7859 /* TimeBudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBudgetTests.swift; sourceTree = "<group>"; };
+		E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessTests.swift; sourceTree = "<group>"; };
 		E7947FE024DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FE524DF7CD6006B7859 /* BusylessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusylessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBudgetUITests.swift; sourceTree = "<group>"; };
+		E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessUITests.swift; sourceTree = "<group>"; };
 		E7947FEB24DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FF724DF8072006B7859 /* AddNewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityView.swift; sourceTree = "<group>"; };
 		E79F6A3C24EC752E004F44B5 /* Busyless.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Busyless.xcdatamodel; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				E780FC5024E9A7B500F9C2B6 /* Data */,
-				E7947FDE24DF7CD6006B7859 /* TimeBudgetTests.swift */,
+				E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */,
 				E7947FE024DF7CD6006B7859 /* Info.plist */,
 			);
 			path = BusylessTests;
@@ -247,7 +247,7 @@
 		E7947FE824DF7CD6006B7859 /* BusylessUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E7947FE924DF7CD6006B7859 /* TimeBudgetUITests.swift */,
+				E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */,
 				E7947FEB24DF7CD6006B7859 /* Info.plist */,
 			);
 			path = BusylessUITests;
@@ -329,7 +329,7 @@
 			dependencies = (
 			);
 			name = Busyless;
-			productName = TimeBudget;
+			productName = Busyless;
 			productReference = E7947FC124DF7CD5006B7859 /* Busyless.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -347,7 +347,7 @@
 				E7947FDC24DF7CD6006B7859 /* PBXTargetDependency */,
 			);
 			name = BusylessTests;
-			productName = TimeBudgetTests;
+			productName = BusylessTests;
 			productReference = E7947FDA24DF7CD6006B7859 /* BusylessTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -365,7 +365,7 @@
 				E7947FE724DF7CD6006B7859 /* PBXTargetDependency */,
 			);
 			name = BusylessUITests;
-			productName = TimeBudgetUITests;
+			productName = BusylessUITests;
 			productReference = E7947FE524DF7CD6006B7859 /* BusylessUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -493,7 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7947FDF24DF7CD6006B7859 /* TimeBudgetTests.swift in Sources */,
+				E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */,
 				E780FC5324E9A7E000F9C2B6 /* CategoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,7 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7947FEA24DF7CD6006B7859 /* TimeBudgetUITests.swift in Sources */,
+				E7947FEA24DF7CD6006B7859 /* BusylessUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
