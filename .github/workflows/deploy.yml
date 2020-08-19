@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '**/project.pbxproj'
-      - '**/Info.plist'
 jobs:
   Build:
     runs-on: macOS-latest
