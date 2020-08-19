@@ -15,7 +15,7 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.AUTOCOMMITTERPAT }}
+        token: ${{ secrets.TOKEN_ACTION }}
     - name: Get Latest Version & Build Number
       uses: yanamura/ios-bump-version@v1
       with:
