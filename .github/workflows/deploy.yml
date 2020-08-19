@@ -19,7 +19,7 @@ jobs:
     - name: Get Latest Version & Build Number
       uses: yanamura/ios-bump-version@v1
       with:
-        version: 0.0.1
+        version: 0.0.2
     - name: Add & Commit
       uses: EndBug/add-and-commit@v4.4.0
       with:
