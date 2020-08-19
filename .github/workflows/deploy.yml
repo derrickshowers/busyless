@@ -14,22 +14,11 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.TOKEN_ACTION }}
     - name: Get Latest Version & Build Number
       uses: derrickshowers/ios-bump-version@v1.0.3
       with:
         build-number: ${{ github.run_number }}
         version: 0.1.0
-    - name: Add & Commit
-      uses: EndBug/add-and-commit@v4.4.0
-      with:
-        author_name: Auto Committer
-        author_email: automatic@version.bump
-        force: true
-        message: 'AUTOMATIC VERSION BUMP'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Install GPG
       run: brew install gnupg
     - name: List available Xcode versions
