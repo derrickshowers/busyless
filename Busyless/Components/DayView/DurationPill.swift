@@ -18,17 +18,23 @@ struct DurationPill: View {
     // MARK: - Private Properties
 
     private var backgroundColor: Color {
-        if timeSpentDuration <= dailyBudgetDuration {
+        if timeSpentDuration < dailyBudgetDuration {
             return Color.green
+        } else if timeSpentDuration == dailyBudgetDuration {
+            return Color.gray
         } else {
             return Color.red
         }
     }
 
+    private var timeRemaining: TimeInterval {
+        return abs(dailyBudgetDuration - timeSpentDuration)
+    }
+
     // MARK: - Lifecycle
 
     var body: some View {
-        Text("\(timeSpentDuration.hoursMinutesString) / \(dailyBudgetDuration.hoursMinutesString)")
+        Text(timeRemaining.hoursMinutesString)
             .padding(5)
             .padding(.horizontal, 10)
             .font(Font.caption.bold())
@@ -42,6 +48,10 @@ struct DurationPill_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             DurationPill(dailyBudgetDuration: TimeInterval.oneHour,
+                         timeSpentDuration: TimeInterval.oneHour).padding()
+            DurationPill(dailyBudgetDuration: TimeInterval.oneHour,
+                         timeSpentDuration: TimeInterval.oneHour * 2).padding()
+            DurationPill(dailyBudgetDuration: TimeInterval.oneHour * 2,
                          timeSpentDuration: TimeInterval.oneHour).padding()
         }
     }

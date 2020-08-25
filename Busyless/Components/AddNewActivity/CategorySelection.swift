@@ -33,7 +33,7 @@ struct CategorySelection: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("\(category.name ?? "")")
-                }).foregroundColor(Color(UIColor.systemGray))
+                }).foregroundColor(Color(UIColor.label))
             }
         }
         .onAppear {

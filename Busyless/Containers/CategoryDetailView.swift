@@ -25,7 +25,16 @@ struct CategoryDetailView: View {
     private var managedObjectContext
 
     var activities: [Activity] {
-        return category.activities?.allObjects as? [Activity] ?? []
+        guard let activities = category.activities?.allObjects as? [Activity] else {
+            return []
+        }
+
+        return activities.filter { activity in
+            guard let date = activity.createdAt else {
+                return false
+            }
+            return Calendar.current.isDateInToday(date)
+        }
     }
 
     var body: some View {

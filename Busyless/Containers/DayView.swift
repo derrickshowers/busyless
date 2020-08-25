@@ -40,6 +40,9 @@ struct DayView: View {
         VStack {
             TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
             List {
+                AddNewCategoryRow { (newCategory: String) in
+                    self.addCategory(name: newCategory)
+                }
                 ForEach(categories, id: \.name) { category in
                     ZStack {
                         CategoryRow(category: category)
@@ -49,10 +52,6 @@ struct DayView: View {
                     }
                 }
                 .onDelete(perform: deleteCategory)
-                AddNewCategoryRow { (newCategory: String) in
-                    self.addCategory(name: newCategory)
-                }
-
             }
             .onAppear {
                 UITableView.appearance().separatorStyle = .none
