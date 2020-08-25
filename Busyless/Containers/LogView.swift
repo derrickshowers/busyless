@@ -37,7 +37,7 @@ struct LogView: View {
                             Text(activity.name ?? "")
                                 .font(.headline)
                             HStack {
-                                Text(activity.category?.name ?? "")
+                                Text(activity.category?.name ?? "Uncategorized")
                                 Text("•")
                                 Text(activity.duration.hoursMinutesString)
                             }
