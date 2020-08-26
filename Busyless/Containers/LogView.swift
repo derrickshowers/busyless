@@ -12,7 +12,7 @@ struct LogView: View {
 
     // MARK: - Private Properties
 
-    @State private var selection: Set<Activity> = []
+    @State private var isAddNewActivityViewPresented = false
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
@@ -33,19 +33,21 @@ struct LogView: View {
             ForEach(update(activities), id: \.self) { (section: [Activity]) in
                 Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt))) {
                     ForEach(section, id: \.self) { (activity: Activity) in
-                        VStack(alignment: .leading) {
-                            Text(activity.name ?? "")
-                                .font(.headline)
-                            HStack {
-                                Text(activity.category?.name ?? "Uncategorized")
-                                Text("•")
-                                Text(activity.duration.hoursMinutesString)
+                        NavigationLink(destination: AddNewActivityView(isPresented: self.$isAddNewActivityViewPresented,
+                                                                       activity: activity,
+                                                                       showNavigationBar: false)) {
+                            VStack(alignment: .leading) {
+                                Text(activity.name ?? "")
+                                    .font(.headline)
+                                HStack {
+                                    Text(activity.category?.name ?? "Uncategorized")
+                                    Text("•")
+                                    Text(activity.duration.hoursMinutesString)
+                                }
+                                .font(.caption)
+                                .foregroundColor(.gray)
                             }
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            NotesView(noteText: activity.notes, isExpanded: self.selection.contains(activity))
                         }
-                        .onTapGesture { self.toggleNotes(for: activity) }
                     }
                     .onDelete(perform: self.deleteActivity)
                 }
@@ -58,14 +60,6 @@ struct LogView: View {
     }
 
     // MARK: - Private Methods
-
-    private func toggleNotes(for activity: Activity) {
-        if selection.contains(activity) {
-            selection.remove(activity)
-        } else {
-            selection.insert(activity)
-        }
-    }
 
     /**
      Groups activities into a 2-dimensional array so it can be split into sections.
@@ -106,24 +100,6 @@ extension LogView {
             self.managedObjectContext.delete(activity)
         }
         Category.save(with: managedObjectContext)
-    }
-}
-
-private struct NotesView: View {
-    let noteText: String?
-    let isExpanded: Bool
-
-    var body: some View {
-        VStack {
-            if isExpanded {
-                Spacer()
-                Text(noteText ?? "")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Spacer()
-            }
-        }
-        .contentShape(Rectangle())
     }
 }
 
