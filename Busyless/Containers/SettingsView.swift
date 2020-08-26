@@ -13,12 +13,12 @@ struct SettingsView: View {
     // MARK: - Constants
 
     static let awakeHourDefault: Int = 7
-    static let awakeDurationDefault: TimeInterval = 8
+    static let awakeDurationDefault: TimeInterval = 12 * TimeInterval.oneHour
 
     // MARK: - Private Properties
 
     @State private var awakeTime = Date.today(withHour: awakeHourDefault)
-    @State private var sleepTime = Date.today(withHour: awakeHourDefault + Int(awakeDurationDefault))
+    @State private var sleepTime = Date.today(withHour: awakeHourDefault + Int(awakeDurationDefault / TimeInterval.oneHour))
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
