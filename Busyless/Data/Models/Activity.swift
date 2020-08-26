@@ -19,7 +19,7 @@ extension Activity {
 
     static var allActivitiesFetchRequest: NSFetchRequest<Activity> {
         let request: NSFetchRequest<Activity> = Activity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Activity.createdAt, ascending: false)]
         return request
     }
 }

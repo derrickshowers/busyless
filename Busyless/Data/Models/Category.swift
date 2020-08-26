@@ -31,7 +31,7 @@ extension Category {
 
     static var allCategoriesFetchRequest: NSFetchRequest<Category> {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Category.name, ascending: true)]
         return request
     }
 }

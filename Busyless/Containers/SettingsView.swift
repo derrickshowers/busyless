@@ -10,17 +10,21 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    // MARK: - Constants
+
+    static let awakeHourDefault: Int = 7
+    static let awakeDurationDefault: TimeInterval = 8
+
     // MARK: - Private Properties
 
-    @State private var wakeUpTime = SettingsView.wakeUpTime
+    @State private var awakeTime = Date.today(withHour: awakeHourDefault)
+    @State private var sleepTime = Date.today(withHour: awakeHourDefault + Int(awakeDurationDefault))
 
-    @State private var sleepyTime = SettingsView.sleepyTime
+    @Environment(\.managedObjectContext)
+    private var managedObjectContext
 
-    @UserDefault("wakeup_time", defaultValue: Date.today(withHour: 7))
-    static var wakeUpTime: Date
-
-    @UserDefault("sleepy_time", defaultValue: Date.today(withHour: 23))
-    static var sleepyTime: Date
+    @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
+    private var userConfigs: FetchedResults<UserConfig>
 
     // MARK: - Lifecycle
 
@@ -28,16 +32,27 @@ struct SettingsView: View {
         Form {
             Section(header: Text("TIMES")) {
                 DatePicker("Awake Time",
-                           selection: $wakeUpTime,
+                           selection: $awakeTime,
                            displayedComponents: .hourAndMinute)
                 DatePicker("Sleepy Time",
-                           selection: $sleepyTime,
+                           selection: $sleepTime,
                            displayedComponents: .hourAndMinute)
             }
         }
+        .onAppear {
+            guard let userConfig = self.userConfigs.first,
+                let awakeTime = userConfig.awakeTime,
+                let sleepTime = userConfig.sleepTime else {
+                    return
+            }
+            self.awakeTime = awakeTime
+            self.sleepTime = sleepTime
+        }
         .onDisappear {
-            SettingsView.wakeUpTime = self.wakeUpTime
-            SettingsView.sleepyTime = self.sleepyTime
+            let userConfig = self.userConfigs.first ?? UserConfig(context: self.managedObjectContext)
+            userConfig.awakeTime = self.awakeTime
+            userConfig.sleepTime = self.sleepTime
+            UserConfig.save(with: self.managedObjectContext)
         }
         .navigationBarTitle("Settings")
     }

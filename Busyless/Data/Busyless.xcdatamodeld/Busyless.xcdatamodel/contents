@@ -12,8 +12,13 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Activity" inverseName="category" inverseEntity="Activity"/>
     </entity>
+    <entity name="UserConfig" representedClassName="UserConfig" syncable="YES" codeGenerationType="category">
+        <attribute name="awakeTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sleepTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <elements>
         <element name="Activity" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="Category" positionX="-54" positionY="-9" width="128" height="88"/>
+        <element name="UserConfig" positionX="-54" positionY="27" width="128" height="73"/>
     </elements>
 </model>

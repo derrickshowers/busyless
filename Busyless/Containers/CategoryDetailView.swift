@@ -16,6 +16,7 @@ struct CategoryDetailView: View {
 
     // MARK: - Private Properties
 
+    @State private var showingAddNewActivityView = false
     @State private var newDuration = ""
 
     @Environment(\.presentationMode)
@@ -24,7 +25,7 @@ struct CategoryDetailView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    var activities: [Activity] {
+    private var activities: [Activity] {
         guard let activities = category.activities?.allObjects as? [Activity] else {
             return []
         }
@@ -38,36 +39,47 @@ struct CategoryDetailView: View {
     }
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("Duration (in hours)")
-                TextField("\(Int(category.dailyBudgetDuration / TimeInterval.oneHour))",
-                    text: $newDuration)
-                    .keyboardType(.decimalPad)
-                    .multilineTextAlignment(.trailing)
-            }
-            .padding(20)
-            .background(Color(UIColor.systemGray5))
+        ZStack {
+            VStack {
+                HStack {
+                    Text("Duration (in hours)")
+                    TextField("\(Int(category.dailyBudgetDuration / TimeInterval.oneHour))",
+                        text: $newDuration)
+                        .keyboardType(.decimalPad)
+                        .multilineTextAlignment(.trailing)
+                }
+                .padding(20)
+                .background(Color(UIColor.systemGray5))
 
-            if activities.count > 0 {
-                List {
-                    ForEach(activities, id: \.self) { (activity: Activity) in
-                        HStack {
-                            Text(activity.name ?? "")
-                                .font(.body)
-                            Spacer()
-                            Text(activity.duration.hoursMinutesString)
-                                .font(.caption)
+                if activities.count > 0 {
+                    List {
+                        ForEach(activities, id: \.self) { (activity: Activity) in
+                            HStack {
+                                Text(activity.name ?? "")
+                                    .font(.body)
+                                Spacer()
+                                Text(activity.duration.hoursMinutesString)
+                                    .font(.caption)
+                            }
                         }
                     }
+                    .onAppear {
+                        UITableView.appearance().separatorStyle = .none
+                    }
+                } else {
+                    Spacer()
+                    Text("No logged activities for this category").font(.callout)
+                    Spacer()
                 }
-                .onAppear {
-                    UITableView.appearance().separatorStyle = .none
+            }
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    AddButton {
+                        self.showingAddNewActivityView.toggle()
+                    }
                 }
-            } else {
-                Spacer()
-                Text("No logged activities for this category").font(.callout)
-                Spacer()
             }
         }
         .navigationBarTitle(category.name ?? "Category Detail")
@@ -83,6 +95,10 @@ struct CategoryDetailView: View {
                 Category.save(with: self.managedObjectContext)
             }
 
+        }
+        .sheet(isPresented: $showingAddNewActivityView) {
+            AddNewActivityView(isPresented: self.$showingAddNewActivityView, preselectedCategory: self.category)
+                .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }

@@ -21,6 +21,10 @@ extension TimeInterval {
     }
 
     var hoursString: String {
-        return String(Int(self / TimeInterval.oneHour))
+        let formatter = NumberFormatter()
+        let number = NSNumber(value: self / TimeInterval.oneHour)
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return String(formatter.string(from: number) ?? "")
     }
 }

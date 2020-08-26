@@ -33,12 +33,15 @@ struct AddNewActivityView: View {
 
     // MARK: - Lifecycle
 
-    init(isPresented: Binding<Bool>, activity: Activity? = nil, showNavigationBar: Bool = true) {
+    init(isPresented: Binding<Bool>,
+         activity: Activity? = nil,
+         preselectedCategory: Category? = nil,
+         showNavigationBar: Bool = true) {
         self._isPresented = isPresented
         self.activity = activity
         self.showNavigationBar = showNavigationBar
         _name = State(initialValue: activity?.name ?? "")
-        _category = State(initialValue: activity?.category)
+        _category = State(initialValue: activity?.category ?? preselectedCategory)
         _duration = State(initialValue: activity?.duration.hoursString ?? "")
         _notes = State(initialValue: activity?.notes ?? "")
     }
