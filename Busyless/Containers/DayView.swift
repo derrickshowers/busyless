@@ -25,41 +25,62 @@ struct DayView: View {
     @FetchRequest(fetchRequest: Category.allCategoriesFetchRequest)
     private var categories: FetchedResults<Category>
 
+    @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
+    private var userConfigs: FetchedResults<UserConfig>
+
     private var totalBudgetedDuration: TimeInterval {
         return self.categories.reduce(0) { $0 + $1.dailyBudgetDuration }
     }
 
     private var awakeDuration: TimeInterval {
-        let difference = Calendar.current.dateComponents([.hour, .minute], from: SettingsView.wakeUpTime, to: SettingsView.sleepyTime)
+        guard let userConfig = self.userConfigs.first,
+            let awakeTime = userConfig.awakeTime,
+            let sleepTime = userConfig.sleepTime else {
+                return SettingsView.awakeDurationDefault
+        }
+
+        // If sleep time is before awake time, 1 day needs to be added to get correct duration.
+        var validatedSleepTime = sleepTime
+        if sleepTime < awakeTime {
+            validatedSleepTime = Calendar.current.date(byAdding: .day, value: 1, to: sleepTime) ?? sleepTime
+        }
+
+        let difference = Calendar.current.dateComponents([.hour, .minute], from: awakeTime, to: validatedSleepTime)
         return TimeInterval(difference.hour ?? 0) * TimeInterval.oneHour
     }
 
     // MARK: - Lifecycle
 
     var body: some View {
-        VStack {
-            TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
-            List {
-                AddNewCategoryRow { (newCategory: String) in
-                    self.addCategory(name: newCategory)
-                }
-                ForEach(categories, id: \.name) { category in
-                    ZStack {
-                        CategoryRow(category: category)
-                        NavigationLink(destination: CategoryDetailView(category: category)) {
-                            EmptyView()
+        ZStack {
+            VStack {
+                TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
+                List {
+                    AddNewCategoryRow { (newCategory: String) in
+                        self.addCategory(name: newCategory)
+                    }
+                    ForEach(categories, id: \.name) { category in
+                        ZStack {
+                            CategoryRow(category: category)
+                            NavigationLink(destination: CategoryDetailView(category: category)) {
+                                EmptyView()
+                            }
                         }
                     }
+                    .onDelete(perform: deleteCategory)
                 }
-                .onDelete(perform: deleteCategory)
+                .onAppear {
+                    UITableView.appearance().separatorStyle = .none
+                }
+
             }
-            .onAppear {
-                UITableView.appearance().separatorStyle = .none
-            }
-            HStack {
+            VStack {
                 Spacer()
-                AddButton {
-                    self.showingAddNewActivityView.toggle()
+                HStack {
+                    Spacer()
+                    AddButton {
+                        self.showingAddNewActivityView.toggle()
+                    }
                 }
             }
         }

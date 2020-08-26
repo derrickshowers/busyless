@@ -28,6 +28,7 @@
 		E7947FEA24DF7CD6006B7859 /* BusylessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */; };
 		E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FF724DF8072006B7859 /* AddNewActivityView.swift */; };
 		E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
+		E7B8CFAA24F6E5930026C983 /* UserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B8CFA924F6E5930026C983 /* UserConfig.swift */; };
 		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
 		E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115B24E22F4200CFABC8 /* DurationPill.swift */; };
 		E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */; };
@@ -97,6 +98,7 @@
 		E7947FEB24DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FF724DF8072006B7859 /* AddNewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityView.swift; sourceTree = "<group>"; };
 		E79F6A3C24EC752E004F44B5 /* Busyless.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Busyless.xcdatamodel; sourceTree = "<group>"; };
+		E7B8CFA924F6E5930026C983 /* UserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfig.swift; sourceTree = "<group>"; };
 		E7F6115924E22A2600CFABC8 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		E7F6115B24E22F4200CFABC8 /* DurationPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPill.swift; sourceTree = "<group>"; };
 		E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryRow.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			children = (
 				E7FA78B724E98F4D0095DBDD /* Activity.swift */,
 				E7FA78B924E98F590095DBDD /* Category.swift */,
+				E7B8CFA924F6E5930026C983 /* UserConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 			files = (
 				E7FA78B824E98F4D0095DBDD /* Activity.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
+				E7B8CFAA24F6E5930026C983 /* UserConfig.swift in Sources */,
 				E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */,
 				E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */,
 				E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */,
