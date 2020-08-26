@@ -10,35 +10,39 @@ import SwiftUI
 
 struct MainView: View {
 
-    // MARK: - Private Properties
-
-    @State private var isDayViewActive = true
-    @State private var isLogViewActive = false
-
     // MARK: - Lifecycle
 
     var body: some View {
         NavigationView {
-            List {
-                NavigationLink(destination: DayView(), isActive: $isDayViewActive) {
-                    Text("Today")
-                }
-                NavigationLink(destination: LogView(), isActive: $isLogViewActive) {
-                    Text("Activity Log")
-                }
-                NavigationLink(destination: SettingsView()) {
-                    HStack {
-                        Image(systemName: "gear")
-                        Text("Settings")
-                    }
-                }
-            }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-            .onAppear {
-                UITableView.appearance().separatorStyle = .none
-            }
+            MenuView()
             DayView()
+        }
+    }
+}
+
+struct MenuView: View {
+
+    // MARK: - Lifecycle
+
+    var body: some View {
+        List {
+            NavigationLink(destination: DayView()) {
+                Text("Today")
+            }
+            NavigationLink(destination: LogView()) {
+                Text("Activity Log")
+            }
+            NavigationLink(destination: SettingsView()) {
+                HStack {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+            }
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .onAppear {
+            UITableView.appearance().separatorStyle = .none
         }
     }
 }

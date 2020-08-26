@@ -19,4 +19,8 @@ extension TimeInterval {
         formatter.unitsStyle = .brief
         return formatter.string(from: TimeInterval(self)) ?? "0"
     }
+
+    var hoursString: String {
+        return String(Int(self / TimeInterval.oneHour))
+    }
 }
