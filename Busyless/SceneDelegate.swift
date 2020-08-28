@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene,
             let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
-                return
+                fatalError("Unable to read managed object context.")
         }
 
         let dayView = MainView().environment(\.managedObjectContext, context)

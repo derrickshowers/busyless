@@ -7,13 +7,14 @@
 //
 
 import SwiftUI
+import os
 
 struct SettingsView: View {
 
     // MARK: - Constants
 
     static let awakeHourDefault: Int = 7
-    static let awakeDurationDefault: TimeInterval = 12 * TimeInterval.oneHour
+    static let awakeDurationDefault: TimeInterval = 16 * TimeInterval.oneHour
 
     // MARK: - Private Properties
 
@@ -25,6 +26,14 @@ struct SettingsView: View {
 
     @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
     private var userConfigs: FetchedResults<UserConfig>
+
+    var iCloudStatusColor: Color {
+        if FileManager.default.ubiquityIdentityToken != nil {
+            return Color.green
+        } else {
+            return Color.red
+        }
+    }
 
     // MARK: - Lifecycle
 
@@ -38,23 +47,48 @@ struct SettingsView: View {
                            selection: $sleepTime,
                            displayedComponents: .hourAndMinute)
             }
+            Section {
+                HStack {
+                    Text("iCloud Status")
+                    Spacer()
+                    Circle()
+                    .foregroundColor(iCloudStatusColor)
+                        .fixedSize(horizontal: true, vertical: true)
+
+                }
+            }
         }
         .onAppear {
-            guard let userConfig = self.userConfigs.first,
+            self.setupUserConfigIfNewUser()
+
+            if let userConfig = self.userConfigs.first,
                 let awakeTime = userConfig.awakeTime,
-                let sleepTime = userConfig.sleepTime else {
-                    return
+                let sleepTime = userConfig.sleepTime {
+                    self.awakeTime = awakeTime
+                    self.sleepTime = sleepTime
             }
-            self.awakeTime = awakeTime
-            self.sleepTime = sleepTime
         }
-        .onDisappear {
-            let userConfig = self.userConfigs.first ?? UserConfig(context: self.managedObjectContext)
-            userConfig.awakeTime = self.awakeTime
-            userConfig.sleepTime = self.sleepTime
-            UserConfig.save(with: self.managedObjectContext)
-        }
+        .navigationBarItems(trailing: Button(action: {
+            self.saveChanges()
+        }, label: { Text("Save Changes") }))
         .navigationBarTitle("Settings")
+    }
+
+    // MARK: - Private Methods
+
+    private func saveChanges() {
+        let userConfig = self.userConfigs.first
+        userConfig?.awakeTime = self.awakeTime
+        userConfig?.sleepTime = self.sleepTime
+        UserConfig.save(with: self.managedObjectContext)
+    }
+
+    private func setupUserConfigIfNewUser() {
+        if self.userConfigs.count == 0 {
+            _ = UserConfig(context: self.managedObjectContext)
+        } else if self.userConfigs.count > 1 {
+            os_log("There are more UserConfig objects than there should be.")
+        }
     }
 }
 
@@ -68,6 +102,8 @@ private extension Date {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        // swiftlint:disable:next force_cast
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return SettingsView().environment(\.managedObjectContext, context)
     }
 }
