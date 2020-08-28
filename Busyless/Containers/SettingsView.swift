@@ -15,11 +15,10 @@ struct SettingsView: View {
 
     static let awakeHourDefault: Int = 7
     static let awakeDurationDefault: TimeInterval = 16 * TimeInterval.oneHour
+    static let defaultAwakeTime = Date.today(withHour: awakeHourDefault)
+    static let defaultSleepTime = Date.today(withHour: awakeHourDefault + Int(awakeDurationDefault / TimeInterval.oneHour))
 
     // MARK: - Private Properties
-
-    @State private var awakeTime = Date.today(withHour: awakeHourDefault)
-    @State private var sleepTime = Date.today(withHour: awakeHourDefault + Int(awakeDurationDefault / TimeInterval.oneHour))
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
@@ -27,7 +26,7 @@ struct SettingsView: View {
     @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
     private var userConfigs: FetchedResults<UserConfig>
 
-    var iCloudStatusColor: Color {
+    private var iCloudStatusColor: Color {
         if FileManager.default.ubiquityIdentityToken != nil {
             return Color.green
         } else {
@@ -35,17 +34,27 @@ struct SettingsView: View {
         }
     }
 
+    private var awakeTime: Binding<Date> {
+        return Binding<Date>(
+            get: { self.userConfigs.first?.awakeTime ?? SettingsView.defaultAwakeTime },
+            set: { self.userConfigs.first?.awakeTime = $0 }
+        )
+    }
+
+    private var sleepTime: Binding<Date> {
+        return Binding<Date>(
+            get: { self.userConfigs.first?.sleepTime ?? SettingsView.defaultSleepTime },
+            set: { self.userConfigs.first?.sleepTime = $0 }
+        )
+    }
+
     // MARK: - Lifecycle
 
     var body: some View {
         Form {
             Section(header: Text("TIMES")) {
-                DatePicker("Awake Time",
-                           selection: $awakeTime,
-                           displayedComponents: .hourAndMinute)
-                DatePicker("Sleepy Time",
-                           selection: $sleepTime,
-                           displayedComponents: .hourAndMinute)
+                DatePicker("Awake Time", selection: awakeTime, displayedComponents: .hourAndMinute)
+                DatePicker("Sleepy Time", selection: sleepTime, displayedComponents: .hourAndMinute)
             }
             Section {
                 HStack {
@@ -60,28 +69,14 @@ struct SettingsView: View {
         }
         .onAppear {
             self.setupUserConfigIfNewUser()
-
-            if let userConfig = self.userConfigs.first,
-                let awakeTime = userConfig.awakeTime,
-                let sleepTime = userConfig.sleepTime {
-                    self.awakeTime = awakeTime
-                    self.sleepTime = sleepTime
-            }
         }
-        .navigationBarItems(trailing: Button(action: {
-            self.saveChanges()
-        }, label: { Text("Save Changes") }))
+        .onDisappear {
+            UserConfig.save(with: self.managedObjectContext)
+        }
         .navigationBarTitle("Settings")
     }
 
     // MARK: - Private Methods
-
-    private func saveChanges() {
-        let userConfig = self.userConfigs.first
-        userConfig?.awakeTime = self.awakeTime
-        userConfig?.sleepTime = self.sleepTime
-        UserConfig.save(with: self.managedObjectContext)
-    }
 
     private func setupUserConfigIfNewUser() {
         if self.userConfigs.count == 0 {
