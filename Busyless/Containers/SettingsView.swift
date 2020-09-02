@@ -26,6 +26,8 @@ struct SettingsView: View {
     @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
     private var userConfigs: FetchedResults<UserConfig>
 
+    @State private var isExportPresented: Bool = false
+
     private var iCloudStatusColor: Color {
         if FileManager.default.ubiquityIdentityToken != nil {
             return Color.green
@@ -48,6 +50,11 @@ struct SettingsView: View {
         )
     }
 
+    private var dataExportFile: URL {
+        let exportManager = ExportManager(managedObjectContext: self.managedObjectContext)
+        return exportManager.createActivityExportFile()
+    }
+
     // MARK: - Lifecycle
 
     var body: some View {
@@ -66,7 +73,17 @@ struct SettingsView: View {
 
                 }
             }
+            Section {
+                Button(action: {
+                    self.isExportPresented.toggle()
+                }, label: {
+                    Text("Export Data to CSV")
+                })
+            }
         }
+        .sheet(isPresented: $isExportPresented, content: {
+            ActivityViewController(activityItems: [self.dataExportFile])
+        })
         .onAppear {
             self.setupUserConfigIfNewUser()
         }
