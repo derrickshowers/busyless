@@ -22,6 +22,7 @@ struct AddNewActivityView: View {
     @State private var name: String
     @State private var category: Category?
     @State private var duration: String
+    @State private var createdAt: Date
     @State private var notes: String
 
     @Environment(\.managedObjectContext)
@@ -43,6 +44,7 @@ struct AddNewActivityView: View {
         _name = State(initialValue: activity?.name ?? "")
         _category = State(initialValue: activity?.category ?? preselectedCategory)
         _duration = State(initialValue: activity?.duration.hoursString ?? "")
+        _createdAt = State(initialValue: activity?.createdAt ?? Date())
         _notes = State(initialValue: activity?.notes ?? "")
     }
 
@@ -65,6 +67,7 @@ struct AddNewActivityView: View {
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                         }
+                        DatePicker("When?", selection: $createdAt, displayedComponents: .hourAndMinute)
 
                     }
                     Section(header: Text("NOTES")) {
@@ -107,7 +110,7 @@ extension AddNewActivityView {
         activity.category = category
         activity.duration = (TimeInterval(duration) ?? 0) * TimeInterval.oneHour
         activity.notes = notes
-        activity.createdAt = self.activity?.createdAt ?? Date()
+        activity.createdAt = createdAt
         Activity.save(with: managedObjectContext)
     }
 }
