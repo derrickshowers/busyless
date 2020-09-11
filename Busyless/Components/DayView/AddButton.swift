@@ -19,13 +19,14 @@ struct AddButton: View {
     var body: some View {
         Button(action: self.action, label: {
             Text("+")
+                .padding(.bottom, 4)
                 .accessibility(label: Text("Add a new activity"))
                 .font(.system(.largeTitle))
                 .foregroundColor(Color.white)
 
         })
             .frame(width: 50, height: 50)
-            .background(Color.blue)
+            .background(Color.mainColor)
             .clipShape(Circle())
             .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
             .padding()
