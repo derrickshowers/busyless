@@ -54,7 +54,9 @@ struct DayView: View {
     var body: some View {
         ZStack {
             VStack {
-                TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
+                TodayStatus(awakeDuration: awakeDuration,
+                            totalBudgetedDuration: totalBudgetedDuration,
+                            dailyBudgetPercentage: userConfigs.first?.dailyBudgetPercentage ?? 0)
                 List {
                     AddNewCategoryRow { (newCategory: String) in
                         self.addCategory(name: newCategory)

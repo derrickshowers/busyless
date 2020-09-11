@@ -50,6 +50,15 @@ struct SettingsView: View {
         )
     }
 
+    private var dailyBudgetPercentage: Binding<String> {
+        // TODO: Add some validation here
+        return Binding<String>(get: { () -> String in
+            String(Int((self.userConfigs.first?.dailyBudgetPercentage ?? 0) * 100))
+        }, set: {
+            self.userConfigs.first?.dailyBudgetPercentage = (Double($0) ?? 0) / 100
+        })
+    }
+
     private var dataExportFile: URL {
         let exportManager = ExportManager(managedObjectContext: self.managedObjectContext)
         return exportManager.createActivityExportFile()
@@ -62,6 +71,13 @@ struct SettingsView: View {
             Section(header: Text("TIMES")) {
                 DatePicker("Awake Time", selection: awakeTime, displayedComponents: .hourAndMinute)
                 DatePicker("Sleepy Time", selection: sleepTime, displayedComponents: .hourAndMinute)
+                HStack {
+                    Text("Budgeted Time Threshold")
+                    Spacer()
+                    TextField("", text: dailyBudgetPercentage)
+                    .fixedSize()
+                    Text("%")
+                }
             }
             Section {
                 HStack {
