@@ -47,7 +47,7 @@ struct TodayStatus: View {
         .foregroundColor(.white)
         .padding(.vertical, 15)
         .padding(.horizontal, 20)
-        .background(Color.blue.shadow(color: .gray, radius: 3, x: 0, y: 2))
+        .background(Color.mainColor.shadow(color: .black, radius: 3, x: 3, y: 3))
 
     }
 }
