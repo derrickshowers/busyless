@@ -117,9 +117,8 @@ extension AddNewActivityView {
 
 struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let activity = Activity.mockActivity
+        let context = PersistenceController.preview.container.viewContext
+        let activity = Activity.mockActivity()
         return Group {
             AddNewActivityView(isPresented: .constant(true))
             AddNewActivityView(isPresented: .constant(true), activity: activity)

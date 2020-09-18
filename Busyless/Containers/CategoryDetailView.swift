@@ -105,6 +105,6 @@ struct CategoryDetailView: View {
 
 struct CategoryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryDetailView(category: Category.mockCategory)
+        CategoryDetailView(category: Category.mockCategory())
     }
 }

@@ -69,9 +69,6 @@ struct DayView: View {
                     }
                     .onDelete(perform: deleteCategory)
                 }
-                .onAppear {
-                    UITableView.appearance().separatorStyle = .none
-                }
 
             }
             VStack {
@@ -113,8 +110,7 @@ extension DayView {
 
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = PersistenceController.preview.container.viewContext
         return DayView().environment(\.managedObjectContext, context)
     }
 }

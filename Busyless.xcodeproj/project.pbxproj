@@ -12,6 +12,7 @@
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
+		E74AEC152515031A00502907 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
 		E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */; };
 		E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */; };
@@ -21,8 +22,7 @@
 		E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC5424E9B37500F9C2B6 /* LogView.swift */; };
 		E786CA4324E488FF00B27D8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4224E488FF00B27D8E /* MainView.swift */; };
 		E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4424E4967D00B27D8E /* TodayStatus.swift */; };
-		E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* AppDelegate.swift */; };
-		E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */; };
+		E7947FC524DF7CD5006B7859 /* BusylessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* BusylessApp.swift */; };
 		E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FCB24DF7CD5006B7859 /* DayView.swift */; };
 		E7947FCE24DF7CD6006B7859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FCD24DF7CD6006B7859 /* Assets.xcassets */; };
 		E7947FD124DF7CD6006B7859 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */; };
@@ -78,6 +78,7 @@
 		E726EEE4250B0D3700CBEAF5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E737A9F224FF1F570094746D /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
+		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+.swift"; sourceTree = "<group>"; };
@@ -88,8 +89,7 @@
 		E786CA4224E488FF00B27D8E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E786CA4424E4967D00B27D8E /* TodayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStatus.swift; sourceTree = "<group>"; };
 		E7947FC124DF7CD5006B7859 /* Busyless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Busyless.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7947FC424DF7CD5006B7859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E7947FC424DF7CD5006B7859 /* BusylessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessApp.swift; sourceTree = "<group>"; };
 		E7947FCB24DF7CD5006B7859 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E7947FCD24DF7CD6006B7859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -251,8 +251,7 @@
 		E7947FC324DF7CD5006B7859 /* Busyless */ = {
 			isa = PBXGroup;
 			children = (
-				E7947FC424DF7CD5006B7859 /* AppDelegate.swift */,
-				E7947FC624DF7CD5006B7859 /* SceneDelegate.swift */,
+				E7947FC424DF7CD5006B7859 /* BusylessApp.swift */,
 				E7FA78B524E98EFD0095DBDD /* Data */,
 				E7F6115824E229D200CFABC8 /* Containers */,
 				E7F6115724E229AB00CFABC8 /* Components */,
@@ -317,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */,
+				E74AEC142515031A00502907 /* Persistence.swift */,
 				E7FA78B624E98F100095DBDD /* Models */,
 			);
 			path = Data;
@@ -502,8 +502,7 @@
 				E7B8CFAA24F6E5930026C983 /* UserConfig.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,
 				E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */,
-				E7947FC524DF7CD5006B7859 /* AppDelegate.swift in Sources */,
-				E7947FC724DF7CD5006B7859 /* SceneDelegate.swift in Sources */,
+				E7947FC524DF7CD5006B7859 /* BusylessApp.swift in Sources */,
 				E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */,
 				E737A9F324FF1F570094746D /* ExportManager.swift in Sources */,
 				E780FC4E24E9A5BE00F9C2B6 /* CategorySelection.swift in Sources */,
@@ -515,6 +514,7 @@
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */,
 				E780FC4B24E99F3D00F9C2B6 /* TextView.swift in Sources */,
+				E74AEC152515031A00502907 /* Persistence.swift in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */,
@@ -617,7 +617,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -671,7 +671,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -736,7 +736,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BusylessTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -757,7 +756,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BusylessTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -28,9 +28,9 @@ extension Activity {
 
 extension Activity {
 
-    static var mockActivity: Activity {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    static func mockActivity(withContext context: NSManagedObjectContext? = nil) -> Activity {
+        let result = PersistenceController(inMemory: true)
+        let context = context ?? result.container.viewContext
         let activity = Activity(context: context)
         activity.createdAt = Date()
         activity.duration = TimeInterval.oneHour
@@ -39,8 +39,10 @@ extension Activity {
         return activity
     }
 
-    static var mockActivityFromYesterday: Activity {
-        let activity = Activity.mockActivity
+    static func mockActivityFromYesterday(withContext context: NSManagedObjectContext? = nil) -> Activity {
+        let result = PersistenceController(inMemory: true)
+        let context = context ?? result.container.viewContext
+        let activity = Activity.mockActivity(withContext: context)
         activity.createdAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         return activity
     }

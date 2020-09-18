@@ -45,11 +45,10 @@ struct CategorySelection: View {
 
 struct CategorySelection_Previews: PreviewProvider {
     static var previews: some View {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = PersistenceController.preview.container.viewContext
         return Group {
-            CategorySelection(selectedCategory: .constant(Category.mockCategory))
-            CategorySelection(selectedCategory: .constant(Category.mockCategory))
+            CategorySelection(selectedCategory: .constant(Category.mockCategory(withContext: context)))
+            CategorySelection(selectedCategory: .constant(Category.mockCategory(withContext: context)))
                 .environment(\.colorScheme, .dark)
         }.environment(\.managedObjectContext, context)
     }

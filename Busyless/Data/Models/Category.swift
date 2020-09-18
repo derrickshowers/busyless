@@ -40,23 +40,27 @@ extension Category {
 
 extension Category {
 
-    static var mockCategory: Category {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    static func mockCategory(withContext context: NSManagedObjectContext? = nil) -> Category {
+        let result = PersistenceController(inMemory: true)
+        let context = context ?? result.container.viewContext
         let category = Category(context: context)
         category.name = "Category Name"
         category.dailyBudgetDuration = 5
-        category.activities = [Activity.mockActivity, Activity.mockActivity, Activity.mockActivity]
+        category.activities = [Activity.mockActivity(withContext: context),
+                               Activity.mockActivity(withContext: context),
+                               Activity.mockActivity(withContext: context)]
         return category
     }
 
-    static var mockCategoryWithPastActivities: Category {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    static func mockCategoryWithPastActivities(withContext context: NSManagedObjectContext? = nil) -> Category {
+        let result = PersistenceController(inMemory: true)
+        let context = context ?? result.container.viewContext
         let category = Category(context: context)
         category.name = "Category Name"
         category.dailyBudgetDuration = 5
-        category.activities = [Activity.mockActivityFromYesterday, Activity.mockActivityFromYesterday, Activity.mockActivityFromYesterday]
+        category.activities = [Activity.mockActivityFromYesterday(withContext: context),
+                               Activity.mockActivityFromYesterday(withContext: context),
+                               Activity.mockActivityFromYesterday(withContext: context)]
         return category
     }
 }
