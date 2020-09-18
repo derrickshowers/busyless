@@ -42,7 +42,8 @@ extension Category {
 
     static func mockCategory(withContext context: NSManagedObjectContext? = nil) -> Category {
         let result = PersistenceController(inMemory: true)
-        let category = Category(context: context ?? result.container.viewContext)
+        let context = context ?? result.container.viewContext
+        let category = Category(context: context)
         category.name = "Category Name"
         category.dailyBudgetDuration = 5
         category.activities = [Activity.mockActivity(withContext: context),
@@ -53,10 +54,13 @@ extension Category {
 
     static func mockCategoryWithPastActivities(withContext context: NSManagedObjectContext? = nil) -> Category {
         let result = PersistenceController(inMemory: true)
-        let category = Category(context: context ?? result.container.viewContext)
+        let context = context ?? result.container.viewContext
+        let category = Category(context: context)
         category.name = "Category Name"
         category.dailyBudgetDuration = 5
-        category.activities = [Activity.mockActivityFromYesterday, Activity.mockActivityFromYesterday, Activity.mockActivityFromYesterday]
+        category.activities = [Activity.mockActivityFromYesterday(withContext: context),
+                               Activity.mockActivityFromYesterday(withContext: context),
+                               Activity.mockActivityFromYesterday(withContext: context)]
         return category
     }
 }

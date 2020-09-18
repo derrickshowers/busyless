@@ -9,7 +9,7 @@
 import SwiftUI
 
 @main
-struct Busyless: App {
+struct BusylessApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

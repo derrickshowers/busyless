@@ -15,11 +15,11 @@ class CategoryTests: XCTestCase {
     private var category: Busyless.Category?
 
     override func setUpWithError() throws {
-        category = Category.mockCategory
+        category = Category.mockCategory()
     }
 
     func testTimeSpentDuration() throws {
-        let categoryWithPastActivities = Category.mockCategoryWithPastActivities
+        let categoryWithPastActivities = Category.mockCategoryWithPastActivities()
         XCTAssertTrue(category?.timeSpentDuration == 3 * TimeInterval.oneHour)
         XCTAssertTrue(categoryWithPastActivities.timeSpentDuration == 0)
     }

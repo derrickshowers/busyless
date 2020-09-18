@@ -30,7 +30,8 @@ extension Activity {
 
     static func mockActivity(withContext context: NSManagedObjectContext? = nil) -> Activity {
         let result = PersistenceController(inMemory: true)
-        let activity = Activity(context: context ?? result.container.viewContext)
+        let context = context ?? result.container.viewContext
+        let activity = Activity(context: context)
         activity.createdAt = Date()
         activity.duration = TimeInterval.oneHour
         activity.name = "Test activity"
@@ -38,8 +39,10 @@ extension Activity {
         return activity
     }
 
-    static var mockActivityFromYesterday: Activity {
-        let activity = Activity.mockActivity()
+    static func mockActivityFromYesterday(withContext context: NSManagedObjectContext? = nil) -> Activity {
+        let result = PersistenceController(inMemory: true)
+        let context = context ?? result.container.viewContext
+        let activity = Activity.mockActivity(withContext: context)
         activity.createdAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         return activity
     }
