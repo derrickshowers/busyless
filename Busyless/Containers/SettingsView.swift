@@ -114,8 +114,7 @@ private extension Date {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = PersistenceController.preview.container.viewContext
         return SettingsView().environment(\.managedObjectContext, context)
     }
 }

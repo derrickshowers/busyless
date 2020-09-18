@@ -39,18 +39,15 @@ struct MenuView: View {
                 }
             }
         }
+        .listStyle(SidebarListStyle())
         .navigationBarTitle("")
         .navigationBarHidden(true)
-        .onAppear {
-            UITableView.appearance().separatorStyle = .none
-        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = PersistenceController.preview.container.viewContext
         return MainView().environment(\.managedObjectContext, context)
     }
 }

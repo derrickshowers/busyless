@@ -31,7 +31,7 @@ struct LogView: View {
     var body: some View {
         List {
             ForEach(update(activities), id: \.self) { (section: [Activity]) in
-                Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt))) {
+                Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt)).font(Font.headline.smallCaps())) {
                     ForEach(section, id: \.self) { (activity: Activity) in
                         NavigationLink(destination: AddNewActivityView(isPresented: self.$isAddNewActivityViewPresented,
                                                                        activity: activity,
@@ -105,8 +105,7 @@ extension LogView {
 
 struct LogView_Previews: PreviewProvider {
     static var previews: some View {
-        // swiftlint:disable:next force_cast
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = PersistenceController.preview.container.viewContext
         return LogView().environment(\.managedObjectContext, context)
     }
 }
