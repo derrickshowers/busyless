@@ -60,8 +60,22 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section(header: Text("TIMES")) {
-                DatePicker("Awake Time", selection: awakeTime, displayedComponents: .hourAndMinute)
-                DatePicker("Sleepy Time", selection: sleepTime, displayedComponents: .hourAndMinute)
+                HStack {
+                    Text("Awake Time")
+                    Spacer()
+                    DatePicker("Awake Time", selection: awakeTime, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .frame(maxWidth: 250)
+                        .padding(.trailing, -15)
+                }
+                HStack {
+                    Text("Sleepy Time")
+                    Spacer()
+                    DatePicker("Awake Time", selection: sleepTime, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .frame(maxWidth: 250)
+                        .padding(.trailing, -15)
+                }
             }
             Section {
                 HStack {
