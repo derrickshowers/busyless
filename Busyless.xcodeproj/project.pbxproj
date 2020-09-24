@@ -16,7 +16,6 @@
 		E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */; };
 		E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */; };
-		E780FC4B24E99F3D00F9C2B6 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4A24E99F3D00F9C2B6 /* TextView.swift */; };
 		E780FC4E24E9A5BE00F9C2B6 /* CategorySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4D24E9A5BE00F9C2B6 /* CategorySelection.swift */; };
 		E780FC5324E9A7E000F9C2B6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */; };
 		E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC5424E9B37500F9C2B6 /* LogView.swift */; };
@@ -25,7 +24,7 @@
 		E7947FC524DF7CD5006B7859 /* BusylessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FC424DF7CD5006B7859 /* BusylessApp.swift */; };
 		E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FCB24DF7CD5006B7859 /* DayView.swift */; };
 		E7947FCE24DF7CD6006B7859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FCD24DF7CD6006B7859 /* Assets.xcassets */; };
-		E7947FD124DF7CD6006B7859 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */; };
+		E7947FD124DF7CD6006B7859 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD024DF7CD6006B7859 /* PreviewAssets.xcassets */; };
 		E7947FD424DF7CD6006B7859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */; };
 		E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */; };
 		E7947FEA24DF7CD6006B7859 /* BusylessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */; };
@@ -82,7 +81,6 @@
 		E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+.swift"; sourceTree = "<group>"; };
-		E780FC4A24E99F3D00F9C2B6 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		E780FC4D24E9A5BE00F9C2B6 /* CategorySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelection.swift; sourceTree = "<group>"; };
 		E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
 		E780FC5424E9B37500F9C2B6 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
@@ -92,7 +90,7 @@
 		E7947FC424DF7CD5006B7859 /* BusylessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessApp.swift; sourceTree = "<group>"; };
 		E7947FCB24DF7CD5006B7859 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E7947FCD24DF7CD6006B7859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E7947FD024DF7CD6006B7859 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		E7947FD324DF7CD6006B7859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7947FD524DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FDA24DF7CD6006B7859 /* BusylessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusylessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,14 +182,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		E780FC4924E99F2400F9C2B6 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				E780FC4A24E99F3D00F9C2B6 /* TextView.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		E780FC4C24E9A59900F9C2B6 /* AddNewActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +193,7 @@
 		E780FC4F24E9A71C00F9C2B6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				E7947FCF24DF7CD6006B7859 /* PreviewContent */,
 				E7947FCD24DF7CD6006B7859 /* Assets.xcassets */,
 				E708AAE824EDF21800ECE5F8 /* Busyless.entitlements */,
 				E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */,
@@ -257,17 +248,16 @@
 				E7F6115724E229AB00CFABC8 /* Components */,
 				E7FD702F24E4C8E0001E2A95 /* Utility */,
 				E780FC4F24E9A71C00F9C2B6 /* SupportingFiles */,
-				E7947FCF24DF7CD6006B7859 /* Preview Content */,
 			);
 			path = Busyless;
 			sourceTree = "<group>";
 		};
-		E7947FCF24DF7CD6006B7859 /* Preview Content */ = {
+		E7947FCF24DF7CD6006B7859 /* PreviewContent */ = {
 			isa = PBXGroup;
 			children = (
-				E7947FD024DF7CD6006B7859 /* Preview Assets.xcassets */,
+				E7947FD024DF7CD6006B7859 /* PreviewAssets.xcassets */,
 			);
-			path = "Preview Content";
+			path = PreviewContent;
 			sourceTree = "<group>";
 		};
 		E7947FDD24DF7CD6006B7859 /* BusylessTests */ = {
@@ -292,7 +282,6 @@
 		E7F6115724E229AB00CFABC8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				E780FC4924E99F2400F9C2B6 /* Common */,
 				E780FC4C24E9A59900F9C2B6 /* AddNewActivity */,
 				E715087924E32A0E004B080A /* DayView */,
 			);
@@ -407,7 +396,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Derrick Showers";
 				TargetAttributes = {
 					E7947FC024DF7CD5006B7859 = {
@@ -449,7 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7947FD424DF7CD6006B7859 /* LaunchScreen.storyboard in Resources */,
-				E7947FD124DF7CD6006B7859 /* Preview Assets.xcassets in Resources */,
+				E7947FD124DF7CD6006B7859 /* PreviewAssets.xcassets in Resources */,
 				E7947FCE24DF7CD6006B7859 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,7 +502,6 @@
 				E7FA78BA24E98F590095DBDD /* Category.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */,
-				E780FC4B24E99F3D00F9C2B6 /* TextView.swift in Sources */,
 				E74AEC152515031A00502907 /* Persistence.swift in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
@@ -593,6 +581,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -653,6 +642,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -688,7 +678,7 @@
 				CODE_SIGN_ENTITLEMENTS = Busyless/SupportingFiles/Busyless.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 44;
-				DEVELOPMENT_ASSET_PATHS = "\"Busyless/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Busyless/SupportingFiles/PreviewContent\"";
 				DEVELOPMENT_TEAM = DJPFLH48H5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Busyless/SupportingFiles/Info.plist;
@@ -712,7 +702,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 44;
-				DEVELOPMENT_ASSET_PATHS = "\"Busyless/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Busyless/SupportingFiles/PreviewContent\"";
 				DEVELOPMENT_TEAM = DJPFLH48H5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Busyless/SupportingFiles/Info.plist;

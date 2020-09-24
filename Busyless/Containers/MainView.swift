@@ -22,10 +22,12 @@ struct MainView: View {
 
 struct MenuView: View {
 
+    @State var showOneLevelIn = true
+
     // MARK: - Lifecycle
 
     var body: some View {
-        List {
+        VStack(alignment: .leading, spacing: 25) {
             NavigationLink(destination: DayView()) {
                 Text("Today")
             }
@@ -38,8 +40,22 @@ struct MenuView: View {
                     Text("Settings")
                 }
             }
+            Spacer()
+
+            // For iPhone, let's select day view instead of showing the menu on launch.
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                NavigationLink(destination: DayView(), isActive: $showOneLevelIn, label: { EmptyView() })
+            }
         }
-        .listStyle(SidebarListStyle())
+        .font(.title3)
+        .foregroundColor(.primary)
+        .frame(minWidth: 0,
+               maxWidth: .infinity,
+               minHeight: 0,
+               maxHeight: .infinity,
+               alignment: .topLeading)
+        .padding(.horizontal, 25)
+        .padding(.vertical, 50)
         .navigationBarTitle("")
         .navigationBarHidden(true)
     }

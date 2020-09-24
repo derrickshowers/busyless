@@ -67,12 +67,18 @@ struct AddNewActivityView: View {
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                         }
-                        DatePicker("When?", selection: $createdAt, displayedComponents: .hourAndMinute)
+                        HStack {
+                            Text("When?")
+                            Spacer()
+                            DatePicker("When?", selection: $createdAt, displayedComponents: .hourAndMinute)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                                .frame(maxWidth: 250)
+                                .padding(.trailing, -15)
+                        }
 
                     }
                     Section(header: Text("NOTES")) {
-                        TextView(text: $notes)
-                            .frame(height: 200.0)
+                        TextEditor(text: $notes)
                     }
                 }
             }
