@@ -10,6 +10,7 @@
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
+		E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
 		E74AEC152515031A00502907 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
@@ -75,6 +76,7 @@
 		E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E709A85E25085A7600C518EE /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		E726EEE4250B0D3700CBEAF5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalTests.swift; sourceTree = "<group>"; };
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E737A9F224FF1F570094746D /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
 		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -174,6 +176,22 @@
 			path = DayView;
 			sourceTree = "<group>";
 		};
+		E7336F94252D4FBE001414B4 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E7336F95252D4FCF001414B4 /* Extensions */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E7336F95252D4FCF001414B4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E737A9F124FF1F320094746D /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				E780FC5024E9A7B500F9C2B6 /* Data */,
+				E7336F94252D4FBE001414B4 /* Utility */,
 				E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */,
 				E7947FE024DF7CD6006B7859 /* Info.plist */,
 			);
@@ -515,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */,
 				E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */,
 				E780FC5324E9A7E000F9C2B6 /* CategoryTests.swift in Sources */,
 			);
