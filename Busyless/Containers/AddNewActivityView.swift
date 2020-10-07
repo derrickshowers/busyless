@@ -21,15 +21,18 @@ struct AddNewActivityView: View {
 
     @State private var name: String
     @State private var category: Category?
-    @State private var duration: String
+    @State private var hoursDuration: Int
+    @State private var minutesDuration: Int
     @State private var createdAt: Date
     @State private var notes: String
+
+    @State private var showAdvancedSection = false
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
     private var readyToSave: Bool {
-        return !name.isEmpty && !duration.isEmpty
+        return !name.isEmpty && (hoursDuration != 0 || minutesDuration != 0)
     }
 
     // MARK: - Lifecycle
@@ -43,9 +46,12 @@ struct AddNewActivityView: View {
         self.showNavigationBar = showNavigationBar
         _name = State(initialValue: activity?.name ?? "")
         _category = State(initialValue: activity?.category ?? preselectedCategory)
-        _duration = State(initialValue: activity?.duration.hoursString ?? "")
         _createdAt = State(initialValue: activity?.createdAt ?? Date())
         _notes = State(initialValue: activity?.notes ?? "")
+
+        let calculatedDuration = activity?.duration.asHoursAndMinutes
+        _hoursDuration = State(initialValue: calculatedDuration?.hours ?? 0)
+        _minutesDuration = State(initialValue: calculatedDuration?.minutes ?? 0)
     }
 
     var body: some View {
@@ -62,10 +68,19 @@ struct AddNewActivityView: View {
                                 .lineLimit(1)
                         }
                         HStack {
-                            Text("Duration (in hours)")
-                            TextField(duration, text: $duration)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
+                            Text("Duration")
+                            Spacer()
+                            Picker("\(hoursDuration) hours", selection: $hoursDuration, content: {
+                                ForEach(0..<6, id: \.self) { hours in
+                                    Text("\(hours) hours").tag(hours)
+                                }
+                            }).pickerStyle(MenuPickerStyle())
+                            Picker("\(minutesDuration) Minutes", selection: $minutesDuration, content: {
+                                Text("0 minutes").tag(0)
+                                Text("15 minutes").tag(15)
+                                Text("30 minutes").tag(30)
+                                Text("45 minutes").tag(45)
+                            }).pickerStyle(MenuPickerStyle())
                         }
                         HStack {
                             Text("When?")
@@ -79,6 +94,16 @@ struct AddNewActivityView: View {
                     }
                     Section(header: Text("NOTES")) {
                         TextEditor(text: $notes)
+                    }
+                    if !showAdvancedSection {
+                        Button("Show Advanced Options") {
+                            showAdvancedSection = true
+                        }
+                    } else {
+                        HStack {
+                            DatePicker("Date", selection: $createdAt, displayedComponents: .date)
+                                .datePickerStyle(CompactDatePickerStyle())
+                        }
                     }
                 }
             }
@@ -114,7 +139,7 @@ extension AddNewActivityView {
         let activity = self.activity ?? Activity(context: managedObjectContext)
         activity.name = name
         activity.category = category
-        activity.duration = (TimeInterval(duration) ?? 0) * TimeInterval.oneHour
+        activity.duration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
         activity.notes = notes
         activity.createdAt = createdAt
         Activity.save(with: managedObjectContext)
