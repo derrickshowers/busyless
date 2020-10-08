@@ -21,7 +21,9 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.derrickshowers.busyless</key>
-		<string>30726d1f-0e59-47fa-be9d-d0c2025908f6</string>
+		<string>84f19b6d-8947-4cf8-af31-cdd8ce9d3e45</string>
+		<key>com.derrickshowers.busyless.BusylessIntents</key>
+		<string>b3d0b2a2-171c-4334-a01a-37fc72b34c72</string>
 	</dict>
 </dict>
 </plist>
