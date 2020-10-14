@@ -60,6 +60,7 @@ struct AddNewActivityView: View {
                 Form {
                     Section {
                         TextField("Activity Name", text: $name)
+                            .autocapitalization(.words)
                         NavigationLink(destination: CategorySelection(selectedCategory: $category)) {
                             Text("Category")
                             Spacer()

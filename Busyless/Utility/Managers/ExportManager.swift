@@ -69,7 +69,7 @@ class ExportManager {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        var export = "Date,Time,Name,Category,Duration,Notes\n"
+        var export = "Date & Time,Name,Category,Duration(hrs),Notes\n"
         for activity in activities {
             var activityCreatedDate = "Unknown,Unknown"
             if let date = activity.createdAt {
@@ -79,7 +79,7 @@ class ExportManager {
             let activityCategory = activity.category?.name ?? "Uncategorized"
             let activityDuration = activity.duration / TimeInterval.oneHour
             let activityNotes = activity.notes ?? ""
-            export += "\(activityCreatedDate),\(activityName),\(activityCategory),\(activityDuration),\(activityNotes)\n"
+            export += "\"\(activityCreatedDate)\",\"\(activityName)\",\"\(activityCategory)\",\"\(activityDuration)\",\"\(activityNotes)\"\n"
         }
 
         os_log("About to export the following CSV: %s", export)

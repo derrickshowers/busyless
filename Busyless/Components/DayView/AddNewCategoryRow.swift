@@ -18,6 +18,7 @@ struct AddNewCategoryRow: View {
 
     @State private var newCategory = ""
     @State private var isEditing = false
+    @State private var isCategoryTextFieldFirstResponder = false
 
     // MARK: - Lifecycle
 
@@ -25,13 +26,14 @@ struct AddNewCategoryRow: View {
         HStack {
             if isEditing {
                 HStack {
-                    TextField("Enter a new category", text: $newCategory, onCommit: {
+                    FirstResponderTextField("Enter a new category", text: $newCategory, isFirstResponder: $isCategoryTextFieldFirstResponder) {
                         self.newCategoryAdded(self.newCategory)
                         self.newCategory = ""
                         self.isEditing = false
-                    }).font(.body)
+                    }.font(.body)
                     Button(action: {
                         self.isEditing.toggle()
+                        self.isCategoryTextFieldFirstResponder = self.isEditing
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
@@ -39,6 +41,7 @@ struct AddNewCategoryRow: View {
             } else {
                 Button(action: {
                     self.isEditing.toggle()
+                    self.isCategoryTextFieldFirstResponder = self.isEditing
                 }, label: {
                     HStack {
                         Image(systemName: "plus.circle.fill")
