@@ -11,6 +11,7 @@
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
 		E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */; };
+		E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73524F52536911600A60541 /* FirstResponderTextField.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
 		E74AEC152515031A00502907 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
@@ -77,6 +78,7 @@
 		E709A85E25085A7600C518EE /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		E726EEE4250B0D3700CBEAF5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalTests.swift; sourceTree = "<group>"; };
+		E73524F52536911600A60541 /* FirstResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponderTextField.swift; sourceTree = "<group>"; };
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E737A9F224FF1F570094746D /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
 		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				E709A85E25085A7600C518EE /* ActivityViewController.swift */,
+				E73524F52536911600A60541 /* FirstResponderTextField.swift */,
 			);
 			path = UIKitWrappers;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */,
 				E74AEC152515031A00502907 /* Persistence.swift in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
+				E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */,
 				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,

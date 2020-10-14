@@ -36,9 +36,6 @@ struct CategorySelection: View {
                 }).foregroundColor(Color(UIColor.label))
             }
         }
-        .onAppear {
-            UITableView.appearance().separatorStyle = .singleLine
-        }
         .navigationBarTitle("Select a Category")
     }
 }
