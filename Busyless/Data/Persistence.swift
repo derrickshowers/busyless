@@ -8,6 +8,21 @@
 
 import CoreData
 
+class GroupedPersistentCloudKitContainer: NSPersistentCloudKitContainer {
+    enum URLStrings: String {
+        case group = "group.com.derrickshowers.busyless"
+    }
+
+    override class func defaultDirectoryURL() -> URL {
+        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: URLStrings.group.rawValue)
+
+        if !FileManager.default.fileExists(atPath: url!.path) {
+            try? FileManager.default.createDirectory(at: url!, withIntermediateDirectories: true, attributes: nil)
+        }
+        return url!
+    }
+}
+
 struct PersistenceController {
     static let shared = PersistenceController()
 
@@ -29,10 +44,10 @@ struct PersistenceController {
         return result
     }()
 
-    let container: NSPersistentCloudKitContainer
+    let container: GroupedPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Busyless")
+        container = GroupedPersistentCloudKitContainer(name: "Busyless")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

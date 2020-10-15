@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Intents
 import os
 
 struct AddNewActivityView: View {
@@ -118,6 +119,7 @@ struct AddNewActivityView: View {
                 }), trailing:
                 Button(action: {
                     self.addActivity()
+                    self.donateAddNewActivityIntent()
                     self.isPresented = false
                 }, label: {
                     Text("Done")
@@ -127,8 +129,20 @@ struct AddNewActivityView: View {
             // This is for the case of LogView where we hide the navigation bar.
             if !self.showNavigationBar {
                 self.addActivity()
+                self.donateAddNewActivityIntent()
             }
         }.navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    // MARK: - Private Methods
+
+    private func donateAddNewActivityIntent() {
+        let intent = AddNewActivityIntent()
+        intent.name = self.name
+        let totalDuration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
+        intent.durationInMinutes = NSNumber(value: (totalDuration / TimeInterval.oneHour) * TimeInterval.oneMinute)
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate(completion: nil)
     }
 }
 
