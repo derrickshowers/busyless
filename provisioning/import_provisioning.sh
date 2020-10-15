@@ -3,6 +3,7 @@
 # Decrypt the files
 gpg --quiet --batch --yes --decrypt --passphrase="$PROVISIONING_PASSWORD" --output provisioning/DistributionCert.p12 provisioning/DistributionCert.p12.gpg
 gpg --quiet --batch --yes --decrypt --passphrase="$PROVISIONING_PASSWORD" --output provisioning/BusylessAppStore.mobileprovision provisioning/BusylessAppStore.mobileprovision.gpg
+gpg --quiet --batch --yes --decrypt --passphrase="$PROVISIONING_PASSWORD" --output provisioning/BusylessIntentsAppStore.mobileprovision provisioning/BusylessIntentsAppStore.mobileprovision.gpg
 
 # Install provisioning profiles (which is just moving them to where Xcode can find them)
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
