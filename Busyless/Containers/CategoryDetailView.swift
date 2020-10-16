@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import BusylessDataLayer
 
 struct CategoryDetailView: View {
 
     // MARK: - Public Properties
 
-    let category: Category
+    let category: BLCategory
 
     // MARK: - Private Properties
 
@@ -92,7 +93,7 @@ struct CategoryDetailView: View {
             if !self.newDuration.isEmpty {
                 let newDuration = TimeInterval(self.newDuration) ?? 0
                 self.category.dailyBudgetDuration = newDuration * TimeInterval.oneHour
-                Category.save(with: self.managedObjectContext)
+                BLCategory.save(with: self.managedObjectContext)
             }
 
         }
@@ -106,8 +107,8 @@ struct CategoryDetailView: View {
 struct CategoryDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CategoryDetailView(category: Category.mockCategory())
-            CategoryDetailView(category: Category.mockCategory())
+            CategoryDetailView(category: BLCategory.mockCategory())
+            CategoryDetailView(category: BLCategory.mockCategory())
                 .environment(\.colorScheme, .dark)
         }
     }

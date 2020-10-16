@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import BusylessDataLayer
 import os
 
 struct SettingsView: View {

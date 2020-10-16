@@ -9,10 +9,10 @@
 import UIKit
 import CoreData
 
-@objc(Category)
-class Category: NSManagedObject {
+@objc(BLCategory)
+public class BLCategory: NSManagedObject {
 
-    var timeSpentDuration: TimeInterval {
+    public var timeSpentDuration: TimeInterval {
         let activities: Set<Activity>? = self.activities as? Set<Activity>
         let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> TimeInterval in
             if let date = activity.createdAt,
@@ -27,23 +27,23 @@ class Category: NSManagedObject {
 
 // MARK: - Core Data
 
-extension Category {
+public extension BLCategory {
 
-    static var allCategoriesFetchRequest: NSFetchRequest<Category> {
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Category.name, ascending: true)]
+    static var allCategoriesFetchRequest: NSFetchRequest<BLCategory> {
+        let request: NSFetchRequest<BLCategory> = BLCategory.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \BLCategory.name, ascending: true)]
         return request
     }
 }
 
 // MARK: - Mock Data
 
-extension Category {
+public extension BLCategory {
 
-    static func mockCategory(withContext context: NSManagedObjectContext? = nil) -> Category {
+    static func mockCategory(withContext context: NSManagedObjectContext? = nil) -> BLCategory {
         let result = PersistenceController(inMemory: true)
         let context = context ?? result.container.viewContext
-        let category = Category(context: context)
+        let category = BLCategory(context: context)
         category.name = "Category Name"
         category.dailyBudgetDuration = 5
         category.activities = [Activity.mockActivity(withContext: context),
@@ -52,10 +52,10 @@ extension Category {
         return category
     }
 
-    static func mockCategoryWithPastActivities(withContext context: NSManagedObjectContext? = nil) -> Category {
+    static func mockCategoryWithPastActivities(withContext context: NSManagedObjectContext? = nil) -> BLCategory {
         let result = PersistenceController(inMemory: true)
         let context = context ?? result.container.viewContext
-        let category = Category(context: context)
+        let category = BLCategory(context: context)
         category.name = "Category Name"
         category.dailyBudgetDuration = 5
         category.activities = [Activity.mockActivityFromYesterday(withContext: context),

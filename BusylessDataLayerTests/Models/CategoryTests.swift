@@ -8,19 +8,19 @@
 
 import XCTest
 import CoreData
-@testable import Busyless
+@testable import BusylessDataLayer
 
 class CategoryTests: XCTestCase {
 
-    private var category: Busyless.Category?
+    private var category: BLCategory?
 
     override func setUpWithError() throws {
-        category = Category.mockCategory()
+        category = BLCategory.mockCategory()
     }
 
     func testTimeSpentDuration() throws {
-        let categoryWithPastActivities = Category.mockCategoryWithPastActivities()
-        XCTAssertTrue(category?.timeSpentDuration == 3 * TimeInterval.oneHour)
+        let categoryWithPastActivities = BLCategory.mockCategoryWithPastActivities()
+        XCTAssertTrue(category?.timeSpentDuration == 3 * 3600)
         XCTAssertTrue(categoryWithPastActivities.timeSpentDuration == 0)
     }
 
