@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import BusylessDataLayer
 
 struct CategorySelection: View {
 
     // MARK: - Public Properties
 
-    @Binding var selectedCategory: Category?
+    @Binding var selectedCategory: BLCategory?
 
     // MARK: - Private Properties
 
@@ -22,8 +23,8 @@ struct CategorySelection: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: Category.allCategoriesFetchRequest)
-    private var categories: FetchedResults<Category>
+    @FetchRequest(fetchRequest: BLCategory.allCategoriesFetchRequest)
+    private var categories: FetchedResults<BLCategory>
 
     var body: some View {
         List {
@@ -44,8 +45,8 @@ struct CategorySelection_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         return Group {
-            CategorySelection(selectedCategory: .constant(Category.mockCategory(withContext: context)))
-            CategorySelection(selectedCategory: .constant(Category.mockCategory(withContext: context)))
+            CategorySelection(selectedCategory: .constant(BLCategory.mockCategory(withContext: context)))
+            CategorySelection(selectedCategory: .constant(BLCategory.mockCategory(withContext: context)))
                 .environment(\.colorScheme, .dark)
         }.environment(\.managedObjectContext, context)
     }

@@ -7,6 +7,7 @@
 //
 
 import Intents
+import BusylessDataLayer
 import os
 
 class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
@@ -40,7 +41,7 @@ extension AddNewActivityIntentHandler {
         let moc = persistenceController.container.viewContext
         let activity = Activity(context: moc)
         activity.name = name
-        activity.duration = (Double(durationInMinutes) / TimeInterval.oneMinute) * TimeInterval.oneHour
+        activity.duration = (Double(durationInMinutes) / 60) * 3600
         activity.createdAt = Date()
         do {
             try moc.save()

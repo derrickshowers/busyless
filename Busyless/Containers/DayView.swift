@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import BusylessDataLayer
 import os
 
 struct DayView: View {
@@ -22,8 +23,8 @@ struct DayView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: Category.allCategoriesFetchRequest)
-    private var categories: FetchedResults<Category>
+    @FetchRequest(fetchRequest: BLCategory.allCategoriesFetchRequest)
+    private var categories: FetchedResults<BLCategory>
 
     @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
     private var userConfigs: FetchedResults<UserConfig>
@@ -94,9 +95,9 @@ struct DayView: View {
 extension DayView {
 
     private func addCategory(name: String) {
-        let category = Category(context: managedObjectContext)
+        let category = BLCategory(context: managedObjectContext)
         category.name = name
-        Category.save(with: managedObjectContext)
+        BLCategory.save(with: managedObjectContext)
     }
 
     private func deleteCategory(at offsets: IndexSet) {
@@ -104,7 +105,7 @@ extension DayView {
             let category = self.categories[index]
             self.managedObjectContext.delete(category)
         }
-        Category.save(with: managedObjectContext)
+        BLCategory.save(with: managedObjectContext)
     }
 }
 

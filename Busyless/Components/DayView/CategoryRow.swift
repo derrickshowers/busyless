@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import BusylessDataLayer
 
 struct CategoryRow: View {
 
     // MARK: - Public Properties
 
-    @ObservedObject var category = Category()
+    @ObservedObject var category = BLCategory()
 
     // MARK: - Lifecycle
 
@@ -29,6 +30,6 @@ struct CategoryRow: View {
 
 struct CategoryRow_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryRow(category: Category.mockCategory()).padding()
+        CategoryRow(category: BLCategory.mockCategory()).padding()
     }
 }

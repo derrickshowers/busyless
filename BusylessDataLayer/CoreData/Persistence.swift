@@ -8,12 +8,12 @@
 
 import CoreData
 
-class GroupedPersistentCloudKitContainer: NSPersistentCloudKitContainer {
+public class GroupedPersistentCloudKitContainer: NSPersistentCloudKitContainer {
     enum URLStrings: String {
         case group = "group.com.derrickshowers.busyless"
     }
 
-    override class func defaultDirectoryURL() -> URL {
+    public override class func defaultDirectoryURL() -> URL {
         let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: URLStrings.group.rawValue)
 
         if !FileManager.default.fileExists(atPath: url!.path) {
@@ -23,17 +23,17 @@ class GroupedPersistentCloudKitContainer: NSPersistentCloudKitContainer {
     }
 }
 
-struct PersistenceController {
-    static let shared = PersistenceController()
+public struct PersistenceController {
+    public static let shared = PersistenceController()
 
-    static var preview: PersistenceController = {
+    public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             _ = Activity.mockActivity(withContext: viewContext)
         }
         for _ in 0..<10 {
-            _ = Category.mockCategory(withContext: viewContext)
+            _ = BLCategory.mockCategory(withContext: viewContext)
         }
         do {
             try viewContext.save()
@@ -44,9 +44,9 @@ struct PersistenceController {
         return result
     }()
 
-    let container: GroupedPersistentCloudKitContainer
+    public let container: GroupedPersistentCloudKitContainer
 
-    init(inMemory: Bool = false) {
+    public init(inMemory: Bool = false) {
         container = GroupedPersistentCloudKitContainer(name: "Busyless")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")

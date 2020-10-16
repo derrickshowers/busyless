@@ -10,13 +10,12 @@ import Foundation
 import CoreData
 
 @objc(UserConfig)
-class UserConfig: NSManagedObject {
+public class UserConfig: NSManagedObject {
 }
 
 // MARK: - Core Data
 
-extension UserConfig {
-
+public extension UserConfig {
     static var allUserConfigsFetchRequest: NSFetchRequest<UserConfig> {
         let request: NSFetchRequest<UserConfig> = UserConfig.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \UserConfig.objectID, ascending: true)]

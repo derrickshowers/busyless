@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Intents
+import BusylessDataLayer
 import os
 
 struct AddNewActivityView: View {
@@ -21,7 +22,7 @@ struct AddNewActivityView: View {
     // MARK: - Private Properties
 
     @State private var name: String
-    @State private var category: Category?
+    @State private var category: BLCategory?
     @State private var hoursDuration: Int
     @State private var minutesDuration: Int
     @State private var createdAt: Date
@@ -40,7 +41,7 @@ struct AddNewActivityView: View {
 
     init(isPresented: Binding<Bool>,
          activity: Activity? = nil,
-         preselectedCategory: Category? = nil,
+         preselectedCategory: BLCategory? = nil,
          showNavigationBar: Bool = true) {
         self._isPresented = isPresented
         self.activity = activity

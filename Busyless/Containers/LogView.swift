@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import BusylessDataLayer
 
 struct LogView: View {
 
@@ -99,7 +100,7 @@ extension LogView {
             let activity = self.activities[index]
             self.managedObjectContext.delete(activity)
         }
-        Category.save(with: managedObjectContext)
+        BLCategory.save(with: managedObjectContext)
     }
 }
 

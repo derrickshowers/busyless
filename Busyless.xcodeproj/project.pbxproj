@@ -9,19 +9,13 @@
 /* Begin PBXBuildFile section */
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
-		E7136AC72537D1C7007C4B97 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
-		E7136ADE2537D376007C4B97 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B724E98F4D0095DBDD /* Activity.swift */; };
-		E7136AE32537D383007C4B97 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
-		E7136AE82537D391007C4B97 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B924E98F590095DBDD /* Category.swift */; };
-		E7136AED2537D394007C4B97 /* UserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B8CFA924F6E5930026C983 /* UserConfig.swift */; };
-		E7136AF22537D3A1007C4B97 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
 		E72C19AD25378D070009C935 /* AddNewActivityIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */; };
 		E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */; };
 		E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73524F52536911600A60541 /* FirstResponderTextField.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
-		E74AEC152515031A00502907 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
+		E75079A6253926E50060D010 /* BusylessDataLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */; };
 		E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */; };
 		E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */; };
@@ -38,18 +32,26 @@
 		E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */; };
 		E7947FEA24DF7CD6006B7859 /* BusylessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */; };
 		E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7947FF724DF8072006B7859 /* AddNewActivityView.swift */; };
-		E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
 		E7AE168D252E9ABD00B5654F /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
 		E7AE16A7252EA03000B5654F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE16A6252EA03000B5654F /* IntentHandler.swift */; };
 		E7AE16AB252EA03000B5654F /* BusylessIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7AE16A4252EA03000B5654F /* BusylessIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E7AE16C0252EA1E600B5654F /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
-		E7B8CFAA24F6E5930026C983 /* UserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B8CFA924F6E5930026C983 /* UserConfig.swift */; };
 		E7F178752537E54E009F59D1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
+		E7F1789C25391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
+		E7F178A525391A4B009F59D1 /* BusylessDataLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7F178A825391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
+		E7F178A925391A4B009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
+		E7F178C225391B10009F59D1 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
+		E7F178D225391B9D009F59D1 /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */; };
+		E7F178D825391BDC009F59D1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B724E98F4D0095DBDD /* Activity.swift */; };
+		E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B924E98F590095DBDD /* BLCategory.swift */; };
+		E7F178E425391BE1009F59D1 /* UserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B8CFA924F6E5930026C983 /* UserConfig.swift */; };
+		E7F1792725391CBB009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
+		E7F1792825391CBB009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
 		E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115B24E22F4200CFABC8 /* DurationPill.swift */; };
 		E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */; };
-		E7FA78B824E98F4D0095DBDD /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B724E98F4D0095DBDD /* Activity.swift */; };
-		E7FA78BA24E98F590095DBDD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B924E98F590095DBDD /* Category.swift */; };
 		E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,34 @@
 			remoteGlobalIDString = E7AE16A3252EA03000B5654F;
 			remoteInfo = BusylessIntents;
 		};
+		E7F1789D25391A4B009F59D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7F1789225391A4B009F59D1;
+			remoteInfo = BusylessDataLayer;
+		};
+		E7F1789F25391A4B009F59D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7947FC024DF7CD5006B7859;
+			remoteInfo = Busyless;
+		};
+		E7F178A625391A4B009F59D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7F1789225391A4B009F59D1;
+			remoteInfo = BusylessDataLayer;
+		};
+		E7F1792925391CBB009F59D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7F1789225391A4B009F59D1;
+			remoteInfo = BusylessDataLayer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +131,28 @@
 				E7AE16AB252EA03000B5654F /* BusylessIntents.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F178AA25391A4B009F59D1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E7F178A925391A4B009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F1792B25391CBB009F59D1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E7F1792825391CBB009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -116,6 +168,7 @@
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E737A9F224FF1F570094746D /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
 		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessDataLayerTests.swift; sourceTree = "<group>"; };
 		E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+.swift"; sourceTree = "<group>"; };
@@ -144,12 +197,17 @@
 		E7AE16A6252EA03000B5654F /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		E7AE16A8252EA03000B5654F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B8CFA924F6E5930026C983 /* UserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfig.swift; sourceTree = "<group>"; };
+		E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BusylessDataLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusylessDataLayer.h; sourceTree = "<group>"; };
+		E7F1789625391A4B009F59D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7F1789B25391A4B009F59D1 /* BusylessDataLayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusylessDataLayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F178A425391A4B009F59D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7F382532537813500F27CFC /* BusylessIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusylessIntents.entitlements; sourceTree = "<group>"; };
 		E7F6115924E22A2600CFABC8 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		E7F6115B24E22F4200CFABC8 /* DurationPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPill.swift; sourceTree = "<group>"; };
 		E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryRow.swift; sourceTree = "<group>"; };
 		E7FA78B724E98F4D0095DBDD /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		E7FA78B924E98F590095DBDD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E7FA78B924E98F590095DBDD /* BLCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLCategory.swift; sourceTree = "<group>"; };
 		E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7F178A825391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */,
 				E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,7 +239,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7F1792725391CBB009F59D1 /* BusylessDataLayer.framework in Frameworks */,
 				E7F178752537E54E009F59D1 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F1789025391A4B009F59D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F1789825391A4B009F59D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F1789C25391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +325,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		E7507998253926530060D010 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E780FC4C24E9A59900F9C2B6 /* AddNewActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,29 +354,15 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		E780FC5024E9A7B500F9C2B6 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				E780FC5124E9A7C300F9C2B6 /* Models */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		E780FC5124E9A7C300F9C2B6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		E7947FB824DF7CD5006B7859 = {
 			isa = PBXGroup;
 			children = (
 				E7947FC324DF7CD5006B7859 /* Busyless */,
+				E7F1789425391A4B009F59D1 /* BusylessDataLayer */,
+				E7AE16A5252EA03000B5654F /* BusylessIntents */,
 				E7947FDD24DF7CD6006B7859 /* BusylessTests */,
 				E7947FE824DF7CD6006B7859 /* BusylessUITests */,
-				E7AE16A5252EA03000B5654F /* BusylessIntents */,
+				E7F178A125391A4B009F59D1 /* BusylessDataLayerTests */,
 				E7947FC224DF7CD5006B7859 /* Products */,
 				E708AAE924EDF3F500ECE5F8 /* Frameworks */,
 			);
@@ -306,6 +375,8 @@
 				E7947FDA24DF7CD6006B7859 /* BusylessTests.xctest */,
 				E7947FE524DF7CD6006B7859 /* BusylessUITests.xctest */,
 				E7AE16A4252EA03000B5654F /* BusylessIntents.appex */,
+				E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */,
+				E7F1789B25391A4B009F59D1 /* BusylessDataLayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				E7947FC424DF7CD5006B7859 /* BusylessApp.swift */,
-				E7FA78B524E98EFD0095DBDD /* Data */,
 				E7F6115824E229D200CFABC8 /* Containers */,
 				E7F6115724E229AB00CFABC8 /* Components */,
 				E7FD702F24E4C8E0001E2A95 /* Utility */,
@@ -334,7 +404,6 @@
 		E7947FDD24DF7CD6006B7859 /* BusylessTests */ = {
 			isa = PBXGroup;
 			children = (
-				E780FC5024E9A7B500F9C2B6 /* Data */,
 				E7336F94252D4FBE001414B4 /* Utility */,
 				E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */,
 				E7947FE024DF7CD6006B7859 /* Info.plist */,
@@ -362,6 +431,36 @@
 			path = BusylessIntents;
 			sourceTree = "<group>";
 		};
+		E7F1789425391A4B009F59D1 /* BusylessDataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				E7F178BB25391AD1009F59D1 /* CoreData */,
+				E7FA78B624E98F100095DBDD /* Models */,
+				E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */,
+				E7F1789625391A4B009F59D1 /* Info.plist */,
+			);
+			path = BusylessDataLayer;
+			sourceTree = "<group>";
+		};
+		E7F178A125391A4B009F59D1 /* BusylessDataLayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				E7507998253926530060D010 /* Models */,
+				E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */,
+				E7F178A425391A4B009F59D1 /* Info.plist */,
+			);
+			path = BusylessDataLayerTests;
+			sourceTree = "<group>";
+		};
+		E7F178BB25391AD1009F59D1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */,
+				E74AEC142515031A00502907 /* Persistence.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		E7F6115724E229AB00CFABC8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,21 +483,11 @@
 			path = Containers;
 			sourceTree = "<group>";
 		};
-		E7FA78B524E98EFD0095DBDD /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */,
-				E74AEC142515031A00502907 /* Persistence.swift */,
-				E7FA78B624E98F100095DBDD /* Models */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		E7FA78B624E98F100095DBDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E7FA78B724E98F4D0095DBDD /* Activity.swift */,
-				E7FA78B924E98F590095DBDD /* Category.swift */,
+				E7FA78B924E98F590095DBDD /* BLCategory.swift */,
 				E7B8CFA924F6E5930026C983 /* UserConfig.swift */,
 			);
 			path = Models;
@@ -416,6 +505,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E7F1788E25391A4B009F59D1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F178A525391A4B009F59D1 /* BusylessDataLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		E7947FC024DF7CD5006B7859 /* Busyless */ = {
 			isa = PBXNativeTarget;
@@ -426,12 +526,14 @@
 				E7947FBF24DF7CD5006B7859 /* Resources */,
 				E7F6116024E2365E00CFABC8 /* SwiftLint */,
 				E7AE16AF252EA03000B5654F /* Embed App Extensions */,
+				E7F178AA25391A4B009F59D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 				E7F6115F24E2363500CFABC8 /* PBXBuildRule */,
 			);
 			dependencies = (
 				E7AE16AA252EA03000B5654F /* PBXTargetDependency */,
+				E7F178A725391A4B009F59D1 /* PBXTargetDependency */,
 			);
 			name = Busyless;
 			productName = Busyless;
@@ -481,15 +583,54 @@
 				E7AE16A0252EA03000B5654F /* Sources */,
 				E7AE16A1252EA03000B5654F /* Frameworks */,
 				E7AE16A2252EA03000B5654F /* Resources */,
+				E7F1792B25391CBB009F59D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E7F1792A25391CBB009F59D1 /* PBXTargetDependency */,
 			);
 			name = BusylessIntents;
 			productName = BusylessIntents;
 			productReference = E7AE16A4252EA03000B5654F /* BusylessIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		E7F1789225391A4B009F59D1 /* BusylessDataLayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F178AF25391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayer" */;
+			buildPhases = (
+				E7F1788E25391A4B009F59D1 /* Headers */,
+				E7F1788F25391A4B009F59D1 /* Sources */,
+				E7F1789025391A4B009F59D1 /* Frameworks */,
+				E7F1789125391A4B009F59D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BusylessDataLayer;
+			productName = BusylessDataLayer;
+			productReference = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E7F1789A25391A4B009F59D1 /* BusylessDataLayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F178B025391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayerTests" */;
+			buildPhases = (
+				E7F1789725391A4B009F59D1 /* Sources */,
+				E7F1789825391A4B009F59D1 /* Frameworks */,
+				E7F1789925391A4B009F59D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E7F1789E25391A4B009F59D1 /* PBXTargetDependency */,
+				E7F178A025391A4B009F59D1 /* PBXTargetDependency */,
+			);
+			name = BusylessDataLayerTests;
+			productName = BusylessDataLayerTests;
+			productReference = E7F1789B25391A4B009F59D1 /* BusylessDataLayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -515,6 +656,14 @@
 					E7AE16A3252EA03000B5654F = {
 						CreatedOnToolsVersion = 12.0;
 					};
+					E7F1789225391A4B009F59D1 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					E7F1789A25391A4B009F59D1 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+						TestTargetID = E7947FC024DF7CD5006B7859;
+					};
 				};
 			};
 			buildConfigurationList = E7947FBC24DF7CD5006B7859 /* Build configuration list for PBXProject "Busyless" */;
@@ -531,9 +680,11 @@
 			projectRoot = "";
 			targets = (
 				E7947FC024DF7CD5006B7859 /* Busyless */,
+				E7F1789225391A4B009F59D1 /* BusylessDataLayer */,
 				E7AE16A3252EA03000B5654F /* BusylessIntents */,
 				E7947FD924DF7CD6006B7859 /* BusylessTests */,
 				E7947FE424DF7CD6006B7859 /* BusylessUITests */,
+				E7F1789A25391A4B009F59D1 /* BusylessDataLayerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -570,6 +721,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7F1789125391A4B009F59D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F1789925391A4B009F59D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -598,10 +763,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7FA78B824E98F4D0095DBDD /* Activity.swift in Sources */,
 				E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
-				E7B8CFAA24F6E5930026C983 /* UserConfig.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,
 				E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */,
 				E7947FC524DF7CD5006B7859 /* BusylessApp.swift in Sources */,
@@ -612,11 +775,8 @@
 				E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */,
 				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
 				E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */,
-				E7FA78BA24E98F590095DBDD /* Category.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E7AE168D252E9ABD00B5654F /* BusylessIntents.intentdefinition in Sources */,
-				E79F6A3D24EC752E004F44B5 /* Busyless.xcdatamodeld in Sources */,
-				E74AEC152515031A00502907 /* Persistence.swift in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
@@ -648,15 +808,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7136AF22537D3A1007C4B97 /* TimeInterval+.swift in Sources */,
-				E7136AED2537D394007C4B97 /* UserConfig.swift in Sources */,
-				E7136ADE2537D376007C4B97 /* Activity.swift in Sources */,
-				E7136AE32537D383007C4B97 /* Busyless.xcdatamodeld in Sources */,
 				E7AE16C0252EA1E600B5654F /* BusylessIntents.intentdefinition in Sources */,
-				E7136AC72537D1C7007C4B97 /* Persistence.swift in Sources */,
 				E72C19AD25378D070009C935 /* AddNewActivityIntentHandler.swift in Sources */,
 				E7AE16A7252EA03000B5654F /* IntentHandler.swift in Sources */,
-				E7136AE82537D391007C4B97 /* Category.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F1788F25391A4B009F59D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */,
+				E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */,
+				E7F178D225391B9D009F59D1 /* BusylessIntents.intentdefinition in Sources */,
+				E7F178D825391BDC009F59D1 /* Activity.swift in Sources */,
+				E7F178E425391BE1009F59D1 /* UserConfig.swift in Sources */,
+				E7F178C225391B10009F59D1 /* Persistence.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F1789725391A4B009F59D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E75079A6253926E50060D010 /* BusylessDataLayerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +852,26 @@
 			isa = PBXTargetDependency;
 			target = E7AE16A3252EA03000B5654F /* BusylessIntents */;
 			targetProxy = E7AE16A9252EA03000B5654F /* PBXContainerItemProxy */;
+		};
+		E7F1789E25391A4B009F59D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7F1789225391A4B009F59D1 /* BusylessDataLayer */;
+			targetProxy = E7F1789D25391A4B009F59D1 /* PBXContainerItemProxy */;
+		};
+		E7F178A025391A4B009F59D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7947FC024DF7CD5006B7859 /* Busyless */;
+			targetProxy = E7F1789F25391A4B009F59D1 /* PBXContainerItemProxy */;
+		};
+		E7F178A725391A4B009F59D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7F1789225391A4B009F59D1 /* BusylessDataLayer */;
+			targetProxy = E7F178A625391A4B009F59D1 /* PBXContainerItemProxy */;
+		};
+		E7F1792A25391CBB009F59D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7F1789225391A4B009F59D1 /* BusylessDataLayer */;
+			targetProxy = E7F1792925391CBB009F59D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -939,6 +1134,7 @@
 		E7AE16AD252EA03000B5654F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = BusylessIntents/BusylessIntents.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DJPFLH48H5;
@@ -960,6 +1156,7 @@
 		E7AE16AE252EA03000B5654F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = BusylessIntents/BusylessIntents.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -977,6 +1174,106 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E7F178AB25391A4B009F59D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = DJPFLH48H5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BusylessDataLayer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E7F178AC25391A4B009F59D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = DJPFLH48H5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BusylessDataLayer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E7F178AD25391A4B009F59D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJPFLH48H5;
+				INFOPLIST_FILE = BusylessDataLayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Busyless.app/Busyless";
+			};
+			name = Debug;
+		};
+		E7F178AE25391A4B009F59D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJPFLH48H5;
+				INFOPLIST_FILE = BusylessDataLayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Busyless.app/Busyless";
 			};
 			name = Release;
 		};
@@ -1024,6 +1321,24 @@
 			buildConfigurations = (
 				E7AE16AD252EA03000B5654F /* Debug */,
 				E7AE16AE252EA03000B5654F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7F178AF25391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F178AB25391A4B009F59D1 /* Debug */,
+				E7F178AC25391A4B009F59D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7F178B025391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F178AD25391A4B009F59D1 /* Debug */,
+				E7F178AE25391A4B009F59D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

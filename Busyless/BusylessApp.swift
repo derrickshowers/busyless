@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import BusylessDataLayer
 
 @main
 struct BusylessApp: App {
