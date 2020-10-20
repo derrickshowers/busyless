@@ -22,6 +22,8 @@ class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
     }
 
     func confirm(intent: AddNewActivityIntent, completion: @escaping (AddNewActivityIntentResponse) -> Void) {
+        os_log("Calling PersistenceController.shared")
+        _ = persistenceController
         completion(AddNewActivityIntentResponse(code: .ready, userActivity: nil))
     }
 
@@ -29,7 +31,10 @@ class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
         let name = intent.name ?? "An activity"
         let durationInMinutes = intent.durationInMinutes?.intValue ?? 0
         saveNewActivity(withName: name, durationInMinutes: durationInMinutes)
-        completion(AddNewActivityIntentResponse.success(name: name, durationInMinutes: NSNumber(value: durationInMinutes)))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            os_log("Calling intent completion")
+            completion(AddNewActivityIntentResponse.success(name: name, durationInMinutes: NSNumber(value: durationInMinutes)))
+        }
     }
 }
 
@@ -38,6 +43,7 @@ class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
 extension AddNewActivityIntentHandler {
 
     private func saveNewActivity(withName name: String, durationInMinutes: Int) {
+        os_log("Attempting to save")
         let moc = persistenceController.container.viewContext
         let activity = Activity(context: moc)
         activity.name = name
