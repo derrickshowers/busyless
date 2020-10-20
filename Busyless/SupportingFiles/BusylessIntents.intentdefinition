@@ -22,7 +22,7 @@
 			<key>INIntentConfigurable</key>
 			<true/>
 			<key>INIntentDefaultImageName</key>
-			<string>Logo</string>
+			<string>LogoWithBackground</string>
 			<key>INIntentDescription</key>
 			<string>Logs a new activity</string>
 			<key>INIntentDescriptionID</key>
