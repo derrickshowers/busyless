@@ -18,7 +18,8 @@ struct CategoryDetailView: View {
     // MARK: - Private Properties
 
     @State private var showingAddNewActivityView = false
-    @State private var newDuration = ""
+    @State private var hoursDuration: Int
+    @State private var minutesDuration: Int
 
     @Environment(\.presentationMode)
     private var presentationMode
@@ -39,18 +40,42 @@ struct CategoryDetailView: View {
         }
     }
 
+    init(category: BLCategory) {
+        self.category = category
+
+        let calculatedDuration = category.dailyBudgetDuration.asHoursAndMinutes
+        _hoursDuration = State(initialValue: calculatedDuration.hours)
+        _minutesDuration = State(initialValue: calculatedDuration.minutes)
+    }
+
     var body: some View {
         ZStack {
             VStack {
-                HStack {
-                    Text("Duration (in hours)")
-                    TextField("\(Int(category.dailyBudgetDuration / TimeInterval.oneHour))",
-                        text: $newDuration)
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
+                VStack {
+                    HStack {
+                        Text("Duration")
+                        Spacer()
+                        Picker("\(hoursDuration) hours", selection: $hoursDuration, content: {
+                            ForEach(0..<6, id: \.self) { hours in
+                                Text("\(hours) hours").tag(hours)
+                            }
+                        }).pickerStyle(MenuPickerStyle())
+                        Picker("\(minutesDuration) Minutes", selection: $minutesDuration, content: {
+                            Text("0 minutes").tag(0)
+                            Text("15 minutes").tag(15)
+                            Text("30 minutes").tag(30)
+                            Text("45 minutes").tag(45)
+                        }).pickerStyle(MenuPickerStyle())
+                    }
+                    HStack {
+                        Spacer()
+                        Text("Tap To Change")
+                            .font(Font.caption2.lowercaseSmallCaps())
+                    }
                 }
+                .foregroundColor(.white)
                 .padding(20)
-                .background(Color(UIColor.systemGray5))
+                .background(Color.mainColor)
 
                 if activities.count > 0 {
                     List {
@@ -63,6 +88,12 @@ struct CategoryDetailView: View {
                                     .font(.caption)
                             }
                         }
+                        HStack {
+                            Text("Total Time Spent Today")
+                            Spacer()
+                            Text(activities.map({$0.duration}).reduce(0, +).hoursMinutesString)
+                        }
+                        .font(Font.headline.bold())
                     }
                     .onAppear {
                         UITableView.appearance().separatorStyle = .none
@@ -90,11 +121,8 @@ struct CategoryDetailView: View {
             Text("Done")
         }))
         .onDisappear {
-            if !self.newDuration.isEmpty {
-                let newDuration = TimeInterval(self.newDuration) ?? 0
-                self.category.dailyBudgetDuration = newDuration * TimeInterval.oneHour
-                BLCategory.save(with: self.managedObjectContext)
-            }
+            self.category.dailyBudgetDuration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
+            BLCategory.save(with: self.managedObjectContext)
 
         }
         .sheet(isPresented: $showingAddNewActivityView) {
