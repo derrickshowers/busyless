@@ -27,6 +27,13 @@ struct LogView: View {
         return formatter
     }
 
+    private var timeFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }
+
     // MARK: - Lifecycle
 
     var body: some View {
@@ -42,6 +49,10 @@ struct LogView: View {
                                     .font(.headline)
                                 HStack {
                                     Text(activity.category?.name ?? "Uncategorized")
+                                    if let date = activity.createdAt {
+                                        Text("•")
+                                        Text(timeFormatter.string(from: date))
+                                    }
                                     Text("•")
                                     Text(activity.duration.hoursMinutesString)
                                 }
