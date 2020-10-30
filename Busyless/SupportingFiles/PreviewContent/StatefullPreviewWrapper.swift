@@ -1,6 +1,5 @@
 import SwiftUI
 
-#if DEBUG
 /**
  Used to create a preview with a state property.
  */
@@ -17,4 +16,3 @@ struct StatefulPreviewWrapper<Value, Content: View>: View {
         self.content = content
     }
 }
-#endif
