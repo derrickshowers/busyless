@@ -16,6 +16,7 @@ struct DayView: View {
     // MARK: - Private Properties
 
     @State private var showingAddNewActivityView = false
+    @State private var showingAddNewCategoryView = false
 
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
@@ -57,9 +58,6 @@ struct DayView: View {
             VStack {
                 TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
                 List {
-                    AddNewCategoryRow { (newCategory: String) in
-                        self.addCategory(name: newCategory)
-                    }
                     ForEach(categories, id: \.name) { category in
                         ZStack {
                             CategoryRow(category: category)
@@ -69,8 +67,8 @@ struct DayView: View {
                         }
                     }
                     .onDelete(perform: deleteCategory)
+                    .listRowBackground(Color.customWhite)
                 }
-
             }
             VStack {
                 Spacer()
@@ -80,13 +78,22 @@ struct DayView: View {
                         self.showingAddNewActivityView.toggle()
                     }
                 }
+                .sheet(isPresented: $showingAddNewActivityView) {
+                    AddNewActivityView(isPresented: self.$showingAddNewActivityView)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
+                }
             }
         }
+        .background(Color(UIColor.systemGray6))
         .navigationBarTitle("Today")
-        .sheet(isPresented: $showingAddNewActivityView) {
-            AddNewActivityView(isPresented: self.$showingAddNewActivityView)
-                .environment(\.managedObjectContext, self.managedObjectContext)
-        }
+        .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories) {
+            self.showingAddNewCategoryView = true
+        }.sheet(isPresented: $showingAddNewCategoryView) {
+            AddNewCategoryView {
+                self.addCategory(name: $0)
+                self.showingAddNewCategoryView = false
+            }
+        })
     }
 }
 
@@ -109,9 +116,69 @@ extension DayView {
     }
 }
 
+struct MoreOptionsMenuButton: View {
+
+    // MARK: - Public Properties
+
+    let categories: FetchedResults<BLCategory>
+    let addCategoryAction: () -> Void
+
+    // MARK: - Private Properties
+    @Environment(\.managedObjectContext)
+    private var managedObjectContext
+
+    // MARK: - Lifecycle
+
+    var body: some View {
+        Menu(content: {
+            Button("Add Category") {
+                addCategoryAction()
+            }
+            Button("Reset Budget") {
+                categories.forEach { $0.dailyBudgetDuration = 0 }
+                BLCategory.save(with: managedObjectContext)
+            }
+        }, label: {
+            Image(systemName: "ellipsis.circle")
+        })
+    }
+}
+
+struct AddNewCategoryView: View {
+
+    // MARK: - Public Properties
+
+    let action: (String) -> Void
+
+    // MARK: - Private Properties
+
+    @State private var categoryName = ""
+    @State private var isFirstResponder = true
+
+    // MARK: - Lifecycle
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                Form {
+                    FirstResponderTextField("Category Name", text: $categoryName, isFirstResponder: $isFirstResponder)
+                }
+                Spacer()
+            }
+            .navigationBarTitle("Add Category")
+            .navigationBarItems(trailing: Button("Add", action: {
+                action(categoryName)
+            }))
+        }
+    }
+}
+
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        return DayView().environment(\.managedObjectContext, context)
+        return Group {
+            DayView().environment(\.managedObjectContext, context)
+            DayView().environment(\.managedObjectContext, context).environment(\.colorScheme, .dark)
+        }
     }
 }

@@ -52,7 +52,6 @@
 		E7F1792725391CBB009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
 		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
 		E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115B24E22F4200CFABC8 /* DurationPill.swift */; };
-		E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */; };
 		E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -197,7 +196,6 @@
 		E7F382532537813500F27CFC /* BusylessIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusylessIntents.entitlements; sourceTree = "<group>"; };
 		E7F6115924E22A2600CFABC8 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		E7F6115B24E22F4200CFABC8 /* DurationPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPill.swift; sourceTree = "<group>"; };
-		E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryRow.swift; sourceTree = "<group>"; };
 		E7FA78B724E98F4D0095DBDD /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E7FA78B924E98F590095DBDD /* BLCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLCategory.swift; sourceTree = "<group>"; };
 		E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				E7F6115924E22A2600CFABC8 /* AddButton.swift */,
-				E7F6115D24E2329100CFABC8 /* AddNewCategoryRow.swift */,
 				E736236924E328BA00C6FFD3 /* CategoryRow.swift */,
 				E7F6115B24E22F4200CFABC8 /* DurationPill.swift */,
 				E786CA4424E4967D00B27D8E /* TodayStatus.swift */,
@@ -773,7 +770,6 @@
 				E737A9F324FF1F570094746D /* ExportManager.swift in Sources */,
 				E780FC4E24E9A5BE00F9C2B6 /* CategorySelection.swift in Sources */,
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
-				E7F6115E24E2329100CFABC8 /* AddNewCategoryRow.swift in Sources */,
 				E796F20725479C8200F7106B /* DurationSlider.swift in Sources */,
 				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
 				E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */,

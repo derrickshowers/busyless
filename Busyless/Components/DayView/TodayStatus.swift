@@ -24,39 +24,30 @@ struct TodayStatus: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Today's Status")
-                .font(Font.headline.lowercaseSmallCaps())
-                .padding(.bottom, 10)
-            HStack {
-                Text("Total Time Awake")
-                Spacer()
-                Text(awakeDuration.hoursMinutesString)
-            }.font(Font.caption.smallCaps())
-            HStack {
-                Text("Total time budgeted").foregroundColor(.white)
-                Spacer()
-                Text(totalBudgetedDuration.hoursMinutesString)
-            }.font(Font.caption.smallCaps())
-            HStack {
-                Text("Percentage of awake time budgeted")
-                Spacer()
-                Text("\(String(format: "%.f", budgetedTimePercentage * 100))%")
-            }.font(Font.caption.smallCaps())
+        HStack {
+            VStack {
+                Text("Awake Time").font(Font.headline)
+                Text(awakeDuration.hoursMinutesString).font(Font.caption)
+            }
+            Spacer()
+            VStack {
+                Text("Budgeted Time").font(Font.headline)
+                Text(totalBudgetedDuration.hoursMinutesString).font(Font.caption)
+            }
+            Spacer()
+            VStack {
+                Text("Budgeted %").font(Font.headline)
+                Text("\(String(format: "%.f", budgetedTimePercentage * 100))%").font(Font.caption)
+            }
         }
-        .foregroundColor(.white)
         .padding(.vertical, 15)
         .padding(.horizontal, 20)
-        .background(Color.mainColor.shadow(color: .black, radius: 3, x: 3, y: 3))
-
+        .background(Color(UIColor.systemGray6))
     }
 }
 
 struct TodayStatus_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            TodayStatus(awakeDuration: 16 * TimeInterval.oneHour, totalBudgetedDuration: 16 * TimeInterval.oneHour).padding()
-            TodayStatus(awakeDuration: 16 * TimeInterval.oneHour, totalBudgetedDuration: 8 * TimeInterval.oneHour).padding()
-        }
+        TodayStatus(awakeDuration: 16 * TimeInterval.oneHour, totalBudgetedDuration: 8 * TimeInterval.oneHour)
     }
 }
