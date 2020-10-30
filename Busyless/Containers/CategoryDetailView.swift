@@ -18,8 +18,7 @@ struct CategoryDetailView: View {
     // MARK: - Private Properties
 
     @State private var showingAddNewActivityView = false
-    @State private var hoursDuration: Int
-    @State private var minutesDuration: Int
+    @State private var duration: TimeInterval
 
     @Environment(\.presentationMode)
     private var presentationMode
@@ -40,70 +39,87 @@ struct CategoryDetailView: View {
         }
     }
 
+    private var timeLeftInCurrentCategory: TimeInterval {
+        return duration - activities.map({$0.duration}).reduce(0, +)
+    }
+
     init(category: BLCategory) {
         self.category = category
+        _duration = State(initialValue: category.dailyBudgetDuration)
 
-        let calculatedDuration = category.dailyBudgetDuration.asHoursAndMinutes
-        _hoursDuration = State(initialValue: calculatedDuration.hours)
-        _minutesDuration = State(initialValue: calculatedDuration.minutes)
+        UIScrollView.appearance().bounces = false
     }
 
     var body: some View {
         ZStack {
-            VStack {
+            ScrollView {
                 VStack {
                     HStack {
-                        Text("Duration")
-                        Spacer()
-                        Picker("\(hoursDuration) hours", selection: $hoursDuration, content: {
-                            ForEach(0..<6, id: \.self) { hours in
-                                Text("\(hours) hours").tag(hours)
-                            }
-                        }).pickerStyle(MenuPickerStyle())
-                        Picker("\(minutesDuration) Minutes", selection: $minutesDuration, content: {
-                            Text("0 minutes").tag(0)
-                            Text("15 minutes").tag(15)
-                            Text("30 minutes").tag(30)
-                            Text("45 minutes").tag(45)
-                        }).pickerStyle(MenuPickerStyle())
+                        DurationSlider(duration: $duration, maxDuration: 6 * TimeInterval.oneHour)
+                            .frame(maxWidth: 300, minHeight: 300, maxHeight: 300)
+                            .padding(.vertical, 20)
                     }
-                    HStack {
-                        Spacer()
-                        Text("Tap To Change")
-                            .font(Font.caption2.lowercaseSmallCaps())
-                    }
-                }
-                .foregroundColor(.white)
-                .padding(20)
-                .background(Color.mainColor)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.customWhite)
 
-                if activities.count > 0 {
-                    List {
-                        ForEach(activities, id: \.self) { (activity: Activity) in
-                            HStack {
-                                Text(activity.name ?? "")
-                                    .font(.body)
-                                Spacer()
-                                Text(activity.duration.hoursMinutesString)
-                                    .font(.caption)
-                            }
-                        }
+                    VStack(spacing: 15) {
                         HStack {
-                            Text("Total Time Spent Today")
+                            Text("Time spent today")
                             Spacer()
-                            Text(activities.map({$0.duration}).reduce(0, +).hoursMinutesString)
+                            Text(category.timeSpentDuration.hoursMinutesString).bold()
                         }
-                        .font(Font.headline.bold())
+                        Divider()
+                        HStack {
+                            Text("Time available to budget")
+                            Spacer()
+                            Text("Unknown").bold()
+                        }
+                        Divider()
+                        HStack {
+                            Text("Time left in \(category.name?.lowercased() ?? "category")")
+                            Spacer()
+                            Text(abs(timeLeftInCurrentCategory).hoursMinutesString)
+                                .foregroundColor(timeLeftInCurrentCategory >= 0 ? Color(UIColor.label) : Color.red)
+                                .bold()
+                        }
                     }
-                    .onAppear {
-                        UITableView.appearance().separatorStyle = .none
+                    .padding(15)
+                    .background(Color.customWhite)
+
+                    HStack {
+                        Text("Today's Logged Activities")
+                            .font(Font.headline.smallCaps())
+                        Spacer()
+                    }.padding(15)
+
+                    HStack {
+                        if activities.count > 0 {
+                            VStack(spacing: 15) {
+                                ForEach(activities, id: \.self) { (activity: Activity) in
+                                    HStack {
+                                        Text(activity.name ?? "")
+                                            .font(.body)
+                                        Spacer()
+                                        Text(activity.duration.hoursMinutesString)
+                                            .font(.caption)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 15)
+                        } else {
+                            VStack {
+                                Text("No logged activities for this category")
+                                    .font(.caption)
+                                    .foregroundColor(Color(UIColor.placeholderText))
+                            }
+                            .padding(.horizontal, 15)
+                        }
                     }
-                } else {
-                    Spacer()
-                    Text("No logged activities for this category").font(.callout)
-                    Spacer()
                 }
             }
+            .background(Color(UIColor.systemGray6))
+            .edgesIgnoringSafeArea(.bottom)
+
             VStack {
                 Spacer()
                 HStack {
@@ -115,13 +131,8 @@ struct CategoryDetailView: View {
             }
         }
         .navigationBarTitle(category.name ?? "Category Detail")
-        .navigationBarItems(trailing: Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }, label: {
-            Text("Done")
-        }))
         .onDisappear {
-            self.category.dailyBudgetDuration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
+            self.category.dailyBudgetDuration = duration
             BLCategory.save(with: self.managedObjectContext)
 
         }
