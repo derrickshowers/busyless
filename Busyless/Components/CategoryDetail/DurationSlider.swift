@@ -135,11 +135,3 @@ private struct Config {
     let knobRadius: CGFloat
     let radius: CGFloat
 }
-
-struct DurationSlider_Previews: PreviewProvider {
-    static var previews: some View {
-        StatefulPreviewWrapper(0) {
-            DurationSlider(duration: $0, maxDuration: TimeInterval.oneHour * 10).frame(maxWidth: 350)
-        }
-    }
-}
