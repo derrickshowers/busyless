@@ -94,6 +94,9 @@ struct SettingsView: View {
                 }, label: {
                     Text("Export Data to CSV")
                 })
+                Link(destination: URL(string: "https://www.icloud.com/shortcuts/f2f66a8c23de4ec085771cd80fb1f512")!, label: {
+                    Text("Add a Focus Shortcut")
+                })
             }
         }
         .sheet(isPresented: $isExportPresented, content: {
