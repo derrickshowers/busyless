@@ -15,6 +15,7 @@ struct BusylessApp: App {
 
     init() {
         setupNavigationBar()
+        setupTableViews()
     }
 
     var body: some Scene {
@@ -37,5 +38,10 @@ struct BusylessApp: App {
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
 
         UINavigationBar.appearance().tintColor = .white
+    }
+
+    private func setupTableViews() {
+        UITableView.appearance().allowsSelection = false
+        UITableViewCell.appearance().selectionStyle = .none
     }
 }
