@@ -55,7 +55,7 @@ struct DayView: View {
 
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
                 List {
                     ForEach(categories, id: \.name) { category in
@@ -139,7 +139,7 @@ struct MoreOptionsMenuButton: View {
                 BLCategory.save(with: managedObjectContext)
             }
         }, label: {
-            Image(systemName: "ellipsis.circle")
+            Image(systemName: "ellipsis.circle").frame(minWidth: 44, minHeight: 44)
         })
     }
 }

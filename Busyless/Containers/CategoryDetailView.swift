@@ -11,6 +11,10 @@ import BusylessDataLayer
 
 struct CategoryDetailView: View {
 
+    // MARK: - Constants
+
+    static let durationSliderHeight: CGFloat = 250
+
     // MARK: - Public Properties
 
     let category: BLCategory
@@ -43,21 +47,23 @@ struct CategoryDetailView: View {
         return duration - activities.map({$0.duration}).reduce(0, +)
     }
 
+    // MARK: - Lifecycle
+
     init(category: BLCategory) {
         self.category = category
         _duration = State(initialValue: category.dailyBudgetDuration)
-
-        UIScrollView.appearance().bounces = false
     }
 
     var body: some View {
         ZStack {
             ScrollView {
-                VStack {
+                VStack(spacing: 0) {
                     HStack {
-                        DurationSlider(duration: $duration, maxDuration: 6 * TimeInterval.oneHour)
-                            .frame(maxWidth: 300, minHeight: 300, maxHeight: 300)
-                            .padding(.vertical, 20)
+                        DurationSlider(duration: $duration, maxDuration: 8 * TimeInterval.oneHour)
+                            .frame(maxWidth: CategoryDetailView.durationSliderHeight,
+                                   minHeight: CategoryDetailView.durationSliderHeight,
+                                   maxHeight: CategoryDetailView.durationSliderHeight)
+                            .padding(.vertical, 10)
                     }
                     .frame(maxWidth: .infinity)
                     .background(Color.customWhite)
@@ -114,7 +120,7 @@ struct CategoryDetailView: View {
                             }
                             .padding(.horizontal, 15)
                         }
-                    }
+                    }.padding(.bottom, 150)
                 }
             }
             .background(Color(UIColor.systemGray6))

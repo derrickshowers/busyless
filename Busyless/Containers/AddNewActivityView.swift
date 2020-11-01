@@ -29,6 +29,7 @@ struct AddNewActivityView: View {
     @State private var notes: String
 
     @State private var showAdvancedSection = false
+    @State private var isActivityNameFirstResponder = true
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
@@ -53,7 +54,7 @@ struct AddNewActivityView: View {
 
         let calculatedDuration = activity?.duration.asHoursAndMinutes
         _hoursDuration = State(initialValue: calculatedDuration?.hours ?? 0)
-        _minutesDuration = State(initialValue: calculatedDuration?.minutes ?? 0)
+        _minutesDuration = State(initialValue: calculatedDuration?.minutes ?? 30)
     }
 
     var body: some View {
@@ -61,29 +62,22 @@ struct AddNewActivityView: View {
             VStack {
                 Form {
                     Section {
-                        TextField("Activity Name", text: $name)
+                        FirstResponderTextField("Activity Name", text: $name, isFirstResponder: $isActivityNameFirstResponder)
                             .autocapitalization(.words)
                         NavigationLink(destination: CategorySelection(selectedCategory: $category)) {
-                            Text("Category")
+                            Text("Category").bold()
                             Spacer()
                             Text("\(category?.name ?? "")")
                                 .foregroundColor(.gray)
                                 .lineLimit(1)
                         }
-                        HStack {
-                            Text("Duration")
-                            Spacer()
-                            Picker("\(hoursDuration) hours", selection: $hoursDuration, content: {
-                                ForEach(0..<6, id: \.self) { hours in
-                                    Text("\(hours) hours").tag(hours)
-                                }
-                            }).pickerStyle(MenuPickerStyle())
-                            Picker("\(minutesDuration) Minutes", selection: $minutesDuration, content: {
-                                Text("0 minutes").tag(0)
-                                Text("15 minutes").tag(15)
-                                Text("30 minutes").tag(30)
-                                Text("45 minutes").tag(45)
-                            }).pickerStyle(MenuPickerStyle())
+                        VStack(alignment: .leading) {
+                            Text("Duration").bold()
+                            HStack {
+                                Stepper("\(hoursDuration) hrs", value: $hoursDuration, in: 0...23).fixedSize()
+                                Spacer()
+                                Stepper("\(minutesDuration) mins", value: $minutesDuration, in: 0...45, step: 15).fixedSize()
+                            }
                         }
                         HStack {
                             Text("When?")
