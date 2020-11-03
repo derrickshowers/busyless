@@ -35,6 +35,16 @@ struct MenuView: View {
             NavigationLink(destination: LogView()) {
                 Text("Activity Log")
             }
+            NavigationLink(destination: StatsView()) {
+                HStack(alignment: .top, spacing: 3) {
+                    Text("Stats")
+                    Text("Beta")
+                        .font(.caption2)
+                        .foregroundColor(.white)
+                        .padding(2)
+                        .background(Color.mainColor.cornerRadius(3))
+                }
+            }
             NavigationLink(destination: SettingsView()) {
                 HStack {
                     Image(systemName: "gear")
@@ -65,6 +75,9 @@ struct MenuView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        return MainView().environment(\.managedObjectContext, context)
+        return Group {
+            MenuView()
+            MainView().environment(\.managedObjectContext, context)
+        }
     }
 }
