@@ -15,7 +15,7 @@ jobs:
       uses: derrickshowers/ios-bump-version@v1.0.3
       with:
         build-number: ${{ github.run_number }}
-        version: 0.2.0
+        version: 0.2.1
     - name: Install GPG
       run: brew install gnupg
     - name: List available Xcode versions
