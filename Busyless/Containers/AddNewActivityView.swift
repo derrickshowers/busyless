@@ -29,7 +29,7 @@ struct AddNewActivityView: View {
     @State private var notes: String
 
     @State private var showAdvancedSection = false
-    @State private var isActivityNameFirstResponder = true
+    @State private var isActivityNameFirstResponder: Bool
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
@@ -55,6 +55,8 @@ struct AddNewActivityView: View {
         let calculatedDuration = activity?.duration.asHoursAndMinutes
         _hoursDuration = State(initialValue: calculatedDuration?.hours ?? 0)
         _minutesDuration = State(initialValue: calculatedDuration?.minutes ?? 30)
+
+        _isActivityNameFirstResponder = State(initialValue: activity == nil)
     }
 
     var body: some View {
@@ -71,16 +73,17 @@ struct AddNewActivityView: View {
                                 .foregroundColor(.gray)
                                 .lineLimit(1)
                         }
-                        VStack(alignment: .leading) {
+                        HStack(alignment: .top) {
                             Text("Duration").bold()
-                            HStack {
+                            Spacer()
+                            VStack(alignment: .trailing) {
                                 Stepper("\(hoursDuration) hrs", value: $hoursDuration, in: 0...23).fixedSize()
                                 Spacer()
                                 Stepper("\(minutesDuration) mins", value: $minutesDuration, in: 0...45, step: 15).fixedSize()
                             }
                         }
                         HStack {
-                            Text("When?")
+                            Text("When?").bold()
                             Spacer()
                             DatePicker("When?", selection: $createdAt, displayedComponents: .hourAndMinute)
                                 .datePickerStyle(GraphicalDatePickerStyle())
@@ -108,6 +111,7 @@ struct AddNewActivityView: View {
             .navigationBarHidden(!showNavigationBar)
             .navigationBarItems(leading:
                 Button(action: {
+                    self.isActivityNameFirstResponder = false
                     self.isPresented = false
                 }, label: {
                     Text("Cancel")
@@ -115,6 +119,7 @@ struct AddNewActivityView: View {
                 Button(action: {
                     self.addActivity()
                     self.donateAddNewActivityIntent()
+                    self.isActivityNameFirstResponder = false
                     self.isPresented = false
                 }, label: {
                     Text("Done")
