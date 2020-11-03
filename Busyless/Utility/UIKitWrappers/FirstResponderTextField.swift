@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 
 struct FirstResponderTextField: UIViewRepresentable {
+    private var textField = UITextField()
     private var placeholder: String
     private var onCommit: (() -> Void)?
     @Binding private var text: String
@@ -23,7 +24,6 @@ struct FirstResponderTextField: UIViewRepresentable {
     }
 
     func makeUIView(context: UIViewRepresentableContext<FirstResponderTextField>) -> UITextField {
-        let textField = UITextField()
         textField.delegate = context.coordinator
         return textField
     }
@@ -36,6 +36,15 @@ struct FirstResponderTextField: UIViewRepresentable {
             uiView.becomeFirstResponder()
         }
     }
+
+    // MARK: - Modifiers
+
+    func autocapitalization(_ style: UITextAutocapitalizationType) -> some View {
+        textField.autocapitalizationType = style
+        return self
+    }
+
+    // MARK: - Coordinator
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
