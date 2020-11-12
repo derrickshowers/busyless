@@ -22,6 +22,15 @@ public extension Activity {
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Activity.createdAt, ascending: false)]
         return request
     }
+
+    static var allActivitiesCurrentMonthFetchRequest: NSFetchRequest<Activity> {
+        let request: NSFetchRequest<Activity> = Activity.fetchRequest()
+        if let startDate = Date().startOfMonth() as NSDate?, let endDate = Date().endOfMonth() as NSDate? {
+            request.predicate = NSPredicate(format: "createdAt >= %@ AND createdAt <= %@", startDate, endDate)
+        }
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Activity.createdAt, ascending: false)]
+        return request
+    }
 }
 
 // MARK: - Mock Data {

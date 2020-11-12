@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
+		E71B3BAE255CCE210056677E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B3BA0255CCDAE0056677E /* Date+.swift */; };
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
 		E72C19AD25378D070009C935 /* AddNewActivityIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */; };
 		E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */; };
@@ -17,6 +18,7 @@
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
 		E75079A6253926E50060D010 /* BusylessDataLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */; };
 		E75BFE4A254B93DF000A947B /* StatefullPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75BFE49254B93DF000A947B /* StatefullPreviewWrapper.swift */; };
+		E7619B522550EC9F00B06A24 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7619B512550EC9F00B06A24 /* StatsView.swift */; };
 		E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */; };
 		E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */; };
@@ -150,6 +152,7 @@
 		E708AAE824EDF21800ECE5F8 /* Busyless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Busyless.entitlements; sourceTree = "<group>"; };
 		E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E709A85E25085A7600C518EE /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		E71B3BA0255CCDAE0056677E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		E726EEE4250B0D3700CBEAF5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityIntentHandler.swift; sourceTree = "<group>"; };
 		E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalTests.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessDataLayerTests.swift; sourceTree = "<group>"; };
 		E75BFE49254B93DF000A947B /* StatefullPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefullPreviewWrapper.swift; sourceTree = "<group>"; };
+		E7619B512550EC9F00B06A24 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+.swift"; sourceTree = "<group>"; };
@@ -288,6 +292,22 @@
 				E786CA4424E4967D00B27D8E /* TodayStatus.swift */,
 			);
 			path = DayView;
+			sourceTree = "<group>";
+		};
+		E71B3BAC255CCE0D0056677E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E71B3BAD255CCE150056677E /* Extensions */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E71B3BAD255CCE150056677E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E71B3BA0255CCDAE0056677E /* Date+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E7336F94252D4FBE001414B4 /* Utility */ = {
@@ -434,6 +454,7 @@
 			children = (
 				E7F178BB25391AD1009F59D1 /* CoreData */,
 				E7FA78B624E98F100095DBDD /* Models */,
+				E71B3BAC255CCE0D0056677E /* Utility */,
 				E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */,
 				E7F1789625391A4B009F59D1 /* Info.plist */,
 			);
@@ -478,6 +499,7 @@
 				E780FC5424E9B37500F9C2B6 /* LogView.swift */,
 				E786CA4224E488FF00B27D8E /* MainView.swift */,
 				E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */,
+				E7619B512550EC9F00B06A24 /* StatsView.swift */,
 			);
 			path = Containers;
 			sourceTree = "<group>";
@@ -761,6 +783,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7619B522550EC9F00B06A24 /* StatsView.swift in Sources */,
 				E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,
@@ -817,6 +840,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71B3BAE255CCE210056677E /* Date+.swift in Sources */,
 				E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */,
 				E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */,
 				E7F178D225391B9D009F59D1 /* BusylessIntents.intentdefinition in Sources */,
