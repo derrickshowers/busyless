@@ -26,13 +26,14 @@ struct DurationSlider: View {
         return CGFloat(fixedAngle * 180 / .pi)
     }
 
+    // MARK: - Lifecycle
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 Circle()
                     .fill(Color.mainColor)
                     .frame(width: geometry.size.width, height: geometry.size.width)
-                    .scaleEffect(1.2)
 
                 Circle()
                     .stroke(Color.gray.opacity(0.25), lineWidth: 1)
@@ -40,7 +41,7 @@ struct DurationSlider: View {
 
                 Circle()
                     .trim(from: 0.0, to: CGFloat(duration / maxDuration))
-                    .stroke(Color.green, lineWidth: 4)
+                    .stroke(Color.accentGreen, lineWidth: 4)
                     .frame(width: geometry.size.width, height: geometry.size.width)
                     .rotationEffect(.degrees(-90))
 
@@ -54,13 +55,23 @@ struct DurationSlider: View {
                     Text(duration.hoursMinutesString)
                         .font(.largeTitle)
                         .foregroundColor(Color.white)
-                        .padding(.bottom, 5)
+                        .padding(.bottom, 15)
                     HStack {
-                        Button("+15min") {
-                            updateDuration(to: duration + TimeInterval.oneHour / 4)
+                        VStack {
+                            Text("hours")
+                            Stepper("Hours", onIncrement: {
+                                updateDuration(to: duration + TimeInterval.oneHour)
+                            }, onDecrement: {
+                                updateDuration(to: duration - TimeInterval.oneHour)
+                            }).labelsHidden().fixedSize()
                         }
-                        Button("+1hr") {
-                            updateDuration(to: duration + TimeInterval.oneHour)
+                        VStack {
+                            Text("minutes")
+                            Stepper("Minutes", onIncrement: {
+                                updateDuration(to: duration + TimeInterval.oneHour / 4)
+                            }, onDecrement: {
+                                updateDuration(to: duration - TimeInterval.oneHour / 4)
+                            }).labelsHidden().fixedSize()
                         }
                     }
                     .foregroundColor(Color.white.opacity(0.55))
@@ -85,6 +96,13 @@ struct DurationSlider: View {
         // Convert angle value to duration
         let duration = TimeInterval(fixedAngle / (2.0 * .pi)) * maxDuration
         let roundedDuration = round(duration: duration, toNearest: 0.25)
+
+        // Make sure we don't adjust duration more than an hour
+        // (prevents going from min to max when going counterclockwise)
+        guard self.duration - roundedDuration < TimeInterval.oneHour,
+              roundedDuration - self.duration < TimeInterval.oneHour else {
+            return
+        }
 
         updateDuration(to: roundedDuration)
     }
@@ -117,7 +135,7 @@ struct Knob: View {
 
     var body: some View {
         Circle()
-            .fill(Color.green)
+            .fill(Color.accentGreen)
             .frame(width: radius * 2, height: radius * 2)
             .padding(10)
             .offset(y: -containerRadius)
@@ -129,9 +147,12 @@ struct Knob: View {
     }
 }
 
-private struct Config {
-    let minimumValue: TimeInterval
-    let maximumValue: TimeInterval
-    let knobRadius: CGFloat
-    let radius: CGFloat
-}
+#if DEBUG
+struct DurationSlider_Previews: PreviewProvider {
+     static var previews: some View {
+         StatefulPreviewWrapper(0) {
+             DurationSlider(duration: $0, maxDuration: TimeInterval.oneHour * 10).frame(maxWidth: 350)
+         }
+     }
+ }
+#endif
