@@ -14,6 +14,7 @@ struct LogView: View {
     // MARK: - Private Properties
 
     @State private var isAddNewActivityViewPresented = false
+    @State private var isAddNewActivityViewPresentedModally = false
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
@@ -37,33 +38,48 @@ struct LogView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        List {
-            ForEach(update(activities), id: \.self) { (section: [Activity]) in
-                Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt)).font(Font.headline.smallCaps())) {
-                    ForEach(section, id: \.self) { (activity: Activity) in
-                        NavigationLink(destination: AddNewActivityView(isPresented: self.$isAddNewActivityViewPresented,
-                                                                       activity: activity,
-                                                                       showNavigationBar: false)) {
-                            VStack(alignment: .leading) {
-                                Text(activity.name ?? "")
-                                    .font(.headline)
-                                HStack {
-                                    Text(activity.category?.name ?? "Uncategorized")
-                                    if let date = activity.createdAt {
+        ZStack {
+            List {
+                ForEach(update(activities), id: \.self) { (section: [Activity]) in
+                    Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt)).font(Font.headline.smallCaps())) {
+                        ForEach(section, id: \.self) { (activity: Activity) in
+                            NavigationLink(destination: AddNewActivityView(isPresented: self.$isAddNewActivityViewPresented,
+                                                                           activity: activity,
+                                                                           showNavigationBar: false)) {
+                                VStack(alignment: .leading) {
+                                    Text(activity.name ?? "")
+                                        .font(.headline)
+                                    HStack {
+                                        Text(activity.category?.name ?? "Uncategorized")
+                                        if let date = activity.createdAt {
+                                            Text("•")
+                                            Text(timeFormatter.string(from: date))
+                                        }
                                         Text("•")
-                                        Text(timeFormatter.string(from: date))
+                                        Text(activity.duration.hoursMinutesString)
                                     }
-                                    Text("•")
-                                    Text(activity.duration.hoursMinutesString)
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
                                 }
-                                .font(.caption)
-                                .foregroundColor(.gray)
                             }
                         }
+                        .onDelete(perform: self.deleteActivity)
                     }
-                    .onDelete(perform: self.deleteActivity)
                 }
             }
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    AddButton {
+                        self.isAddNewActivityViewPresentedModally.toggle()
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $isAddNewActivityViewPresentedModally) {
+            AddNewActivityView(isPresented: self.$isAddNewActivityViewPresentedModally)
+                .environment(\.managedObjectContext, self.managedObjectContext)
         }
         .onAppear {
             UITableView.appearance().separatorStyle = .none
