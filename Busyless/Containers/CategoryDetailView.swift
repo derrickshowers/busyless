@@ -13,7 +13,7 @@ struct CategoryDetailView: View {
 
     // MARK: - Constants
 
-    static let durationSliderHeight: CGFloat = 250
+    static let durationSliderHeight: CGFloat = 325
 
     // MARK: - Public Properties
 
