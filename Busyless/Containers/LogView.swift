@@ -19,8 +19,12 @@ struct LogView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: Activity.allActivitiesFetchRequest)
-    private var activities: FetchedResults<Activity>
+    @Environment(\.dataStore)
+    private var dataStore
+
+    private var activities: [[Activity]] {
+        return dataStore?.wrappedValue.activityStore.allActivitiesGroupedByDate ?? []
+    }
 
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -40,7 +44,7 @@ struct LogView: View {
     var body: some View {
         ZStack {
             List {
-                ForEach(update(activities), id: \.self) { (section: [Activity]) in
+                ForEach(activities, id: \.self) { (section: [Activity]) in
                     Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt)).font(Font.headline.smallCaps())) {
                         ForEach(section, id: \.self) { (activity: Activity) in
                             NavigationLink(destination: AddNewActivityView(isPresented: self.$isAddNewActivityViewPresented,
@@ -62,8 +66,12 @@ struct LogView: View {
                                     .foregroundColor(.gray)
                                 }
                             }
-                        }
-                        .onDelete(perform: self.deleteActivity)
+                        }.onDelete(perform: { row in
+                            if let rowIndex = row.map({$0}).first,
+                                let sectionIndex = activities.firstIndex(of: section) {
+                                self.deleteActivity(atRow: rowIndex, section: sectionIndex)
+                            }
+                        })
                     }
                 }
             }
@@ -81,34 +89,10 @@ struct LogView: View {
             AddNewActivityView(isPresented: self.$isAddNewActivityViewPresentedModally)
                 .environment(\.managedObjectContext, self.managedObjectContext)
         }
-        .onAppear {
-            UITableView.appearance().separatorStyle = .none
-        }
         .navigationBarTitle("Activity Log")
     }
 
     // MARK: - Private Methods
-
-    /**
-     Groups activities into a 2-dimensional array so it can be split into sections.
-     I'm not sure this is the greatest solution as there are multiple SoTs, the original fetched request and what is returned from this. If the two aren't
-     sorted in exactly the same way, it will cause weird bugs like deleting by offset. See linked article below for details.
-     https://stackoverflow.com/questions/59180698/how-to-properly-group-a-list-fetched-from-coredata-by-date/59182120#59182120
-
-     Note: I think the cleaner way to do this is use a computed property to return this `[[Activity]]`and then use that as the
-     single SoT for all (incl. deletion).
-
-     Or better yet, just build a Core Data abstraction layer.
-     */
-    private func update(_ result: FetchedResults<Activity>) -> [[Activity]] {
-        let groupingByDate: [String: [Activity]] = Dictionary(grouping: result) { (activity: Activity) in
-            if let date = activity.createdAt {
-                return dateFormatter.string(from: date)
-            }
-            return "unknown"
-        }
-        return groupingByDate.values.sorted { $0[0].createdAt ?? Date() > $1[0].createdAt ?? Date() }
-    }
 
     private func sectionHeader(forCreationDate date: Date?) -> String {
         if let date = date {
@@ -121,13 +105,10 @@ struct LogView: View {
 // MARK: - Core Data
 
 extension LogView {
-
-    private func deleteActivity(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let activity = self.activities[index]
-            self.managedObjectContext.delete(activity)
-        }
-        BLCategory.save(with: managedObjectContext)
+    private func deleteActivity(atRow row: Int, section: Int) {
+        let activity = self.activities[section][row]
+        self.managedObjectContext.delete(activity)
+        Activity.save(with: managedObjectContext)
     }
 }
 

@@ -8,12 +8,15 @@
 
 import SwiftUI
 import BusylessDataLayer
+import CoreData
 
 @main
 struct BusylessApp: App {
     let persistenceController = PersistenceController.shared
+    @ObservedObject var dataStore: DataStore
 
     init() {
+        dataStore = BusylessApp.createDataStore(with: persistenceController.container.viewContext)
         setupNavigationBar()
         setupTableViews()
     }
@@ -22,10 +25,15 @@ struct BusylessApp: App {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.dataStore, _dataStore)
         }
     }
 
     // MARK: - Setup
+
+    private static func createDataStore(with managedObjectContext: NSManagedObjectContext) -> DataStore {
+        return DataStore(managedObjectContext: managedObjectContext)
+    }
 
     private func setupNavigationBar() {
         let navigationBarAppearance = UINavigationBarAppearance()

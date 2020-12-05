@@ -24,21 +24,21 @@ struct DayView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: BLCategory.allCategoriesFetchRequest)
-    private var categories: FetchedResults<BLCategory>
-
-    @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
-    private var userConfigs: FetchedResults<UserConfig>
+    @Environment(\.dataStore)
+    private var dataStore
 
     private var totalBudgetedDuration: TimeInterval {
         return self.categories.reduce(0) { $0 + $1.dailyBudgetDuration }
     }
 
+    private var categories: [BLCategory] {
+        return dataStore?.wrappedValue.categoryStore.allCategories ?? []
+    }
+
     private var awakeDuration: TimeInterval {
-        guard let userConfig = self.userConfigs.first,
-            let awakeTime = userConfig.awakeTime,
-            let sleepTime = userConfig.sleepTime else {
-                return SettingsView.awakeDurationDefault
+        guard let awakeTime = dataStore?.wrappedValue.userConfigStore.awakeTime,
+              let sleepTime = dataStore?.wrappedValue.userConfigStore.sleepTime else {
+            return UserConfigStore.awakeDurationDefault
         }
 
         // If sleep time is before awake time, 1 day needs to be added to get correct duration.
@@ -120,7 +120,7 @@ struct MoreOptionsMenuButton: View {
 
     // MARK: - Public Properties
 
-    let categories: FetchedResults<BLCategory>
+    let categories: [BLCategory]
     let addCategoryAction: () -> Void
 
     // MARK: - Private Properties
@@ -176,9 +176,15 @@ struct AddNewCategoryView: View {
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
+        let dataStore = ObservedObject(initialValue: DataStore(managedObjectContext: context))
         return Group {
+            DayView()
+                .environment(\.managedObjectContext, context)
+                .environment(\.dataStore, dataStore)
             DayView().environment(\.managedObjectContext, context)
-            DayView().environment(\.managedObjectContext, context).environment(\.colorScheme, .dark)
+                .environment(\.managedObjectContext, context)
+                .environment(\.dataStore, dataStore)
+                .environment(\.colorScheme, .dark)
         }
     }
 }

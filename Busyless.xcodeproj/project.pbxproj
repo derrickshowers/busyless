@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
+		E70DCC47257C16E400B4F13D /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC46257C16E400B4F13D /* CategoryStore.swift */; };
+		E70DCC5E257D636400B4F13D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC5D257D636400B4F13D /* DataStore.swift */; };
+		E70DCC74257D66B900B4F13D /* EnvironmentValues+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */; };
+		E70DCC80257D692100B4F13D /* ActivityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC7F257D692100B4F13D /* ActivityStore.swift */; };
+		E70DCC87257D692A00B4F13D /* UserConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC86257D692A00B4F13D /* UserConfigStore.swift */; };
 		E71B3BAE255CCE210056677E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B3BA0255CCDAE0056677E /* Date+.swift */; };
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
 		E72C19AD25378D070009C935 /* AddNewActivityIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */; };
@@ -152,6 +157,11 @@
 		E708AAE824EDF21800ECE5F8 /* Busyless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Busyless.entitlements; sourceTree = "<group>"; };
 		E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E709A85E25085A7600C518EE /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		E70DCC46257C16E400B4F13D /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
+		E70DCC5D257D636400B4F13D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+.swift"; sourceTree = "<group>"; };
+		E70DCC7F257D692100B4F13D /* ActivityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStore.swift; sourceTree = "<group>"; };
+		E70DCC86257D692A00B4F13D /* UserConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfigStore.swift; sourceTree = "<group>"; };
 		E71B3BA0255CCDAE0056677E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		E726EEE4250B0D3700CBEAF5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityIntentHandler.swift; sourceTree = "<group>"; };
@@ -260,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				E726EEE4250B0D3700CBEAF5 /* Color+.swift */,
+				E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */,
 				E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */,
 				E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */,
 			);
@@ -281,6 +292,25 @@
 				E73524F52536911600A60541 /* FirstResponderTextField.swift */,
 			);
 			path = UIKitWrappers;
+			sourceTree = "<group>";
+		};
+		E70DCC45257C16B400B4F13D /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				E70DCC5D257D636400B4F13D /* DataStore.swift */,
+				E70DCC5C257D634F00B4F13D /* Models */,
+			);
+			path = DataStore;
+			sourceTree = "<group>";
+		};
+		E70DCC5C257D634F00B4F13D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E70DCC7F257D692100B4F13D /* ActivityStore.swift */,
+				E70DCC46257C16E400B4F13D /* CategoryStore.swift */,
+				E70DCC86257D692A00B4F13D /* UserConfigStore.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E715087924E32A0E004B080A /* DayView */ = {
@@ -455,6 +485,7 @@
 				E7F178BB25391AD1009F59D1 /* CoreData */,
 				E7FA78B624E98F100095DBDD /* Models */,
 				E71B3BAC255CCE0D0056677E /* Utility */,
+				E70DCC45257C16B400B4F13D /* DataStore */,
 				E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */,
 				E7F1789625391A4B009F59D1 /* Info.plist */,
 			);
@@ -797,6 +828,7 @@
 				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
 				E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */,
 				E75BFE4A254B93DF000A947B /* StatefullPreviewWrapper.swift in Sources */,
+				E70DCC74257D66B900B4F13D /* EnvironmentValues+.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E7AE168D252E9ABD00B5654F /* BusylessIntents.intentdefinition in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
@@ -843,7 +875,11 @@
 				E71B3BAE255CCE210056677E /* Date+.swift in Sources */,
 				E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */,
 				E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */,
+				E70DCC47257C16E400B4F13D /* CategoryStore.swift in Sources */,
+				E70DCC87257D692A00B4F13D /* UserConfigStore.swift in Sources */,
+				E70DCC5E257D636400B4F13D /* DataStore.swift in Sources */,
 				E7F178D225391B9D009F59D1 /* BusylessIntents.intentdefinition in Sources */,
+				E70DCC80257D692100B4F13D /* ActivityStore.swift in Sources */,
 				E7F178D825391BDC009F59D1 /* Activity.swift in Sources */,
 				E7F178E425391BE1009F59D1 /* UserConfig.swift in Sources */,
 				E7F178C225391B10009F59D1 /* Persistence.swift in Sources */,
