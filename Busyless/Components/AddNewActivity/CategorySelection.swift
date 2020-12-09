@@ -23,12 +23,12 @@ struct CategorySelection: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: BLCategory.allCategoriesFetchRequest)
-    private var categories: FetchedResults<BLCategory>
+    @Environment(\.dataStore)
+    private var dataStore
 
     var body: some View {
         List {
-            ForEach(categories, id: \.name) { (category) in
+            ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { (category) in
                 Button(action: {
                     self.selectedCategory = category
                     self.presentationMode.wrappedValue.dismiss()

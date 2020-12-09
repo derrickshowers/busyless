@@ -16,8 +16,12 @@ struct StatsView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: Activity.allActivitiesCurrentMonthFetchRequest)
-    private var activities: FetchedResults<Activity>
+    @Environment(\.dataStore)
+    private var dataStore
+
+    private var activities: [Activity] {
+        return dataStore?.wrappedValue.activityStore.allActivitiesForCurrentMonth ?? []
+    }
 
     private var categoriesAndDurations: [(categoryName: String, duration: TimeInterval)] {
         var dictionary: [String: TimeInterval] = [:]

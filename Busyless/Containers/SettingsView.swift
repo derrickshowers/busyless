@@ -12,20 +12,13 @@ import os
 
 struct SettingsView: View {
 
-    // MARK: - Constants
-
-    static let awakeHourDefault: Int = 7
-    static let awakeDurationDefault: TimeInterval = 16 * TimeInterval.oneHour
-    static let defaultAwakeTime = Date.today(withHour: awakeHourDefault)
-    static let defaultSleepTime = Date.today(withHour: awakeHourDefault + Int(awakeDurationDefault / TimeInterval.oneHour))
-
     // MARK: - Private Properties
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FetchRequest(fetchRequest: UserConfig.allUserConfigsFetchRequest)
-    private var userConfigs: FetchedResults<UserConfig>
+    @Environment(\.dataStore)
+    private var dataStore
 
     @State private var isExportPresented: Bool = false
 
@@ -39,15 +32,15 @@ struct SettingsView: View {
 
     private var awakeTime: Binding<Date> {
         return Binding<Date>(
-            get: { self.userConfigs.first?.awakeTime ?? SettingsView.defaultAwakeTime },
-            set: { self.userConfigs.first?.awakeTime = $0 }
+            get: { dataStore?.wrappedValue.userConfigStore.awakeTime ?? UserConfigStore.defaultAwakeTime },
+            set: { dataStore?.wrappedValue.userConfigStore.awakeTime = $0 }
         )
     }
 
     private var sleepTime: Binding<Date> {
         return Binding<Date>(
-            get: { self.userConfigs.first?.sleepTime ?? SettingsView.defaultSleepTime },
-            set: { self.userConfigs.first?.sleepTime = $0 }
+            get: { dataStore?.wrappedValue.userConfigStore.sleepTime ?? UserConfigStore.defaultAwakeTime },
+            set: { dataStore?.wrappedValue.userConfigStore.sleepTime = $0 }
         )
     }
 
@@ -102,23 +95,10 @@ struct SettingsView: View {
         .sheet(isPresented: $isExportPresented, content: {
             ActivityViewController(activityItems: [self.dataExportFile])
         })
-        .onAppear {
-            self.setupUserConfigIfNewUser()
-        }
         .onDisappear {
             UserConfig.save(with: self.managedObjectContext)
         }
         .navigationBarTitle("Settings")
-    }
-
-    // MARK: - Private Methods
-
-    private func setupUserConfigIfNewUser() {
-        if self.userConfigs.count == 0 {
-            _ = UserConfig(context: self.managedObjectContext)
-        } else if self.userConfigs.count > 1 {
-            os_log("There are more UserConfig objects than there should be.")
-        }
     }
 }
 
