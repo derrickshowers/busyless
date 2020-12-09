@@ -18,6 +18,7 @@ struct CategoryDetailView: View {
     // MARK: - Public Properties
 
     let category: BLCategory
+    let overviewType: OverviewType
 
     // MARK: - Private Properties
 
@@ -35,12 +36,11 @@ struct CategoryDetailView: View {
             return []
         }
 
-        return activities.filter { activity in
-            guard let date = activity.createdAt else {
-                return false
-            }
-            return Calendar.current.isDateInToday(date)
+        if overviewType == .month {
+            return activities.filter(byMonth: Calendar.current.component(.month, from: Date()))
         }
+
+        return activities.filter(byDate: Date())
     }
 
     private var timeLeftInCurrentCategory: TimeInterval {
@@ -49,8 +49,9 @@ struct CategoryDetailView: View {
 
     // MARK: - Lifecycle
 
-    init(category: BLCategory) {
+    init(category: BLCategory, overviewType: OverviewType) {
         self.category = category
+        self.overviewType = overviewType
         _duration = State(initialValue: category.dailyBudgetDuration)
     }
 
@@ -58,42 +59,51 @@ struct CategoryDetailView: View {
         ZStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    HStack {
-                        DurationSlider(duration: $duration, maxDuration: 8 * TimeInterval.oneHour)
-                            .frame(maxWidth: CategoryDetailView.durationSliderHeight,
-                                   minHeight: CategoryDetailView.durationSliderHeight,
-                                   maxHeight: CategoryDetailView.durationSliderHeight)
-                            .padding(.vertical, 10)
+                    if overviewType == .day {
+                        HStack {
+                            DurationSlider(duration: $duration, maxDuration: 8 * TimeInterval.oneHour)
+                                .frame(maxWidth: CategoryDetailView.durationSliderHeight,
+                                       minHeight: CategoryDetailView.durationSliderHeight,
+                                       maxHeight: CategoryDetailView.durationSliderHeight)
+                                .padding(.vertical, 10)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .background(Color.customWhite)
                     }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.customWhite)
 
                     VStack(spacing: 15) {
                         HStack {
-                            Text("Time spent today")
+                            Text("Time spent")
                             Spacer()
-                            Text(category.timeSpentDuration.hoursMinutesString).bold()
+                            if overviewType == .day {
+                                Text(category.timeSpentToday.hoursMinutesString).bold()
+                            } else {
+                                Text(category.timeSpentThisMonth.hoursMinutesString).bold()
+                            }
+
                         }
-                        Divider()
-                        HStack {
-                            Text("Time available to budget")
-                            Spacer()
-                            Text("Unknown").bold()
-                        }
-                        Divider()
-                        HStack {
-                            Text("Time left in \(category.name?.lowercased() ?? "category")")
-                            Spacer()
-                            Text(abs(timeLeftInCurrentCategory).hoursMinutesString)
-                                .foregroundColor(timeLeftInCurrentCategory >= 0 ? Color(UIColor.label) : Color.red)
-                                .bold()
+                        if overviewType == .day {
+                            Divider()
+                            HStack {
+                                Text("Time available to budget")
+                                Spacer()
+                                Text("Unknown").bold()
+                            }
+                            Divider()
+                            HStack {
+                                Text("Time left in \(category.name?.lowercased() ?? "category")")
+                                Spacer()
+                                Text(abs(timeLeftInCurrentCategory).hoursMinutesString)
+                                    .foregroundColor(timeLeftInCurrentCategory >= 0 ? Color(UIColor.label) : Color.red)
+                                    .bold()
+                            }
                         }
                     }
                     .padding(15)
                     .background(Color.customWhite)
 
                     HStack {
-                        Text("Today's Logged Activities")
+                        Text("Logged Activities")
                             .font(Font.headline.smallCaps())
                         Spacer()
                     }.padding(15)
@@ -149,11 +159,23 @@ struct CategoryDetailView: View {
     }
 }
 
+extension CategoryDetailView {
+    enum OverviewType {
+        case day
+        case month
+    }
+}
+
 struct CategoryDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CategoryDetailView(category: BLCategory.mockCategory())
-            CategoryDetailView(category: BLCategory.mockCategory())
+            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .day)
+            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .day)
+                .environment(\.colorScheme, .dark)
+        }
+        Group {
+            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .month)
+            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .month)
                 .environment(\.colorScheme, .dark)
         }
     }

@@ -20,9 +20,6 @@ public class ActivityStore: NSObject, ObservableObject {
     @Published
     public private(set) var allActivitiesGroupedByDate: [[Activity]] = []
 
-    @Published
-    public private(set) var allActivitiesForCurrentMonth: [Activity] = []
-
     // MARK: - Private Properties
 
     private let allActivitiesController: NSFetchedResultsController<Activity>
@@ -43,7 +40,6 @@ public class ActivityStore: NSObject, ObservableObject {
             try allActivitiesController.performFetch()
             allActivities = allActivitiesController.fetchedObjects ?? []
             allActivitiesGroupedByDate = ActivityStore.activitiesGroupedByDate(allActivitiesController.fetchedObjects ?? [])
-            allActivitiesForCurrentMonth = ActivityStore.filterActivitiesForCurrentMonth(allActivitiesController.fetchedObjects ?? [])
         } catch {
             Logger().error("Failed to fetch activities")
         }
@@ -61,15 +57,6 @@ public class ActivityStore: NSObject, ObservableObject {
         }
         return groupingByDate.values.sorted { $0[0].createdAt ?? Date() > $1[0].createdAt ?? Date() }
     }
-
-    static private func filterActivitiesForCurrentMonth(_ activities: [Activity]) -> [Activity] {
-        return activities.filter({
-            guard let createdAtDate = $0.createdAt else {
-                return false
-            }
-            return Calendar.current.component(.month, from: createdAtDate) == Calendar.current.component(.month, from: Date())
-        })
-    }
 }
 
 extension ActivityStore: NSFetchedResultsControllerDelegate {
@@ -80,7 +67,6 @@ extension ActivityStore: NSFetchedResultsControllerDelegate {
         }
         allActivities = activities
         allActivitiesGroupedByDate = ActivityStore.activitiesGroupedByDate(activities)
-        allActivitiesForCurrentMonth = ActivityStore.filterActivitiesForCurrentMonth(activities)
     }
 
 }
