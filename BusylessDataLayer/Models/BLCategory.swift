@@ -12,11 +12,23 @@ import CoreData
 @objc(BLCategory)
 public class BLCategory: NSManagedObject {
 
-    public var timeSpentDuration: TimeInterval {
+    public var timeSpentToday: TimeInterval {
         let activities: Set<Activity>? = self.activities as? Set<Activity>
         let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> TimeInterval in
             if let date = activity.createdAt,
                 Calendar.current.isDateInToday(date) {
+                return totalDuration + activity.duration
+            }
+            return totalDuration
+        }
+        return calculatedDuration ?? 0
+    }
+
+    public var timeSpentThisMonth: TimeInterval {
+        let activities: Set<Activity>? = self.activities as? Set<Activity>
+        let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> TimeInterval in
+            if let date = activity.createdAt,
+               Calendar.current.component(.month, from: date) == Calendar.current.component(.month, from: Date()) {
                 return totalDuration + activity.duration
             }
             return totalDuration

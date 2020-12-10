@@ -23,7 +23,7 @@
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
 		E75079A6253926E50060D010 /* BusylessDataLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */; };
 		E75BFE4A254B93DF000A947B /* StatefullPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75BFE49254B93DF000A947B /* StatefullPreviewWrapper.swift */; };
-		E7619B522550EC9F00B06A24 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7619B512550EC9F00B06A24 /* StatsView.swift */; };
+		E7619B522550EC9F00B06A24 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7619B512550EC9F00B06A24 /* MonthView.swift */; };
 		E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */; };
 		E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */; };
@@ -172,7 +172,7 @@
 		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessDataLayerTests.swift; sourceTree = "<group>"; };
 		E75BFE49254B93DF000A947B /* StatefullPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefullPreviewWrapper.swift; sourceTree = "<group>"; };
-		E7619B512550EC9F00B06A24 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		E7619B512550EC9F00B06A24 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+.swift"; sourceTree = "<group>"; };
@@ -529,8 +529,8 @@
 				E7947FCB24DF7CD5006B7859 /* DayView.swift */,
 				E780FC5424E9B37500F9C2B6 /* LogView.swift */,
 				E786CA4224E488FF00B27D8E /* MainView.swift */,
+				E7619B512550EC9F00B06A24 /* MonthView.swift */,
 				E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */,
-				E7619B512550EC9F00B06A24 /* StatsView.swift */,
 			);
 			path = Containers;
 			sourceTree = "<group>";
@@ -814,7 +814,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7619B522550EC9F00B06A24 /* StatsView.swift in Sources */,
+				E7619B522550EC9F00B06A24 /* MonthView.swift in Sources */,
 				E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,

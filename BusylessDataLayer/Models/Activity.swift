@@ -24,6 +24,27 @@ public extension Activity {
     }
 }
 
+extension Array where Element: Activity {
+
+    public func filter(byMonth month: Int) -> [Element] {
+        return self.filter({
+            guard let createdAtDate = $0.createdAt else {
+                return false
+            }
+            return Calendar.current.component(.month, from: createdAtDate) == month
+        })
+    }
+
+    public func filter(byDate date: Date) -> [Element] {
+        return self.filter { activity in
+            guard let activityDate = activity.createdAt else {
+                return false
+            }
+            return Calendar.current.isDate(activityDate, inSameDayAs: date)
+        }
+    }
+}
+
 // MARK: - Mock Data {
 
 public extension Activity {

@@ -23,7 +23,7 @@ struct CategoryRow: View {
                 .opacity(0.8)
             Spacer()
             DurationPill(dailyBudgetDuration: category.dailyBudgetDuration,
-                         timeSpentDuration: category.timeSpentDuration)
+                         timeSpentDuration: category.timeSpentToday)
         }
     }
 }
