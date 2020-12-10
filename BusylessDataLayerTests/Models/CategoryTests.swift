@@ -18,10 +18,10 @@ class CategoryTests: XCTestCase {
         category = BLCategory.mockCategory()
     }
 
-    func testTimeSpentDuration() throws {
+    func testTimeSpentToday() throws {
         let categoryWithPastActivities = BLCategory.mockCategoryWithPastActivities()
-        XCTAssertTrue(category?.timeSpentDuration == 3 * 3600)
-        XCTAssertTrue(categoryWithPastActivities.timeSpentDuration == 0)
+        XCTAssertTrue(category?.timeSpentToday == 3 * 3600)
+        XCTAssertTrue(categoryWithPastActivities.timeSpentToday == 0)
     }
 
 }
