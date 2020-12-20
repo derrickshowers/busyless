@@ -15,7 +15,7 @@ jobs:
       uses: derrickshowers/ios-bump-version@v1.0.3
       with:
         build-number: ${{ github.run_number }}
-        version: 0.2.1
+        version: 0.3.0
     - name: Install GPG
       run: brew install gnupg
     - name: List available Xcode versions
@@ -25,7 +25,7 @@ jobs:
       env:
         PROVISIONING_PASSWORD: ${{ secrets.provisioning_password }}
     - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_12.app && /usr/bin/xcodebuild -version
+      run: sudo xcode-select -switch /Applications/Xcode_12.3.app && /usr/bin/xcodebuild -version
     - name: Build archive
       run: |
         xcodebuild \

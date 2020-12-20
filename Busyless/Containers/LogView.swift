@@ -14,8 +14,15 @@ struct LogView: View {
     // MARK: - Private Properties
 
     @State private var isAddNewActivityViewPresented = false
-    @State private var isAddNewActivityViewPresentedModally = false
     @State private var showOnlyUncategorizedActivities = false
+
+    /**
+     This is somewhat of a hack. This property should be a state variable and then passed as an param when creating `AddNewActivityView` but
+     for some weird reason, the value is never correct the first time (`nil` on breakpoint in `AddNewActivityView` initializer). Tried everything to
+     get around this (resetting value, only presenting on `didSet` of `selectedActivity`).
+     Note: needs to be static because instance variable cannot be modified from body on struct.
+     */
+    static private var selectedActivity: Activity?
 
     @Environment(\.managedObjectContext)
     private var managedObjectContext
@@ -65,7 +72,7 @@ struct LogView: View {
                     .background(Color.secondaryColor)
                     .foregroundColor(Color.white)
                     .onTapGesture(perform: {
-                        self.showOnlyUncategorizedActivities.toggle()
+                        showOnlyUncategorizedActivities.toggle()
                     })
                 }
                 List {
@@ -73,30 +80,29 @@ struct LogView: View {
                         Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt)).font(Font.headline.smallCaps())) {
                             ForEach(section, id: \.self) { (activity: Activity) in
                                 if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
-                                    NavigationLink(destination: AddNewActivityView(isPresented: self.$isAddNewActivityViewPresented,
-                                                                                   activity: activity,
-                                                                                   showNavigationBar: false)) {
-                                        VStack(alignment: .leading) {
-                                            Text(activity.name ?? "")
-                                                .font(.headline)
-                                            HStack {
-                                                Text(activity.category?.name ?? "Uncategorized")
-                                                if let date = activity.createdAt {
-                                                    Text("•")
-                                                    Text(timeFormatter.string(from: date))
-                                                }
+                                    VStack(alignment: .leading) {
+                                        Text(activity.name ?? "")
+                                            .font(.headline)
+                                        HStack {
+                                            Text(activity.category?.name ?? "Uncategorized")
+                                            if let date = activity.createdAt {
                                                 Text("•")
-                                                Text(activity.duration.hoursMinutesString)
+                                                Text(timeFormatter.string(from: date))
                                             }
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
+                                            Text("•")
+                                            Text(activity.duration.hoursMinutesString)
                                         }
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                    }.onTapGesture {
+                                        LogView.selectedActivity = activity
+                                        isAddNewActivityViewPresented.toggle()
                                     }
                                 }
                             }.onDelete(perform: { row in
                                 if let rowIndex = row.map({$0}).first,
                                     let sectionIndex = activities.firstIndex(of: section) {
-                                    self.deleteActivity(atRow: rowIndex, section: sectionIndex)
+                                    deleteActivity(atRow: rowIndex, section: sectionIndex)
                                 }
                             })
                         }
@@ -108,14 +114,15 @@ struct LogView: View {
                 HStack {
                     Spacer()
                     AddButton {
-                        self.isAddNewActivityViewPresentedModally.toggle()
+                        LogView.selectedActivity = nil
+                        isAddNewActivityViewPresented.toggle()
                     }
                 }
             }
         }
-        .sheet(isPresented: $isAddNewActivityViewPresentedModally) {
-            AddNewActivityView(isPresented: self.$isAddNewActivityViewPresentedModally)
-                .environment(\.managedObjectContext, self.managedObjectContext)
+        .sheet(isPresented: $isAddNewActivityViewPresented) {
+            AddNewActivityView(isPresented: $isAddNewActivityViewPresented, activity: LogView.selectedActivity)
+                .environment(\.managedObjectContext, managedObjectContext)
         }
         .navigationBarTitle("Activity Log")
     }
@@ -134,8 +141,8 @@ struct LogView: View {
 
 extension LogView {
     private func deleteActivity(atRow row: Int, section: Int) {
-        let activity = self.activities[section][row]
-        self.managedObjectContext.delete(activity)
+        let activity = activities[section][row]
+        managedObjectContext.delete(activity)
         Activity.save(with: managedObjectContext)
     }
 }

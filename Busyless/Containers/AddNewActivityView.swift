@@ -17,7 +17,6 @@ struct AddNewActivityView: View {
 
     @Binding var isPresented: Bool
     let activity: Activity?
-    let showNavigationBar: Bool
 
     // MARK: - Private Properties
 
@@ -34,6 +33,8 @@ struct AddNewActivityView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
+    private var isEditingExistingActivity: Bool
+
     private var readyToSave: Bool {
         return !name.isEmpty && (hoursDuration != 0 || minutesDuration != 0)
     }
@@ -42,11 +43,10 @@ struct AddNewActivityView: View {
 
     init(isPresented: Binding<Bool>,
          activity: Activity? = nil,
-         preselectedCategory: BLCategory? = nil,
-         showNavigationBar: Bool = true) {
+         preselectedCategory: BLCategory? = nil) {
         self._isPresented = isPresented
         self.activity = activity
-        self.showNavigationBar = showNavigationBar
+        self.isEditingExistingActivity = activity != nil
         _name = State(initialValue: activity?.name ?? "")
         _category = State(initialValue: activity?.category ?? preselectedCategory)
         _createdAt = State(initialValue: activity?.createdAt ?? Date())
@@ -107,8 +107,7 @@ struct AddNewActivityView: View {
                     }
                 }
             }
-            .navigationBarTitle("Log New Activity")
-            .navigationBarHidden(!showNavigationBar)
+            .navigationBarTitle(isEditingExistingActivity ? "Edit Activity" : "Log New Activity")
             .navigationBarItems(leading:
                 Button(action: {
                     self.isActivityNameFirstResponder = false
@@ -124,13 +123,6 @@ struct AddNewActivityView: View {
                 }, label: {
                     Text("Done")
                 }).disabled(!readyToSave))
-        }.onDisappear {
-            // We only want to force a save on disappear if done button is not available.
-            // This is for the case of LogView where we hide the navigation bar.
-            if !self.showNavigationBar {
-                self.addActivity()
-                self.donateAddNewActivityIntent()
-            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 
