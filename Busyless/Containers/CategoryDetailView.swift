@@ -47,6 +47,12 @@ struct CategoryDetailView: View {
         return duration - activities.map({$0.duration}).reduce(0, +)
     }
 
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }
+
     // MARK: - Lifecycle
 
     init(category: BLCategory, overviewType: OverviewType) {
@@ -113,6 +119,10 @@ struct CategoryDetailView: View {
                             VStack(spacing: 15) {
                                 ForEach(activities, id: \.self) { (activity: Activity) in
                                     HStack {
+                                        if overviewType == .month, let date = activity.createdAt {
+                                            Text(dateFormatter.string(from: date))
+                                                .font(.caption)
+                                        }
                                         Text(activity.name ?? "")
                                             .font(.body)
                                         Spacer()
@@ -130,7 +140,26 @@ struct CategoryDetailView: View {
                             }
                             .padding(.horizontal, 15)
                         }
-                    }.padding(.bottom, 150)
+                    }.padding(.bottom, 25)
+
+                    VStack(alignment: .leading, spacing: 15) {
+                        Divider()
+                        Button(action: {
+                            category.trackMonthly.toggle()
+                            BLCategory.save(with: managedObjectContext)
+                        }, label: {
+                            if category.trackMonthly {
+                                Image(systemName: "eye.slash.fill")
+                                Text("Hide Category on Month View")
+                            } else {
+                                Image(systemName: "eye.fill")
+                                Text("Show Category on Month View")
+                            }
+                        })
+                        .foregroundColor(Color(UIColor.systemGray))
+                        Divider()
+                    }.padding(.leading, 15)
+                    .padding(.bottom, 150)
                 }
             }
             .background(Color(UIColor.systemGray6))

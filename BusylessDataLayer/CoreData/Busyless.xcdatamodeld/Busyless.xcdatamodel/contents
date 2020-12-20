@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName="Activity" syncable="YES" codeGenerationType="category">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -10,6 +10,7 @@
     <entity name="Category" representedClassName="BLCategory" syncable="YES" codeGenerationType="category">
         <attribute name="dailyBudgetDuration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="trackMonthly" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Activity" inverseName="category" inverseEntity="Activity"/>
     </entity>
     <entity name="UserConfig" representedClassName="UserConfig" syncable="YES" codeGenerationType="category">
@@ -18,7 +19,7 @@
     </entity>
     <elements>
         <element name="Activity" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Category" positionX="-54" positionY="-9" width="128" height="88"/>
+        <element name="Category" positionX="-54" positionY="-9" width="128" height="89"/>
         <element name="UserConfig" positionX="-54" positionY="27" width="128" height="73"/>
     </elements>
 </model>

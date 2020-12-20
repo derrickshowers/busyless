@@ -36,15 +36,17 @@ struct MonthView: View {
                     .font(.caption)
                 VStack {
                     ForEach(categories, id: \.self) { category in
-                        NavigationLink(destination: CategoryDetailView(category: category, overviewType: .month)) {
-                            HStack {
-                                Text(category.name ?? "Uncategorized")
-                                Spacer()
-                                Text(category.timeSpentThisMonth.hoursMinutesString).bold()
+                        if category.trackMonthly {
+                            NavigationLink(destination: CategoryDetailView(category: category, overviewType: .month)) {
+                                HStack {
+                                    Text(category.name ?? "Uncategorized")
+                                    Spacer()
+                                    Text(category.timeSpentThisMonth.hoursMinutesString).bold()
+                                }
                             }
-                        }
-                        if let lastItem = self.categories.last, category != lastItem {
-                            Divider()
+                            if let lastItem = self.categories.last, category != lastItem {
+                                Divider()
+                            }
                         }
                     }
                 }
