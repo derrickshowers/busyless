@@ -54,7 +54,7 @@ jobs:
           --username "${{ secrets.appstore_connect_username }}" \
           --password "${{ secrets.appstore_connect_password }}" --verbose
     - name: Bump version and push tag
-        uses: laputansoft/github-tag-action@v4.6
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.run_number }}
+      uses: laputansoft/github-tag-action@v4.6
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.run_number }}
