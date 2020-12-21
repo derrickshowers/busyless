@@ -17,9 +17,13 @@ public class CategoryStore: NSObject, ObservableObject {
     @Published
     public private(set) var allCategories: [BLCategory] = []
 
+    @Published
+    public private(set) var allContextCategories: [ContextCategory] = []
+
     // MARK: - Private Properties
 
     private let allCategoriesController: NSFetchedResultsController<BLCategory>
+    private let allContextCategoriesController: NSFetchedResultsController<ContextCategory>
 
     // MARK: - Initializer
 
@@ -28,16 +32,23 @@ public class CategoryStore: NSObject, ObservableObject {
                                                              managedObjectContext: managedObjectContext,
                                                              sectionNameKeyPath: nil,
                                                              cacheName: nil)
+        allContextCategoriesController = NSFetchedResultsController(fetchRequest: ContextCategory.allContextCategoriesFetchRequest,
+                                                                    managedObjectContext: managedObjectContext,
+                                                                    sectionNameKeyPath: nil,
+                                                                    cacheName: nil)
 
         super.init()
 
         allCategoriesController.delegate = self
+        allContextCategoriesController.delegate = self
 
         do {
             try allCategoriesController.performFetch()
+            try allContextCategoriesController.performFetch()
             allCategories = allCategoriesController.fetchedObjects ?? []
+            allContextCategories = allContextCategoriesController.fetchedObjects ?? []
         } catch {
-            Logger().error("Failed to fetch categories")
+            Logger().error("Failed to fetch categories or context categories")
         }
     }
 }
@@ -45,10 +56,12 @@ public class CategoryStore: NSObject, ObservableObject {
 extension CategoryStore: NSFetchedResultsControllerDelegate {
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard let categories = controller.fetchedObjects as? [BLCategory] else {
-            return
+        if let categories = controller.fetchedObjects as? [BLCategory] {
+            allCategories = categories
         }
-        allCategories = categories
+        if let contextCategories = controller.fetchedObjects as? [ContextCategory] {
+            allContextCategories = contextCategories
+        }
     }
 
 }
