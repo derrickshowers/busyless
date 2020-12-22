@@ -17,6 +17,7 @@ struct DayView: View {
 
     @State private var showingAddNewActivityView = false
     @State private var showingAddNewCategoryView = false
+    @State private var addingNewContextCategory = false
 
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
@@ -33,6 +34,14 @@ struct DayView: View {
 
     private var categories: [BLCategory] {
         return dataStore?.wrappedValue.categoryStore.allCategories ?? []
+    }
+
+    private var contextCategories: [ContextCategory] {
+        return dataStore?.wrappedValue.categoryStore.allContextCategories ?? []
+    }
+
+    private var categoriesWithNoContextCategory: [BLCategory] {
+        return categories.filter { $0.contextCategory == nil }
     }
 
     private var awakeDuration: TimeInterval {
@@ -58,16 +67,21 @@ struct DayView: View {
             VStack(spacing: 0) {
                 TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
                 List {
-                    ForEach(categories, id: \.name) { category in
-                        ZStack {
-                            CategoryRow(category: category)
-                            NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) {
-                                EmptyView()
+                    // Categories with a context category
+                    ForEach(contextCategories, id: \.name) { (contextCategory: ContextCategory) in
+                        if let categories = contextCategory.categories?.allObjects as? [BLCategory] {
+                            ContextCategorySection(sectionTitle: contextCategory.name,
+                                                   sectionSubtitle: contextCategory.timeBudgeted.hoursMinutesString,
+                                                   categories: categories) { row in
+                                deleteCategory(at: row.map({$0}).first ?? 0, contextCategory: contextCategory)
                             }
                         }
-                    }
-                    .onDelete(perform: deleteCategory)
-                    .listRowBackground(Color.customWhite)
+                    }.listRowBackground(Color.customWhite)
+
+                    // All other categories
+                    ContextCategorySection(categories: categoriesWithNoContextCategory) { row in
+                        deleteCategory(at: row.map({$0}).first ?? 0)
+                    }.listRowBackground(Color.customWhite)
                 }
             }
             VStack {
@@ -75,25 +89,34 @@ struct DayView: View {
                 HStack {
                     Spacer()
                     AddButton {
-                        self.showingAddNewActivityView.toggle()
+                        showingAddNewActivityView.toggle()
                     }
                 }
                 .sheet(isPresented: $showingAddNewActivityView) {
-                    AddNewActivityView(isPresented: self.$showingAddNewActivityView)
-                        .environment(\.managedObjectContext, self.managedObjectContext)
+                    AddNewActivityView(isPresented: $showingAddNewActivityView)
+                        .environment(\.managedObjectContext, managedObjectContext)
                 }
             }
         }
         .background(Color(UIColor.systemGray6))
         .navigationBarTitle("Today")
-        .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories) {
-            self.showingAddNewCategoryView = true
-        }.sheet(isPresented: $showingAddNewCategoryView) {
-            AddNewCategoryView {
-                self.addCategory(name: $0)
-                self.showingAddNewCategoryView = false
-            }
-        })
+        .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
+                                                            addCategoryAction: {
+                                                                addingNewContextCategory = false
+                                                                showingAddNewCategoryView = true
+                                                            }, addContextCategoryAction: {
+                                                                addingNewContextCategory = true
+                                                                showingAddNewCategoryView = true
+                                                            }).sheet(isPresented: $showingAddNewCategoryView) {
+                                                                AddNewCategoryView(isContextCategory: addingNewContextCategory) {
+                                                                    if addingNewContextCategory {
+                                                                        addContextCategory(name: $0)
+                                                                    } else {
+                                                                        addCategory(name: $0)
+                                                                    }
+                                                                    showingAddNewCategoryView = false
+                                                                }
+                                                            })
     }
 }
 
@@ -107,14 +130,25 @@ extension DayView {
         BLCategory.save(with: managedObjectContext)
     }
 
-    private func deleteCategory(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let category = self.categories[index]
+    private func addContextCategory(name: String) {
+        let contextCategory = ContextCategory(context: managedObjectContext)
+        contextCategory.name = name
+        ContextCategory.save(with: managedObjectContext)
+    }
+
+    private func deleteCategory(at index: Int, contextCategory: ContextCategory? = nil) {
+        if let contextCategory = contextCategory,
+           let category = contextCategory.categories?.allObjects[index] as? BLCategory {
+            self.managedObjectContext.delete(category)
+        } else {
+            let category = self.categoriesWithNoContextCategory[index]
             self.managedObjectContext.delete(category)
         }
         BLCategory.save(with: managedObjectContext)
     }
 }
+
+// MARK: - Extracted Views
 
 struct MoreOptionsMenuButton: View {
 
@@ -122,6 +156,7 @@ struct MoreOptionsMenuButton: View {
 
     let categories: [BLCategory]
     let addCategoryAction: () -> Void
+    let addContextCategoryAction: () -> Void
 
     // MARK: - Private Properties
     @Environment(\.managedObjectContext)
@@ -133,6 +168,9 @@ struct MoreOptionsMenuButton: View {
         Menu(content: {
             Button("Add Category") {
                 addCategoryAction()
+            }
+            Button("Add Context Category") {
+                addContextCategoryAction()
             }
             Button("Reset Budget") {
                 categories.forEach { $0.dailyBudgetDuration = 0 }
@@ -148,6 +186,7 @@ struct AddNewCategoryView: View {
 
     // MARK: - Public Properties
 
+    let isContextCategory: Bool
     let action: (String) -> Void
 
     // MARK: - Private Properties
@@ -161,7 +200,9 @@ struct AddNewCategoryView: View {
         NavigationView {
             VStack {
                 Form {
-                    FirstResponderTextField("Category Name", text: $categoryName, isFirstResponder: $isFirstResponder)
+                    FirstResponderTextField(isContextCategory ? "Context Category Name" : "Category Name",
+                                            text: $categoryName,
+                                            isFirstResponder: $isFirstResponder)
                 }
                 Spacer()
             }
@@ -172,6 +213,53 @@ struct AddNewCategoryView: View {
         }
     }
 }
+
+struct ContextCategorySection: View {
+
+    // MARK: - Public Properties
+
+    var sectionTitle: String?
+    var sectionSubtitle: String?
+    let categories: [BLCategory]
+    let onDelete: (IndexSet) -> Void
+
+    // MARK: - Lifecycle
+
+    var body: some View {
+        Section(header: ContextCategoryHeader(name: sectionTitle ?? "Other", timeBudgetedString: sectionSubtitle)) {
+            ForEach(categories, id: \.name) { category in
+                ZStack {
+                    CategoryRow(category: category)
+                    NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) { }.opacity(0)
+                }
+            }
+            .onDelete(perform: onDelete)
+        }
+    }
+}
+
+struct ContextCategoryHeader: View {
+
+    // MARK: - Public Properties
+
+    let name: String
+    let timeBudgetedString: String?
+
+    // MARK: - Lifecycle
+
+    var body: some View {
+        HStack {
+            Text(name)
+            if let timeBudgetedString = timeBudgetedString {
+                Spacer()
+                Text(timeBudgetedString)
+            }
+
+        }
+    }
+}
+
+// MARK: - Preview
 
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {

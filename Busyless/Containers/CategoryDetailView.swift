@@ -24,6 +24,7 @@ struct CategoryDetailView: View {
 
     @State private var showingAddNewActivityView = false
     @State private var duration: TimeInterval
+    @State private var contextCategory: ContextCategory?
 
     @Environment(\.presentationMode)
     private var presentationMode
@@ -59,6 +60,7 @@ struct CategoryDetailView: View {
         self.category = category
         self.overviewType = overviewType
         _duration = State(initialValue: category.dailyBudgetDuration)
+        _contextCategory = State(initialValue: category.contextCategory)
     }
 
     var body: some View {
@@ -91,17 +93,22 @@ struct CategoryDetailView: View {
                         if overviewType == .day {
                             Divider()
                             HStack {
-                                Text("Time available to budget")
-                                Spacer()
-                                Text("Unknown").bold()
-                            }
-                            Divider()
-                            HStack {
                                 Text("Time left in \(category.name?.lowercased() ?? "category")")
                                 Spacer()
                                 Text(abs(timeLeftInCurrentCategory).hoursMinutesString)
                                     .foregroundColor(timeLeftInCurrentCategory >= 0 ? Color(UIColor.label) : Color.red)
                                     .bold()
+                            }
+                        }
+                        Divider()
+                        HStack {
+                            NavigationLink(destination: ContextCategorySelection(selectedContextCategory: $contextCategory)) {
+                                Text("Context Category")
+                                    .foregroundColor(Color(UIColor.label))
+                                Spacer()
+                                Text("\(contextCategory?.name ?? "Tap to Assign")")
+                                    .foregroundColor(.gray)
+                                    .lineLimit(1)
                             }
                         }
                     }
@@ -140,13 +147,12 @@ struct CategoryDetailView: View {
                             }
                             .padding(.horizontal, 15)
                         }
-                    }.padding(.bottom, 25)
+                    }.padding(.bottom, 35)
 
                     VStack(alignment: .leading, spacing: 15) {
                         Divider()
                         Button(action: {
                             category.trackMonthly.toggle()
-                            BLCategory.save(with: managedObjectContext)
                         }, label: {
                             if category.trackMonthly {
                                 Image(systemName: "eye.slash.fill")
@@ -170,20 +176,21 @@ struct CategoryDetailView: View {
                 HStack {
                     Spacer()
                     AddButton {
-                        self.showingAddNewActivityView.toggle()
+                        showingAddNewActivityView.toggle()
                     }
                 }
             }
         }
         .navigationBarTitle(category.name ?? "Category Detail")
         .onDisappear {
-            self.category.dailyBudgetDuration = duration
-            BLCategory.save(with: self.managedObjectContext)
+            category.dailyBudgetDuration = duration
+            category.contextCategory = contextCategory
+            BLCategory.save(with: managedObjectContext)
 
         }
         .sheet(isPresented: $showingAddNewActivityView) {
-            AddNewActivityView(isPresented: self.$showingAddNewActivityView, preselectedCategory: self.category)
-                .environment(\.managedObjectContext, self.managedObjectContext)
+            AddNewActivityView(isPresented: $showingAddNewActivityView, preselectedCategory: category)
+                .environment(\.managedObjectContext, managedObjectContext)
         }
     }
 }
