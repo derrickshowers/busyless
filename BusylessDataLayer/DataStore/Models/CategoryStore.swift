@@ -56,10 +56,12 @@ public class CategoryStore: NSObject, ObservableObject {
 extension CategoryStore: NSFetchedResultsControllerDelegate {
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if let categories = controller.fetchedObjects as? [BLCategory] {
+        if controller.fetchRequest.entity?.name == String(describing: BLCategory.self),
+           let categories = controller.fetchedObjects as? [BLCategory] {
             allCategories = categories
         }
-        if let contextCategories = controller.fetchedObjects as? [ContextCategory] {
+        if controller.fetchRequest.entity?.name == String(describing: ContextCategory.self),
+           let contextCategories = controller.fetchedObjects as? [ContextCategory] {
             allContextCategories = contextCategories
         }
     }

@@ -108,7 +108,15 @@ struct DayView: View {
                                                                 addingNewContextCategory = true
                                                                 showingAddNewCategoryView = true
                                                             }).sheet(isPresented: $showingAddNewCategoryView) {
-                                                                AddNewCategoryView(isContextCategory: addingNewContextCategory) {
+                                                                let content: AnyView? = {
+                                                                    if addingNewContextCategory {
+                                                                        let view = ManageContextCategoriesView(contextCategories: contextCategories,
+                                                                                                               onDelete: { deleteContextCategories($0) })
+                                                                        return AnyView(view)
+                                                                    }
+                                                                    return nil
+                                                                }()
+                                                                AddNewCategoryView(isContextCategory: addingNewContextCategory, content: content) {
                                                                     if addingNewContextCategory {
                                                                         addContextCategory(name: $0)
                                                                     } else {
@@ -146,6 +154,11 @@ extension DayView {
         }
         BLCategory.save(with: managedObjectContext)
     }
+
+    private func deleteContextCategories(_ contextCategories: [ContextCategory]) {
+        contextCategories.forEach { managedObjectContext.delete($0) }
+        ContextCategory.save(with: managedObjectContext)
+    }
 }
 
 // MARK: - Extracted Views
@@ -169,7 +182,7 @@ struct MoreOptionsMenuButton: View {
             Button("Add Category") {
                 addCategoryAction()
             }
-            Button("Add Context Category") {
+            Button("Manage Context Categories") {
                 addContextCategoryAction()
             }
             Button("Reset Budget") {
@@ -187,6 +200,7 @@ struct AddNewCategoryView: View {
     // MARK: - Public Properties
 
     let isContextCategory: Bool
+    var content: AnyView?
     let action: (String) -> Void
 
     // MARK: - Private Properties
@@ -200,9 +214,14 @@ struct AddNewCategoryView: View {
         NavigationView {
             VStack {
                 Form {
-                    FirstResponderTextField(isContextCategory ? "Context Category Name" : "Category Name",
-                                            text: $categoryName,
-                                            isFirstResponder: $isFirstResponder)
+                    let contextCategoryText = "Context categories are used to group categories. For instance, work and personal, or morning and evening."
+                    let categoryText = "Categories are used to assign activities and budget time accordingly."
+                    Section(footer: Text(isContextCategory ? contextCategoryText : categoryText).padding(.bottom, 25)) {
+                        FirstResponderTextField(isContextCategory ? "Context Category Name" : "Category Name",
+                                                text: $categoryName,
+                                                isFirstResponder: $isFirstResponder)
+                    }
+                    content
                 }
                 Spacer()
             }
@@ -211,6 +230,32 @@ struct AddNewCategoryView: View {
                 action(categoryName)
             }))
         }
+    }
+}
+
+struct ManageContextCategoriesView: View {
+
+    // MARK: - Public Properties
+
+    let contextCategories: [ContextCategory]
+    let onDelete: ([ContextCategory]) -> Void
+
+    // MARK: - Lifecycle
+
+    var body: some View {
+        Section(header: EditButton().frame(maxWidth: .infinity, alignment: .trailing)
+                    .overlay(Text("Existing Context Categories"), alignment: .leading)) {
+            List {
+                ForEach(contextCategories, id: \.self) { (contextCategory: ContextCategory) in
+                    Text(contextCategory.name ?? "")
+                }
+                .onDelete(perform: { offsets in
+                    let contextCategoriesToDelete = offsets.map { contextCategories[$0] }
+                    onDelete(contextCategoriesToDelete)
+                })
+            }
+        }
+
     }
 }
 
