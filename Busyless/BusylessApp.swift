@@ -10,6 +10,16 @@ import SwiftUI
 import BusylessDataLayer
 import CoreData
 
+/**
+ Should onboarding be shown. To make things easier to test, always show onboarding on cold starts.
+ TODO: Move to user defaults or Core Data
+ */
+enum Onboarding {
+    static var shouldShowInitial = true
+    static var shouldShowLog = true
+    static var shouldAddMockData = true
+}
+
 @main
 struct BusylessApp: App {
     let persistenceController = PersistenceController.shared
@@ -17,6 +27,7 @@ struct BusylessApp: App {
 
     init() {
         dataStore = BusylessApp.createDataStore(with: persistenceController.container.viewContext)
+        setupOnboarding(dataStore: dataStore)
         setupNavigationBar()
         setupTableViews()
     }
@@ -51,5 +62,15 @@ struct BusylessApp: App {
     private func setupTableViews() {
         UITableView.appearance().allowsSelection = false
         UITableViewCell.appearance().selectionStyle = .none
+    }
+
+    private func setupOnboarding(dataStore: DataStore) {
+        guard Onboarding.shouldAddMockData else {
+            return
+        }
+        let wasOnboardingDataAdded = dataStore.addOnboardingData()
+        if wasOnboardingDataAdded {
+            Onboarding.shouldAddMockData = false
+        }
     }
 }

@@ -11,12 +11,33 @@ import BusylessDataLayer
 
 struct MainView: View {
 
+    // MARK: - Private Properties
+
+    @State private var isOnboardingPresented = false
+
     // MARK: - Lifecycle
 
     var body: some View {
         NavigationView {
             MenuView()
             DayView()
+        }.onAppear {
+            showOnboardingIfNeeded()
+        }.sheet(isPresented: $isOnboardingPresented) {
+            InitialOnboardingView()
+        }
+    }
+
+    // MARK: - Private Methods
+
+    private func showOnboardingIfNeeded() {
+        guard Onboarding.shouldShowInitial else {
+            return
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isOnboardingPresented = true
+            Onboarding.shouldShowInitial = false
         }
     }
 }

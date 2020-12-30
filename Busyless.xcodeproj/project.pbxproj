@@ -11,6 +11,10 @@
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
 		E70A893A25910A0D009EF078 /* ContextCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A893925910A0D009EF078 /* ContextCategory.swift */; };
 		E70A89462591126E009EF078 /* ContextCategorySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A89452591126E009EF078 /* ContextCategorySelection.swift */; };
+		E70A8987259969E7009EF078 /* InitialOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A8986259969E7009EF078 /* InitialOnboardingView.swift */; };
+		E70A8993259969F4009EF078 /* LogOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A8992259969F4009EF078 /* LogOnboardingView.swift */; };
+		E70A899B259C239A009EF078 /* OnboardingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A899A259C239A009EF078 /* OnboardingContent.swift */; };
+		E70A89A2259C23B5009EF078 /* OnboardingShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A89A1259C23B5009EF078 /* OnboardingShell.swift */; };
 		E70DCC47257C16E400B4F13D /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC46257C16E400B4F13D /* CategoryStore.swift */; };
 		E70DCC5E257D636400B4F13D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC5D257D636400B4F13D /* DataStore.swift */; };
 		E70DCC74257D66B900B4F13D /* EnvironmentValues+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */; };
@@ -161,6 +165,10 @@
 		E709A85E25085A7600C518EE /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		E70A893925910A0D009EF078 /* ContextCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCategory.swift; sourceTree = "<group>"; };
 		E70A89452591126E009EF078 /* ContextCategorySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCategorySelection.swift; sourceTree = "<group>"; };
+		E70A8986259969E7009EF078 /* InitialOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialOnboardingView.swift; sourceTree = "<group>"; };
+		E70A8992259969F4009EF078 /* LogOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOnboardingView.swift; sourceTree = "<group>"; };
+		E70A899A259C239A009EF078 /* OnboardingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent.swift; sourceTree = "<group>"; };
+		E70A89A1259C23B5009EF078 /* OnboardingShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingShell.swift; sourceTree = "<group>"; };
 		E70DCC46257C16E400B4F13D /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
 		E70DCC5D257D636400B4F13D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+.swift"; sourceTree = "<group>"; };
@@ -296,6 +304,17 @@
 				E73524F52536911600A60541 /* FirstResponderTextField.swift */,
 			);
 			path = UIKitWrappers;
+			sourceTree = "<group>";
+		};
+		E70A8985259969C3009EF078 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E70A8986259969E7009EF078 /* InitialOnboardingView.swift */,
+				E70A8992259969F4009EF078 /* LogOnboardingView.swift */,
+				E70A899A259C239A009EF078 /* OnboardingContent.swift */,
+				E70A89A1259C23B5009EF078 /* OnboardingShell.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		E70DCC45257C16B400B4F13D /* DataStore */ = {
@@ -522,6 +541,7 @@
 				E780FC4C24E9A59900F9C2B6 /* AddNewActivity */,
 				E796F1F925479BDC00F7106B /* CategoryDetail */,
 				E715087924E32A0E004B080A /* DayView */,
+				E70A8985259969C3009EF078 /* Onboarding */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -822,6 +842,7 @@
 			files = (
 				E7619B522550EC9F00B06A24 /* MonthView.swift in Sources */,
 				E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */,
+				E70A8987259969E7009EF078 /* InitialOnboardingView.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,
 				E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */,
@@ -830,13 +851,16 @@
 				E737A9F324FF1F570094746D /* ExportManager.swift in Sources */,
 				E780FC4E24E9A5BE00F9C2B6 /* CategorySelection.swift in Sources */,
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
+				E70A89A2259C23B5009EF078 /* OnboardingShell.swift in Sources */,
 				E70A89462591126E009EF078 /* ContextCategorySelection.swift in Sources */,
+				E70A8993259969F4009EF078 /* LogOnboardingView.swift in Sources */,
 				E796F20725479C8200F7106B /* DurationSlider.swift in Sources */,
 				E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */,
 				E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */,
 				E75BFE4A254B93DF000A947B /* StatefullPreviewWrapper.swift in Sources */,
 				E70DCC74257D66B900B4F13D /* EnvironmentValues+.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
+				E70A899B259C239A009EF078 /* OnboardingContent.swift in Sources */,
 				E7AE168D252E9ABD00B5654F /* BusylessIntents.intentdefinition in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */,
