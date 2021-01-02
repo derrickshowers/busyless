@@ -21,6 +21,7 @@ struct SettingsView: View {
     private var dataStore
 
     @State private var isExportPresented: Bool = false
+    @State private var isOnboardingPresented: Bool = false
 
     private var iCloudStatusColor: Color {
         if FileManager.default.ubiquityIdentityToken != nil {
@@ -83,18 +84,27 @@ struct SettingsView: View {
             }
             Section {
                 Button(action: {
-                    self.isExportPresented.toggle()
+                    isExportPresented.toggle()
                 }, label: {
-                    Text("Export Data to CSV")
+                    Text("Export data to CSV")
+                })
+                .sheet(isPresented: $isExportPresented, content: {
+                    ActivityViewController(activityItems: [self.dataExportFile])
                 })
                 Link(destination: URL(string: "https://www.icloud.com/shortcuts/f2f66a8c23de4ec085771cd80fb1f512")!, label: {
-                    Text("Add a Focus Shortcut")
+                    Text("Add a focus shortcut")
+                })
+                Button(action: {
+                    isOnboardingPresented.toggle()
+                }, label: {
+                    Text("Tell me more about Busyless")
+                })
+                .sheet(isPresented: $isOnboardingPresented, content: {
+                    InitialOnboardingView()
                 })
             }
         }
-        .sheet(isPresented: $isExportPresented, content: {
-            ActivityViewController(activityItems: [self.dataExportFile])
-        })
+
         .onDisappear {
             UserConfig.save(with: self.managedObjectContext)
         }

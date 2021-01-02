@@ -15,6 +15,7 @@ struct LogView: View {
 
     @State private var isAddNewActivityViewPresented = false
     @State private var showOnlyUncategorizedActivities = false
+    @State private var isOnboardingPresented = false
 
     /**
      This is somewhat of a hack. This property should be a state variable and then passed as an param when creating `AddNewActivityView` but
@@ -108,6 +109,8 @@ struct LogView: View {
                         }
                     }
                 }
+            }.sheet(isPresented: $isOnboardingPresented) {
+                LogOnboardingView()
             }
             VStack {
                 Spacer()
@@ -118,11 +121,13 @@ struct LogView: View {
                         isAddNewActivityViewPresented.toggle()
                     }
                 }
+            }.sheet(isPresented: $isAddNewActivityViewPresented) {
+                AddNewActivityView(isPresented: $isAddNewActivityViewPresented, activity: LogView.selectedActivity)
+                    .environment(\.managedObjectContext, managedObjectContext)
             }
         }
-        .sheet(isPresented: $isAddNewActivityViewPresented) {
-            AddNewActivityView(isPresented: $isAddNewActivityViewPresented, activity: LogView.selectedActivity)
-                .environment(\.managedObjectContext, managedObjectContext)
+        .onAppear {
+            showOnboardingIfNeeded()
         }
         .navigationBarTitle("Activity Log")
     }
@@ -134,6 +139,17 @@ struct LogView: View {
             return dateFormatter.string(from: date)
         }
         return "Unknown Date"
+    }
+
+    private func showOnboardingIfNeeded() {
+        guard Onboarding.shouldShowLog else {
+            return
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isOnboardingPresented = true
+            Onboarding.shouldShowLog = false
+        }
     }
 }
 
