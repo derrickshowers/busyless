@@ -81,24 +81,26 @@ struct LogView: View {
                         Section(header: Text(self.sectionHeader(forCreationDate: section[0].createdAt)).font(Font.headline.smallCaps())) {
                             ForEach(section, id: \.self) { (activity: Activity) in
                                 if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
-                                    VStack(alignment: .leading) {
-                                        Text(activity.name ?? "")
-                                            .font(.headline)
-                                        HStack {
-                                            Text(activity.category?.name ?? "Uncategorized")
-                                            if let date = activity.createdAt {
-                                                Text("•")
-                                                Text(timeFormatter.string(from: date))
-                                            }
-                                            Text("•")
-                                            Text(activity.duration.hoursMinutesString)
-                                        }
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
-                                    }.onTapGesture {
+                                    Button(action: {
                                         LogView.selectedActivity = activity
                                         isAddNewActivityViewPresented.toggle()
-                                    }
+                                    }, label: {
+                                        VStack(alignment: .leading) {
+                                            Text(activity.name ?? "")
+                                                .font(.headline)
+                                            HStack {
+                                                Text(activity.category?.name ?? "Uncategorized")
+                                                if let date = activity.createdAt {
+                                                    Text("•")
+                                                    Text(timeFormatter.string(from: date))
+                                                }
+                                                Text("•")
+                                                Text(activity.duration.hoursMinutesString)
+                                            }
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                        }
+                                    })
                                 }
                             }.onDelete(perform: { row in
                                 if let rowIndex = row.map({$0}).first,

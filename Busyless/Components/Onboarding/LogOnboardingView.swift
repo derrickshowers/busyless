@@ -16,7 +16,7 @@ struct LogOnboardingView: View {
         OnboardingShell {
             OnboardingStep1().padding(.horizontal, 25)
             OnboardingStep2().padding(.horizontal, 25)
-        }
+        }.colorScheme(.light)
     }
 }
 
@@ -24,8 +24,7 @@ private struct OnboardingStep1: View {
     var body: some View {
         OnboardingContent(imageName: "List",
                           headline: "Welcome to Activity Log",
-                          summary: "Here you can view all of the activities you entered, as well as when it was entered and its duration. If you entered an activity via a shortcut, or forgot to chose a category, you’ll see a banner at the top letting you know you have uncategorized activities. Tap the banner to filter to only these activities.",
-                          isLogo: true)
+                          summary: "Here you can view all of the activities you entered, as well as when it was entered and its duration. If you entered an activity via a shortcut, or forgot to chose a category, you’ll see a banner at the top letting you know you have uncategorized activities. Tap the banner to filter to only these activities.")
     }
 }
 

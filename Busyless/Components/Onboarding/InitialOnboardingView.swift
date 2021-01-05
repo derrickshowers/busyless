@@ -20,7 +20,7 @@ struct InitialOnboardingView: View {
             OnboardingStep4().padding(.horizontal, 25)
             OnboardingStep5().padding(.horizontal, 25)
             OnboardingStep6().padding(.horizontal, 25)
-        }
+        }.colorScheme(.light)
     }
 }
 
@@ -53,7 +53,7 @@ private struct OnboardingStep4: View {
     var body: some View {
         OnboardingContent(imageName: "TimeManagement",
                           headline: "How Much Time Do I Have?",
-                          summary: "The total time you have each day is up to you! The percentage of that time you budget is also up to you. Let’s revisit the financial budget again. Say you start out with $500. You might be the type of person who budgets absolutely everything. Or, you might decide you’re only going to budget $300 and leave the rest as a buffer. The exact same thing applies to your time. To make it easy, we’ll tell you a running percentage at the top of the Today view as you go through and budget time to each category (pro tip: set your awake and sleep time in settings for an accurate percentage). We found 80% is a good starting point, but you’ll figure it out as you go. Some days you might even want to budget more time than others!")
+                          summary: "The percentage of that time you budget each day is up to you! Let’s revisit the financial budget. Say you start out with $500. You might be the type who budgets absolutely everything. Or, you might decide you’re only going to budget $300 and leave the rest as a buffer. The same applies to your budgeted time. To make it easy, we’ll keep a running percentage at the top of the Today view as you go through and budget time to each category (pro tip: set  awake and sleep time in settings for an accurate percentage). We found 80% is a good starting point, but you’ll figure it out as you go.")
     }
 }
 
@@ -68,7 +68,7 @@ private struct OnboardingStep5: View {
 private struct OnboardingStep6: View {
     var body: some View {
         OnboardingContent(imageName: "Meditation",
-                          headline: "Go Lead a Busy Less Life!",
+                          headline: "Go Lead a Busyless Life!",
                           summary: "Enjoy the app. Log everything you do. Checkout out the other areas to see a list of all your activities and a monthly view of where your time is going. If this is all too much and you just want to play around, come back to this anytime in settings. Also, reach out to us on Twitter @BusylessApp if you need any advice, have questions, or want to better understand how Busyless can help you!",
                           dismissButtonText: "I’m ready!")
     }
