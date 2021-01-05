@@ -48,7 +48,7 @@ struct OnboardingShell<Content>: View where Content: View {
                 }.padding(25)
                 Spacer()
             }
-        }
+        }.background(Color(UIColor.systemBackground))
     }
 }
 
