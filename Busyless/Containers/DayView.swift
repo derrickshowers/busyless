@@ -15,9 +15,13 @@ struct DayView: View {
 
     // MARK: - Private Properties
 
+    private enum ActiveSheet {
+       case addNewCategory, manageContextCategory
+    }
+
     @State private var showingAddNewActivityView = false
-    @State private var showingAddNewCategoryView = false
-    @State private var addingNewContextCategory = false
+    @State private var showingMoreOptionsMenuSheet = false
+    @State private var activeMoreOptionsMenuSheet: ActiveSheet = .addNewCategory
 
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
@@ -96,35 +100,34 @@ struct DayView: View {
                     AddNewActivityView(isPresented: $showingAddNewActivityView)
                         .environment(\.managedObjectContext, managedObjectContext)
                 }
+            }.sheet(isPresented: $showingMoreOptionsMenuSheet) {
+                if activeMoreOptionsMenuSheet == .addNewCategory {
+                    AddNewCategoryView {
+                        addCategory(name: $0)
+                        showingMoreOptionsMenuSheet.toggle()
+                    }
+                }
+                if activeMoreOptionsMenuSheet == .manageContextCategory {
+                    ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
+                        addContextCategory(name: $0)
+                    }, onDelete: {
+                        deleteContextCategories($0)
+                    }, onComplete: {
+                        showingMoreOptionsMenuSheet.toggle()
+                    })
+                }
             }
         }
         .background(Color(UIColor.systemGray6))
         .navigationBarTitle("Today")
         .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
                                                             addCategoryAction: {
-                                                                addingNewContextCategory = false
-                                                                showingAddNewCategoryView = true
+                                                                activeMoreOptionsMenuSheet = .addNewCategory
+                                                                showingMoreOptionsMenuSheet.toggle()
                                                             }, addContextCategoryAction: {
-                                                                addingNewContextCategory = true
-                                                                showingAddNewCategoryView = true
-                                                            }).sheet(isPresented: $showingAddNewCategoryView) {
-                                                                let content: AnyView? = {
-                                                                    if addingNewContextCategory {
-                                                                        let view = ManageContextCategoriesView(contextCategories: contextCategories,
-                                                                                                               onDelete: { deleteContextCategories($0) })
-                                                                        return AnyView(view)
-                                                                    }
-                                                                    return nil
-                                                                }()
-                                                                AddNewCategoryView(isContextCategory: addingNewContextCategory, content: content) {
-                                                                    if addingNewContextCategory {
-                                                                        addContextCategory(name: $0)
-                                                                    } else {
-                                                                        addCategory(name: $0)
-                                                                    }
-                                                                    showingAddNewCategoryView = false
-                                                                }
-                                                            })
+                                                                activeMoreOptionsMenuSheet = .manageContextCategory
+                                                                showingMoreOptionsMenuSheet.toggle()
+                                                            }))
     }
 }
 
@@ -199,8 +202,6 @@ struct AddNewCategoryView: View {
 
     // MARK: - Public Properties
 
-    let isContextCategory: Bool
-    var content: AnyView?
     let action: (String) -> Void
 
     // MARK: - Private Properties
@@ -214,14 +215,12 @@ struct AddNewCategoryView: View {
         NavigationView {
             VStack {
                 Form {
-                    let contextCategoryText = "Context categories are used to group categories. For instance, work and personal, or morning and evening."
-                    let categoryText = "Categories are used to assign activities and budget time accordingly."
-                    Section(footer: Text(isContextCategory ? contextCategoryText : categoryText).padding(.bottom, 25)) {
-                        FirstResponderTextField(isContextCategory ? "Context Category Name" : "Category Name",
+                    let footerText = "Categories are used to assign activities and budget time accordingly."
+                    Section(footer: Text(footerText).padding(.bottom, 25)) {
+                        FirstResponderTextField("Category Name",
                                                 text: $categoryName,
                                                 isFirstResponder: $isFirstResponder)
                     }
-                    content
                 }
                 Spacer()
             }
@@ -233,29 +232,56 @@ struct AddNewCategoryView: View {
     }
 }
 
-struct ManageContextCategoriesView: View {
+struct ManageContextCategoryView: View {
 
     // MARK: - Public Properties
 
     let contextCategories: [ContextCategory]
+    let onAdd: (String) -> Void
     let onDelete: ([ContextCategory]) -> Void
+    let onComplete: () -> Void
+
+    // MARK: - Private Properties
+
+    @State private var categoryName = ""
+    @State private var isFirstResponder = true
 
     // MARK: - Lifecycle
 
     var body: some View {
-        Section(header: EditButton().frame(maxWidth: .infinity, alignment: .trailing)
-                    .overlay(Text("Existing Context Categories"), alignment: .leading)) {
-            List {
-                ForEach(contextCategories, id: \.self) { (contextCategory: ContextCategory) in
-                    Text(contextCategory.name ?? "")
-                }
-                .onDelete(perform: { offsets in
-                    let contextCategoriesToDelete = offsets.map { contextCategories[$0] }
-                    onDelete(contextCategoriesToDelete)
-                })
-            }
-        }
+        NavigationView {
+            VStack {
+                Form {
+                    let footerText = "Context categories are used to group categories. For instance, work and personal, or morning and evening."
+                    let addButton = Button("Add") { onAdd(categoryName) }
+                    Section(header: addButton.frame(maxWidth: .infinity, alignment: .trailing).padding(.top, 25),
+                            footer: Text(footerText).padding(.bottom, 25)) {
+                        FirstResponderTextField("Context Category Name",
+                                                text: $categoryName,
+                                                isFirstResponder: $isFirstResponder)
+                    }
 
+                    Section(header: EditButton().frame(maxWidth: .infinity, alignment: .trailing)
+                                .overlay(Text("Existing Context Categories"), alignment: .leading)) {
+                        List {
+                            ForEach(contextCategories, id: \.self) { (contextCategory: ContextCategory) in
+                                Text(contextCategory.name ?? "")
+                            }
+                            .onDelete(perform: { offsets in
+                                let contextCategoriesToDelete = offsets.map { contextCategories[$0] }
+                                onDelete(contextCategoriesToDelete)
+                            })
+                        }
+                    }
+
+                }
+                Spacer()
+            }
+            .navigationBarTitle("Manage")
+            .navigationBarItems(trailing: Button("Done", action: {
+                onComplete()
+            }))
+        }
     }
 }
 
