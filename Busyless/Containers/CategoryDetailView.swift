@@ -189,8 +189,9 @@ struct CategoryDetailView: View {
 
         }
         .sheet(isPresented: $showingAddNewActivityView) {
-            AddNewActivityView(isPresented: $showingAddNewActivityView, preselectedCategory: category)
-                .environment(\.managedObjectContext, managedObjectContext)
+            AddNewActivityView(preselectedCategory: category) {
+                showingAddNewActivityView = false
+            }.environment(\.managedObjectContext, managedObjectContext)
         }
     }
 }

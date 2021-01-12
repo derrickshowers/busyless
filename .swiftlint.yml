@@ -1,2 +1,5 @@
 line_length: 160
 force_cast: warning
+identifier_name:
+  excluded:
+    - id

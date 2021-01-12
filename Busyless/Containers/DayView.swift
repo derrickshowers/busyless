@@ -15,13 +15,15 @@ struct DayView: View {
 
     // MARK: - Private Properties
 
-    private enum ActiveSheet {
-       case addNewCategory, manageContextCategory
+    private enum ActiveSheet: Identifiable {
+        case addNewCategory, manageContextCategory, addNewActivity
+
+        var id: Int {
+            hashValue
+        }
     }
 
-    @State private var showingAddNewActivityView = false
-    @State private var showingMoreOptionsMenuSheet = false
-    @State private var activeMoreOptionsMenuSheet: ActiveSheet = .addNewCategory
+    @State private var activeSheet: ActiveSheet?
 
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
@@ -93,28 +95,8 @@ struct DayView: View {
                 HStack {
                     Spacer()
                     AddButton {
-                        showingAddNewActivityView.toggle()
+                        activeSheet = .addNewActivity
                     }
-                }
-                .sheet(isPresented: $showingAddNewActivityView) {
-                    AddNewActivityView(isPresented: $showingAddNewActivityView)
-                        .environment(\.managedObjectContext, managedObjectContext)
-                }
-            }.sheet(isPresented: $showingMoreOptionsMenuSheet) {
-                if activeMoreOptionsMenuSheet == .addNewCategory {
-                    AddNewCategoryView {
-                        addCategory(name: $0)
-                        showingMoreOptionsMenuSheet.toggle()
-                    }
-                }
-                if activeMoreOptionsMenuSheet == .manageContextCategory {
-                    ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
-                        addContextCategory(name: $0)
-                    }, onDelete: {
-                        deleteContextCategories($0)
-                    }, onComplete: {
-                        showingMoreOptionsMenuSheet.toggle()
-                    })
                 }
             }
         }
@@ -122,12 +104,31 @@ struct DayView: View {
         .navigationBarTitle("Today")
         .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
                                                             addCategoryAction: {
-                                                                activeMoreOptionsMenuSheet = .addNewCategory
-                                                                showingMoreOptionsMenuSheet.toggle()
+                                                                activeSheet = .addNewCategory
                                                             }, addContextCategoryAction: {
-                                                                activeMoreOptionsMenuSheet = .manageContextCategory
-                                                                showingMoreOptionsMenuSheet.toggle()
+                                                                activeSheet = .manageContextCategory
                                                             }))
+        .sheet(item: $activeSheet) { sheet in
+            switch sheet {
+            case .addNewActivity:
+                AddNewActivityView {
+                    activeSheet = nil
+                }
+            case .addNewCategory:
+                AddNewCategoryView {
+                    addCategory(name: $0)
+                    activeSheet = nil
+                }
+            case .manageContextCategory:
+                ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
+                    addContextCategory(name: $0)
+                }, onDelete: {
+                    deleteContextCategories($0)
+                }, onComplete: {
+                    activeSheet = nil
+                })
+            }
+        }
     }
 }
 
