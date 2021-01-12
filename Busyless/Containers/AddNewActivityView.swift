@@ -15,8 +15,8 @@ struct AddNewActivityView: View {
 
     // MARK: - Public Properties
 
-    @Binding var isPresented: Bool
     let activity: Activity?
+    let onComplete: () -> Void
 
     // MARK: - Private Properties
 
@@ -41,12 +41,12 @@ struct AddNewActivityView: View {
 
     // MARK: - Lifecycle
 
-    init(isPresented: Binding<Bool>,
-         activity: Activity? = nil,
-         preselectedCategory: BLCategory? = nil) {
-        self._isPresented = isPresented
+    init(activity: Activity? = nil,
+         preselectedCategory: BLCategory? = nil,
+         onComplete: @escaping () -> Void) {
         self.activity = activity
         self.isEditingExistingActivity = activity != nil
+        self.onComplete = onComplete
         _name = State(initialValue: activity?.name ?? "")
         _category = State(initialValue: activity?.category ?? preselectedCategory)
         _createdAt = State(initialValue: activity?.createdAt ?? Date())
@@ -111,7 +111,7 @@ struct AddNewActivityView: View {
             .navigationBarItems(leading:
                 Button(action: {
                     self.isActivityNameFirstResponder = false
-                    self.isPresented = false
+                    onComplete()
                 }, label: {
                     Text("Cancel")
                 }), trailing:
@@ -119,7 +119,7 @@ struct AddNewActivityView: View {
                     self.addActivity()
                     self.donateAddNewActivityIntent()
                     self.isActivityNameFirstResponder = false
-                    self.isPresented = false
+                    onComplete()
                 }, label: {
                     Text("Done")
                 }).disabled(!readyToSave))
@@ -158,8 +158,8 @@ struct AddNewActivityView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let activity = Activity.mockActivity()
         return Group {
-            AddNewActivityView(isPresented: .constant(true))
-            AddNewActivityView(isPresented: .constant(true), activity: activity)
+            AddNewActivityView { }
+            AddNewActivityView(activity: activity) { }
                 .environment(\.colorScheme, .dark)
 
         }.environment(\.managedObjectContext, context)

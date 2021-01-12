@@ -124,8 +124,9 @@ struct LogView: View {
                     }
                 }
             }.sheet(isPresented: $isAddNewActivityViewPresented) {
-                AddNewActivityView(isPresented: $isAddNewActivityViewPresented, activity: LogView.selectedActivity)
-                    .environment(\.managedObjectContext, managedObjectContext)
+                AddNewActivityView(activity: LogView.selectedActivity) {
+                    isAddNewActivityViewPresented = false
+                }.environment(\.managedObjectContext, managedObjectContext)
             }
         }
         .onAppear {
