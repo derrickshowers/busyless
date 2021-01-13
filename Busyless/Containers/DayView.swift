@@ -75,7 +75,7 @@ struct DayView: View {
                 List {
                     // Categories with a context category
                     ForEach(contextCategories, id: \.name) { (contextCategory: ContextCategory) in
-                        if let categories = contextCategory.categories?.allObjects as? [BLCategory] {
+                        if let categories = (contextCategory.categories?.allObjects as? [BLCategory])?.sorted { $0.name ?? "" < $1.name ?? "" } {
                             ContextCategorySection(sectionTitle: contextCategory.name,
                                                    sectionSubtitle: contextCategory.timeBudgeted.hoursMinutesString,
                                                    categories: categories) { row in
