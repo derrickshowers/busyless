@@ -25,7 +25,7 @@ struct AddButton: View {
                 .foregroundColor(Color.white)
 
         })
-        .keyboardShortcut("n", modifiers: [.command]).hidden()
+        .keyboardShortcut("n", modifiers: [.command])
         .frame(width: 50, height: 50)
         .background(Color.mainColor)
         .clipShape(Circle())
