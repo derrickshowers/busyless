@@ -20,8 +20,7 @@ struct MonthView: View {
     private var dataStore
 
     private var categories: [BLCategory] {
-        let categories = dataStore?.wrappedValue.categoryStore.allCategories ?? []
-        return categories.sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
+        return dataStore?.wrappedValue.categoryStore.allCategoriesSortedByTimeSpentThisMonth ?? []
     }
 
     // MARK: - Lifecycle

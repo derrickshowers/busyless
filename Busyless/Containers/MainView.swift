@@ -54,14 +54,7 @@ struct MenuView: View {
                 Text("Today")
             }
             NavigationLink(destination: MonthView()) {
-                HStack(alignment: .top, spacing: 3) {
-                    Text("This Month")
-                    Text("Beta")
-                        .font(.caption2)
-                        .foregroundColor(.white)
-                        .padding(2)
-                        .background(Color.mainColor.cornerRadius(3))
-                }
+                Text("This Month")
             }
             NavigationLink(destination: LogView()) {
                 Text("Activity Log")
