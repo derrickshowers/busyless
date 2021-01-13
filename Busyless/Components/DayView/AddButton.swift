@@ -25,11 +25,12 @@ struct AddButton: View {
                 .foregroundColor(Color.white)
 
         })
-            .frame(width: 50, height: 50)
-            .background(Color.mainColor)
-            .clipShape(Circle())
-            .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
-            .padding()
+        .keyboardShortcut("n", modifiers: [.command]).hidden()
+        .frame(width: 50, height: 50)
+        .background(Color.mainColor)
+        .clipShape(Circle())
+        .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
+        .padding()
     }
 }
 
