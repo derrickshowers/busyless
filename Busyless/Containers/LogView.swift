@@ -31,6 +31,9 @@ struct LogView: View {
     @Environment(\.dataStore)
     private var dataStore
 
+    @AppStorage("shouldShowLogOnboarding")
+    private var shouldShowLogOnboarding = true
+
     private var activities: [[Activity]] {
         return dataStore?.wrappedValue.activityStore.allActivitiesGroupedByDate ?? []
     }
@@ -145,13 +148,13 @@ struct LogView: View {
     }
 
     private func showOnboardingIfNeeded() {
-        guard Onboarding.shouldShowLog else {
+        guard shouldShowLogOnboarding else {
             return
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             isOnboardingPresented = true
-            Onboarding.shouldShowLog = false
+            shouldShowLogOnboarding = false
         }
     }
 }

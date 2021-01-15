@@ -101,7 +101,7 @@ struct DayView: View {
             }
         }
         .background(Color(UIColor.systemGray6))
-        .navigationBarTitle("Today")
+        .navigationBarTitle("Hello world!")
         .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
                                                             addCategoryAction: {
                                                                 activeSheet = .addNewCategory
