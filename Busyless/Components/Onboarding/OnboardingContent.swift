@@ -19,7 +19,7 @@ struct OnboardingContent: View {
 
     let imageName: String
     let headline: String
-    let summary: String
+    let summary: LocalizedStringKey
     var isLogo = false
     var dismissButtonText: String?
 

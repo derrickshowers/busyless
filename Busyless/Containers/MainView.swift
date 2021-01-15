@@ -15,6 +15,9 @@ struct MainView: View {
 
     @State private var isOnboardingPresented = false
 
+    @AppStorage("shouldShowInitialOnboarding")
+    private var shouldShowInitialOnboarding = true
+
     // MARK: - Lifecycle
 
     var body: some View {
@@ -31,13 +34,13 @@ struct MainView: View {
     // MARK: - Private Methods
 
     private func showOnboardingIfNeeded() {
-        guard Onboarding.shouldShowInitial else {
+        guard shouldShowInitialOnboarding else {
             return
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             isOnboardingPresented = true
-            Onboarding.shouldShowInitial = false
+            shouldShowInitialOnboarding = false
         }
     }
 }

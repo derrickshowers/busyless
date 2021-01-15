@@ -10,20 +10,16 @@ import SwiftUI
 import BusylessDataLayer
 import CoreData
 
-/**
- Should onboarding be shown. To make things easier to test, always show onboarding on cold starts.
- TODO: Move to user defaults or Core Data
- */
-enum Onboarding {
-    static var shouldShowInitial = true
-    static var shouldShowLog = true
-    static var shouldAddMockData = true
-}
-
 @main
 struct BusylessApp: App {
-    let persistenceController = PersistenceController.shared
-    @ObservedObject var dataStore: DataStore
+
+    // MARK: - Private Properties
+
+    private let persistenceController = PersistenceController.shared
+    @ObservedObject private var dataStore: DataStore
+    @AppStorage("shouldAddMockData") private var shouldAddMockData = true
+
+    // MARK: - Lifecycle
 
     init() {
         dataStore = BusylessApp.createDataStore(with: persistenceController.container.viewContext)
@@ -65,12 +61,15 @@ struct BusylessApp: App {
     }
 
     private func setupOnboarding(dataStore: DataStore) {
-        guard Onboarding.shouldAddMockData else {
+        guard shouldAddMockData else {
             return
         }
-        let wasOnboardingDataAdded = dataStore.addOnboardingData()
-        if wasOnboardingDataAdded {
-            Onboarding.shouldAddMockData = false
+
+        // Add a delay to give a chance for iCloud data to be fetched.
+        // Unfortunately there doesn't seem to be a better way to know if iCloud request was completed.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            let wasOnboardingDataAdded = dataStore.addOnboardingData()
+            shouldAddMockData = wasOnboardingDataAdded
         }
     }
 }

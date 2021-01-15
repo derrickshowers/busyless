@@ -43,50 +43,86 @@ public class DataStore: ObservableObject {
         }
         let moc = PersistenceController.shared.container.viewContext
 
-        // Context Categories
-        let contextCategory1 = ContextCategory(context: moc)
-        contextCategory1.name = "Personal"
-        let contextCategory2 = ContextCategory(context: moc)
-        contextCategory2.name = "Professional"
-
-        // Categories
-        let category1 = BLCategory(context: moc)
-        category1.name = "Meditation"
-        category1.dailyBudgetDuration = 1800
-        category1.contextCategory = contextCategory1
-        let category2 = BLCategory(context: moc)
-        category2.name = "Journaling"
-        category2.dailyBudgetDuration = 1800
-        category2.contextCategory = contextCategory1
-        let category3 = BLCategory(context: moc)
-        category3.name = "Meetings"
-        category3.dailyBudgetDuration = 3600
-        category3.contextCategory = contextCategory2
-
-        // Activities
-        let activity1 = Activity(context: moc)
-        activity1.name = "10% Happier Daily Meditation"
-        activity1.createdAt = Date()
-        activity1.duration = 900
-        activity1.category = category1
-        let activity2 = Activity(context: moc)
-        activity2.name = "Daily Prompt"
-        activity2.createdAt = Calendar.current.date(byAdding: .hour, value: -1, to: Date())
-        activity2.duration = 900
-        activity2.category = category2
-        let activity3 = Activity(context: moc)
-        activity3.name = "Thought Reflection"
-        activity3.createdAt = Calendar.current.date(byAdding: .hour, value: -3, to: Date())
-        activity3.duration = 900
-        activity3.category = category2
-        let activity4 = Activity(context: moc)
-        activity4.name = "Sprint Planning"
-        activity4.createdAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        activity4.duration = 3600
-        activity4.category = category3
+        let contextCategories = createMockContextCategories(managedObjectContext: moc)
+        let categories = createMockCategories(with: contextCategories, managedObjectContext: moc)
+        createMockActivities(with: categories, managedObjectContext: moc)
 
         try? moc.save()
 
         return true
+    }
+}
+
+extension DataStore {
+
+    private enum DictionaryKeyConstants {
+        static let personalContextCategory = "personal"
+        static let professionalContextCategory = "profressional"
+        static let meditationCategory = "meditation"
+        static let journalingCategory = "journaling"
+        static let meetingsCategory = "meetings"
+    }
+
+    private func createMockContextCategories(managedObjectContext moc: NSManagedObjectContext) -> [String: ContextCategory] {
+        let personalContextCategory = ContextCategory(context: moc)
+        personalContextCategory.name = "Personal"
+        let professionalContextCategory = ContextCategory(context: moc)
+        professionalContextCategory.name = "Professional"
+
+        return [
+            DictionaryKeyConstants.personalContextCategory: personalContextCategory,
+            DictionaryKeyConstants.professionalContextCategory: professionalContextCategory
+        ]
+    }
+
+    private func createMockCategories(with contextCategories: [String: ContextCategory],
+                                      managedObjectContext moc: NSManagedObjectContext) -> [String: BLCategory] {
+        let meditationCategory = BLCategory(context: moc)
+        meditationCategory.name = "Meditation"
+        meditationCategory.dailyBudgetDuration = 1800
+        meditationCategory.contextCategory = contextCategories[DictionaryKeyConstants.personalContextCategory]
+
+        let journalingCategory = BLCategory(context: moc)
+        journalingCategory.name = "Journaling"
+        journalingCategory.dailyBudgetDuration = 1800
+        journalingCategory.contextCategory = contextCategories[DictionaryKeyConstants.personalContextCategory]
+
+        let meetingsCategory = BLCategory(context: moc)
+        meetingsCategory.name = "Meetings"
+        meetingsCategory.dailyBudgetDuration = 3600
+        meetingsCategory.contextCategory = contextCategories[DictionaryKeyConstants.professionalContextCategory]
+
+        return [
+            DictionaryKeyConstants.meditationCategory: meditationCategory,
+            DictionaryKeyConstants.journalingCategory: journalingCategory,
+            DictionaryKeyConstants.meetingsCategory: meetingsCategory
+        ]
+    }
+
+    private func createMockActivities(with categories: [String: BLCategory],
+                                      managedObjectContext moc: NSManagedObjectContext) {
+        let meditationActivity = Activity(context: moc)
+        meditationActivity.name = "10% Happier Daily Meditation"
+        meditationActivity.createdAt = Date()
+        meditationActivity.duration = 900
+        meditationActivity.category = categories[DictionaryKeyConstants.meditationCategory]
+
+        let dailyPromptActivity = Activity(context: moc)
+        dailyPromptActivity.name = "Daily Prompt"
+        dailyPromptActivity.createdAt = Calendar.current.date(byAdding: .hour, value: -1, to: Date())
+        dailyPromptActivity.duration = 900
+        dailyPromptActivity.category = categories[DictionaryKeyConstants.journalingCategory]
+
+        let thoughtReflectionActivity = Activity(context: moc)
+        thoughtReflectionActivity.name = "Thought Reflection"
+        thoughtReflectionActivity.createdAt = Calendar.current.date(byAdding: .hour, value: -3, to: Date())
+        thoughtReflectionActivity.duration = 900
+        thoughtReflectionActivity.category = categories[DictionaryKeyConstants.journalingCategory]
+
+        let sprintPlanningActivity = Activity(context: moc)
+        sprintPlanningActivity.name = "Sprint Planning"
+        sprintPlanningActivity.createdAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        sprintPlanningActivity.duration = 3600
+        sprintPlanningActivity.category = categories[DictionaryKeyConstants.meetingsCategory]
     }
 }
