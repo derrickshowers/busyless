@@ -58,4 +58,4 @@ jobs:
       uses: mathieudutour/github-tag-action@v5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        custom_tag: 0.3.0-${{ github.run_number }}
+        custom_tag: 0.4.0-${{ github.run_number }}
