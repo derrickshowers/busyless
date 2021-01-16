@@ -50,10 +50,11 @@
 		E796F20725479C8200F7106B /* DurationSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796F20625479C8200F7106B /* DurationSlider.swift */; };
 		E7A79BA425B36C1B00D8CB9D /* ManageContextCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BA325B36C1B00D8CB9D /* ManageContextCategoryView.swift */; };
 		E7A79BBA25B3707B00D8CB9D /* AddNewCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BB925B3707B00D8CB9D /* AddNewCategoryView.swift */; };
-		E7AE168D252E9ABD00B5654F /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
+		E7A79BCB25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; };
+		E7A79BCC25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		E7AE16A7252EA03000B5654F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE16A6252EA03000B5654F /* IntentHandler.swift */; };
 		E7AE16AB252EA03000B5654F /* BusylessIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7AE16A4252EA03000B5654F /* BusylessIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E7AE16C0252EA1E600B5654F /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
+		E7CBC98D25B4CD7500533117 /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		E7F178752537E54E009F59D1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E7F1789C25391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
 		E7F178A525391A4B009F59D1 /* BusylessDataLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,7 +62,6 @@
 		E7F178A925391A4B009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
 		E7F178C225391B10009F59D1 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
-		E7F178D225391B9D009F59D1 /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */; };
 		E7F178D825391BDC009F59D1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B724E98F4D0095DBDD /* Activity.swift */; };
 		E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B924E98F590095DBDD /* BLCategory.swift */; };
 		E7F178E425391BE1009F59D1 /* UserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B8CFA924F6E5930026C983 /* UserConfig.swift */; };
@@ -217,7 +217,7 @@
 		E79F6A3C24EC752E004F44B5 /* Busyless.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Busyless.xcdatamodel; sourceTree = "<group>"; };
 		E7A79BA325B36C1B00D8CB9D /* ManageContextCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageContextCategoryView.swift; sourceTree = "<group>"; };
 		E7A79BB925B3707B00D8CB9D /* AddNewCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryView.swift; sourceTree = "<group>"; };
-		E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = BusylessIntents.intentdefinition; sourceTree = "<group>"; };
+		E7A79BCD25B3742D00D8CB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/BusylessIntents.intentdefinition; sourceTree = "<group>"; };
 		E7AE16A4252EA03000B5654F /* BusylessIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BusylessIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7AE16A6252EA03000B5654F /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		E7AE16A8252EA03000B5654F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -427,7 +427,7 @@
 				E701F62025B135D300B78551 /* Strings */,
 				E7947FCF24DF7CD6006B7859 /* PreviewContent */,
 				E7947FCD24DF7CD6006B7859 /* Assets.xcassets */,
-				E7AE168C252E9ABD00B5654F /* BusylessIntents.intentdefinition */,
+				E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */,
 				E708AAE824EDF21800ECE5F8 /* Busyless.entitlements */,
 				E7947FD224DF7CD6006B7859 /* LaunchScreen.storyboard */,
 				E7947FD524DF7CD6006B7859 /* Info.plist */,
@@ -871,6 +871,7 @@
 				E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */,
 				E737A9F324FF1F570094746D /* ExportManager.swift in Sources */,
 				E780FC4E24E9A5BE00F9C2B6 /* CategorySelection.swift in Sources */,
+				E7CBC98D25B4CD7500533117 /* BusylessIntents.intentdefinition in Sources */,
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
 				E70A89A2259C23B5009EF078 /* OnboardingShell.swift in Sources */,
 				E70A89462591126E009EF078 /* ContextCategorySelection.swift in Sources */,
@@ -884,7 +885,6 @@
 				E7A79BA425B36C1B00D8CB9D /* ManageContextCategoryView.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E70A899B259C239A009EF078 /* OnboardingContent.swift in Sources */,
-				E7AE168D252E9ABD00B5654F /* BusylessIntents.intentdefinition in Sources */,
 				E786CA4324E488FF00B27D8E /* MainView.swift in Sources */,
 				E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
@@ -916,7 +916,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7AE16C0252EA1E600B5654F /* BusylessIntents.intentdefinition in Sources */,
+				E7A79BCC25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */,
 				E72C19AD25378D070009C935 /* AddNewActivityIntentHandler.swift in Sources */,
 				E7AE16A7252EA03000B5654F /* IntentHandler.swift in Sources */,
 			);
@@ -932,7 +932,7 @@
 				E70DCC47257C16E400B4F13D /* CategoryStore.swift in Sources */,
 				E70DCC87257D692A00B4F13D /* UserConfigStore.swift in Sources */,
 				E70DCC5E257D636400B4F13D /* DataStore.swift in Sources */,
-				E7F178D225391B9D009F59D1 /* BusylessIntents.intentdefinition in Sources */,
+				E7A79BCB25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */,
 				E70A893A25910A0D009EF078 /* ContextCategory.swift in Sources */,
 				E70DCC80257D692100B4F13D /* ActivityStore.swift in Sources */,
 				E7F178D825391BDC009F59D1 /* Activity.swift in Sources */,
@@ -1006,6 +1006,14 @@
 				E701F63025B136ED00B78551 /* en-GB */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7A79BCD25B3742D00D8CB9D /* Base */,
+			);
+			name = BusylessIntents.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
