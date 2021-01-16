@@ -76,8 +76,8 @@ struct DayView: View {
                     // Categories with a context category
                     ForEach(contextCategories, id: \.name) { (contextCategory: ContextCategory) in
                         if let categories = (contextCategory.categories?.allObjects as? [BLCategory])?.sorted { $0.name ?? "" < $1.name ?? "" } {
-                            ContextCategorySection(sectionTitle: contextCategory.name,
-                                                   sectionSubtitle: contextCategory.timeBudgeted.hoursMinutesString,
+                            contextCategorySection(title: contextCategory.name,
+                                                   subtitle: contextCategory.timeBudgeted.hoursMinutesString,
                                                    categories: categories) { row in
                                 deleteCategory(at: row.map({$0}).first ?? 0, contextCategory: contextCategory)
                             }
@@ -85,7 +85,7 @@ struct DayView: View {
                     }.listRowBackground(Color.customWhite)
 
                     // All other categories
-                    ContextCategorySection(categories: categoriesWithNoContextCategory) { row in
+                    contextCategorySection(categories: categoriesWithNoContextCategory) { (row) in
                         deleteCategory(at: row.map({$0}).first ?? 0)
                     }.listRowBackground(Color.customWhite)
                 }
@@ -128,6 +128,34 @@ struct DayView: View {
                     activeSheet = nil
                 })
             }
+        }
+    }
+
+    // MARK: - Private Methods
+
+    private func contextCategorySection(title: String? = nil,
+                                        subtitle: String? = nil,
+                                        categories: [BLCategory],
+                                        onDelete: @escaping (IndexSet) -> Void) -> some View {
+        Section(header: contextCategoryHeader(name: title ?? "Other", timeBudgeted: subtitle)) {
+            ForEach(categories, id: \.name) { category in
+                ZStack {
+                    CategoryRow(category: category)
+                    NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) { }.opacity(0)
+                }
+            }
+            .onDelete(perform: onDelete)
+        }
+    }
+
+    private func contextCategoryHeader(name: String, timeBudgeted: String?) -> some View {
+        HStack {
+            Text(name)
+            if let timeBudgeted = timeBudgeted {
+                Spacer()
+                Text(timeBudgeted)
+            }
+
         }
     }
 }
@@ -196,138 +224,6 @@ struct MoreOptionsMenuButton: View {
         }, label: {
             Image(systemName: "ellipsis.circle").frame(minWidth: 44, minHeight: 44)
         })
-    }
-}
-
-struct AddNewCategoryView: View {
-
-    // MARK: - Public Properties
-
-    let action: (String) -> Void
-
-    // MARK: - Private Properties
-
-    @State private var categoryName = ""
-    @State private var isFirstResponder = true
-
-    // MARK: - Lifecycle
-
-    var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    let footerText = "Categories are used to assign activities and budget time accordingly."
-                    Section(footer: Text(footerText).padding(.bottom, 25)) {
-                        FirstResponderTextField("Category Name",
-                                                text: $categoryName,
-                                                isFirstResponder: $isFirstResponder)
-                    }
-                }
-                Spacer()
-            }
-            .navigationBarTitle("Add Category")
-            .navigationBarItems(trailing: Button("Add", action: {
-                action(categoryName)
-            }))
-        }
-    }
-}
-
-struct ManageContextCategoryView: View {
-
-    // MARK: - Public Properties
-
-    let contextCategories: [ContextCategory]
-    let onAdd: (String) -> Void
-    let onDelete: ([ContextCategory]) -> Void
-    let onComplete: () -> Void
-
-    // MARK: - Private Properties
-
-    @State private var categoryName = ""
-    @State private var isFirstResponder = true
-
-    // MARK: - Lifecycle
-
-    var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    let footerText = "Context categories are used to group categories. For instance, work and personal, or morning and evening."
-                    let addButton = Button("Add") { onAdd(categoryName) }
-                    Section(header: addButton.frame(maxWidth: .infinity, alignment: .trailing).padding(.top, 25),
-                            footer: Text(footerText).padding(.bottom, 25)) {
-                        FirstResponderTextField("Context Category Name",
-                                                text: $categoryName,
-                                                isFirstResponder: $isFirstResponder)
-                    }
-
-                    Section(header: EditButton().frame(maxWidth: .infinity, alignment: .trailing)
-                                .overlay(Text("Existing Context Categories"), alignment: .leading)) {
-                        List {
-                            ForEach(contextCategories, id: \.self) { (contextCategory: ContextCategory) in
-                                Text(contextCategory.name ?? "")
-                            }
-                            .onDelete(perform: { offsets in
-                                let contextCategoriesToDelete = offsets.map { contextCategories[$0] }
-                                onDelete(contextCategoriesToDelete)
-                            })
-                        }
-                    }
-
-                }
-                Spacer()
-            }
-            .navigationBarTitle("Manage")
-            .navigationBarItems(trailing: Button("Done", action: {
-                onComplete()
-            }))
-        }
-    }
-}
-
-struct ContextCategorySection: View {
-
-    // MARK: - Public Properties
-
-    var sectionTitle: String?
-    var sectionSubtitle: String?
-    let categories: [BLCategory]
-    let onDelete: (IndexSet) -> Void
-
-    // MARK: - Lifecycle
-
-    var body: some View {
-        Section(header: ContextCategoryHeader(name: sectionTitle ?? "Other", timeBudgetedString: sectionSubtitle)) {
-            ForEach(categories, id: \.name) { category in
-                ZStack {
-                    CategoryRow(category: category)
-                    NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) { }.opacity(0)
-                }
-            }
-            .onDelete(perform: onDelete)
-        }
-    }
-}
-
-struct ContextCategoryHeader: View {
-
-    // MARK: - Public Properties
-
-    let name: String
-    let timeBudgetedString: String?
-
-    // MARK: - Lifecycle
-
-    var body: some View {
-        HStack {
-            Text(name)
-            if let timeBudgetedString = timeBudgetedString {
-                Spacer()
-                Text(timeBudgetedString)
-            }
-
-        }
     }
 }
 
