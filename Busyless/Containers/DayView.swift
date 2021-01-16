@@ -13,9 +13,9 @@ import os
 
 struct DayView: View {
 
-    // MARK: - Private Properties
+    // MARK: - Properties
 
-    private enum ActiveSheet: Identifiable {
+    enum ActiveSheet: Identifiable {
         case addNewCategory, manageContextCategory, addNewActivity
 
         var id: Int {
@@ -23,7 +23,7 @@ struct DayView: View {
         }
     }
 
-    @State private var activeSheet: ActiveSheet?
+    @State var activeSheet: ActiveSheet?
 
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
@@ -66,6 +66,10 @@ struct DayView: View {
         return TimeInterval(difference.hour ?? 0) * TimeInterval.oneHour
     }
 
+    // MARK: - Testing
+
+    var didAppear: ((Self) -> Void)?
+
     // MARK: - Lifecycle
 
     var body: some View {
@@ -90,6 +94,8 @@ struct DayView: View {
                     }.listRowBackground(Color.customWhite)
                 }
             }
+            .onAppear { self.didAppear?(self) }
+
             VStack {
                 Spacer()
                 HStack {
@@ -99,15 +105,17 @@ struct DayView: View {
                     }
                 }
             }
+
+            EmptyView()
+                .navigationBarTitle("Today")
+                .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
+                                                                    addCategoryAction: {
+                                                                        activeSheet = .addNewCategory
+                                                                    }, addContextCategoryAction: {
+                                                                        activeSheet = .manageContextCategory
+                                                                    }))
         }
         .background(Color(UIColor.systemGray6))
-        .navigationBarTitle("Today")
-        .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
-                                                            addCategoryAction: {
-                                                                activeSheet = .addNewCategory
-                                                            }, addContextCategoryAction: {
-                                                                activeSheet = .manageContextCategory
-                                                            }))
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
             case .addNewActivity:

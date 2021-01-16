@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,6 +54,11 @@
 		E7A79BCC25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		E7AE16A7252EA03000B5654F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE16A6252EA03000B5654F /* IntentHandler.swift */; };
 		E7AE16AB252EA03000B5654F /* BusylessIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7AE16A4252EA03000B5654F /* BusylessIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E7B24FF325BCBA780012556C /* CommonFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B24FF225BCBA780012556C /* CommonFlows.swift */; };
+		E7B2500825BCC8980012556C /* DayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2500725BCC8980012556C /* DayViewTests.swift */; };
+		E7B2501D25BCCAAE0012556C /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = E7B2501C25BCCAAE0012556C /* ViewInspector */; };
+		E7BB91B725CDA4C4007F764A /* DataStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BB91B625CDA4C4007F764A /* DataStoreMock.swift */; };
+		E7BB91C825CDA88F007F764A /* LogViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BB91C725CDA88F007F764A /* LogViewTests.swift */; };
 		E7CBC98D25B4CD7500533117 /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		E7F178752537E54E009F59D1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E7F1789C25391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
@@ -221,7 +226,11 @@
 		E7AE16A4252EA03000B5654F /* BusylessIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BusylessIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7AE16A6252EA03000B5654F /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		E7AE16A8252EA03000B5654F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7B24FF225BCBA780012556C /* CommonFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFlows.swift; sourceTree = "<group>"; };
+		E7B2500725BCC8980012556C /* DayViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewTests.swift; sourceTree = "<group>"; };
 		E7B8CFA924F6E5930026C983 /* UserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfig.swift; sourceTree = "<group>"; };
+		E7BB91B625CDA4C4007F764A /* DataStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreMock.swift; sourceTree = "<group>"; };
+		E7BB91C725CDA88F007F764A /* LogViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewTests.swift; sourceTree = "<group>"; };
 		E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BusylessDataLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusylessDataLayer.h; sourceTree = "<group>"; };
 		E7F1789625391A4B009F59D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -249,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7B2501D25BCCAAE0012556C /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +496,8 @@
 		E7947FDD24DF7CD6006B7859 /* BusylessTests */ = {
 			isa = PBXGroup;
 			children = (
+				E7BB91B425CDA450007F764A /* TestUtility */,
+				E7B2500625BCC87F0012556C /* Views */,
 				E7336F94252D4FBE001414B4 /* Utility */,
 				E7947FDE24DF7CD6006B7859 /* BusylessTests.swift */,
 				E7947FE024DF7CD6006B7859 /* Info.plist */,
@@ -496,6 +508,7 @@
 		E7947FE824DF7CD6006B7859 /* BusylessUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E7B24FF125BCBA650012556C /* TestingHelpers */,
 				E7947FE924DF7CD6006B7859 /* BusylessUITests.swift */,
 				E7947FEB24DF7CD6006B7859 /* Info.plist */,
 			);
@@ -520,6 +533,39 @@
 				E7AE16A8252EA03000B5654F /* Info.plist */,
 			);
 			path = BusylessIntents;
+			sourceTree = "<group>";
+		};
+		E7B24FF125BCBA650012556C /* TestingHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				E7B24FF225BCBA780012556C /* CommonFlows.swift */,
+			);
+			path = TestingHelpers;
+			sourceTree = "<group>";
+		};
+		E7B2500625BCC87F0012556C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2500725BCC8980012556C /* DayViewTests.swift */,
+				E7BB91C725CDA88F007F764A /* LogViewTests.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E7BB91B425CDA450007F764A /* TestUtility */ = {
+			isa = PBXGroup;
+			children = (
+				E7BB91B525CDA492007F764A /* Mocks */,
+			);
+			path = TestUtility;
+			sourceTree = "<group>";
+		};
+		E7BB91B525CDA492007F764A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E7BB91B625CDA4C4007F764A /* DataStoreMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		E7F1789425391A4B009F59D1 /* BusylessDataLayer */ = {
@@ -633,6 +679,8 @@
 				E7F178A725391A4B009F59D1 /* PBXTargetDependency */,
 			);
 			name = Busyless;
+			packageProductDependencies = (
+			);
 			productName = Busyless;
 			productReference = E7947FC124DF7CD5006B7859 /* Busyless.app */;
 			productType = "com.apple.product-type.application";
@@ -651,6 +699,9 @@
 				E7947FDC24DF7CD6006B7859 /* PBXTargetDependency */,
 			);
 			name = BusylessTests;
+			packageProductDependencies = (
+				E7B2501C25BCCAAE0012556C /* ViewInspector */,
+			);
 			productName = BusylessTests;
 			productReference = E7947FDA24DF7CD6006B7859 /* BusylessTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -772,6 +823,9 @@
 				"en-GB",
 			);
 			mainGroup = E7947FB824DF7CD5006B7859;
+			packageReferences = (
+				E7B2501B25BCCAAE0012556C /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = E7947FC224DF7CD5006B7859 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -899,8 +953,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */,
+				E7B2500825BCC8980012556C /* DayViewTests.swift in Sources */,
 				E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */,
+				E7BB91C825CDA88F007F764A /* LogViewTests.swift in Sources */,
 				E780FC5324E9A7E000F9C2B6 /* CategoryTests.swift in Sources */,
+				E7BB91B725CDA4C4007F764A /* DataStoreMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +965,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7B24FF325BCBA780012556C /* CommonFlows.swift in Sources */,
 				E7947FEA24DF7CD6006B7859 /* BusylessUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1478,6 +1536,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E7B2501B25BCCAAE0012556C /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E7B2501C25BCCAAE0012556C /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7B2501B25BCCAAE0012556C /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */ = {

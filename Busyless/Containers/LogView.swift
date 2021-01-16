@@ -11,11 +11,11 @@ import BusylessDataLayer
 
 struct LogView: View {
 
-    // MARK: - Private Properties
+    // MARK: - Properties
 
-    @State private var isAddNewActivityViewPresented = false
-    @State private var showOnlyUncategorizedActivities = false
-    @State private var isOnboardingPresented = false
+    @State var isAddNewActivityViewPresented = false
+    @State var showOnlyUncategorizedActivities = false
+    @State var isOnboardingPresented = false
 
     /**
      This is somewhat of a hack. This property should be a state variable and then passed as an param when creating `AddNewActivityView` but
@@ -57,6 +57,10 @@ struct LogView: View {
         formatter.timeStyle = .short
         return formatter
     }
+
+    // MARK: - Testing
+
+    var didAppear: ((Self) -> Void)?
 
     // MARK: - Lifecycle
 
@@ -133,6 +137,7 @@ struct LogView: View {
             }
         }
         .onAppear {
+            self.didAppear?(self)
             showOnboardingIfNeeded()
         }
         .navigationBarTitle("Activity Log")
