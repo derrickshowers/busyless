@@ -32,7 +32,7 @@ private struct OnboardingStep2: View {
     var body: some View {
         OnboardingContent(imageName: "Download",
                           headline: "Save Your Data",
-                          summary: "LogOnboardingStep2LogOnboardingStep1SummarySummary",
+                          summary: "LogOnboardingStep2Summary",
                           dismissButtonText: "Sounds great!")
     }
 }
