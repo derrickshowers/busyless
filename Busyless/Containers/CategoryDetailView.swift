@@ -181,7 +181,7 @@ struct CategoryDetailView: View {
                         .foregroundColor(Color(UIColor.systemGray))
                         Divider()
                     }.padding(.leading, 15)
-                    .padding(.bottom, 150)
+                    .padding(.bottom, 350)
                 }
             }
             .background(Color(UIColor.systemGray6))
