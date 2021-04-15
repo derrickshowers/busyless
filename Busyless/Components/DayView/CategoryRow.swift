@@ -22,7 +22,7 @@ struct CategoryRow: View {
             VStack(alignment: .leading) {
                 Text(category.name ?? "")
                     .opacity(0.8)
-                if let notes = category.notes {
+                if let notes = category.notes, !notes.isEmpty {
                     Text(notes)
                         .lineLimit(1)
                         .font(.caption)
