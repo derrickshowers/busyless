@@ -57,6 +57,7 @@ public extension BLCategory {
         let context = context ?? result.container.viewContext
         let category = BLCategory(context: context)
         category.name = "Category Name"
+        category.notes = "category notes"
         category.dailyBudgetDuration = 5
         category.activities = [Activity.mockActivity(withContext: context),
                                Activity.mockActivity(withContext: context),
@@ -69,6 +70,7 @@ public extension BLCategory {
         let context = context ?? result.container.viewContext
         let category = BLCategory(context: context)
         category.name = "Category Name"
+        category.notes = "category notes"
         category.dailyBudgetDuration = 5
         category.activities = [Activity.mockActivityFromYesterday(withContext: context),
                                Activity.mockActivityFromYesterday(withContext: context),

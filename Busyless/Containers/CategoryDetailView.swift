@@ -24,6 +24,7 @@ struct CategoryDetailView: View {
 
     @State private var showingAddNewActivityView = false
     @State private var duration: TimeInterval
+    @State private var notes: String
     @State private var contextCategory: ContextCategory?
 
     @Environment(\.presentationMode)
@@ -60,6 +61,7 @@ struct CategoryDetailView: View {
         self.category = category
         self.overviewType = overviewType
         _duration = State(initialValue: category.dailyBudgetDuration)
+        _notes = State(initialValue: category.notes ?? "")
         _contextCategory = State(initialValue: category.contextCategory)
     }
 
@@ -109,6 +111,20 @@ struct CategoryDetailView: View {
                                 Text("\(contextCategory?.name ?? "Tap to Assign")")
                                     .foregroundColor(.gray)
                                     .lineLimit(1)
+                            }
+                        }
+                        Divider()
+                        VStack {
+                            HStack {
+                                Text("Notes")
+                                Spacer()
+                            }
+                            HStack {
+                                TextEditor(text: $notes)
+                                    .padding(-5)
+                                    .frame(minHeight: 50)
+                                    .font(.callout)
+                                    .foregroundColor(.gray)
                             }
                         }
                     }
@@ -185,6 +201,7 @@ struct CategoryDetailView: View {
         .onDisappear {
             category.dailyBudgetDuration = duration
             category.contextCategory = contextCategory
+            category.notes = notes
             BLCategory.save(with: managedObjectContext)
 
         }
