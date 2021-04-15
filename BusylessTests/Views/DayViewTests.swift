@@ -35,7 +35,7 @@ class DayViewTests: XCTestCase {
         let dataStoreMock = DataStoreMock()
         var dayView = DayView()
         let expectation = dayView.on(\.didAppear) { view in
-            XCTAssertEqual(try view.find(CategoryRow.self).hStack().text(0).string(), dataStoreMock.dataStore.categoryStore.allCategories.first?.name)
+            XCTAssertEqual(try view.find(CategoryRow.self).hStack().vStack(0).text(0).string(), dataStoreMock.dataStore.categoryStore.allCategories.first?.name)
         }
         ViewHosting.host(view: dayView
                             .environment(\.managedObjectContext, dataStoreMock.context)

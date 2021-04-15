@@ -19,8 +19,16 @@ struct CategoryRow: View {
 
     var body: some View {
         HStack {
-            Text(category.name ?? "")
-                .opacity(0.8)
+            VStack(alignment: .leading) {
+                Text(category.name ?? "")
+                    .opacity(0.8)
+                if let notes = category.notes {
+                    Text(notes)
+                        .lineLimit(1)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
             Spacer()
             DurationPill(dailyBudgetDuration: category.dailyBudgetDuration,
                          timeSpentDuration: category.timeSpentToday)
