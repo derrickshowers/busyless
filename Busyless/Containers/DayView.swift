@@ -225,6 +225,10 @@ struct MoreOptionsMenuButton: View {
             Button("Manage Context Categories") {
                 addContextCategoryAction()
             }
+            Button("Reset Category Notes") {
+                categories.forEach { $0.notes = nil }
+                BLCategory.save(with: managedObjectContext)
+            }
             Button("Reset Budget") {
                 categories.forEach { $0.dailyBudgetDuration = 0 }
                 BLCategory.save(with: managedObjectContext)
