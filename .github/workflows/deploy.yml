@@ -8,14 +8,16 @@ on:
 jobs:
   Build:
     runs-on: macOS-latest
+    env:
+      VERSION: 1.0.1
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Get Latest Version & Build Number
-      uses: derrickshowers/ios-bump-version@v1.0.3
+      uses: yanamura/ios-bump-version@v1
       with:
         build-number: ${{ github.run_number }}
-        version: 1.0.1
+        version: ${{ env.VERSION }}
     - name: Install GPG
       run: brew install gnupg
     - name: List available Xcode versions
@@ -58,4 +60,4 @@ jobs:
       uses: mathieudutour/github-tag-action@v5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        custom_tag: 1.0.1-${{ github.run_number }}
+        custom_tag: ${{ env.VERSION }}-${{ github.run_number }}
