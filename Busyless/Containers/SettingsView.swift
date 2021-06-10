@@ -22,6 +22,7 @@ struct SettingsView: View {
 
     @State private var isExportPresented: Bool = false
     @State private var isOnboardingPresented: Bool = false
+    @State private var isDeleteAllAlertPresented: Bool = false
 
     private var iCloudStatusColor: Color {
         if FileManager.default.ubiquityIdentityToken != nil {
@@ -79,6 +80,18 @@ struct SettingsView: View {
                     Circle()
                     .foregroundColor(iCloudStatusColor)
                         .fixedSize(horizontal: true, vertical: true)
+                        .gesture(
+                            LongPressGesture(minimumDuration: 10).onEnded { _ in
+                                isDeleteAllAlertPresented = true
+                            }
+                        ).alert(isPresented: $isDeleteAllAlertPresented) {
+                            Alert(title: Text("!! Delete All Activities !!"),
+                                  message: Text("You found the super secret way to delete all activities. By tapping continue, all your activities will be deleted and cannot be undone. Are you sure?!?"),
+                                  primaryButton: .destructive(Text("Continue 😱")) {
+                                    self.dataStore?.wrappedValue.activityStore.deleteAllActivities()
+                                  },
+                                  secondaryButton: .cancel())
+                        }
 
                 }
             }

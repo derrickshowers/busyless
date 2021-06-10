@@ -45,6 +45,18 @@ public class ActivityStore: NSObject, ObservableObject {
         }
     }
 
+    // MARK: - Public API
+
+    public func deleteAllActivities() {
+        let moc = self.allActivitiesController.managedObjectContext
+        allActivities.forEach { activity in
+            moc.delete(activity)
+        }
+        try? moc.save()
+    }
+
+    // MARK: - Private Helpers
+
     static private func activitiesGroupedByDate(_ activities: [Activity]) -> [[Activity]] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
