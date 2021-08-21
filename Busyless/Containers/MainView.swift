@@ -21,14 +21,17 @@ struct MainView: View {
     // MARK: - Lifecycle
 
     var body: some View {
+        // iOS 14 has a bug with NavigationView on iPad. Don't love using StackNavigationViewStyle, but
+        // that seems to be the only option right now. Will try again on iOS 15.
+        // See this thread: https://forums.swift.org/t/14-5-beta3-navigationlink-unexpected-pop/45279/23
+
         NavigationView {
             MenuView()
-            DayView()
         }.onAppear {
             showOnboardingIfNeeded()
         }.sheet(isPresented: $isOnboardingPresented) {
             InitialOnboardingView()
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 
     // MARK: - Private Methods
@@ -70,10 +73,9 @@ struct MenuView: View {
             }
             Spacer()
 
-            // For iPhone, let's select day view instead of showing the menu on launch.
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                NavigationLink(destination: DayView(), isActive: $showOneLevelIn, label: { EmptyView() })
-            }
+            // Let's select day view instead of showing the menu on launch.
+            NavigationLink(destination: DayView(), isActive: $showOneLevelIn, label: { EmptyView() })
+
         }
         .font(.title3)
         .foregroundColor(.primary)
