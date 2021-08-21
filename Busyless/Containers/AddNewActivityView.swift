@@ -27,7 +27,6 @@ struct AddNewActivityView: View {
     @State private var createdAt: Date
     @State private var notes: String
 
-    @State private var showAdvancedSection = false
     @State private var isActivityNameFirstResponder: Bool
 
     @Environment(\.managedObjectContext)
@@ -85,25 +84,14 @@ struct AddNewActivityView: View {
                         HStack {
                             Text("When?").bold()
                             Spacer()
-                            DatePicker("When?", selection: $createdAt, displayedComponents: .hourAndMinute)
-                                .datePickerStyle(GraphicalDatePickerStyle())
-                                .frame(maxWidth: 250)
-                                .padding(.trailing, -15)
+                            DatePicker("When?", selection: $createdAt)
+                                .datePickerStyle(CompactDatePickerStyle())
+                                .frame(maxWidth: 250, maxHeight: 25)
                         }
 
                     }
                     Section(header: Text("NOTES")) {
                         TextEditor(text: $notes)
-                    }
-                    if !showAdvancedSection {
-                        Button("Show Advanced Options") {
-                            showAdvancedSection = true
-                        }
-                    } else {
-                        HStack {
-                            DatePicker("Date", selection: $createdAt, displayedComponents: .date)
-                                .datePickerStyle(CompactDatePickerStyle())
-                        }
                     }
                 }
             }
