@@ -68,7 +68,7 @@ class ExportManager {
         }
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M/d/yy h:mm:a"
+        dateFormatter.dateFormat = "M/d/yyyy HH:mm:ss"
         var export = "Date & Time,Name,Category,Duration(hrs),Notes\n"
         for activity in activities {
             var activityCreatedDate = "Unknown,Unknown"
