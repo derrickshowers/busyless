@@ -62,6 +62,7 @@ public extension BLCategory {
         category.activities = [Activity.mockActivity(withContext: context),
                                Activity.mockActivity(withContext: context),
                                Activity.mockActivity(withContext: context)]
+        try? context.save()
         return category
     }
 
@@ -75,6 +76,7 @@ public extension BLCategory {
         category.activities = [Activity.mockActivityFromYesterday(withContext: context),
                                Activity.mockActivityFromYesterday(withContext: context),
                                Activity.mockActivityFromYesterday(withContext: context)]
+        try? context.save()
         return category
     }
 }
