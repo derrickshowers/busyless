@@ -40,6 +40,7 @@ public extension ContextCategory {
         category.categories = [BLCategory.mockCategory(withContext: context),
                                BLCategory.mockCategory(withContext: context),
                                BLCategory.mockCategory(withContext: context)]
+        try? context.save()
         return category
     }
 }

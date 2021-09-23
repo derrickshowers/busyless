@@ -57,6 +57,7 @@ public extension Activity {
         activity.duration = 1 * 3600
         activity.name = "Test activity"
         activity.notes = "Some notes"
+        try? context.save()
         return activity
     }
 
@@ -65,6 +66,7 @@ public extension Activity {
         let context = context ?? result.container.viewContext
         let activity = Activity.mockActivity(withContext: context)
         activity.createdAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        try? context.save()
         return activity
     }
 }
