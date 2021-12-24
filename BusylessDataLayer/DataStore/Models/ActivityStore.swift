@@ -33,16 +33,8 @@ public class ActivityStore: NSObject, ObservableObject {
                                                              cacheName: nil)
 
         super.init()
-
         allActivitiesController.delegate = self
-
-        do {
-            try allActivitiesController.performFetch()
-            allActivities = allActivitiesController.fetchedObjects ?? []
-            allActivitiesGroupedByDate = ActivityStore.activitiesGroupedByDate(allActivitiesController.fetchedObjects ?? [])
-        } catch {
-            Logger().error("Failed to fetch activities")
-        }
+        fetch()
     }
 
     // MARK: - Public API
@@ -53,6 +45,16 @@ public class ActivityStore: NSObject, ObservableObject {
             moc.delete(activity)
         }
         try? moc.save()
+    }
+    
+    public func fetch() {
+        do {
+            try allActivitiesController.performFetch()
+            allActivities = allActivitiesController.fetchedObjects ?? []
+            allActivitiesGroupedByDate = ActivityStore.activitiesGroupedByDate(allActivitiesController.fetchedObjects ?? [])
+        } catch {
+            Logger().error("Failed to fetch activities")
+        }
     }
 
     // MARK: - Private Helpers
