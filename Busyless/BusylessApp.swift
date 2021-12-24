@@ -33,6 +33,9 @@ struct BusylessApp: App {
             MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environment(\.dataStore, _dataStore)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    dataStore.activityStore.fetch()
+                }
         }
     }
 
