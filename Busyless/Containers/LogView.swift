@@ -65,85 +65,78 @@ struct LogView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                if containsUncategorizedActivities || showOnlyUncategorizedActivities {
-                    HStack {
-                        Text(showOnlyUncategorizedActivities ? "Viewing uncategorized activities." : "You have uncategorized activities.")
-                            .font(Font.callout).bold()
-                        Spacer()
-                        Text(showOnlyUncategorizedActivities ? "see all" : "tap to view")
-                            .font(Font.caption).bold()
-                    }
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 20)
-                    .background(Color.secondaryColor)
-                    .foregroundColor(Color.white)
-                    .onTapGesture(perform: {
-                        showOnlyUncategorizedActivities.toggle()
-                    })
-                }
-                List {
-                    ForEach(activities, id: \.self) { (section: [Activity]) in
-                        Section {
-                            ForEach(section, id: \.self) { (activity: Activity) in
-                                if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
-                                    Button(action: {
-                                        LogView.selectedActivity = activity
-                                        isAddNewActivityViewPresented.toggle()
-                                    }, label: {
-                                        VStack(alignment: .leading) {
-                                            Text(activity.name ?? "")
-                                                .font(.headline)
-                                            HStack {
-                                                Text(activity.category?.name ?? "Uncategorized")
-                                                if let date = activity.createdAt {
-                                                    Text("•")
-                                                    Text(timeFormatter.string(from: date))
-                                                }
-                                                Text("•")
-                                                Text(activity.duration.hoursMinutesString)
-                                            }
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                        }
-                                    })
-                                }
-                            }.onDelete(perform: { row in
-                                if let rowIndex = row.map({$0}).first,
-                                    let sectionIndex = activities.firstIndex(of: section) {
-                                    deleteActivity(atRow: rowIndex, section: sectionIndex)
-                                }
-                            })
-                        } header: {
-                            Text(self.sectionHeader(forCreationDate: section[0].createdAt))
-                                .font(Font.headline.smallCaps())
+        NavigationView {
+            ZStack {
+                VStack(spacing: 0) {
+                    if containsUncategorizedActivities || showOnlyUncategorizedActivities {
+                        HStack {
+                            Text(showOnlyUncategorizedActivities ? "Viewing uncategorized activities." : "You have uncategorized activities.")
+                                .font(Font.callout).bold()
+                            Spacer()
+                            Text(showOnlyUncategorizedActivities ? "see all" : "tap to view")
+                                .font(Font.caption).bold()
                         }
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .background(Color.secondaryColor)
+                        .foregroundColor(Color.white)
+                        .onTapGesture(perform: {
+                            showOnlyUncategorizedActivities.toggle()
+                        })
                     }
-                }.listStyle(.plain)
-            }.sheet(isPresented: $isOnboardingPresented) {
-                LogOnboardingView()
-            }
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    AddButton {
-                        LogView.selectedActivity = nil
-                        isAddNewActivityViewPresented.toggle()
-                    }
+                    List {
+                        ForEach(activities, id: \.self) { (section: [Activity]) in
+                            Section {
+                                ForEach(section, id: \.self) { (activity: Activity) in
+                                    if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
+                                        Button(action: {
+                                            LogView.selectedActivity = activity
+                                            isAddNewActivityViewPresented.toggle()
+                                        }, label: {
+                                            VStack(alignment: .leading) {
+                                                Text(activity.name ?? "")
+                                                    .font(.headline)
+                                                HStack {
+                                                    Text(activity.category?.name ?? "Uncategorized")
+                                                    if let date = activity.createdAt {
+                                                        Text("•")
+                                                        Text(timeFormatter.string(from: date))
+                                                    }
+                                                    Text("•")
+                                                    Text(activity.duration.hoursMinutesString)
+                                                }
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                            }
+                                        })
+                                    }
+                                }.onDelete(perform: { row in
+                                    if let rowIndex = row.map({$0}).first,
+                                        let sectionIndex = activities.firstIndex(of: section) {
+                                        deleteActivity(atRow: rowIndex, section: sectionIndex)
+                                    }
+                                })
+                            } header: {
+                                Text(self.sectionHeader(forCreationDate: section[0].createdAt))
+                                    .font(Font.headline.smallCaps())
+                            }
+                        }
+                    }.listStyle(.plain)
+                }.sheet(isPresented: $isOnboardingPresented) {
+                    LogOnboardingView()
+                }.sheet(isPresented: $isAddNewActivityViewPresented) {
+                    AddNewActivityView(activity: LogView.selectedActivity) {
+                        isAddNewActivityViewPresented = false
+                    }.environment(\.managedObjectContext, managedObjectContext)
                 }
-            }.sheet(isPresented: $isAddNewActivityViewPresented) {
-                AddNewActivityView(activity: LogView.selectedActivity) {
-                    isAddNewActivityViewPresented = false
-                }.environment(\.managedObjectContext, managedObjectContext)
             }
+            .onAppear {
+                self.didAppear?(self)
+                // TODO: Cleanup onboarding and re-add
+                // showOnboardingIfNeeded()
+            }
+            .navigationBarTitle("Activity Log")
         }
-        .onAppear {
-            self.didAppear?(self)
-            showOnboardingIfNeeded()
-        }
-        .navigationBarTitle("Activity Log")
     }
 
     // MARK: - Private Methods

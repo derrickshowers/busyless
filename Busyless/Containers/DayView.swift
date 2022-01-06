@@ -16,7 +16,8 @@ struct DayView: View {
     // MARK: - Properties
 
     enum ActiveSheet: Identifiable {
-        case addNewCategory, manageContextCategory, addNewActivity
+        case addNewCategory
+        case manageContextCategory
 
         var id: Int {
             hashValue
@@ -73,68 +74,56 @@ struct DayView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
-                List {
-                    // Categories with a context category
-                    ForEach(contextCategories, id: \.name) { (contextCategory: ContextCategory) in
-                        if let categories = (contextCategory.categories?.allObjects as? [BLCategory])?.sorted { $0.name ?? "" < $1.name ?? "" } {
-                            contextCategorySection(title: contextCategory.name,
-                                                   subtitle: contextCategory.timeBudgeted.hoursMinutesString,
-                                                   categories: categories) { row in
-                                deleteCategory(at: row.map({$0}).first ?? 0, contextCategory: contextCategory)
+        NavigationView {
+            ZStack {
+                VStack(spacing: 0) {
+                    TodayStatus(awakeDuration: awakeDuration, totalBudgetedDuration: totalBudgetedDuration)
+                    List {
+                        // Categories with a context category
+                        ForEach(contextCategories, id: \.name) { (contextCategory: ContextCategory) in
+                            if let categories = (contextCategory.categories?.allObjects as? [BLCategory])?.sorted { $0.name ?? "" < $1.name ?? "" } {
+                                contextCategorySection(title: contextCategory.name,
+                                                       subtitle: contextCategory.timeBudgeted.hoursMinutesString,
+                                                       categories: categories) { row in
+                                    deleteCategory(at: row.map({$0}).first ?? 0, contextCategory: contextCategory)
+                                }
                             }
-                        }
-                    }.listRowBackground(Color.customWhite)
+                        }.listRowBackground(Color.customWhite)
 
-                    // All other categories
-                    contextCategorySection(categories: categoriesWithNoContextCategory) { (row) in
-                        deleteCategory(at: row.map({$0}).first ?? 0)
-                    }.listRowBackground(Color.customWhite)
-                }.listStyle(.plain)
+                        // All other categories
+                        contextCategorySection(categories: categoriesWithNoContextCategory) { (row) in
+                            deleteCategory(at: row.map({$0}).first ?? 0)
+                        }.listRowBackground(Color.customWhite)
+                    }.listStyle(.plain)
+                }
+                .onAppear { self.didAppear?(self) }
+
+                EmptyView()
+                    .navigationBarTitle("Today")
+                    .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
+                                                                        addCategoryAction: {
+                                                                            activeSheet = .addNewCategory
+                                                                        }, addContextCategoryAction: {
+                                                                            activeSheet = .manageContextCategory
+                                                                        }))
             }
-            .onAppear { self.didAppear?(self) }
-
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    AddButton {
-                        activeSheet = .addNewActivity
+            .background(Color(UIColor.systemGray6))
+            .sheet(item: $activeSheet) { sheet in
+                switch sheet {
+                case .addNewCategory:
+                    AddNewCategoryView {
+                        addCategory(name: $0)
+                        activeSheet = nil
                     }
+                case .manageContextCategory:
+                    ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
+                        addContextCategory(name: $0)
+                    }, onDelete: {
+                        deleteContextCategories($0)
+                    }, onComplete: {
+                        activeSheet = nil
+                    })
                 }
-            }
-
-            EmptyView()
-                .navigationBarTitle("Today")
-                .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
-                                                                    addCategoryAction: {
-                                                                        activeSheet = .addNewCategory
-                                                                    }, addContextCategoryAction: {
-                                                                        activeSheet = .manageContextCategory
-                                                                    }))
-        }
-        .background(Color(UIColor.systemGray6))
-        .sheet(item: $activeSheet) { sheet in
-            switch sheet {
-            case .addNewActivity:
-                AddNewActivityView {
-                    activeSheet = nil
-                }
-            case .addNewCategory:
-                AddNewCategoryView {
-                    addCategory(name: $0)
-                    activeSheet = nil
-                }
-            case .manageContextCategory:
-                ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
-                    addContextCategory(name: $0)
-                }, onDelete: {
-                    deleteContextCategories($0)
-                }, onComplete: {
-                    activeSheet = nil
-                })
             }
         }
     }

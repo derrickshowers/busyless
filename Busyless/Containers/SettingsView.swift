@@ -54,66 +54,67 @@ struct SettingsView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        Form {
-            Section(header: Text("TIMES")) {
-                HStack {
-                    DatePicker("Awake Time", selection: awakeTime, displayedComponents: .hourAndMinute)
-                        .datePickerStyle(.graphical)
+        NavigationView {
+            Form {
+                Section(header: Text("TIMES")) {
+                    HStack {
+                        DatePicker("Awake Time", selection: awakeTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(.graphical)
+                    }
+                    HStack {
+                        DatePicker("Sleepy Time", selection: sleepTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(.graphical)
+                    }
                 }
-                HStack {
-                    DatePicker("Sleepy Time", selection: sleepTime, displayedComponents: .hourAndMinute)
-                        .datePickerStyle(.graphical)
-                }
-            }
-            Section {
-                HStack {
-                    Text("iCloud Status")
-                    Spacer()
-                    Circle()
-                    .foregroundColor(iCloudStatusColor)
-                        .fixedSize(horizontal: true, vertical: true)
-                        .gesture(
-                            LongPressGesture(minimumDuration: 10).onEnded { _ in
-                                isDeleteAllAlertPresented = true
+                Section {
+                    HStack {
+                        Text("iCloud Status")
+                        Spacer()
+                        Circle()
+                        .foregroundColor(iCloudStatusColor)
+                            .fixedSize(horizontal: true, vertical: true)
+                            .gesture(
+                                LongPressGesture(minimumDuration: 10).onEnded { _ in
+                                    isDeleteAllAlertPresented = true
+                                }
+                            ).alert(isPresented: $isDeleteAllAlertPresented) {
+                                Alert(title: Text("!! Delete All Activities !!"),
+                                      message: Text("You found the super secret way to delete all activities. By tapping continue, all your activities will be deleted and cannot be undone. Are you sure?!?"),
+                                      primaryButton: .destructive(Text("Continue 😱")) {
+                                        self.dataStore?.wrappedValue.activityStore.deleteAllActivities()
+                                      },
+                                      secondaryButton: .cancel())
                             }
-                        ).alert(isPresented: $isDeleteAllAlertPresented) {
-                            Alert(title: Text("!! Delete All Activities !!"),
-                                  message: Text("You found the super secret way to delete all activities. By tapping continue, all your activities will be deleted and cannot be undone. Are you sure?!?"),
-                                  primaryButton: .destructive(Text("Continue 😱")) {
-                                    self.dataStore?.wrappedValue.activityStore.deleteAllActivities()
-                                  },
-                                  secondaryButton: .cancel())
-                        }
 
+                    }
+                }
+                Section {
+                    Button(action: {
+                        isExportPresented.toggle()
+                    }, label: {
+                        Text("Export data to CSV")
+                    })
+                    .sheet(isPresented: $isExportPresented, content: {
+                        ActivityViewController(activityItems: [self.dataExportFile])
+                    })
+                    Link(destination: URL(string: "https://www.icloud.com/shortcuts/f2f66a8c23de4ec085771cd80fb1f512")!, label: {
+                        Text("Add a focus shortcut")
+                    })
+                    Button(action: {
+                        isOnboardingPresented.toggle()
+                    }, label: {
+                        Text("Tell me more about Busyless")
+                    })
+                    .sheet(isPresented: $isOnboardingPresented, content: {
+                        InitialOnboardingView()
+                    })
                 }
             }
-            Section {
-                Button(action: {
-                    isExportPresented.toggle()
-                }, label: {
-                    Text("Export data to CSV")
-                })
-                .sheet(isPresented: $isExportPresented, content: {
-                    ActivityViewController(activityItems: [self.dataExportFile])
-                })
-                Link(destination: URL(string: "https://www.icloud.com/shortcuts/f2f66a8c23de4ec085771cd80fb1f512")!, label: {
-                    Text("Add a focus shortcut")
-                })
-                Button(action: {
-                    isOnboardingPresented.toggle()
-                }, label: {
-                    Text("Tell me more about Busyless")
-                })
-                .sheet(isPresented: $isOnboardingPresented, content: {
-                    InitialOnboardingView()
-                })
+            .onDisappear {
+                UserConfig.save(with: self.managedObjectContext)
             }
+            .navigationBarTitle("Settings")
         }
-
-        .onDisappear {
-            UserConfig.save(with: self.managedObjectContext)
-        }
-        .navigationBarTitle("Settings")
     }
 }
 

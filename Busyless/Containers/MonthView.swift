@@ -26,39 +26,41 @@ struct MonthView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Where have I been spending my time this month?")
-                    .font(.title)
-                    .padding(.trailing, 100)
-                Text("Tap a category for details")
-                    .font(.caption)
-                VStack {
-                    ForEach(categories, id: \.self) { category in
-                        if category.trackMonthly {
-                            NavigationLink(destination: CategoryDetailView(category: category, overviewType: .month)) {
-                                HStack {
-                                    Text(category.name ?? "Uncategorized")
-                                    Spacer()
-                                    Text(category.timeSpentThisMonth.hoursMinutesString).bold()
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Where have I been spending my time this month?")
+                        .font(.title)
+                        .padding(.trailing, 100)
+                    Text("Tap a category for details")
+                        .font(.caption)
+                    VStack {
+                        ForEach(categories, id: \.self) { category in
+                            if category.trackMonthly {
+                                NavigationLink(destination: CategoryDetailView(category: category, overviewType: .month)) {
+                                    HStack {
+                                        Text(category.name ?? "Uncategorized")
+                                        Spacer()
+                                        Text(category.timeSpentThisMonth.hoursMinutesString).bold()
+                                    }
                                 }
-                            }
-                            if let lastItem = self.categories.last, category != lastItem {
-                                Divider()
+                                if let lastItem = self.categories.last, category != lastItem {
+                                    Divider()
+                                }
                             }
                         }
                     }
+                    .foregroundColor(Color(UIColor.label))
+                    .padding(.vertical, 20)
                 }
-                .foregroundColor(Color(UIColor.label))
-                .padding(.vertical, 20)
+                .padding(15)
+                .frame(maxWidth: .infinity)
+                .background(Color.customWhite)
             }
-            .padding(15)
-            .frame(maxWidth: .infinity)
-            .background(Color.customWhite)
+            .background(Color(UIColor.systemGray6))
+            .edgesIgnoringSafeArea(.bottom)
+            .navigationBarTitle("This Month")
         }
-        .background(Color(UIColor.systemGray6))
-        .edgesIgnoringSafeArea(.bottom)
-        .navigationBarTitle("This Month")
     }
 }
 
