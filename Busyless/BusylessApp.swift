@@ -25,7 +25,6 @@ struct BusylessApp: App {
         dataStore = BusylessApp.createDataStore(with: persistenceController.container.viewContext)
         setupOnboarding(dataStore: dataStore)
         setupNavigationBar()
-        setupTableViews()
     }
 
     var body: some Scene {
@@ -56,11 +55,6 @@ struct BusylessApp: App {
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
 
         UINavigationBar.appearance().tintColor = .white
-    }
-
-    private func setupTableViews() {
-        UITableView.appearance().allowsSelection = false
-        UITableViewCell.appearance().selectionStyle = .none
     }
 
     private func setupOnboarding(dataStore: DataStore) {

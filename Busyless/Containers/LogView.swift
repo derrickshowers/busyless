@@ -16,6 +16,9 @@ struct LogView: View {
     @State var isAddNewActivityViewPresented = false
     @State var showOnlyUncategorizedActivities = false
     @State var isOnboardingPresented = false
+    
+    @State private var selections = Set<Activity>()
+    @State private var editMode: EditMode = .inactive
 
     /**
      This is somewhat of a hack. This property should be a state variable and then passed as an param when creating `AddNewActivityView` but
@@ -47,7 +50,8 @@ struct LogView: View {
 
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateStyle = .full
+        formatter.doesRelativeDateFormatting = true
+        formatter.dateStyle = .medium
         return formatter
     }
 
@@ -84,44 +88,44 @@ struct LogView: View {
                             showOnlyUncategorizedActivities.toggle()
                         })
                     }
-                    List {
+                    List(selection: $selections) {
                         ForEach(activities, id: \.self) { (section: [Activity]) in
                             Section {
                                 ForEach(section, id: \.self) { (activity: Activity) in
                                     if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
-                                        Button(action: {
+                                        ActivityRow(activity: activity) {
                                             LogView.selectedActivity = activity
                                             isAddNewActivityViewPresented.toggle()
-                                        }, label: {
-                                            VStack(alignment: .leading) {
-                                                Text(activity.name ?? "")
-                                                    .font(.headline)
-                                                HStack {
-                                                    Text(activity.category?.name ?? "Uncategorized")
-                                                    if let date = activity.createdAt {
-                                                        Text("•")
-                                                        Text(timeFormatter.string(from: date))
-                                                    }
-                                                    Text("•")
-                                                    Text(activity.duration.hoursMinutesString)
-                                                }
-                                                .font(.caption)
-                                                .foregroundColor(.gray)
+                                        }
+                                        // TODO: Extract this to make things cleaner, but how??
+                                        .contextMenu {
+                                            Button("Delete") {
+                                                deleteActivity(activity)
                                             }
-                                        })
+                                            Button("Edit Multiple...") {
+                                                editMode = .active
+                                            }
+                                        }
                                     }
-                                }.onDelete(perform: { row in
-                                    if let rowIndex = row.map({$0}).first,
-                                        let sectionIndex = activities.firstIndex(of: section) {
-                                        deleteActivity(atRow: rowIndex, section: sectionIndex)
-                                    }
-                                })
+                                }
                             } header: {
                                 Text(self.sectionHeader(forCreationDate: section[0].createdAt))
-                                    .font(Font.headline.smallCaps())
+                                    .foregroundColor(Color.primary)
+                                    .font(.subheadline)
                             }
                         }
-                    }.listStyle(.plain)
+                    }
+                    .environment(\.editMode, $editMode)
+                    .listStyle(.grouped)
+                    if editMode == .active {
+                        ActionBar(onDelete: {
+                            // TODO: This causes a crash
+                            selections.forEach { deleteActivity($0) }
+                            editMode = .inactive
+                        }, onCancel: {
+                            editMode = .inactive
+                        })
+                    }
                 }.sheet(isPresented: $isOnboardingPresented) {
                     LogOnboardingView()
                 }.sheet(isPresented: $isAddNewActivityViewPresented) {
@@ -160,11 +164,75 @@ struct LogView: View {
     }
 }
 
+struct ActivityRow: View {
+    let activity: Activity
+    let action: () -> Void
+    
+    // TODO: Share this
+    private var timeFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }
+    
+    var body: some View {
+        Button(action: { action() }, label: {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(activity.name ?? "")
+                        .foregroundColor(Color.primary)
+                        .font(.subheadline)
+                    Text(activity.category?.name ?? "Uncategorized")
+                        .font(.caption2)
+                        .foregroundColor(Color.gray)
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text(activity.duration.hoursMinutesString)
+                        .foregroundColor(Color.primary)
+                        .font(.subheadline)
+                    if let date = activity.createdAt {
+                        Text(timeFormatter.string(from: date))
+                            .font(.caption2)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
+        }).padding(.vertical, 5)
+    }
+}
+
+struct ActionBar: View {
+    let onDelete: () -> Void
+    let onCancel: () -> Void
+    var body: some View {
+        HStack {
+            Button {
+                onDelete()
+            } label: {
+                Text("Delete")
+            }
+            Button {
+                onCancel()
+            } label: {
+                Text("Cancel")
+            }
+            Spacer()
+        }
+    }
+}
+
 // MARK: - Core Data
 
 extension LogView {
     private func deleteActivity(atRow row: Int, section: Int) {
         let activity = activities[section][row]
+        managedObjectContext.delete(activity)
+        Activity.save(with: managedObjectContext)
+    }
+    
+    private func deleteActivity(_ activity: Activity) {
         managedObjectContext.delete(activity)
         Activity.save(with: managedObjectContext)
     }
@@ -174,8 +242,12 @@ struct LogView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let dataStore = ObservedObject(initialValue: DataStore(managedObjectContext: context))
-        return LogView()
+        let logView = LogView()
             .environment(\.managedObjectContext, context)
             .environment(\.dataStore, dataStore)
+        return Group {
+            logView
+            logView.environment(\.colorScheme, .dark)
+        }
     }
 }

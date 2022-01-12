@@ -24,8 +24,6 @@ class DayViewTests: XCTestCase {
             let addButton = try? view.find(button: "+")
             XCTAssertNotNil(addButton)
             XCTAssertEqual(try view.actualView().activeSheet, nil)
-            try addButton?.tap()
-            XCTAssertEqual(try view.actualView().activeSheet, .addNewActivity)
         }
         ViewHosting.host(view: dayView)
         wait(for: [expectation], timeout: 0.1)
