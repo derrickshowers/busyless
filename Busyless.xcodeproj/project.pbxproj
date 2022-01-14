@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70D2E7CE2792188100CD1183 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2E7CD2792188100CD1183 /* Date+.swift */; };
+		70E4215D279113C600945F9F /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E4215C279113C600945F9F /* ViewModelFactory.swift */; };
+		70E4215F2791194D00945F9F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E4215E2791194D00945F9F /* MainViewModel.swift */; };
+		70FEF35C278F60620013630C /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF35B278F60620013630C /* LogViewModel.swift */; };
 		E701F62825B136BA00B78551 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E701F62A25B136BA00B78551 /* Localizable.strings */; };
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
@@ -168,6 +172,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		70D2E7CD2792188100CD1183 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		70E4215C279113C600945F9F /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		70E4215E2791194D00945F9F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		70FEF35B278F60620013630C /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		E701F62925B136BA00B78551 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E701F63025B136ED00B78551 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E701F63125B136ED00B78551 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -296,6 +304,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70FEF35A278F602E0013630C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				70E4215C279113C600945F9F /* ViewModelFactory.swift */,
+				70FEF35B278F60620013630C /* LogViewModel.swift */,
+				70E4215E2791194D00945F9F /* MainViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		E701F62025B135D300B78551 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				E726EEE4250B0D3700CBEAF5 /* Color+.swift */,
+				70D2E7CD2792188100CD1183 /* Date+.swift */,
 				E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */,
 				E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */,
 				E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */,
@@ -479,6 +498,7 @@
 				E7F6115824E229D200CFABC8 /* Containers */,
 				E7F6115724E229AB00CFABC8 /* Components */,
 				E7FD702F24E4C8E0001E2A95 /* Utility */,
+				70FEF35A278F602E0013630C /* ViewModels */,
 				E780FC4F24E9A71C00F9C2B6 /* SupportingFiles */,
 			);
 			path = Busyless;
@@ -936,6 +956,7 @@
 				E75BFE4A254B93DF000A947B /* StatefullPreviewWrapper.swift in Sources */,
 				E7A79BBA25B3707B00D8CB9D /* AddNewCategoryView.swift in Sources */,
 				E70DCC74257D66B900B4F13D /* EnvironmentValues+.swift in Sources */,
+				70E4215D279113C600945F9F /* ViewModelFactory.swift in Sources */,
 				E7A79BA425B36C1B00D8CB9D /* ManageContextCategoryView.swift in Sources */,
 				E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */,
 				E70A899B259C239A009EF078 /* OnboardingContent.swift in Sources */,
@@ -943,8 +964,11 @@
 				E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */,
+				70D2E7CE2792188100CD1183 /* Date+.swift in Sources */,
 				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,
 				E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */,
+				70FEF35C278F60620013630C /* LogViewModel.swift in Sources */,
+				70E4215F2791194D00945F9F /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

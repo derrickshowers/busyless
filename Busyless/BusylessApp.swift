@@ -15,6 +15,7 @@ struct BusylessApp: App {
 
     // MARK: - Private Properties
 
+    private let viewModelFactory = ViewModelFactory()
     private let persistenceController = PersistenceController.shared
     @ObservedObject private var dataStore: DataStore
     @AppStorage("shouldAddMockData") private var shouldAddMockData = true
@@ -29,7 +30,7 @@ struct BusylessApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewModel: viewModelFactory.makeMainViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environment(\.dataStore, _dataStore)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in

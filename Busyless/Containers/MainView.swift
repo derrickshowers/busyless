@@ -13,6 +13,8 @@ struct MainView: View {
 
     // MARK: - Private Properties
 
+    @ObservedObject private var viewModel: MainViewModel
+
     @State private var isOnboardingPresented = false
     @State private var isAddNewActivityPresented = false
     
@@ -24,10 +26,14 @@ struct MainView: View {
 
     // MARK: - Lifecycle
 
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         ZStack {
             TabView {
-                LogView().tabItem { Label("Activities", systemImage: "list.dash") }
+                viewModel.logView.tabItem { Label("Activities", systemImage: "list.dash") }
                 DayView().tabItem { Label("Day", systemImage: "sun.min") }
                 Text("New").tabItem { }
                 MonthView().tabItem { Label("Month", systemImage: "calendar") }
@@ -69,7 +75,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         return Group {
-            MainView().environment(\.managedObjectContext, context)
+            //MainView().environment(\.managedObjectContext, context)
         }
     }
 }

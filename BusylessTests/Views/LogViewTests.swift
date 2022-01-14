@@ -17,7 +17,7 @@ extension LogView: Inspectable { }
 class LogViewTests: XCTestCase {
 
     func DISABLEtestAddButton() {
-        var logView = LogView()
+        var logView = LogView.forTesting()
         let expectation = logView.on(\.didAppear) { view in
             let addButton = try? view.find(button: "+")
             XCTAssertNotNil(addButton)
@@ -31,7 +31,7 @@ class LogViewTests: XCTestCase {
 
     func DISABLEtestActivity() {
         let dataStoreMock = DataStoreMock()
-        var logView = LogView()
+        var logView = LogView.forTesting()
         let expectation = logView.on(\.didAppear) { view in
             let labelView = try? view.find(ViewType.List.self).forEach(0).section(0).forEach(0).button(0).labelView()
             let mockActivity = dataStoreMock.dataStore.activityStore.allActivities.first
@@ -39,9 +39,7 @@ class LogViewTests: XCTestCase {
             XCTAssertEqual(try labelView?.vStack().hStack(1).text(0).string(), mockActivity?.category?.name)
             XCTAssertEqual(try labelView?.vStack().hStack(1).text(3).string(), mockActivity?.duration.hoursMinutesString)
         }
-        ViewHosting.host(view: logView
-                            .environment(\.managedObjectContext, dataStoreMock.context)
-                            .environment(\.dataStore, dataStoreMock.dataStoreObservable))
+        ViewHosting.host(view: logView)
         wait(for: [expectation], timeout: 0.1)
     }
 }
