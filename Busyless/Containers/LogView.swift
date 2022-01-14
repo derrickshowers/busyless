@@ -41,6 +41,7 @@ struct LogView: View {
             isCategorySelectionViewPresented.toggle()
         }
         Button("Edit Multiple...") {
+            selections.removeAll()
             editMode = .active
         }
     }
@@ -110,15 +111,10 @@ struct LogView: View {
                         isAddNewActivityViewPresented = false
                     }
                 }.sheet(isPresented: $isCategorySelectionViewPresented) {
-                    let category = Binding<BLCategory?>(
-                        get: { nil },
-                        set: {
-                            selections.first?.category = $0
-                            selections.removeAll()
-                            viewModel.saveAll()
-                        }
-                    )
-                    CategorySelection(selectedCategory: category)
+                    if let activity = selections.first,
+                       let category = viewModel.newCategory(for: activity) {
+                        CategorySelection(selectedCategory: category)
+                    }
                 }
             }
             .onAppear {

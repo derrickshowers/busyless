@@ -50,4 +50,14 @@ class LogViewModel: ObservableObject {
         }
         return "Unknown Date"
     }
+
+    func newCategory(for activity: Activity) -> Binding<BLCategory?> {
+        Binding<BLCategory?>(
+            get: { nil },
+            set: {
+                activity.category = $0
+                self.saveAll()
+            }
+        )
+    }
 }
