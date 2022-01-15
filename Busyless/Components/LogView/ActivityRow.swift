@@ -12,12 +12,17 @@ import BusylessDataLayer
 
 struct ActivityRow: View {
     let activity: Activity
+    let isEditing: Bool
     let action: () -> Void
+
+    var shouldShowIndicator: Bool {
+        activity.category == nil && !isEditing
+    }
 
     var body: some View {
         Button(action: { action() }, label: {
             HStack {
-                if activity.category == nil {
+                if shouldShowIndicator {
                     Divider().frame(width: 5)
                         .background(Color.secondaryColor)
                 }
@@ -31,7 +36,7 @@ struct ActivityRow: View {
                         .foregroundColor(Color.gray)
                 }
                 .padding(.vertical, 10)
-                .padding(.leading, activity.category == nil ? 10 : 25)
+                .padding(.leading, shouldShowIndicator ? 10 : 25)
 
                 Spacer()
 
@@ -55,7 +60,10 @@ struct ActivityRow: View {
 struct Activity_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let activityRow = ActivityRow(activity: Activity.mockActivity(withContext: context), action: { })
+        let activity = Activity.mockActivity(withContext: context)
+        let activityRow = ActivityRow(activity: activity,
+                                      isEditing: false,
+                                      action: { })
         return Group {
             activityRow
             activityRow

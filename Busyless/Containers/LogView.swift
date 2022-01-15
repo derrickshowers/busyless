@@ -81,7 +81,8 @@ struct LogView: View {
                             Section {
                                 ForEach(section, id: \.self) { (activity: Activity) in
                                     if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
-                                        ActivityRow(activity: activity) {
+                                        ActivityRow(activity: activity,
+                                                    isEditing: editMode.isEditing) {
                                             selections.insert(activity)
                                             isAddNewActivityViewPresented.toggle()
                                         }.contextMenu { self.actionsContextMenu(for: activity) }
