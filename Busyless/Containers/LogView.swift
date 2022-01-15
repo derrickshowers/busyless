@@ -21,16 +21,16 @@ struct LogView: View {
     @State var isCategorySelectionViewPresented = false
     @State var showOnlyUncategorizedActivities = false
     @State var isOnboardingPresented = false
-    
+
     @State private var selections = Set<Activity>()
     @State private var editMode: EditMode = .inactive
 
     init(viewModel: LogViewModel) {
         self.viewModel = viewModel
     }
-    
+
     // MARK: - Views
-    
+
     @ViewBuilder
     private func actionsContextMenu(for activity: Activity) -> some View {
         Button("Delete") {

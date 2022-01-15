@@ -45,7 +45,7 @@ class LogViewModel: ObservableObject {
     }
 
     func duplicateActivity(_ activity: Activity) {
-        activity.copy()
+        _ = activity.copy()
         self.saveAll()
     }
 

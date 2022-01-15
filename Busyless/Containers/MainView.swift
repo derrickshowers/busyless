@@ -17,7 +17,7 @@ struct MainView: View {
 
     @State private var isOnboardingPresented = false
     @State private var isAddNewActivityPresented = false
-    
+
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
