@@ -44,6 +44,11 @@ class LogViewModel: ObservableObject {
         activity.deleteAndSave(with: dataStore.context)
     }
 
+    func set(durationInHours: Double, for activity: Activity) {
+        activity.duration = durationInHours * TimeInterval.oneHour
+        saveAll()
+    }
+
     func duplicateActivity(_ activity: Activity) {
         _ = activity.copy()
         self.saveAll()

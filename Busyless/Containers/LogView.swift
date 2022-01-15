@@ -43,6 +43,12 @@ struct LogView: View {
             selections.insert(activity)
             isCategorySelectionViewPresented.toggle()
         }
+        Button("Duration") {}
+        .contextMenu {
+            Button("15 mins") { viewModel.set(durationInHours: 0.25, for: activity) }
+            Button("30 mins") { viewModel.set(durationInHours: 0.5, for: activity) }
+            Button("1 hour") { viewModel.set(durationInHours: 1.0, for: activity)}
+        }
         Button("Edit Multiple...") {
             selections.removeAll()
             editMode = .active
