@@ -107,7 +107,7 @@ struct LogView: View {
                             editMode = .inactive
                         }, onCancel: {
                             editMode = .inactive
-                        })
+                        }).padding(.bottom, 10)
                     }
                 }.sheet(isPresented: $isOnboardingPresented) {
                     LogOnboardingView()

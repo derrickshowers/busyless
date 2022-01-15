@@ -28,6 +28,7 @@ struct MainView: View {
 
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
+        UITabBar.appearance().backgroundColor = UIColor.white
     }
 
     var body: some View {

@@ -18,18 +18,44 @@ struct ActionBar: View {
             Button {
                 onDelete()
             } label: {
-                Text("Delete")
+                VStack {
+                    Image(systemName: "trash.fill")
+                    Spacer()
+                    Text("Delete").font(.caption2)
+                }
             }
+            Spacer()
             Button {
                 onEditCategory()
             } label: {
-                Text("Edit Category")
+                VStack {
+                    Image(systemName: "arrow.up.bin.fill")
+                    Spacer()
+                    Text("Edit Category").font(.caption2)
+                }
             }
+            Spacer()
             Button {
                 onCancel()
             } label: {
-                Text("Cancel")
+                VStack {
+                    Image(systemName: "multiply.circle.fill")
+                    Spacer()
+                    Text("Cancel").font(.caption2)
+                }
             }
         }
+        .padding(.horizontal, 50)
+        .padding(.vertical, 10)
+        .foregroundColor(.white)
+        .background(Color.mainColor)
+        .frame(maxHeight: 50)
+    }
+}
+
+struct ActionBar_Previews: PreviewProvider {
+    static var previews: some View {
+        let actionbar = ActionBar {} onEditCategory: {} onCancel: {}
+        return actionbar
     }
 }
