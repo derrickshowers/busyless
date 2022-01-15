@@ -56,6 +56,10 @@ struct ActionBar: View {
 struct ActionBar_Previews: PreviewProvider {
     static var previews: some View {
         let actionbar = ActionBar {} onEditCategory: {} onCancel: {}
-        return actionbar
+        return Group {
+            actionbar
+            actionbar.environment(\.colorScheme, .dark)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }

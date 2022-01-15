@@ -87,6 +87,7 @@ struct LogView: View {
                                         }.contextMenu { self.actionsContextMenu(for: activity) }
                                     }
                                 }
+                                .listRowInsets(EdgeInsets())
                             } header: {
                                 Text(viewModel.sectionHeader(for: section))
                                     .foregroundColor(Color.primary)
@@ -99,7 +100,6 @@ struct LogView: View {
 
                     if editMode == .active {
                         ActionBar(onDelete: {
-                            // TODO: This causes a crash
                             selections.forEach { viewModel.deleteActivity($0) }
                             editMode = .inactive
                         }, onEditCategory: {

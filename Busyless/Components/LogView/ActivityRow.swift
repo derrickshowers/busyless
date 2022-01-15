@@ -17,6 +17,11 @@ struct ActivityRow: View {
     var body: some View {
         Button(action: { action() }, label: {
             HStack {
+                if activity.category == nil {
+                    Divider().frame(width: 5)
+                        .background(Color.secondaryColor)
+                }
+
                 VStack(alignment: .leading) {
                     Text(activity.name ?? "")
                         .foregroundColor(Color.primary)
@@ -25,7 +30,11 @@ struct ActivityRow: View {
                         .font(.caption2)
                         .foregroundColor(Color.gray)
                 }
+                .padding(.vertical, 10)
+                .padding(.leading, activity.category == nil ? 10 : 25)
+
                 Spacer()
+
                 VStack(alignment: .trailing) {
                     Text(activity.duration.hoursMinutesString)
                         .foregroundColor(Color.primary)
@@ -36,7 +45,24 @@ struct ActivityRow: View {
                             .foregroundColor(.gray)
                     }
                 }
+                .padding(.vertical, 10)
+                .padding(.trailing, 20)
             }
-        }).padding(.vertical, 5)
+        })
+    }
+}
+
+struct Activity_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = PersistenceController.preview.container.viewContext
+        let activityRow = ActivityRow(activity: Activity.mockActivity(withContext: context), action: { })
+        return Group {
+            activityRow
+            activityRow
+                .background(.black)
+                .environment(\.colorScheme, .dark)
+        }
+        .frame(height: 75)
+        .previewLayout(.sizeThatFits)
     }
 }
