@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		70D2E7CE2792188100CD1183 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2E7CD2792188100CD1183 /* Date+.swift */; };
+		70D7150927935FAF00590034 /* ActivityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150827935FAF00590034 /* ActivityRow.swift */; };
+		70D7150B27935FD800590034 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150A27935FD800590034 /* ActionBar.swift */; };
 		70E4215D279113C600945F9F /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E4215C279113C600945F9F /* ViewModelFactory.swift */; };
 		70E4215F2791194D00945F9F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E4215E2791194D00945F9F /* MainViewModel.swift */; };
 		70FEF35C278F60620013630C /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF35B278F60620013630C /* LogViewModel.swift */; };
@@ -173,6 +175,8 @@
 
 /* Begin PBXFileReference section */
 		70D2E7CD2792188100CD1183 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		70D7150827935FAF00590034 /* ActivityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRow.swift; sourceTree = "<group>"; };
+		70D7150A27935FD800590034 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
 		70E4215C279113C600945F9F /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		70E4215E2791194D00945F9F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		70FEF35B278F60620013630C /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
@@ -304,6 +308,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70D7150727935FA100590034 /* LogView */ = {
+			isa = PBXGroup;
+			children = (
+				70D7150A27935FD800590034 /* ActionBar.swift */,
+				70D7150827935FAF00590034 /* ActivityRow.swift */,
+			);
+			path = LogView;
+			sourceTree = "<group>";
+		};
 		70FEF35A278F602E0013630C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +639,7 @@
 				E780FC4C24E9A59900F9C2B6 /* AddNewActivity */,
 				E796F1F925479BDC00F7106B /* CategoryDetail */,
 				E715087924E32A0E004B080A /* DayView */,
+				70D7150727935FA100590034 /* LogView */,
 				E70A8985259969C3009EF078 /* Onboarding */,
 			);
 			path = Components;
@@ -964,7 +978,9 @@
 				E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */,
 				E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */,
 				E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */,
+				70D7150B27935FD800590034 /* ActionBar.swift in Sources */,
 				70D2E7CE2792188100CD1183 /* Date+.swift in Sources */,
+				70D7150927935FAF00590034 /* ActivityRow.swift in Sources */,
 				E7947FF824DF8072006B7859 /* AddNewActivityView.swift in Sources */,
 				E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */,
 				70FEF35C278F60620013630C /* LogViewModel.swift in Sources */,

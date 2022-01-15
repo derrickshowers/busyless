@@ -36,7 +36,10 @@ struct LogView: View {
         Button("Delete") {
             viewModel.deleteActivity(activity)
         }
-        Button("Add Category") {
+        Button("Duplicate") {
+            viewModel.duplicateActivity(activity)
+        }
+        Button("Edit Category") {
             selections.insert(activity)
             isCategorySelectionViewPresented.toggle()
         }
@@ -99,6 +102,9 @@ struct LogView: View {
                             // TODO: This causes a crash
                             selections.forEach { viewModel.deleteActivity($0) }
                             editMode = .inactive
+                        }, onEditCategory: {
+                            isCategorySelectionViewPresented.toggle()
+                            editMode = .inactive
                         }, onCancel: {
                             editMode = .inactive
                         })
@@ -111,8 +117,7 @@ struct LogView: View {
                         isAddNewActivityViewPresented = false
                     }
                 }.sheet(isPresented: $isCategorySelectionViewPresented) {
-                    if let activity = selections.first,
-                       let category = viewModel.newCategory(for: activity) {
+                    if let category = viewModel.newCategory(for: selections) {
                         CategorySelection(selectedCategory: category)
                     }
                 }
@@ -132,6 +137,7 @@ struct LogView: View {
 }
 
 // MARK: - Onboarding
+
 extension LogView {
     private func showOnboardingIfNeeded() {
         guard viewModel.shouldShowLogOnboarding else {
@@ -141,57 +147,6 @@ extension LogView {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             isOnboardingPresented = true
             viewModel.shouldShowLogOnboarding = false
-        }
-    }
-}
-
-struct ActivityRow: View {
-    let activity: Activity
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: { action() }, label: {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(activity.name ?? "")
-                        .foregroundColor(Color.primary)
-                        .font(.subheadline)
-                    Text(activity.category?.name ?? "Uncategorized")
-                        .font(.caption2)
-                        .foregroundColor(Color.gray)
-                }
-                Spacer()
-                VStack(alignment: .trailing) {
-                    Text(activity.duration.hoursMinutesString)
-                        .foregroundColor(Color.primary)
-                        .font(.subheadline)
-                    if let time = activity.createdAt?.prettyTime {
-                        Text(time)
-                            .font(.caption2)
-                            .foregroundColor(.gray)
-                    }
-                }
-            }
-        }).padding(.vertical, 5)
-    }
-}
-
-struct ActionBar: View {
-    let onDelete: () -> Void
-    let onCancel: () -> Void
-    var body: some View {
-        HStack {
-            Button {
-                onDelete()
-            } label: {
-                Text("Delete")
-            }
-            Button {
-                onCancel()
-            } label: {
-                Text("Cancel")
-            }
-            Spacer()
         }
     }
 }

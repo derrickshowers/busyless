@@ -71,11 +71,21 @@ struct MainView: View {
     }
 }
 
+// MARK: - Testing/Previews
+
+extension MainView {
+    static func forTesting() -> MainView {
+        let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
+        let mockLogViewModel = LogViewModel(dataStore: mockDataStore)
+        let mockViewModel = MainViewModel(logView: LogView(viewModel: mockLogViewModel))
+        return Self(viewModel: mockViewModel)
+    }
+}
+
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
         return Group {
-            //MainView().environment(\.managedObjectContext, context)
+            MainView.forTesting()
         }
     }
 }

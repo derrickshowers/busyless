@@ -44,6 +44,11 @@ class LogViewModel: ObservableObject {
         activity.deleteAndSave(with: dataStore.context)
     }
 
+    func duplicateActivity(_ activity: Activity) {
+        activity.copy()
+        self.saveAll()
+    }
+
     func sectionHeader(for section: [Activity]) -> String {
         if let date = section[0].createdAt {
             return date.prettyDate
@@ -51,11 +56,11 @@ class LogViewModel: ObservableObject {
         return "Unknown Date"
     }
 
-    func newCategory(for activity: Activity) -> Binding<BLCategory?> {
+    func newCategory(for activities: Set<Activity>) -> Binding<BLCategory?> {
         Binding<BLCategory?>(
             get: { nil },
-            set: {
-                activity.category = $0
+            set: { category in
+                activities.forEach { $0.category = category }
                 self.saveAll()
             }
         )

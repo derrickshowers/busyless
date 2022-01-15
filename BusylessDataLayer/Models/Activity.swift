@@ -22,6 +22,19 @@ public extension Activity {
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Activity.createdAt, ascending: false)]
         return request
     }
+
+    override func copy() -> Any {
+        guard let context = managedObjectContext else {
+            return Activity()
+        }
+        let newActivity = Activity(context: context)
+        newActivity.name = name
+        newActivity.category = category
+        newActivity.duration = duration
+        newActivity.createdAt = createdAt
+        newActivity.notes = notes
+        return newActivity
+    }
 }
 
 extension Array where Element: Activity {
