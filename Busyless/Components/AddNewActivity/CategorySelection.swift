@@ -20,24 +20,54 @@ struct CategorySelection: View {
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
 
-    @Environment(\.managedObjectContext)
-    private var managedObjectContext
-
     @Environment(\.dataStore)
     private var dataStore
 
+    @State private var isAddNewCategorySheetShowing = false
+    @State private var newCategory: String = ""
+
     var body: some View {
-        List {
-            ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { (category) in
-                Button(action: {
-                    self.selectedCategory = category
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("\(category.name ?? "")")
-                }).foregroundColor(Color(UIColor.label))
+        NavigationView {
+            VStack {
+                List {
+                    Section {
+                        ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { (category) in
+                            Button(action: {
+                                self.selectedCategory = category
+                                self.presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                Text("\(category.name ?? "")")
+                            }).foregroundColor(Color(UIColor.label))
+                        }
+                    } header: {
+                        Spacer()
+                    } footer: {
+                        Button("Add New...") {
+                            isAddNewCategorySheetShowing.toggle()
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle("Select a Category")
+            .navigationBarItems(trailing: Button("Cancel", action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }))
+            .sheet(isPresented: $isAddNewCategorySheetShowing) {
+                AddNewCategoryView {
+                    addCategory(name: $0)
+                    isAddNewCategorySheetShowing.toggle()
+                }
             }
         }
-        .navigationBarTitle("Select a Category")
+    }
+
+    // MARK: - Private Methods
+
+    private func addCategory(name: String) {
+        guard let context = dataStore?.wrappedValue.context else { return }
+        let category = BLCategory(context: context)
+        category.name = name
+        BLCategory.save(with: context)
     }
 }
 
