@@ -40,6 +40,7 @@ struct MainView: View {
                 MonthView().tabItem { Label("Month", systemImage: "calendar") }
                 SettingsView().tabItem { Label("Settings", systemImage: "gear") }
             }
+            .accentColor(.mainColor)
             VStack {
                 Spacer()
                 AddButton {
