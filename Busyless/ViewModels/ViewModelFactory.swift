@@ -20,5 +20,4 @@ class ViewModelFactory {
     private func makeLogViewModel() -> LogViewModel {
         return LogViewModel(dataStore: dataStore)
     }
-
 }

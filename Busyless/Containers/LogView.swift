@@ -25,6 +25,8 @@ struct LogView: View {
     @State private var selections = Set<Activity>()
     @State private var editMode: EditMode = .inactive
 
+    // MARK: - Initialization
+
     init(viewModel: LogViewModel) {
         self.viewModel = viewModel
     }
