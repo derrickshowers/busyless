@@ -18,21 +18,27 @@ struct AddNewCategoryView: View {
 
     @State private var categoryName = ""
     @State private var isFirstResponder = true
+    @FocusState private var categoryNameFocused: Bool?
 
     // MARK: - Lifecycle
 
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    let footerText = "Categories are used to assign activities and budget time accordingly."
-                    Section(footer: Text(footerText).padding(.bottom, 25)) {
-                        FirstResponderTextField("Category Name",
-                                                text: $categoryName,
-                                                isFirstResponder: $isFirstResponder)
-                    }
+            Form {
+                Section {
+                    TextField("Category Name", text: $categoryName)
+                        .focused($categoryNameFocused, equals: true)
+                } header: {
+                    Spacer()
+                } footer: {
+                    Text("Categories are used to assign activities and budget time accordingly.")
+                        .padding(.bottom, 25)
                 }
-                Spacer()
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    categoryNameFocused = true
+                }
             }
             .navigationBarTitle("Add Category")
             .navigationBarItems(trailing: Button("Add", action: {

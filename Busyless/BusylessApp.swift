@@ -15,6 +15,7 @@ struct BusylessApp: App {
 
     // MARK: - Private Properties
 
+    private let viewModelFactory = ViewModelFactory()
     private let persistenceController = PersistenceController.shared
     @ObservedObject private var dataStore: DataStore
     @AppStorage("shouldAddMockData") private var shouldAddMockData = true
@@ -25,12 +26,11 @@ struct BusylessApp: App {
         dataStore = BusylessApp.createDataStore(with: persistenceController.container.viewContext)
         setupOnboarding(dataStore: dataStore)
         setupNavigationBar()
-        setupTableViews()
     }
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewModel: viewModelFactory.makeMainViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environment(\.dataStore, _dataStore)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
@@ -56,11 +56,6 @@ struct BusylessApp: App {
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
 
         UINavigationBar.appearance().tintColor = .white
-    }
-
-    private func setupTableViews() {
-        UITableView.appearance().allowsSelection = false
-        UITableViewCell.appearance().selectionStyle = .none
     }
 
     private func setupOnboarding(dataStore: DataStore) {

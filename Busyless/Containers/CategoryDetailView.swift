@@ -186,16 +186,6 @@ struct CategoryDetailView: View {
             }
             .background(Color(UIColor.systemGray6))
             .edgesIgnoringSafeArea(.bottom)
-
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    AddButton {
-                        showingAddNewActivityView.toggle()
-                    }
-                }
-            }
         }
         .navigationBarTitle(category.name ?? "Category Detail")
         .onDisappear {
@@ -204,11 +194,6 @@ struct CategoryDetailView: View {
             category.notes = notes
             BLCategory.save(with: managedObjectContext)
 
-        }
-        .sheet(isPresented: $showingAddNewActivityView) {
-            AddNewActivityView(preselectedCategory: category) {
-                showingAddNewActivityView = false
-            }.environment(\.managedObjectContext, managedObjectContext)
         }
     }
 }

@@ -16,7 +16,7 @@ class BusylessUITests: XCTestCase {
         app.activate()
     }
 
-    func testAddingNewActivity() {
+    func DISABLEDtestAddingNewActivity() {
         // Add the activity
         let activityName = "New Activity"
         CommonFlows.addANewActivity(activityName: activityName, testingApp: app)

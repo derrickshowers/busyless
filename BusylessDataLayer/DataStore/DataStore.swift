@@ -12,6 +12,7 @@ import Combine
 
 public class DataStore: ObservableObject {
 
+    public let context: NSManagedObjectContext
     @Published public var categoryStore: CategoryStore
     @Published public var activityStore: ActivityStore
     @Published public var userConfigStore: UserConfigStore
@@ -19,6 +20,7 @@ public class DataStore: ObservableObject {
     private var cancellables: [AnyCancellable] = []
 
     public init(managedObjectContext: NSManagedObjectContext) {
+        context = managedObjectContext
         categoryStore = CategoryStore(managedObjectContext: managedObjectContext)
         activityStore = ActivityStore(managedObjectContext: managedObjectContext)
         userConfigStore = UserConfigStore(managedObjectContext: managedObjectContext)

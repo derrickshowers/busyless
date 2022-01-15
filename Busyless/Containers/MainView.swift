@@ -13,25 +13,50 @@ struct MainView: View {
 
     // MARK: - Private Properties
 
+    @ObservedObject private var viewModel: MainViewModel
+
     @State private var isOnboardingPresented = false
+    @State private var isAddNewActivityPresented = false
+
+    @Environment(\.managedObjectContext)
+    private var managedObjectContext
 
     @AppStorage("shouldShowInitialOnboarding")
     private var shouldShowInitialOnboarding = true
 
     // MARK: - Lifecycle
 
-    var body: some View {
-        // iOS 14 has a bug with NavigationView on iPad. Don't love using StackNavigationViewStyle, but
-        // that seems to be the only option right now. Will try again on iOS 15.
-        // See this thread: https://forums.swift.org/t/14-5-beta3-navigationlink-unexpected-pop/45279/23
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
 
-        NavigationView {
-            MenuView()
+    var body: some View {
+        ZStack {
+            TabView {
+                viewModel.logView.tabItem { Label("Activities", systemImage: "list.dash") }
+                DayView().tabItem { Label("Day", systemImage: "sun.min") }
+                Text("New").tabItem { }
+                MonthView().tabItem { Label("Month", systemImage: "calendar") }
+                SettingsView().tabItem { Label("Settings", systemImage: "gear") }
+            }
+            .accentColor(.mainColor)
+            VStack {
+                Spacer()
+                AddButton {
+                    isAddNewActivityPresented.toggle()
+                }.padding(-15)
+            }.sheet(isPresented: $isAddNewActivityPresented) {
+                AddNewActivityView(activity: nil) {
+                    isAddNewActivityPresented = false
+                }.environment(\.managedObjectContext, managedObjectContext)
+            }
         }.onAppear {
-            showOnboardingIfNeeded()
+            // TODO: Cleanup onboarding and re-add
+            // showOnboardingIfNeeded()
         }.sheet(isPresented: $isOnboardingPresented) {
             InitialOnboardingView()
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
     }
 
     // MARK: - Private Methods
@@ -48,55 +73,21 @@ struct MainView: View {
     }
 }
 
-struct MenuView: View {
+// MARK: - Testing/Previews
 
-    @State var showOneLevelIn = true
-
-    // MARK: - Lifecycle
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 25) {
-            NavigationLink(destination: DayView()) {
-                Text("Today")
-            }
-            NavigationLink(destination: MonthView()) {
-                Text("This Month")
-            }
-            NavigationLink(destination: LogView()) {
-                Text("Activity Log")
-            }
-            NavigationLink(destination: SettingsView()) {
-                HStack {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-            }
-            Spacer()
-
-            // Let's select day view instead of showing the menu on launch.
-            NavigationLink(destination: DayView(), isActive: $showOneLevelIn, label: { EmptyView() })
-
-        }
-        .font(.title3)
-        .foregroundColor(.primary)
-        .frame(minWidth: 0,
-               maxWidth: .infinity,
-               minHeight: 0,
-               maxHeight: .infinity,
-               alignment: .topLeading)
-        .padding(.horizontal, 25)
-        .padding(.vertical, 50)
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+extension MainView {
+    static func forTesting() -> MainView {
+        let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
+        let mockLogViewModel = LogViewModel(dataStore: mockDataStore)
+        let mockViewModel = MainViewModel(logView: LogView(viewModel: mockLogViewModel))
+        return Self(viewModel: mockViewModel)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
         return Group {
-            MenuView()
-            MainView().environment(\.managedObjectContext, context)
+            MainView.forTesting()
         }
     }
 }

@@ -15,7 +15,7 @@ import CoreData
 class DataStoreMock {
 
     let dataStore: DataStore
-    let context:  NSManagedObjectContext
+    let context: NSManagedObjectContext
     var dataStoreObservable: ObservedObject<DataStore> {
         return ObservedObject<DataStore>(wrappedValue: dataStore)
     }

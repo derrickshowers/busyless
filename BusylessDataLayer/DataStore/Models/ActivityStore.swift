@@ -46,7 +46,7 @@ public class ActivityStore: NSObject, ObservableObject {
         }
         try? moc.save()
     }
-    
+
     public func fetch() {
         do {
             try allActivitiesController.performFetch()

@@ -18,4 +18,9 @@ extension NSManagedObject {
             os_log("Issue saving data for entity: %@", String(describing: self))
         }
     }
+
+    func deleteAndSave(with moc: NSManagedObjectContext) {
+        moc.delete(self)
+        Self.save(with: moc)
+    }
 }
