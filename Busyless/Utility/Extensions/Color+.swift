@@ -13,4 +13,5 @@ extension Color {
     static let secondaryColor = Color("SecondaryColor")
     static let customWhite = Color("White")
     static let accentGreen = Color("AccentGreen")
+    static let tabBarBackground = Color("TabBarBackground")
 }

@@ -97,15 +97,13 @@ struct DayView: View {
                     }.listStyle(.plain)
                 }
                 .onAppear { self.didAppear?(self) }
-
-                EmptyView()
-                    .navigationBarTitle("Today")
-                    .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
-                                                                        addCategoryAction: {
-                                                                            activeSheet = .addNewCategory
-                                                                        }, addContextCategoryAction: {
-                                                                            activeSheet = .manageContextCategory
-                                                                        }))
+                .navigationBarTitle("Today")
+                .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
+                                                                    addCategoryAction: {
+                                                                        activeSheet = .addNewCategory
+                                                                    }, addContextCategoryAction: {
+                                                                        activeSheet = .manageContextCategory
+                                                                    }))
             }
             .background(Color(UIColor.systemGray6))
             .sheet(item: $activeSheet) { sheet in

@@ -109,7 +109,9 @@ struct AddNewActivityView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
-            activityNameFocused = activity?.name == nil
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                activityNameFocused = activity?.name == nil
+            }
         }
     }
 

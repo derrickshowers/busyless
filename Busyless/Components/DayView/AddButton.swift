@@ -23,7 +23,7 @@ struct AddButton: View {
                 .accessibility(label: Text("Add a new activity"))
                 .font(.system(.largeTitle))
                 .foregroundColor(Color.white)
-
+                .frame(width: 50, height: 50)
         })
         .keyboardShortcut("n", modifiers: [.command])
         .frame(width: 50, height: 50)

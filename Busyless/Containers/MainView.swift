@@ -21,6 +21,9 @@ struct MainView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
+    @Environment(\.colorScheme)
+    private var colorScheme
+
     @AppStorage("shouldShowInitialOnboarding")
     private var shouldShowInitialOnboarding = true
 
@@ -28,7 +31,7 @@ struct MainView: View {
 
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
-        UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBar.appearance().backgroundColor = UIColor(Color.tabBarBackground)
     }
 
     var body: some View {
@@ -40,7 +43,7 @@ struct MainView: View {
                 MonthView().tabItem { Label("Month", systemImage: "calendar") }
                 SettingsView().tabItem { Label("Settings", systemImage: "gear") }
             }
-            .accentColor(.mainColor)
+            .accentColor(colorScheme == .light ? .mainColor : .secondaryColor)
             VStack {
                 Spacer()
                 AddButton {
