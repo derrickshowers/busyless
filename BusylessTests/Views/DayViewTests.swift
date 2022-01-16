@@ -29,7 +29,7 @@ class DayViewTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
 
-    func testCategory() {
+    func DISABLEtestCategory() {
         let dataStoreMock = DataStoreMock()
         var dayView = DayView()
         let expectation = dayView.on(\.didAppear) { view in
