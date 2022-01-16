@@ -30,7 +30,7 @@ struct AddNewActivityView: View {
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 
-    @FocusState private var activityNameFocused: Bool
+    @FocusState private var activityNameFocused: Bool?
 
     private var isEditingExistingActivity: Bool
 
@@ -61,7 +61,7 @@ struct AddNewActivityView: View {
             Form {
                 Section(header: Spacer()) {
                     TextField("Activity Name", text: $name)
-                        .focused($activityNameFocused)
+                        .focused($activityNameFocused, equals: true)
                         .autocapitalization(.words)
                     NavigationLink(destination: CategorySelection(selectedCategory: $category)) {
                         Text("Category").bold()
@@ -109,7 +109,7 @@ struct AddNewActivityView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                 activityNameFocused = activity?.name == nil
             }
         }

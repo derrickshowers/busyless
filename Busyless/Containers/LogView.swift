@@ -42,6 +42,7 @@ struct LogView: View {
             viewModel.duplicateActivity(activity)
         }
         Button("Edit Category") {
+            selections.removeAll()
             selections.insert(activity)
             isCategorySelectionViewPresented.toggle()
         }
@@ -53,6 +54,7 @@ struct LogView: View {
         }
         Button("Edit Multiple...") {
             selections.removeAll()
+            selections.insert(activity)
             editMode = .active
         }
     }
@@ -120,16 +122,17 @@ struct LogView: View {
                     }
                 }.sheet(isPresented: $isOnboardingPresented) {
                     LogOnboardingView()
-                }.sheet(isPresented: $isAddNewActivityViewPresented) {
-                    AddNewActivityView(activity: selections.first) {
-                        selections.removeAll()
-                        isAddNewActivityViewPresented = false
-                    }
-                }.sheet(isPresented: $isCategorySelectionViewPresented) {
+                }.sheet(isPresented: $isAddNewActivityViewPresented, onDismiss: {
+                    selections.removeAll()
+                }, content: {
+                    AddNewActivityView(activity: selections.first) { isAddNewActivityViewPresented = false }
+                }).sheet(isPresented: $isCategorySelectionViewPresented, onDismiss: {
+                    selections.removeAll()
+                }, content: {
                     if let category = viewModel.newCategory(for: selections) {
                         CategorySelection(selectedCategory: category)
                     }
-                }
+                })
             }
             .onAppear {
                 self.didAppear?(self)
