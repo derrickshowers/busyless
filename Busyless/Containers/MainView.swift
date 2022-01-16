@@ -59,7 +59,7 @@ struct MainView: View {
             // showOnboardingIfNeeded()
         }.sheet(isPresented: $isOnboardingPresented) {
             InitialOnboardingView()
-        }
+        }.navigationViewStyle(.stack)
     }
 
     // MARK: - Private Methods
