@@ -16,10 +16,10 @@ struct LogView: View {
 
     // MARK: State
 
-    @State var isAddNewActivityViewPresented = false
-    @State var isCategorySelectionViewPresented = false
-    @State var showOnlyUncategorizedActivities = false
-    @State var isOnboardingPresented = false
+    @State private var isAddNewActivityViewPresented = false
+    @State private var isCategorySelectionViewPresented = false
+    @State private var showOnlyUncategorizedActivities = false
+    @State private var isOnboardingPresented = false
 
     @State private var selections = Set<Activity>()
     @State private var editMode: EditMode = .inactive
@@ -139,7 +139,9 @@ struct LogView: View {
                 }.sheet(isPresented: $isAddNewActivityViewPresented, onDismiss: {
                     selections.removeAll()
                 }, content: {
-                    AddNewActivityView(activity: selections.first) { isAddNewActivityViewPresented = false }
+                    if let activity = selections.first {
+                        viewModel.viewForAddActivityActivity(activity)
+                    }
                 }).sheet(isPresented: $isCategorySelectionViewPresented, onDismiss: {
                     selections.removeAll()
                 }, content: {
@@ -182,7 +184,7 @@ extension LogView {
 extension LogView {
     static func forTesting() -> LogView {
         let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
-        let mockViewModel = LogViewModel(dataStore: mockDataStore)
+        let mockViewModel = LogViewModel(dataStore: mockDataStore) { _ in AddNewActivityView.forTesting() }
         return Self(viewModel: mockViewModel)
     }
 }

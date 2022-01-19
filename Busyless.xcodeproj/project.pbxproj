@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70A516362797B549005B37F8 /* AddNewActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */; };
 		70D2E7CE2792188100CD1183 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2E7CD2792188100CD1183 /* Date+.swift */; };
 		70D7150927935FAF00590034 /* ActivityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150827935FAF00590034 /* ActivityRow.swift */; };
 		70D7150B27935FD800590034 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150A27935FD800590034 /* ActionBar.swift */; };
@@ -174,6 +175,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityViewModel.swift; sourceTree = "<group>"; };
 		70D2E7CD2792188100CD1183 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		70D7150827935FAF00590034 /* ActivityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRow.swift; sourceTree = "<group>"; };
 		70D7150A27935FD800590034 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
@@ -320,9 +322,10 @@
 		70FEF35A278F602E0013630C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				70E4215C279113C600945F9F /* ViewModelFactory.swift */,
+				70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */,
 				70FEF35B278F60620013630C /* LogViewModel.swift */,
 				70E4215E2791194D00945F9F /* MainViewModel.swift */,
+				70E4215C279113C600945F9F /* ViewModelFactory.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -954,6 +957,7 @@
 				E70A8987259969E7009EF078 /* InitialOnboardingView.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,
+				70A516362797B549005B37F8 /* AddNewActivityViewModel.swift in Sources */,
 				E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */,
 				E7947FC524DF7CD5006B7859 /* BusylessApp.swift in Sources */,
 				E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */,

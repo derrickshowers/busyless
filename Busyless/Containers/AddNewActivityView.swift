@@ -13,12 +13,15 @@ import os
 
 struct AddNewActivityView: View {
 
-    // MARK: - Public Properties
+    // MARK: - Properties
 
-    let activity: Activity?
-    let onComplete: () -> Void
+    @ObservedObject private var viewModel: AddNewActivityViewModel
 
-    // MARK: - Private Properties
+    // MARK: - Environment
+
+    @Environment(\.dismiss) private var dismiss
+
+    // MARK: - State
 
     @State private var name: String
     @State private var category: BLCategory?
@@ -27,37 +30,29 @@ struct AddNewActivityView: View {
     @State private var createdAt: Date
     @State private var notes: String
 
-    @Environment(\.managedObjectContext)
-    private var managedObjectContext
-
     @FocusState private var activityNameFocused: Bool?
 
-    private var isEditingExistingActivity: Bool
+    private var isEditingExistingActivity: Bool = false
 
     private var readyToSave: Bool {
         return !name.isEmpty && (hoursDuration != 0 || minutesDuration != 0)
     }
 
-    // MARK: - Lifecycle
+    // MARK: - Initialization
 
-    init(activity: Activity? = nil,
-         preselectedCategory: BLCategory? = nil,
-         onComplete: @escaping () -> Void) {
-        self.activity = activity
-        self.isEditingExistingActivity = activity != nil
-        self.onComplete = onComplete
-        _name = State(initialValue: activity?.name ?? "")
-        _category = State(initialValue: activity?.category ?? preselectedCategory)
-        _createdAt = State(initialValue: activity?.createdAt ?? Date())
-        _notes = State(initialValue: activity?.notes ?? "")
+    init(viewModel: AddNewActivityViewModel) {
+        self.viewModel = viewModel
 
-        let calculatedDuration = activity?.duration.asHoursAndMinutes
-        _hoursDuration = State(initialValue: calculatedDuration?.hours ?? 0)
-        _minutesDuration = State(initialValue: calculatedDuration?.minutes ?? 30)
+        let calculatedDuration = viewModel.activity.duration.asHoursAndMinutes
+        _name = State(initialValue: viewModel.activity.name ?? "")
+        _category = State(initialValue: viewModel.activity.category)
+        _createdAt = State(initialValue: viewModel.activity.createdAt ?? Date())
+        _notes = State(initialValue: viewModel.activity.notes ?? "")
+        _hoursDuration = State(initialValue: calculatedDuration.hours)
+        _minutesDuration = State(initialValue: calculatedDuration.minutes)
     }
 
     var body: some View {
-        NavigationView {
             Form {
                 Section(header: Spacer()) {
                     TextField("Activity Name", text: $name)
@@ -92,27 +87,28 @@ struct AddNewActivityView: View {
                     TextEditor(text: $notes)
                 }
             }
+            .navigationBarTitleDisplayMode(.automatic)
             .navigationBarTitle(isEditingExistingActivity ? "Edit Activity" : "Log New Activity")
+            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                    activityNameFocused = name.isEmpty
+                }
+            }
             .navigationBarItems(leading:
                 Button(action: {
-                    onComplete()
+                    dismiss()
                 }, label: {
                     Text("Cancel")
                 }), trailing:
                 Button(action: {
-                    self.addActivity()
+                    //self.addActivity()
                     self.donateAddNewActivityIntent()
-                    onComplete()
+                    //onComplete()
                 }, label: {
                     Text("Done")
                 }).disabled(!readyToSave))
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                activityNameFocused = activity?.name == nil
-            }
-        }
+
     }
 
     // MARK: - Private Methods
@@ -131,26 +127,33 @@ struct AddNewActivityView: View {
 
 extension AddNewActivityView {
 
-    private func addActivity() {
-        let activity = self.activity ?? Activity(context: managedObjectContext)
-        activity.name = name
-        activity.category = category
-        activity.duration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
-        activity.notes = notes
-        activity.createdAt = createdAt
-        Activity.save(with: managedObjectContext)
+    // TODO: Move to view model
+//    private func addActivity() {
+//        let activity = self.activity ?? Activity(context: managedObjectContext)
+//        activity.name = name
+//        activity.category = category
+//        activity.duration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
+//        activity.notes = notes
+//        activity.createdAt = createdAt
+//        Activity.save(with: managedObjectContext)
+//    }
+}
+
+extension AddNewActivityView {
+    static func forTesting() -> AddNewActivityView {
+        let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
+        let mockViewModel = AddNewActivityViewModel(dataStore: mockDataStore)
+        return Self(viewModel: mockViewModel)
     }
 }
 
 struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let activity = Activity.mockActivity()
         return Group {
-            AddNewActivityView { }
-            AddNewActivityView(activity: activity) { }
+            AddNewActivityView.forTesting()
+            AddNewActivityView.forTesting()
                 .environment(\.colorScheme, .dark)
 
-        }.environment(\.managedObjectContext, context)
+        }
     }
 }

@@ -9,9 +9,11 @@
 import Foundation
 
 class MainViewModel: ObservableObject {
+    let addNewActivityView: AddNewActivityView
     let logView: LogView
 
-    init(logView: LogView) {
+    init(addNewActivityView: AddNewActivityView, logView: LogView) {
+        self.addNewActivityView = addNewActivityView
         self.logView = logView
     }
 }

@@ -49,9 +49,9 @@ struct MainView: View {
                     isAddNewActivityPresented.toggle()
                 }.padding(-15)
             }.sheet(isPresented: $isAddNewActivityPresented) {
-                AddNewActivityView(activity: nil) {
-                    isAddNewActivityPresented = false
-                }.environment(\.managedObjectContext, managedObjectContext)
+                NavigationView {
+                    viewModel.addNewActivityView
+                }
             }
         }.onAppear {
             // TODO: Cleanup onboarding and re-add
@@ -80,8 +80,9 @@ struct MainView: View {
 extension MainView {
     static func forTesting() -> MainView {
         let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
-        let mockLogViewModel = LogViewModel(dataStore: mockDataStore)
-        let mockViewModel = MainViewModel(logView: LogView(viewModel: mockLogViewModel))
+        let mockLogViewModel = LogViewModel(dataStore: mockDataStore) { _ in AddNewActivityView.forTesting() }
+        let mockViewModel = MainViewModel(addNewActivityView: AddNewActivityView.forTesting(),
+                                          logView: LogView(viewModel: mockLogViewModel))
         return Self(viewModel: mockViewModel)
     }
 }
