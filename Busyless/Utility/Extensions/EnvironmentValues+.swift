@@ -6,8 +6,8 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct DateStoreKey: EnvironmentKey {
     static var defaultValue: ObservedObject<DataStore>?

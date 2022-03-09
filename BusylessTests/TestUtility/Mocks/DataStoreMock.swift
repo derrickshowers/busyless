@@ -6,14 +6,13 @@
 //  Copyright © 2021 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
-import ViewInspector
-import CoreData
 @testable import Busyless
 @testable import BusylessDataLayer
+import CoreData
+import SwiftUI
+import ViewInspector
 
 class DataStoreMock {
-
     let dataStore: DataStore
     let context: NSManagedObjectContext
     var dataStoreObservable: ObservedObject<DataStore> {

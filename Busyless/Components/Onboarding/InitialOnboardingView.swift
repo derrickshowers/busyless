@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct InitialOnboardingView: View {
-
     // MARK: - Lifecycle
 
     var body: some View {
@@ -26,51 +25,63 @@ struct InitialOnboardingView: View {
 
 private struct OnboardingStep1: View {
     var body: some View {
-        OnboardingContent(imageName: "LogoWithBackground",
-                          headline: "Welcome To Busyless!",
-                          summary: "InitialOnboardingStep1Summary",
-                          isLogo: true)
+        OnboardingContent(
+            imageName: "LogoWithBackground",
+            headline: "Welcome To Busyless!",
+            summary: "InitialOnboardingStep1Summary",
+            isLogo: true
+        )
     }
 }
 
 private struct OnboardingStep2: View {
     var body: some View {
-        OnboardingContent(imageName: "Options",
-                          headline: "Today View",
-                          summary: "InitialOnboardingStep2Summary")
+        OnboardingContent(
+            imageName: "Options",
+            headline: "Today View",
+            summary: "InitialOnboardingStep2Summary"
+        )
     }
 }
 
 private struct OnboardingStep3: View {
     var body: some View {
-        OnboardingContent(imageName: "PersonalFinance",
-                          headline: "What’s the Point?",
-                          summary: "InitialOnboardingStep3Summary")
+        OnboardingContent(
+            imageName: "PersonalFinance",
+            headline: "What’s the Point?",
+            summary: "InitialOnboardingStep3Summary"
+        )
     }
 }
 
 private struct OnboardingStep4: View {
     var body: some View {
-        OnboardingContent(imageName: "TimeManagement",
-                          headline: "How Much Time Do I Have?",
-                          summary: "InitialOnboardingStep4Summary")
+        OnboardingContent(
+            imageName: "TimeManagement",
+            headline: "How Much Time Do I Have?",
+            summary: "InitialOnboardingStep4Summary"
+        )
     }
 }
 
 private struct OnboardingStep5: View {
     var body: some View {
-        OnboardingContent(imageName: "MobileShortcuts",
-                          headline: "Entering Activities",
-                          summary: "InitialOnboardingStep5Summary")
+        OnboardingContent(
+            imageName: "MobileShortcuts",
+            headline: "Entering Activities",
+            summary: "InitialOnboardingStep5Summary"
+        )
     }
 }
 
 private struct OnboardingStep6: View {
     var body: some View {
-        OnboardingContent(imageName: "Meditation",
-                          headline: "Go Lead a Busyless Life!",
-                          summary: "InitialOnboardingStep6Summary",
-                          dismissButtonText: "I’m ready!")
+        OnboardingContent(
+            imageName: "Meditation",
+            headline: "Go Lead a Busyless Life!",
+            summary: "InitialOnboardingStep6Summary",
+            dismissButtonText: "I’m ready!"
+        )
     }
 }
 

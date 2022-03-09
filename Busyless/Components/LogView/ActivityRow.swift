@@ -6,9 +6,9 @@
 //  Copyright © 2022 Derrick Showers. All rights reserved.
 //
 
+import BusylessDataLayer
 import Foundation
 import SwiftUI
-import BusylessDataLayer
 
 struct ActivityRow: View {
     let activity: Activity
@@ -61,9 +61,11 @@ struct Activity_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let activity = Activity.mockActivity(withContext: context)
-        let activityRow = ActivityRow(activity: activity,
-                                      isEditing: false,
-                                      action: { })
+        let activityRow = ActivityRow(
+            activity: activity,
+            isEditing: false,
+            action: {}
+        )
         return Group {
             activityRow
             activityRow

@@ -6,12 +6,11 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(UserConfig)
-public class UserConfig: NSManagedObject {
-}
+public class UserConfig: NSManagedObject {}
 
 // MARK: - Core Data
 

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct DurationPill: View {
-
     // MARK: - Public Properties
 
     let dailyBudgetDuration: TimeInterval
@@ -47,12 +46,18 @@ struct DurationPill: View {
 struct DurationPill_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            DurationPill(dailyBudgetDuration: TimeInterval.oneHour,
-                         timeSpentDuration: TimeInterval.oneHour).padding()
-            DurationPill(dailyBudgetDuration: TimeInterval.oneHour,
-                         timeSpentDuration: TimeInterval.oneHour * 2).padding()
-            DurationPill(dailyBudgetDuration: TimeInterval.oneHour * 2,
-                         timeSpentDuration: TimeInterval.oneHour).padding()
+            DurationPill(
+                dailyBudgetDuration: TimeInterval.oneHour,
+                timeSpentDuration: TimeInterval.oneHour
+            ).padding()
+            DurationPill(
+                dailyBudgetDuration: TimeInterval.oneHour,
+                timeSpentDuration: TimeInterval.oneHour * 2
+            ).padding()
+            DurationPill(
+                dailyBudgetDuration: TimeInterval.oneHour * 2,
+                timeSpentDuration: TimeInterval.oneHour
+            ).padding()
         }
     }
 }

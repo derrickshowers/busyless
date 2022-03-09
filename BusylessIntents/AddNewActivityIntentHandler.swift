@@ -6,8 +6,8 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import Intents
 import BusylessDataLayer
+import Intents
 import os
 
 class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
@@ -17,8 +17,14 @@ class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
         completion(INStringResolutionResult.success(with: intent.name ?? "Unknown Activity"))
     }
 
-    func resolveDurationInMinutes(for intent: AddNewActivityIntent, with completion: @escaping (AddNewActivityDurationInMinutesResolutionResult) -> Void) {
-        completion(AddNewActivityDurationInMinutesResolutionResult.success(with: intent.durationInMinutes?.intValue ?? 0))
+    func resolveDurationInMinutes(
+        for intent: AddNewActivityIntent,
+        with completion: @escaping (AddNewActivityDurationInMinutesResolutionResult) -> Void
+    ) {
+        completion(
+            AddNewActivityDurationInMinutesResolutionResult
+                .success(with: intent.durationInMinutes?.intValue ?? 0)
+        )
     }
 
     func confirm(intent: AddNewActivityIntent, completion: @escaping (AddNewActivityIntentResponse) -> Void) {
@@ -33,7 +39,10 @@ class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
         saveNewActivity(withName: name, durationInMinutes: durationInMinutes)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             os_log("Calling intent completion")
-            completion(AddNewActivityIntentResponse.success(name: name, durationInMinutes: NSNumber(value: durationInMinutes)))
+            completion(
+                AddNewActivityIntentResponse
+                    .success(name: name, durationInMinutes: NSNumber(value: durationInMinutes))
+            )
         }
     }
 }
@@ -41,7 +50,6 @@ class AddNewActivityIntentHandler: NSObject, AddNewActivityIntentHandling {
 // MARK: - Core Data
 
 extension AddNewActivityIntentHandler {
-
     private func saveNewActivity(withName name: String, durationInMinutes: Int) {
         os_log("Attempting to save")
         let moc = persistenceController.container.viewContext

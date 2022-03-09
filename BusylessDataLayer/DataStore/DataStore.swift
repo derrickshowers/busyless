@@ -6,12 +6,11 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import Combine
+import CoreData
+import Foundation
 
 public class DataStore: ObservableObject {
-
     public let context: NSManagedObjectContext
     @Published public var categoryStore: CategoryStore
     @Published public var activityStore: ActivityStore
@@ -26,13 +25,13 @@ public class DataStore: ObservableObject {
         userConfigStore = UserConfigStore(managedObjectContext: managedObjectContext)
 
         // Necessary to bubble up changes for published properties in individual data stores.
-        cancellables.append(categoryStore.objectWillChange.sink(receiveValue: { [weak self] (_) in
+        cancellables.append(categoryStore.objectWillChange.sink(receiveValue: { [weak self] _ in
             self?.objectWillChange.send()
         }))
-        cancellables.append(activityStore.objectWillChange.sink(receiveValue: { [weak self] (_) in
+        cancellables.append(activityStore.objectWillChange.sink(receiveValue: { [weak self] _ in
             self?.objectWillChange.send()
         }))
-        cancellables.append(userConfigStore.objectWillChange.sink(receiveValue: { [weak self] (_) in
+        cancellables.append(userConfigStore.objectWillChange.sink(receiveValue: { [weak self] _ in
             self?.objectWillChange.send()
         }))
     }
@@ -56,7 +55,6 @@ public class DataStore: ObservableObject {
 }
 
 extension DataStore {
-
     private enum DictionaryKeyConstants {
         static let personalContextCategory = "personal"
         static let professionalContextCategory = "profressional"
@@ -65,7 +63,8 @@ extension DataStore {
         static let meetingsCategory = "meetings"
     }
 
-    private func createMockContextCategories(managedObjectContext moc: NSManagedObjectContext) -> [String: ContextCategory] {
+    private func createMockContextCategories(managedObjectContext moc: NSManagedObjectContext)
+        -> [String: ContextCategory] {
         let personalContextCategory = ContextCategory(context: moc)
         personalContextCategory.name = "Personal"
         let professionalContextCategory = ContextCategory(context: moc)
@@ -77,8 +76,10 @@ extension DataStore {
         ]
     }
 
-    private func createMockCategories(with contextCategories: [String: ContextCategory],
-                                      managedObjectContext moc: NSManagedObjectContext) -> [String: BLCategory] {
+    private func createMockCategories(
+        with contextCategories: [String: ContextCategory],
+        managedObjectContext moc: NSManagedObjectContext
+    ) -> [String: BLCategory] {
         let meditationCategory = BLCategory(context: moc)
         meditationCategory.name = "Meditation"
         meditationCategory.dailyBudgetDuration = 1800
@@ -101,8 +102,10 @@ extension DataStore {
         ]
     }
 
-    private func createMockActivities(with categories: [String: BLCategory],
-                                      managedObjectContext moc: NSManagedObjectContext) {
+    private func createMockActivities(
+        with categories: [String: BLCategory],
+        managedObjectContext moc: NSManagedObjectContext
+    ) {
         let meditationActivity = Activity(context: moc)
         meditationActivity.name = "10% Happier Daily Meditation"
         meditationActivity.createdAt = Date()

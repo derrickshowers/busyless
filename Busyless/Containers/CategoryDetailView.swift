@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct CategoryDetailView: View {
-
     // MARK: - Constants
 
     static let durationSliderHeight: CGFloat = 325
@@ -46,7 +45,7 @@ struct CategoryDetailView: View {
     }
 
     private var timeLeftInCurrentCategory: TimeInterval {
-        return duration - activities.map({$0.duration}).reduce(0, +)
+        return duration - activities.map { $0.duration }.reduce(0, +)
     }
 
     private var dateFormatter: DateFormatter {
@@ -72,9 +71,11 @@ struct CategoryDetailView: View {
                     if overviewType == .day {
                         HStack {
                             DurationSlider(duration: $duration, maxDuration: 8 * TimeInterval.oneHour)
-                                .frame(maxWidth: CategoryDetailView.durationSliderHeight,
-                                       minHeight: CategoryDetailView.durationSliderHeight,
-                                       maxHeight: CategoryDetailView.durationSliderHeight)
+                                .frame(
+                                    maxWidth: CategoryDetailView.durationSliderHeight,
+                                    minHeight: CategoryDetailView.durationSliderHeight,
+                                    maxHeight: CategoryDetailView.durationSliderHeight
+                                )
                                 .padding(.vertical, 10)
                         }
                         .frame(maxWidth: .infinity)
@@ -90,7 +91,6 @@ struct CategoryDetailView: View {
                             } else {
                                 Text(category.timeSpentThisMonth.hoursMinutesString).bold()
                             }
-
                         }
                         if overviewType == .day {
                             Divider()
@@ -104,7 +104,9 @@ struct CategoryDetailView: View {
                         }
                         Divider()
                         HStack {
-                            NavigationLink(destination: ContextCategorySelection(selectedContextCategory: $contextCategory)) {
+                            NavigationLink(
+                                destination: ContextCategorySelection(selectedContextCategory: $contextCategory)
+                            ) {
                                 Text("Context Category")
                                     .foregroundColor(Color(UIColor.label))
                                 Spacer()
@@ -181,7 +183,7 @@ struct CategoryDetailView: View {
                         .foregroundColor(Color(UIColor.systemGray))
                         Divider()
                     }.padding(.leading, 15)
-                    .padding(.bottom, 350)
+                        .padding(.bottom, 350)
                 }
             }
             .background(Color(UIColor.systemGray6))
@@ -193,7 +195,6 @@ struct CategoryDetailView: View {
             category.contextCategory = contextCategory
             category.notes = notes
             BLCategory.save(with: managedObjectContext)
-
         }
     }
 }

@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct MainView: View {
-
     // MARK: - Private Properties
 
     @ObservedObject private var viewModel: MainViewModel
@@ -39,7 +38,7 @@ struct MainView: View {
             TabView {
                 viewModel.logView.tabItem { Label("Activities", systemImage: "list.dash") }
                 DayView().tabItem { Label("Day", systemImage: "sun.min") }
-                Text("New").tabItem { }
+                Text("New").tabItem {}
                 MonthView().tabItem { Label("Month", systemImage: "calendar") }
                 SettingsView().tabItem { Label("Settings", systemImage: "gear") }
             }

@@ -6,13 +6,12 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import UIKit
-import CoreData
 import BusylessDataLayer
+import CoreData
 import os
+import UIKit
 
 class ExportManager {
-
     // MARK: - Private Properties
 
     private let managedObjectContext: NSManagedObjectContext
@@ -42,7 +41,7 @@ class ExportManager {
     // MARK: - Private Methods
 
     private func fetchData() {
-        self.fetchedActivities = try? managedObjectContext.fetch(Activity.allActivitiesFetchRequest)
+        fetchedActivities = try? managedObjectContext.fetch(Activity.allActivitiesFetchRequest)
     }
 
     private func saveToTemporaryFile(exportString: String) -> URL {
@@ -50,7 +49,7 @@ class ExportManager {
         FileManager.default.createFile(atPath: filePath, contents: Data(), attributes: nil)
 
         guard let fileHandle = try? FileHandle(forWritingTo: exportFileURL as URL),
-            let csvData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false) else {
+              let csvData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false) else {
             return exportFileURL
         }
 
@@ -79,7 +78,8 @@ class ExportManager {
             let activityCategory = activity.category?.name ?? "Uncategorized"
             let activityDuration = activity.duration / TimeInterval.oneHour
             let activityNotes = activity.notes ?? ""
-            export += "\"\(activityCreatedDate)\",\"\(activityName)\",\"\(activityCategory)\",\"\(activityDuration)\",\"\(activityNotes)\"\n"
+            export +=
+                "\"\(activityCreatedDate)\",\"\(activityName)\",\"\(activityCategory)\",\"\(activityDuration)\",\"\(activityNotes)\"\n"
         }
 
         os_log("About to export the following CSV: %s", export)

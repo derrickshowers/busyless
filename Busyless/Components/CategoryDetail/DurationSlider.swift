@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct DurationSlider: View {
-
     // MARK: - Constants
 
     private static let knobDiameter: CGFloat = 35
@@ -45,11 +44,13 @@ struct DurationSlider: View {
                     .frame(width: geometry.size.width, height: geometry.size.width)
                     .rotationEffect(.degrees(-90))
 
-                Knob(angle: angle,
-                     radius: DurationSlider.knobDiameter / 2,
-                     geometry: geometry,
-                     containerRadius: geometry.size.width / 2,
-                     onChange: change)
+                Knob(
+                    angle: angle,
+                    radius: DurationSlider.knobDiameter / 2,
+                    geometry: geometry,
+                    containerRadius: geometry.size.width / 2,
+                    onChange: change
+                )
 
                 VStack {
                     Text(duration.hoursMinutesString)
@@ -108,7 +109,7 @@ struct DurationSlider: View {
     }
 
     private func updateDuration(to duration: TimeInterval) {
-        guard duration <= maxDuration && duration >= 0 else {
+        guard duration <= maxDuration, duration >= 0 else {
             return
         }
         self.duration = duration
@@ -141,18 +142,18 @@ struct Knob: View {
             .offset(y: -containerRadius)
             .rotationEffect(Angle.degrees(Double(angle)))
             .shadow(color: Color.black.opacity(0.25), radius: 1, x: 0, y: 0)
-            .gesture(DragGesture(minimumDistance: 0.0).onChanged({ value in
+            .gesture(DragGesture(minimumDistance: 0.0).onChanged { value in
                 self.onChange(value.location)
-            }))
+            })
     }
 }
 
 #if DEBUG
-struct DurationSlider_Previews: PreviewProvider {
-     static var previews: some View {
-         StatefulPreviewWrapper(0) {
-             DurationSlider(duration: $0, maxDuration: TimeInterval.oneHour * 10).frame(maxWidth: 350)
-         }
-     }
- }
+    struct DurationSlider_Previews: PreviewProvider {
+        static var previews: some View {
+            StatefulPreviewWrapper(0) {
+                DurationSlider(duration: $0, maxDuration: TimeInterval.oneHour * 10).frame(maxWidth: 350)
+            }
+        }
+    }
 #endif

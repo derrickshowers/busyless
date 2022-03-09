@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct CategorySelection: View {
-
     // MARK: - Public Properties
 
     @Binding var selectedCategory: BLCategory?
@@ -31,7 +30,7 @@ struct CategorySelection: View {
             VStack {
                 List {
                     Section {
-                        ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { (category) in
+                        ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { category in
                             Button(action: {
                                 self.selectedCategory = category
                                 self.presentationMode.wrappedValue.dismiss()

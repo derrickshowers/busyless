@@ -6,8 +6,8 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 struct FirstResponderTextField: UIViewRepresentable {
     private var textField = UITextField()
@@ -18,8 +18,8 @@ struct FirstResponderTextField: UIViewRepresentable {
 
     init(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>, onCommit: (() -> Void)? = nil) {
         self.placeholder = placeholder
-        self._text = text
-        self._isFirstResponder = isFirstResponder
+        _text = text
+        _isFirstResponder = isFirstResponder
         self.onCommit = onCommit
     }
 

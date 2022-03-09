@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import XCTest
 @testable import Busyless
+import XCTest
 
 class TimeIntervalTests: XCTestCase {
-
     func testConversionToHoursAndMinutes() throws {
         var duration = TimeInterval(1 * TimeInterval.oneHour)
         var durationInHoursAndMinutes = duration.asHoursAndMinutes

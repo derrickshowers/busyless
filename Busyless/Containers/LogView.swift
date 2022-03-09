@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct LogView: View {
-
     // MARK: - Properties
 
     @ObservedObject private var viewModel: LogViewModel
@@ -47,11 +46,11 @@ struct LogView: View {
             isCategorySelectionViewPresented.toggle()
         }
         Button("Duration") {}
-        .contextMenu {
-            Button("15 mins") { viewModel.set(durationInHours: 0.25, for: activity) }
-            Button("30 mins") { viewModel.set(durationInHours: 0.5, for: activity) }
-            Button("1 hour") { viewModel.set(durationInHours: 1.0, for: activity)}
-        }
+            .contextMenu {
+                Button("15 mins") { viewModel.set(durationInHours: 0.25, for: activity) }
+                Button("30 mins") { viewModel.set(durationInHours: 0.5, for: activity) }
+                Button("1 hour") { viewModel.set(durationInHours: 1.0, for: activity) }
+            }
         Button("Edit Multiple...") {
             selections.removeAll()
             selections.insert(activity)
@@ -61,8 +60,11 @@ struct LogView: View {
 
     private var uncategorizedBanner: some View {
         HStack {
-            Text(showOnlyUncategorizedActivities ? "Viewing uncategorized activities." : "You have uncategorized activities.")
-                .font(Font.callout).bold()
+            Text(
+                showOnlyUncategorizedActivities ? "Viewing uncategorized activities." :
+                    "You have uncategorized activities."
+            )
+            .font(Font.callout).bold()
             Spacer()
             Text(showOnlyUncategorizedActivities ? "see all" : "tap to view")
                 .font(Font.caption).bold()
@@ -90,9 +92,12 @@ struct LogView: View {
                         ForEach(viewModel.activities, id: \.self) { (section: [Activity]) in
                             Section {
                                 ForEach(section, id: \.self) { (activity: Activity) in
-                                    if !showOnlyUncategorizedActivities || (showOnlyUncategorizedActivities && activity.category == nil) {
-                                        ActivityRow(activity: activity,
-                                                    isEditing: editMode.isEditing) {
+                                    if !showOnlyUncategorizedActivities ||
+                                        (showOnlyUncategorizedActivities && activity.category == nil) {
+                                        ActivityRow(
+                                            activity: activity,
+                                            isEditing: editMode.isEditing
+                                        ) {
                                             selections.insert(activity)
                                             isAddNewActivityViewPresented.toggle()
                                         }.contextMenu { self.actionsContextMenu(for: activity) }

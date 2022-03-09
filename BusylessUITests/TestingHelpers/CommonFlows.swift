@@ -9,7 +9,6 @@
 import XCTest
 
 struct CommonFlows {
-
     static func relaunch(testingApp: XCUIApplication) {
         testingApp.terminate()
         testingApp.activate()

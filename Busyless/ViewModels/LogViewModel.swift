@@ -6,20 +6,19 @@
 //  Copyright © 2022 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import BusylessDataLayer
 import CoreData
+import Foundation
 import SwiftUI
 
 class LogViewModel: ObservableObject {
-
     // MARK: - Properties
 
     @Published var activities: [[Activity]]
     @AppStorage("shouldShowLogOnboarding") var shouldShowLogOnboarding = true
 
     var containsUncategorizedActivities: Bool {
-        let uncategorizedActivityCount = activities.flatMap({ $0 }).reduce(0) {
+        let uncategorizedActivityCount = activities.flatMap { $0 }.reduce(0) {
             $0 + ($1.category == nil ? 1 : 0)
         }
         return uncategorizedActivityCount > 0
@@ -31,7 +30,7 @@ class LogViewModel: ObservableObject {
 
     init(dataStore: DataStore) {
         self.dataStore = dataStore
-        self.activities = dataStore.activityStore.allActivitiesGroupedByDate
+        activities = dataStore.activityStore.allActivitiesGroupedByDate
     }
 
     // MARK: - Public Methods
@@ -51,7 +50,7 @@ class LogViewModel: ObservableObject {
 
     func duplicateActivity(_ activity: Activity) {
         _ = activity.copy()
-        self.saveAll()
+        saveAll()
     }
 
     func sectionHeader(for section: [Activity]) -> String {

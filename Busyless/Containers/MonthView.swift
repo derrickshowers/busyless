@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct MonthView: View {
-
     // MARK: - Private Properties
 
     @Environment(\.managedObjectContext)
@@ -37,7 +36,10 @@ struct MonthView: View {
                     VStack {
                         ForEach(categories, id: \.self) { category in
                             if category.trackMonthly {
-                                NavigationLink(destination: CategoryDetailView(category: category, overviewType: .month)) {
+                                NavigationLink(destination: CategoryDetailView(
+                                    category: category,
+                                    overviewType: .month
+                                )) {
                                     HStack {
                                         Text(category.name ?? "Uncategorized")
                                         Spacer()

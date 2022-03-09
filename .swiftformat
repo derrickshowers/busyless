@@ -1,0 +1,11 @@
+--indentcase true
+--patternlet inline
+--stripunusedargs closure-only
+--maxwidth 120
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--wrapconditions after-first
+--enable wrapEnumCases,wrapSwitchCases
+--disable initCoderUnavailable,wrapMultilineStatementBraces
+--exclude Pods,app/resources,vendor

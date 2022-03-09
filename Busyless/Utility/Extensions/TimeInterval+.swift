@@ -9,7 +9,6 @@
 import Foundation
 
 extension TimeInterval {
-
     static let oneHour: TimeInterval = 3600
     static let oneMinute: TimeInterval = 60
 

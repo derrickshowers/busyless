@@ -9,7 +9,6 @@
 import XCTest
 
 class BusylessUITests: XCTestCase {
-
     let app = XCUIApplication()
 
     override func setUp() {
