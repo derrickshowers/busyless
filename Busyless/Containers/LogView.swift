@@ -127,6 +127,9 @@ struct LogView: View {
                         }, onEditCategory: {
                             isCategorySelectionViewPresented.toggle()
                             editMode = .inactive
+                        }, onRoundTime: {
+                            selections.forEach { viewModel.roundTime($0) }
+                            editMode = .inactive
                         }, onCancel: {
                             editMode = .inactive
                         }).padding(.bottom, 10)
