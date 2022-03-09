@@ -12,6 +12,7 @@ import SwiftUI
 struct ActionBar: View {
     let onDelete: () -> Void
     let onEditCategory: () -> Void
+    let onRoundTime: () -> Void
     let onCancel: () -> Void
     var body: some View {
         HStack {
@@ -36,6 +37,16 @@ struct ActionBar: View {
             }
             Spacer()
             Button {
+                onRoundTime()
+            } label: {
+                VStack {
+                    Image(systemName: "clock.badge.checkmark.fill")
+                    Spacer()
+                    Text("Round Time").font(.caption2)
+                }
+            }
+            Spacer()
+            Button {
                 onCancel()
             } label: {
                 VStack {
@@ -45,7 +56,7 @@ struct ActionBar: View {
                 }
             }
         }
-        .padding(.horizontal, 50)
+        .padding(.horizontal, 20)
         .padding(.vertical, 10)
         .foregroundColor(.white)
         .background(Color.mainColor)
@@ -55,7 +66,7 @@ struct ActionBar: View {
 
 struct ActionBar_Previews: PreviewProvider {
     static var previews: some View {
-        let actionbar = ActionBar {} onEditCategory: {} onCancel: {}
+        let actionbar = ActionBar {} onEditCategory: {} onRoundTime: {} onCancel: {}
         return Group {
             actionbar
             actionbar.environment(\.colorScheme, .dark)
