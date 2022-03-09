@@ -21,7 +21,7 @@ struct AddNewActivityView: View {
 
     // MARK: - State
 
-    @FocusState private var activityNameFocused: Bool?
+    @FocusState private var activityNameFocused: Bool
 
     // MARK: - Views
 
@@ -38,6 +38,14 @@ struct AddNewActivityView: View {
         }.disabled(!viewModel.readyToSave)
     }
 
+    private func identifierIcon(systemName: String) -> some View {
+        Image(systemName: systemName)
+            .foregroundColor(.white)
+            .padding(5)
+            .background(Color.mainColor)
+            .cornerRadius(10)
+    }
+
     private func durationStepper(with value: Binding<Int>, suffix: String) -> some View {
         Stepper("\(value.wrappedValue) \(suffix)", value: value, in: 0...23).fixedSize()
     }
@@ -48,21 +56,32 @@ struct AddNewActivityView: View {
         self.viewModel = viewModel
     }
 
+    // MARK: - Lifecycle
+
     var body: some View {
+        VStack {
             Form {
-                Section(header: Spacer()) {
-                    TextField("Activity Name", text: $viewModel.name)
-                        .focused($activityNameFocused, equals: true)
-                        .autocapitalization(.words)
+                Section(header: TextField("Activity Name", text: $viewModel.name)
+                            .focused($activityNameFocused, equals: true)
+                            .submitLabel(.done)
+                            .autocapitalization(.words)
+                            .font(.title)
+                            .textCase(.none)
+                            .padding(.bottom, 10)
+                            .foregroundColor(Color.mainColor)) {
                     NavigationLink(destination: CategorySelection(selectedCategory: $viewModel.category)) {
-                        Text("Category").bold()
+                        identifierIcon(systemName: "folder")
+                        Text("Category")
                         Spacer()
                         Text("\($viewModel.category.wrappedValue?.name ?? "")")
-                            .foregroundColor(.gray)
                             .lineLimit(1)
                     }
-                    HStack(alignment: .top) {
-                        Text("Duration").bold()
+                }
+
+                Section {
+                    HStack {
+                        identifierIcon(systemName: "clock.arrow.circlepath")
+                        Text("Duration")
                         Spacer()
                         VStack(alignment: .trailing) {
                             durationStepper(with: $viewModel.hoursDuration, suffix: "hrs")
@@ -70,27 +89,38 @@ struct AddNewActivityView: View {
                             durationStepper(with: $viewModel.minutesDuration, suffix: "mins")
                         }
                     }
-                    HStack {
-                        Text("When?").bold()
-                        Spacer()
-                        DatePicker("When?", selection: $viewModel.createdAt)
-                            .datePickerStyle(.compact)
-                            .frame(maxWidth: 250, maxHeight: 25)
-                    }
-
                 }
+
+                Section {
+                    HStack {
+                        identifierIcon(systemName: "calendar")
+                        DatePicker("Date",
+                                   selection: $viewModel.createdAt,
+                                   displayedComponents: .date)
+                    }
+                    HStack {
+                        identifierIcon(systemName: "clock")
+                        DatePicker("Time",
+                                   selection: $viewModel.createdAt,
+                                   displayedComponents: .hourAndMinute)
+                    }
+                }
+
                 Section(header: Text("NOTES")) {
                     TextEditor(text: $viewModel.notes)
                 }
             }
-            .navigationBarTitleDisplayMode(.automatic)
-            .navigationViewStyle(StackNavigationViewStyle())
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                    activityNameFocused = $viewModel.name.wrappedValue.isEmpty
-                }
+
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Log New Activity")
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                activityNameFocused = $viewModel.name.wrappedValue.isEmpty
             }
-            .navigationBarItems(leading: cancelButton, trailing: doneButton)
+        }
+        .navigationBarItems(leading: cancelButton, trailing: doneButton)
     }
 }
 
@@ -105,10 +135,15 @@ extension AddNewActivityView {
 struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
         return Group {
-            AddNewActivityView.forTesting()
-            AddNewActivityView.forTesting()
-                .environment(\.colorScheme, .dark)
-
+            // Wrapped in a ZStack to fix previews bug
+            // See here: https://www.hackingwithswift.com/forums/swiftui/focusstate-breaking-preview/11396
+            ZStack {
+                AddNewActivityView.forTesting()
+            }
+            ZStack {
+                AddNewActivityView.forTesting()
+                    .environment(\.colorScheme, .dark)
+            }
         }
     }
 }
