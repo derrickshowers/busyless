@@ -40,6 +40,9 @@ struct LogView: View {
         Button("Duplicate") {
             viewModel.duplicateActivity(activity)
         }
+        Button("Copy Activity Name") {
+            viewModel.copyName(activity)
+        }
         Button("Edit Category") {
             selections.removeAll()
             selections.insert(activity)
@@ -51,6 +54,9 @@ struct LogView: View {
                 Button("30 mins") { viewModel.set(durationInHours: 0.5, for: activity) }
                 Button("1 hour") { viewModel.set(durationInHours: 1.0, for: activity) }
             }
+        Button("Round Up/Down Time") {
+            viewModel.roundTime(activity)
+        }
         Button("Edit Multiple...") {
             selections.removeAll()
             selections.insert(activity)

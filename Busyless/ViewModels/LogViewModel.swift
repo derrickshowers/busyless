@@ -53,6 +53,15 @@ class LogViewModel: ObservableObject {
         saveAll()
     }
 
+    func copyName(_ activity: Activity) {
+        UIPasteboard.general.string = activity.name
+    }
+
+    func roundTime(_ activity: Activity) {
+        activity.createdAt = activity.createdAt?.round(to: 15, .minute)
+        saveAll()
+    }
+
     func sectionHeader(for section: [Activity]) -> String {
         if let date = section[0].createdAt {
             return date.prettyDate
