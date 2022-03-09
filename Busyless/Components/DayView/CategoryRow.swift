@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct CategoryRow: View {
-
     // MARK: - Public Properties
 
     @ObservedObject var category = BLCategory()
@@ -30,8 +29,10 @@ struct CategoryRow: View {
                 }
             }
             Spacer()
-            DurationPill(dailyBudgetDuration: category.dailyBudgetDuration,
-                         timeSpentDuration: category.timeSpentToday)
+            DurationPill(
+                dailyBudgetDuration: category.dailyBudgetDuration,
+                timeSpentDuration: category.timeSpentToday
+            )
         }
     }
 }

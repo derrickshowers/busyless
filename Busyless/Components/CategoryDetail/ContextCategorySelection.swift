@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct ContextCategorySelection: View {
-
     // MARK: - Public Properties
 
     @Binding var selectedContextCategory: ContextCategory?
@@ -28,7 +27,7 @@ struct ContextCategorySelection: View {
 
     var body: some View {
         List {
-            ForEach(dataStore?.wrappedValue.categoryStore.allContextCategories ?? [], id: \.name) { (contextCategory) in
+            ForEach(dataStore?.wrappedValue.categoryStore.allContextCategories ?? [], id: \.name) { contextCategory in
                 Button(action: {
                     self.selectedContextCategory = contextCategory
                     self.presentationMode.wrappedValue.dismiss()
@@ -54,9 +53,15 @@ struct ContextCategorySelection_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         return Group {
-            ContextCategorySelection(selectedContextCategory: .constant(ContextCategory.mockContextCategory(withContext: context)))
-            ContextCategorySelection(selectedContextCategory: .constant(ContextCategory.mockContextCategory(withContext: context)))
-                .environment(\.colorScheme, .dark)
+            ContextCategorySelection(selectedContextCategory: .constant(
+                ContextCategory
+                    .mockContextCategory(withContext: context)
+            ))
+            ContextCategorySelection(selectedContextCategory: .constant(
+                ContextCategory
+                    .mockContextCategory(withContext: context)
+            ))
+            .environment(\.colorScheme, .dark)
         }.environment(\.managedObjectContext, context)
     }
 }

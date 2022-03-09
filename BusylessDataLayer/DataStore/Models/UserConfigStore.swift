@@ -6,12 +6,11 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import os
 
 public class UserConfigStore: NSObject, ObservableObject {
-
     // MARK: - Constants
 
     static let awakeHourDefault: Int = 7
@@ -48,10 +47,12 @@ public class UserConfigStore: NSObject, ObservableObject {
     // MARK: - Initializer
 
     init(managedObjectContext: NSManagedObjectContext) {
-        allUserConfigsController = NSFetchedResultsController(fetchRequest: UserConfig.allUserConfigsFetchRequest,
-                                                             managedObjectContext: managedObjectContext,
-                                                             sectionNameKeyPath: nil,
-                                                             cacheName: nil)
+        allUserConfigsController = NSFetchedResultsController(
+            fetchRequest: UserConfig.allUserConfigsFetchRequest,
+            managedObjectContext: managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
 
         super.init()
 
@@ -59,7 +60,10 @@ public class UserConfigStore: NSObject, ObservableObject {
 
         do {
             try allUserConfigsController.performFetch()
-            createUserConfigIfNecessary(from: allUserConfigsController.fetchedObjects, managedObjectContext: managedObjectContext)
+            createUserConfigIfNecessary(
+                from: allUserConfigsController.fetchedObjects,
+                managedObjectContext: managedObjectContext
+            )
             awakeTime = allUserConfigsController.fetchedObjects?.first?.awakeTime ?? UserConfigStore.defaultAwakeTime
             sleepTime = allUserConfigsController.fetchedObjects?.first?.sleepTime ?? UserConfigStore.defaultSleepTime
         } catch {
@@ -69,7 +73,10 @@ public class UserConfigStore: NSObject, ObservableObject {
 
     // MARK: - Private Helpers
 
-    private func createUserConfigIfNecessary(from fetchedObjects: [NSFetchRequestResult]?, managedObjectContext: NSManagedObjectContext) {
+    private func createUserConfigIfNecessary(
+        from fetchedObjects: [NSFetchRequestResult]?,
+        managedObjectContext: NSManagedObjectContext
+    ) {
         guard fetchedObjects?.count ?? 0 <= 1 else {
             return
         }
@@ -84,7 +91,6 @@ public class UserConfigStore: NSObject, ObservableObject {
 }
 
 extension UserConfigStore: NSFetchedResultsControllerDelegate {
-
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard let userConfigs = controller.fetchedObjects as? [UserConfig] else {
             return
@@ -98,7 +104,6 @@ extension UserConfigStore: NSFetchedResultsControllerDelegate {
             self.sleepTime = sleepTime
         }
     }
-
 }
 
 private extension Date {

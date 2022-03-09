@@ -6,17 +6,16 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 @objc(BLCategory)
 public class BLCategory: NSManagedObject {
-
     public var timeSpentToday: TimeInterval {
         let activities: Set<Activity>? = self.activities as? Set<Activity>
-        let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> TimeInterval in
+        let calculatedDuration = activities?.reduce(0) { totalDuration, activity -> TimeInterval in
             if let date = activity.createdAt,
-                Calendar.current.isDateInToday(date) {
+               Calendar.current.isDateInToday(date) {
                 return totalDuration + activity.duration
             }
             return totalDuration
@@ -26,7 +25,7 @@ public class BLCategory: NSManagedObject {
 
     public var timeSpentThisMonth: TimeInterval {
         let activities: Set<Activity>? = self.activities as? Set<Activity>
-        let calculatedDuration = activities?.reduce(0) { (totalDuration, activity) -> TimeInterval in
+        let calculatedDuration = activities?.reduce(0) { totalDuration, activity -> TimeInterval in
             if let date = activity.createdAt,
                Calendar.current.component(.month, from: date) == Calendar.current.component(.month, from: Date()) {
                 return totalDuration + activity.duration
@@ -40,7 +39,6 @@ public class BLCategory: NSManagedObject {
 // MARK: - Core Data
 
 public extension BLCategory {
-
     static var allCategoriesFetchRequest: NSFetchRequest<BLCategory> {
         let request: NSFetchRequest<BLCategory> = BLCategory.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \BLCategory.name, ascending: true)]
@@ -51,7 +49,6 @@ public extension BLCategory {
 // MARK: - Mock Data
 
 public extension BLCategory {
-
     static func mockCategory(withContext context: NSManagedObjectContext? = nil) -> BLCategory {
         let result = PersistenceController(inMemory: true)
         let context = context ?? result.container.viewContext
@@ -59,9 +56,11 @@ public extension BLCategory {
         category.name = "Category Name"
         category.notes = "category notes"
         category.dailyBudgetDuration = 5
-        category.activities = [Activity.mockActivity(withContext: context),
-                               Activity.mockActivity(withContext: context),
-                               Activity.mockActivity(withContext: context)]
+        category.activities = [
+            Activity.mockActivity(withContext: context),
+            Activity.mockActivity(withContext: context),
+            Activity.mockActivity(withContext: context)
+        ]
         try? context.save()
         return category
     }
@@ -73,9 +72,11 @@ public extension BLCategory {
         category.name = "Category Name"
         category.notes = "category notes"
         category.dailyBudgetDuration = 5
-        category.activities = [Activity.mockActivityFromYesterday(withContext: context),
-                               Activity.mockActivityFromYesterday(withContext: context),
-                               Activity.mockActivityFromYesterday(withContext: context)]
+        category.activities = [
+            Activity.mockActivityFromYesterday(withContext: context),
+            Activity.mockActivityFromYesterday(withContext: context),
+            Activity.mockActivityFromYesterday(withContext: context)
+        ]
         try? context.save()
         return category
     }

@@ -6,12 +6,11 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import os
 
 public class CategoryStore: NSObject, ObservableObject {
-
     // MARK: - Public Properties
 
     @Published
@@ -31,14 +30,18 @@ public class CategoryStore: NSObject, ObservableObject {
     // MARK: - Initializer
 
     public init(managedObjectContext: NSManagedObjectContext) {
-        allCategoriesController = NSFetchedResultsController(fetchRequest: BLCategory.allCategoriesFetchRequest,
-                                                             managedObjectContext: managedObjectContext,
-                                                             sectionNameKeyPath: nil,
-                                                             cacheName: nil)
-        allContextCategoriesController = NSFetchedResultsController(fetchRequest: ContextCategory.allContextCategoriesFetchRequest,
-                                                                    managedObjectContext: managedObjectContext,
-                                                                    sectionNameKeyPath: nil,
-                                                                    cacheName: nil)
+        allCategoriesController = NSFetchedResultsController(
+            fetchRequest: BLCategory.allCategoriesFetchRequest,
+            managedObjectContext: managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        allContextCategoriesController = NSFetchedResultsController(
+            fetchRequest: ContextCategory.allContextCategoriesFetchRequest,
+            managedObjectContext: managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
 
         super.init()
 
@@ -49,7 +52,8 @@ public class CategoryStore: NSObject, ObservableObject {
             try allCategoriesController.performFetch()
             try allContextCategoriesController.performFetch()
             allCategories = allCategoriesController.fetchedObjects ?? []
-            allCategoriesSortedByTimeSpentThisMonth = allCategories.sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
+            allCategoriesSortedByTimeSpentThisMonth = allCategories
+                .sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
             allContextCategories = allContextCategoriesController.fetchedObjects ?? []
         } catch {
             Logger().error("Failed to fetch categories or context categories")
@@ -58,17 +62,16 @@ public class CategoryStore: NSObject, ObservableObject {
 }
 
 extension CategoryStore: NSFetchedResultsControllerDelegate {
-
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if controller.fetchRequest.entity?.managedObjectClassName == String(describing: BLCategory.self),
            let categories = controller.fetchedObjects as? [BLCategory] {
             allCategories = categories
-            allCategoriesSortedByTimeSpentThisMonth = categories.sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
+            allCategoriesSortedByTimeSpentThisMonth = categories
+                .sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
         }
         if controller.fetchRequest.entity?.managedObjectClassName == String(describing: ContextCategory.self),
            let contextCategories = controller.fetchedObjects as? [ContextCategory] {
             allContextCategories = contextCategories
         }
     }
-
 }

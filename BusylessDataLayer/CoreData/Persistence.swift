@@ -13,7 +13,7 @@ public class GroupedPersistentCloudKitContainer: NSPersistentCloudKitContainer {
         case group = "group.com.derrickshowers.busyless"
     }
 
-    public override class func defaultDirectoryURL() -> URL {
+    override public class func defaultDirectoryURL() -> URL {
         let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: URLStrings.group.rawValue)
 
         if !FileManager.default.fileExists(atPath: url!.path) {
@@ -29,10 +29,10 @@ public struct PersistenceController {
     public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+        for _ in 0 ..< 10 {
             _ = Activity.mockActivity(withContext: viewContext)
         }
-        for _ in 0..<10 {
+        for _ in 0 ..< 10 {
             _ = BLCategory.mockCategory(withContext: viewContext)
         }
         do {
@@ -52,7 +52,7 @@ public struct PersistenceController {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
-        container.loadPersistentStores(completionHandler: { (_, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }

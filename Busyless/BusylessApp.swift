@@ -6,13 +6,12 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
 import CoreData
+import SwiftUI
 
 @main
 struct BusylessApp: App {
-
     // MARK: - Private Properties
 
     private let viewModelFactory = ViewModelFactory()
@@ -33,7 +32,10 @@ struct BusylessApp: App {
             MainView(viewModel: viewModelFactory.makeMainViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environment(\.dataStore, _dataStore)
-                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                .onReceive(
+                    NotificationCenter.default
+                        .publisher(for: UIApplication.willEnterForegroundNotification)
+                ) { _ in
                     dataStore.activityStore.fetch()
                 }
         }
@@ -48,8 +50,14 @@ struct BusylessApp: App {
     private func setupNavigationBar() {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.mainColor)
-        navigationBarAppearance.titleTextAttributes.updateValue(UIColor.white, forKey: NSAttributedString.Key.foregroundColor)
-        navigationBarAppearance.largeTitleTextAttributes.updateValue(UIColor.white, forKey: NSAttributedString.Key.foregroundColor)
+        navigationBarAppearance.titleTextAttributes.updateValue(
+            UIColor.white,
+            forKey: NSAttributedString.Key.foregroundColor
+        )
+        navigationBarAppearance.largeTitleTextAttributes.updateValue(
+            UIColor.white,
+            forKey: NSAttributedString.Key.foregroundColor
+        )
 
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance

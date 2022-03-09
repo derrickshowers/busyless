@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct OnboardingContent: View {
-
     // MARK: - Private Properties
 
     @Environment(\.presentationMode)
@@ -34,10 +33,12 @@ struct OnboardingContent: View {
             if isLogo {
                 Image(imageName)
                     .resizable()
-                    .frame(width: isSmallScreen ? 75 : 150,
-                           height: isSmallScreen ? 75 : 150)
+                    .frame(
+                        width: isSmallScreen ? 75 : 150,
+                        height: isSmallScreen ? 75 : 150
+                    )
                     .cornerRadius(25)
-                    .padding(.bottom, isSmallScreen ? 10: 30)
+                    .padding(.bottom, isSmallScreen ? 10 : 30)
             } else {
                 Image(imageName)
                     .resizable()
@@ -66,14 +67,17 @@ struct OnboardingContent: View {
 struct OnboardingContent_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            OnboardingContent(imageName: "LogoWithBackground",
-                              headline: "Headline",
-                              summary: "Summary",
-                              isLogo: true)
-            OnboardingContent(imageName: "WorkTime",
-                              headline: "Headline",
-                              summary: "Summary")
+            OnboardingContent(
+                imageName: "LogoWithBackground",
+                headline: "Headline",
+                summary: "Summary",
+                isLogo: true
+            )
+            OnboardingContent(
+                imageName: "WorkTime",
+                headline: "Headline",
+                summary: "Summary"
+            )
         }
-
     }
 }

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TodayStatus: View {
-
     // MARK: - Public Properties
 
     let awakeDuration: TimeInterval

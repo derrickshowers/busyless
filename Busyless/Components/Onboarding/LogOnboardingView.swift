@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct LogOnboardingView: View {
-
     // MARK: - Lifecycle
 
     var body: some View {
@@ -22,17 +21,21 @@ struct LogOnboardingView: View {
 
 private struct OnboardingStep1: View {
     var body: some View {
-        OnboardingContent(imageName: "List",
-                          headline: "Welcome to Activity Log",
-                          summary: "LogOnboardingStep1Summary")
+        OnboardingContent(
+            imageName: "List",
+            headline: "Welcome to Activity Log",
+            summary: "LogOnboardingStep1Summary"
+        )
     }
 }
 
 private struct OnboardingStep2: View {
     var body: some View {
-        OnboardingContent(imageName: "Download",
-                          headline: "Save Your Data",
-                          summary: "LogOnboardingStep2Summary",
-                          dismissButtonText: "Sounds great!")
+        OnboardingContent(
+            imageName: "Download",
+            headline: "Save Your Data",
+            summary: "LogOnboardingStep2Summary",
+            dismissButtonText: "Sounds great!"
+        )
     }
 }

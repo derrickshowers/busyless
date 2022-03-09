@@ -6,17 +6,15 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 @objc(Activity)
-public class Activity: NSManagedObject {
-}
+public class Activity: NSManagedObject {}
 
 // MARK: - Core Data
 
 public extension Activity {
-
     static var allActivitiesFetchRequest: NSFetchRequest<Activity> {
         let request: NSFetchRequest<Activity> = Activity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Activity.createdAt, ascending: false)]
@@ -37,19 +35,18 @@ public extension Activity {
     }
 }
 
-extension Array where Element: Activity {
-
-    public func filter(byMonth month: Int) -> [Element] {
-        return self.filter({
+public extension Array where Element: Activity {
+    func filter(byMonth month: Int) -> [Element] {
+        return filter {
             guard let createdAtDate = $0.createdAt else {
                 return false
             }
             return Calendar.current.component(.month, from: createdAtDate) == month
-        })
+        }
     }
 
-    public func filter(byDate date: Date) -> [Element] {
-        return self.filter { activity in
+    func filter(byDate date: Date) -> [Element] {
+        return filter { activity in
             guard let activityDate = activity.createdAt else {
                 return false
             }
@@ -61,7 +58,6 @@ extension Array where Element: Activity {
 // MARK: - Mock Data {
 
 public extension Activity {
-
     static func mockActivity(withContext context: NSManagedObjectContext? = nil) -> Activity {
         let result = PersistenceController(inMemory: true)
         let context = context ?? result.container.viewContext

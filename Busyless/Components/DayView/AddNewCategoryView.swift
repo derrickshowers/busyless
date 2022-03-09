@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct AddNewCategoryView: View {
-
     // MARK: - Public Properties
 
     let action: (String) -> Void

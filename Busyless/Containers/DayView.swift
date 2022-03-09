@@ -6,13 +6,12 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
-import CoreData
 import BusylessDataLayer
+import CoreData
 import os
+import SwiftUI
 
 struct DayView: View {
-
     // MARK: - Properties
 
     enum ActiveSheet: Identifiable {
@@ -36,7 +35,7 @@ struct DayView: View {
     private var dataStore
 
     private var totalBudgetedDuration: TimeInterval {
-        return self.categories.reduce(0) { $0 + $1.dailyBudgetDuration }
+        return categories.reduce(0) { $0 + $1.dailyBudgetDuration }
     }
 
     private var categories: [BLCategory] {
@@ -81,29 +80,35 @@ struct DayView: View {
                     List {
                         // Categories with a context category
                         ForEach(contextCategories, id: \.name) { (contextCategory: ContextCategory) in
-                            if let categories = (contextCategory.categories?.allObjects as? [BLCategory])?.sorted { $0.name ?? "" < $1.name ?? "" } {
-                                contextCategorySection(title: contextCategory.name,
-                                                       subtitle: contextCategory.timeBudgeted.hoursMinutesString,
-                                                       categories: categories) { row in
-                                    deleteCategory(at: row.map({$0}).first ?? 0, contextCategory: contextCategory)
+                            if let categories = (contextCategory.categories?.allObjects as? [BLCategory])?
+                                .sorted { $0.name ?? "" < $1.name ?? "" } {
+                                contextCategorySection(
+                                    title: contextCategory.name,
+                                    subtitle: contextCategory.timeBudgeted.hoursMinutesString,
+                                    categories: categories
+                                ) { row in
+                                    deleteCategory(at: row.map { $0 }.first ?? 0, contextCategory: contextCategory)
                                 }
                             }
                         }.listRowBackground(Color.customWhite)
 
                         // All other categories
-                        contextCategorySection(categories: categoriesWithNoContextCategory) { (row) in
-                            deleteCategory(at: row.map({$0}).first ?? 0)
+                        contextCategorySection(categories: categoriesWithNoContextCategory) { row in
+                            deleteCategory(at: row.map { $0 }.first ?? 0)
                         }.listRowBackground(Color.customWhite)
                     }.listStyle(.plain)
                 }
                 .onAppear { self.didAppear?(self) }
                 .navigationBarTitle("Today")
-                .navigationBarItems(trailing: MoreOptionsMenuButton(categories: categories,
-                                                                    addCategoryAction: {
-                                                                        activeSheet = .addNewCategory
-                                                                    }, addContextCategoryAction: {
-                                                                        activeSheet = .manageContextCategory
-                                                                    }))
+                .navigationBarItems(trailing: MoreOptionsMenuButton(
+                    categories: categories,
+                    addCategoryAction: {
+                        activeSheet = .addNewCategory
+                    },
+                    addContextCategoryAction: {
+                        activeSheet = .manageContextCategory
+                    }
+                ))
             }
             .background(Color(UIColor.systemGray6))
             .sheet(item: $activeSheet) { sheet in
@@ -128,22 +133,24 @@ struct DayView: View {
 
     // MARK: - Private Methods
 
-    private func contextCategorySection(title: String? = nil,
-                                        subtitle: String? = nil,
-                                        categories: [BLCategory],
-                                        onDelete: @escaping (IndexSet) -> Void) -> some View {
+    private func contextCategorySection(
+        title: String? = nil,
+        subtitle: String? = nil,
+        categories: [BLCategory],
+        onDelete: @escaping (IndexSet) -> Void
+    ) -> some View {
         Section {
             ForEach(categories, id: \.name) { category in
                 ZStack {
                     CategoryRow(category: category)
-                    NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) { }.opacity(0)
+                    NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) {}
+                        .opacity(0)
                 }
             }
             .onDelete(perform: onDelete)
         } header: {
             contextCategoryHeader(name: title ?? "Other", timeBudgeted: subtitle)
         }
-
     }
 
     private func contextCategoryHeader(name: String, timeBudgeted: String?) -> some View {
@@ -153,7 +160,6 @@ struct DayView: View {
                 Spacer()
                 Text(timeBudgeted)
             }
-
         }
     }
 }
@@ -161,7 +167,6 @@ struct DayView: View {
 // MARK: - Core Data
 
 extension DayView {
-
     private func addCategory(name: String) {
         let category = BLCategory(context: managedObjectContext)
         category.name = name
@@ -177,10 +182,10 @@ extension DayView {
     private func deleteCategory(at index: Int, contextCategory: ContextCategory? = nil) {
         if let contextCategory = contextCategory,
            let category = contextCategory.categories?.allObjects[index] as? BLCategory {
-            self.managedObjectContext.delete(category)
+            managedObjectContext.delete(category)
         } else {
-            let category = self.categoriesWithNoContextCategory[index]
-            self.managedObjectContext.delete(category)
+            let category = categoriesWithNoContextCategory[index]
+            managedObjectContext.delete(category)
         }
         BLCategory.save(with: managedObjectContext)
     }
@@ -194,7 +199,6 @@ extension DayView {
 // MARK: - Extracted Views
 
 struct MoreOptionsMenuButton: View {
-
     // MARK: - Public Properties
 
     let categories: [BLCategory]
@@ -202,6 +206,7 @@ struct MoreOptionsMenuButton: View {
     let addContextCategoryAction: () -> Void
 
     // MARK: - Private Properties
+
     @Environment(\.managedObjectContext)
     private var managedObjectContext
 

@@ -6,12 +6,11 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import XCTest
-import CoreData
 @testable import BusylessDataLayer
+import CoreData
+import XCTest
 
 class CategoryTests: XCTestCase {
-
     private var category: BLCategory?
 
     override func setUpWithError() throws {
@@ -23,5 +22,4 @@ class CategoryTests: XCTestCase {
         XCTAssertTrue(category?.timeSpentToday == 3 * 3600)
         XCTAssertTrue(categoryWithPastActivities.timeSpentToday == 0)
     }
-
 }

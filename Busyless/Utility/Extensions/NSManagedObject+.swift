@@ -6,8 +6,8 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import os
 
 extension NSManagedObject {

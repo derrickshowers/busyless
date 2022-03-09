@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct OnboardingShell<Content>: View where Content: View {
-
     // MARK: - Public Properties
 
     let content: Content
@@ -34,7 +33,6 @@ struct OnboardingShell<Content>: View where Content: View {
                         .fill(Color.secondaryColor)
                         .ignoresSafeArea(edges: .bottom)
                         .frame(maxHeight: 60)
-
                 }
                 TabView {
                     content
@@ -54,6 +52,6 @@ struct OnboardingShell<Content>: View where Content: View {
 
 struct OnboardingShell_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingShell { }
+        OnboardingShell {}
     }
 }

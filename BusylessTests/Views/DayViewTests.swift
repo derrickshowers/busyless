@@ -6,18 +6,17 @@
 //  Copyright © 2021 Derrick Showers. All rights reserved.
 //
 
-import XCTest
-import ViewInspector
-import SwiftUI
 @testable import Busyless
 @testable import BusylessDataLayer
+import SwiftUI
+import ViewInspector
+import XCTest
 
-extension DayView: Inspectable { }
-extension AddButton: Inspectable { }
-extension CategoryRow: Inspectable { }
+extension DayView: Inspectable {}
+extension AddButton: Inspectable {}
+extension CategoryRow: Inspectable {}
 
 class DayViewTests: XCTestCase {
-
     func DISABLEtestAddButton() {
         var dayView = DayView()
         let expectation = dayView.on(\.didAppear) { view in
@@ -33,11 +32,16 @@ class DayViewTests: XCTestCase {
         let dataStoreMock = DataStoreMock()
         var dayView = DayView()
         let expectation = dayView.on(\.didAppear) { view in
-            XCTAssertEqual(try view.find(CategoryRow.self).hStack().vStack(0).text(0).string(), dataStoreMock.dataStore.categoryStore.allCategories.first?.name)
+            XCTAssertEqual(
+                try view.find(CategoryRow.self).hStack().vStack(0).text(0).string(),
+                dataStoreMock.dataStore.categoryStore.allCategories.first?.name
+            )
         }
-        ViewHosting.host(view: dayView
-                            .environment(\.managedObjectContext, dataStoreMock.context)
-                            .environment(\.dataStore, dataStoreMock.dataStoreObservable))
+        ViewHosting.host(
+            view: dayView
+                .environment(\.managedObjectContext, dataStoreMock.context)
+                .environment(\.dataStore, dataStoreMock.dataStoreObservable)
+        )
         wait(for: [expectation], timeout: 0.1)
     }
 }
