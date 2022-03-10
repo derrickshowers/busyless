@@ -37,6 +37,25 @@ struct AddNewActivityView: View {
         }.disabled(!viewModel.readyToSave)
     }
 
+    private var activityNameTextField: some View {
+        TextField("Activity Name", text: $viewModel.name)
+            .focused($activityNameFocused, equals: true)
+            .submitLabel(.done)
+            .autocapitalization(.words)
+            .font(.title)
+            .textCase(.none)
+            .padding(.bottom, 10)
+            .foregroundColor(Color.mainColor)
+    }
+
+    private func datePicker(for component: DatePickerComponents) -> some View {
+        DatePicker(
+            component == .date ? "Date" : "Time",
+            selection: $viewModel.createdAt,
+            displayedComponents: component
+        )
+    }
+
     private func identifierIcon(systemName: String) -> some View {
         Image(systemName: systemName)
             .foregroundColor(.white)
@@ -60,16 +79,7 @@ struct AddNewActivityView: View {
     var body: some View {
         VStack {
             Form {
-                Section(
-                    header: TextField("Activity Name", text: $viewModel.name)
-                        .focused($activityNameFocused, equals: true)
-                        .submitLabel(.done)
-                        .autocapitalization(.words)
-                        .font(.title)
-                        .textCase(.none)
-                        .padding(.bottom, 10)
-                        .foregroundColor(Color.mainColor)
-                ) {
+                Section(header: activityNameTextField) {
                     NavigationLink(destination: CategorySelection(selectedCategory: $viewModel.category)) {
                         identifierIcon(systemName: "folder")
                         Text("Category")
@@ -95,19 +105,11 @@ struct AddNewActivityView: View {
                 Section {
                     HStack {
                         identifierIcon(systemName: "calendar")
-                        DatePicker(
-                            "Date",
-                            selection: $viewModel.createdAt,
-                            displayedComponents: .date
-                        )
+                        datePicker(for: .date)
                     }
                     HStack {
                         identifierIcon(systemName: "clock")
-                        DatePicker(
-                            "Time",
-                            selection: $viewModel.createdAt,
-                            displayedComponents: .hourAndMinute
-                        )
+                        datePicker(for: .hourAndMinute)
                     }
                 }
 
