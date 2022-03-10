@@ -6,13 +6,12 @@
 //  Copyright © 2022 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import BusylessDataLayer
 import CoreData
+import Foundation
 import Intents
 
 class AddNewActivityViewModel: ObservableObject {
-
     // MARK: - Properties
 
     @Published var name = ""

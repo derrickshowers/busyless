@@ -72,7 +72,7 @@ extension DataStore {
 
         return [
             DictionaryKeyConstants.personalContextCategory: personalContextCategory,
-            DictionaryKeyConstants.professionalContextCategory: professionalContextCategory
+            DictionaryKeyConstants.professionalContextCategory: professionalContextCategory,
         ]
     }
 
@@ -98,7 +98,7 @@ extension DataStore {
         return [
             DictionaryKeyConstants.meditationCategory: meditationCategory,
             DictionaryKeyConstants.journalingCategory: journalingCategory,
-            DictionaryKeyConstants.meetingsCategory: meetingsCategory
+            DictionaryKeyConstants.meetingsCategory: meetingsCategory,
         ]
     }
 

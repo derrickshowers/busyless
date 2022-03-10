@@ -6,11 +6,10 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
 import BusylessDataLayer
+import SwiftUI
 
 struct AddNewActivityView: View {
-
     // MARK: - Properties
 
     @ObservedObject private var viewModel: AddNewActivityViewModel
@@ -47,7 +46,7 @@ struct AddNewActivityView: View {
     }
 
     private func durationStepper(with value: Binding<Int>, suffix: String) -> some View {
-        Stepper("\(value.wrappedValue) \(suffix)", value: value, in: 0...23).fixedSize()
+        Stepper("\(value.wrappedValue) \(suffix)", value: value, in: 0 ... 23).fixedSize()
     }
 
     // MARK: - Initialization
@@ -61,14 +60,16 @@ struct AddNewActivityView: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: TextField("Activity Name", text: $viewModel.name)
-                            .focused($activityNameFocused, equals: true)
-                            .submitLabel(.done)
-                            .autocapitalization(.words)
-                            .font(.title)
-                            .textCase(.none)
-                            .padding(.bottom, 10)
-                            .foregroundColor(Color.mainColor)) {
+                Section(
+                    header: TextField("Activity Name", text: $viewModel.name)
+                        .focused($activityNameFocused, equals: true)
+                        .submitLabel(.done)
+                        .autocapitalization(.words)
+                        .font(.title)
+                        .textCase(.none)
+                        .padding(.bottom, 10)
+                        .foregroundColor(Color.mainColor)
+                ) {
                     NavigationLink(destination: CategorySelection(selectedCategory: $viewModel.category)) {
                         identifierIcon(systemName: "folder")
                         Text("Category")
@@ -94,15 +95,19 @@ struct AddNewActivityView: View {
                 Section {
                     HStack {
                         identifierIcon(systemName: "calendar")
-                        DatePicker("Date",
-                                   selection: $viewModel.createdAt,
-                                   displayedComponents: .date)
+                        DatePicker(
+                            "Date",
+                            selection: $viewModel.createdAt,
+                            displayedComponents: .date
+                        )
                     }
                     HStack {
                         identifierIcon(systemName: "clock")
-                        DatePicker("Time",
-                                   selection: $viewModel.createdAt,
-                                   displayedComponents: .hourAndMinute)
+                        DatePicker(
+                            "Time",
+                            selection: $viewModel.createdAt,
+                            displayedComponents: .hourAndMinute
+                        )
                     }
                 }
 
@@ -110,7 +115,6 @@ struct AddNewActivityView: View {
                     TextEditor(text: $viewModel.notes)
                 }
             }
-
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Log New Activity")

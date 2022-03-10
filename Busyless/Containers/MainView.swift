@@ -81,8 +81,10 @@ extension MainView {
     static func forTesting() -> MainView {
         let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
         let mockLogViewModel = LogViewModel(dataStore: mockDataStore) { _ in AddNewActivityView.forTesting() }
-        let mockViewModel = MainViewModel(addNewActivityView: AddNewActivityView.forTesting(),
-                                          logView: LogView(viewModel: mockLogViewModel))
+        let mockViewModel = MainViewModel(
+            addNewActivityView: AddNewActivityView.forTesting(),
+            logView: LogView(viewModel: mockLogViewModel)
+        )
         return Self(viewModel: mockViewModel)
     }
 }

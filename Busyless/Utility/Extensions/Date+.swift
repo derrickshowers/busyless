@@ -30,7 +30,6 @@ extension Date {
 // I was lazy and stole permanently borrowed this code.
 // https://gist.github.com/casperzandbergenyaacomm/83c6a585073fd7da2e1fbb97c9bcd38a
 extension Date {
-
     /// Returns date where **-component** is rounded to its closest
     /// multiple of **-amount**. Warning: month and day start at 1
     /// so round(to: 6, .month) will either return month 1 or 7!

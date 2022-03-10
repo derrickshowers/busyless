@@ -6,17 +6,19 @@
 //  Copyright © 2022 Derrick Showers. All rights reserved.
 //
 
-import Foundation
 import BusylessDataLayer
+import Foundation
 
 class ViewModelFactory {
     private let dataStore = DataStore(managedObjectContext: PersistenceController.shared.container.viewContext)
 
     func makeMainViewModel() -> MainViewModel {
-        let addNewActivityView = AddNewActivityView(viewModel: self.makeAddNewActivityViewModel())
-        let logView = LogView(viewModel: self.makeLogViewModel())
-        return MainViewModel(addNewActivityView: addNewActivityView,
-                             logView: logView)
+        let addNewActivityView = AddNewActivityView(viewModel: makeAddNewActivityViewModel())
+        let logView = LogView(viewModel: makeLogViewModel())
+        return MainViewModel(
+            addNewActivityView: addNewActivityView,
+            logView: logView
+        )
     }
 
     private func makeAddNewActivityViewModel(with activity: Activity? = nil) -> AddNewActivityViewModel {
