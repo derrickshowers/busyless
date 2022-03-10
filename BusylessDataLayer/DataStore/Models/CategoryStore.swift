@@ -22,6 +22,9 @@ public class CategoryStore: NSObject, ObservableObject {
     @Published
     public private(set) var allContextCategories: [ContextCategory] = []
 
+    @Published
+    public private(set) var allCategoriesSortedByContextCategory: [String: [BLCategory]] = [:]
+
     // MARK: - Private Properties
 
     private let allCategoriesController: NSFetchedResultsController<BLCategory>
@@ -55,9 +58,16 @@ public class CategoryStore: NSObject, ObservableObject {
             allCategoriesSortedByTimeSpentThisMonth = allCategories
                 .sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
             allContextCategories = allContextCategoriesController.fetchedObjects ?? []
+            allCategoriesSortedByContextCategory = CategoryStore.categoriesGroupedByContextCategory(allCategories)
         } catch {
             Logger().error("Failed to fetch categories or context categories")
         }
+    }
+
+    // MARK: - Private Helpers
+
+    private static func categoriesGroupedByContextCategory(_ categories: [BLCategory]) -> [String: [BLCategory]] {
+        return Dictionary(grouping: categories) { $0.contextCategory?.name ?? "Uncategorized" }
     }
 }
 
