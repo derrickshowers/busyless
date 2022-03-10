@@ -26,32 +26,30 @@ struct CategorySelection: View {
     @State private var newCategory: String = ""
 
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    Section {
-                        ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { category in
-                            Button(action: {
-                                self.selectedCategory = category
-                                self.presentationMode.wrappedValue.dismiss()
-                            }, label: {
-                                Text("\(category.name ?? "")")
-                            }).foregroundColor(Color(UIColor.label))
-                        }
-                    } header: {
-                        Spacer()
-                    } footer: {
-                        Button("Add New...") {
-                            isAddNewCategorySheetShowing.toggle()
-                        }
+        VStack {
+            List {
+                Section {
+                    ForEach(dataStore?.wrappedValue.categoryStore.allCategories ?? [], id: \.name) { category in
+                        Button(action: {
+                            self.selectedCategory = category
+                            self.presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            Text("\(category.name ?? "")")
+                        }).foregroundColor(Color(UIColor.label))
+                    }
+                } header: {
+                    Spacer()
+                } footer: {
+                    Button("Add New...") {
+                        isAddNewCategorySheetShowing.toggle()
                     }
                 }
             }
-            .navigationBarTitle("Select a Category")
-            .navigationBarItems(trailing: Button("Cancel", action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }))
-            .sheet(isPresented: $isAddNewCategorySheetShowing) {
+        }
+        .navigationBarTitle("Select a Category")
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isAddNewCategorySheetShowing) {
+            NavigationView {
                 AddNewCategoryView {
                     addCategory(name: $0)
                     isAddNewCategorySheetShowing.toggle()

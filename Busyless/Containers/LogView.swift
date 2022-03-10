@@ -140,13 +140,17 @@ struct LogView: View {
                     selections.removeAll()
                 }, content: {
                     if let activity = selections.first {
-                        viewModel.viewForAddActivityActivity(activity)
+                        NavigationView {
+                            viewModel.viewForAddActivityActivity(activity)
+                        }
                     }
                 }).sheet(isPresented: $isCategorySelectionViewPresented, onDismiss: {
                     selections.removeAll()
                 }, content: {
                     if let category = viewModel.newCategory(for: selections) {
-                        CategorySelection(selectedCategory: category)
+                        NavigationView {
+                            CategorySelection(selectedCategory: category)
+                        }
                     }
                 })
             }
