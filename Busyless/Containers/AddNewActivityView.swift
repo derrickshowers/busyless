@@ -64,8 +64,13 @@ struct AddNewActivityView: View {
             .cornerRadius(10)
     }
 
-    private func durationStepper(with value: Binding<Int>, suffix: String) -> some View {
-        Stepper("\(value.wrappedValue) \(suffix)", value: value, in: 0 ... 23).fixedSize()
+    private func durationStepper(
+        with value: Binding<Int>,
+        suffix: String,
+        step: Int.Stride,
+        range: ClosedRange<Int>
+    ) -> some View {
+        Stepper("\(value.wrappedValue) \(suffix)", value: value, in: range, step: step).fixedSize()
     }
 
     // MARK: - Initialization
@@ -95,9 +100,19 @@ struct AddNewActivityView: View {
                         Text("Duration")
                         Spacer()
                         VStack(alignment: .trailing) {
-                            durationStepper(with: $viewModel.hoursDuration, suffix: "hrs")
+                            durationStepper(
+                                with: $viewModel.hoursDuration,
+                                suffix: "hrs",
+                                step: 1,
+                                range: 0 ... 23
+                            )
                             Spacer()
-                            durationStepper(with: $viewModel.minutesDuration, suffix: "mins")
+                            durationStepper(
+                                with: $viewModel.minutesDuration,
+                                suffix: "mins",
+                                step: 15,
+                                range: 0 ... 45
+                            )
                         }
                     }
                 }
