@@ -113,19 +113,19 @@ struct DayView: View {
             .background(Color(UIColor.systemGray6))
             .sheet(item: $activeSheet) { sheet in
                 switch sheet {
-                case .addNewCategory:
-                    AddNewCategoryView {
-                        addCategory(name: $0)
-                        activeSheet = nil
-                    }
-                case .manageContextCategory:
-                    ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
-                        addContextCategory(name: $0)
-                    }, onDelete: {
-                        deleteContextCategories($0)
-                    }, onComplete: {
-                        activeSheet = nil
-                    })
+                    case .addNewCategory:
+                        AddNewCategoryView {
+                            addCategory(name: $0)
+                            activeSheet = nil
+                        }
+                    case .manageContextCategory:
+                        ManageContextCategoryView(contextCategories: contextCategories, onAdd: {
+                            addContextCategory(name: $0)
+                        }, onDelete: {
+                            deleteContextCategories($0)
+                        }, onComplete: {
+                            activeSheet = nil
+                        })
                 }
             }
         }

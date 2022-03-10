@@ -17,6 +17,8 @@ class LogViewModel: ObservableObject {
     @Published var activities: [[Activity]]
     @AppStorage("shouldShowLogOnboarding") var shouldShowLogOnboarding = true
 
+    let viewForAddActivityActivity: (Activity) -> AddNewActivityView
+
     var containsUncategorizedActivities: Bool {
         let uncategorizedActivityCount = activities.flatMap { $0 }.reduce(0) {
             $0 + ($1.category == nil ? 1 : 0)
@@ -28,9 +30,10 @@ class LogViewModel: ObservableObject {
 
     private let dataStore: DataStore
 
-    init(dataStore: DataStore) {
+    init(dataStore: DataStore, viewForAddActivityActivity: @escaping (Activity) -> AddNewActivityView) {
         self.dataStore = dataStore
         activities = dataStore.activityStore.allActivitiesGroupedByDate
+        self.viewForAddActivityActivity = viewForAddActivityActivity
     }
 
     // MARK: - Public Methods

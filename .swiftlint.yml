@@ -1,5 +1,8 @@
-line_length: 160
+line_length: 120
 force_cast: warning
+disabled_rules:
+  - trailing_comma
+  - switch_case_alignment
 identifier_name:
   excluded:
     - id

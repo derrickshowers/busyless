@@ -6,151 +6,150 @@
 //  Copyright © 2020 Derrick Showers. All rights reserved.
 //
 
-import SwiftUI
-import Intents
 import BusylessDataLayer
-import os
+import SwiftUI
 
 struct AddNewActivityView: View {
+    // MARK: - Properties
 
-    // MARK: - Public Properties
+    @ObservedObject private var viewModel: AddNewActivityViewModel
 
-    let activity: Activity?
-    let onComplete: () -> Void
+    // MARK: - Environment
 
-    // MARK: - Private Properties
+    @Environment(\.dismiss) private var dismiss
 
-    @State private var name: String
-    @State private var category: BLCategory?
-    @State private var hoursDuration: Int
-    @State private var minutesDuration: Int
-    @State private var createdAt: Date
-    @State private var notes: String
+    // MARK: - State
 
-    @Environment(\.managedObjectContext)
-    private var managedObjectContext
+    @FocusState private var activityNameFocused: Bool
 
-    @FocusState private var activityNameFocused: Bool?
+    // MARK: - Views
 
-    private var isEditingExistingActivity: Bool
+    private var cancelButton: some View {
+        Button("Cancel") {
+            dismiss()
+        }
+    }
 
-    private var readyToSave: Bool {
-        return !name.isEmpty && (hoursDuration != 0 || minutesDuration != 0)
+    private var doneButton: some View {
+        Button("Done") {
+            viewModel.save()
+            dismiss()
+        }.disabled(!viewModel.readyToSave)
+    }
+
+    private var activityNameTextField: some View {
+        TextField("Activity Name", text: $viewModel.name)
+            .focused($activityNameFocused, equals: true)
+            .submitLabel(.done)
+            .autocapitalization(.words)
+            .font(.title)
+            .textCase(.none)
+            .padding(.bottom, 10)
+            .foregroundColor(Color.mainColor)
+    }
+
+    private func datePicker(for component: DatePickerComponents) -> some View {
+        DatePicker(
+            component == .date ? "Date" : "Time",
+            selection: $viewModel.createdAt,
+            displayedComponents: component
+        )
+    }
+
+    private func identifierIcon(systemName: String) -> some View {
+        Image(systemName: systemName)
+            .foregroundColor(.white)
+            .padding(5)
+            .background(Color.mainColor)
+            .cornerRadius(10)
+    }
+
+    private func durationStepper(with value: Binding<Int>, suffix: String) -> some View {
+        Stepper("\(value.wrappedValue) \(suffix)", value: value, in: 0 ... 23).fixedSize()
+    }
+
+    // MARK: - Initialization
+
+    init(viewModel: AddNewActivityViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Lifecycle
 
-    init(activity: Activity? = nil,
-         preselectedCategory: BLCategory? = nil,
-         onComplete: @escaping () -> Void) {
-        self.activity = activity
-        self.isEditingExistingActivity = activity != nil
-        self.onComplete = onComplete
-        _name = State(initialValue: activity?.name ?? "")
-        _category = State(initialValue: activity?.category ?? preselectedCategory)
-        _createdAt = State(initialValue: activity?.createdAt ?? Date())
-        _notes = State(initialValue: activity?.notes ?? "")
-
-        let calculatedDuration = activity?.duration.asHoursAndMinutes
-        _hoursDuration = State(initialValue: calculatedDuration?.hours ?? 0)
-        _minutesDuration = State(initialValue: calculatedDuration?.minutes ?? 30)
-    }
-
     var body: some View {
-        NavigationView {
+        VStack {
             Form {
-                Section(header: Spacer()) {
-                    TextField("Activity Name", text: $name)
-                        .focused($activityNameFocused, equals: true)
-                        .autocapitalization(.words)
-                    NavigationLink(destination: CategorySelection(selectedCategory: $category)) {
-                        Text("Category").bold()
+                Section(header: activityNameTextField) {
+                    NavigationLink(destination: CategorySelection(selectedCategory: $viewModel.category)) {
+                        identifierIcon(systemName: "folder")
+                        Text("Category")
                         Spacer()
-                        Text("\(category?.name ?? "")")
-                            .foregroundColor(.gray)
+                        Text("\($viewModel.category.wrappedValue?.name ?? "")")
                             .lineLimit(1)
                     }
-                    HStack(alignment: .top) {
-                        Text("Duration").bold()
+                }
+
+                Section {
+                    HStack {
+                        identifierIcon(systemName: "clock.arrow.circlepath")
+                        Text("Duration")
                         Spacer()
                         VStack(alignment: .trailing) {
-                            Stepper("\(hoursDuration) hrs", value: $hoursDuration, in: 0...23).fixedSize()
+                            durationStepper(with: $viewModel.hoursDuration, suffix: "hrs")
                             Spacer()
-                            Stepper("\(minutesDuration) mins", value: $minutesDuration, in: 0...45, step: 15).fixedSize()
+                            durationStepper(with: $viewModel.minutesDuration, suffix: "mins")
                         }
                     }
-                    HStack {
-                        Text("When?").bold()
-                        Spacer()
-                        DatePicker("When?", selection: $createdAt)
-                            .datePickerStyle(.compact)
-                            .frame(maxWidth: 250, maxHeight: 25)
-                    }
-
                 }
+
+                Section {
+                    HStack {
+                        identifierIcon(systemName: "calendar")
+                        datePicker(for: .date)
+                    }
+                    HStack {
+                        identifierIcon(systemName: "clock")
+                        datePicker(for: .hourAndMinute)
+                    }
+                }
+
                 Section(header: Text("NOTES")) {
-                    TextEditor(text: $notes)
+                    TextEditor(text: $viewModel.notes)
                 }
             }
-            .navigationBarTitle(isEditingExistingActivity ? "Edit Activity" : "Log New Activity")
-            .navigationBarItems(leading:
-                Button(action: {
-                    onComplete()
-                }, label: {
-                    Text("Cancel")
-                }), trailing:
-                Button(action: {
-                    self.addActivity()
-                    self.donateAddNewActivityIntent()
-                    onComplete()
-                }, label: {
-                    Text("Done")
-                }).disabled(!readyToSave))
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Log New Activity")
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                activityNameFocused = activity?.name == nil
+                activityNameFocused = $viewModel.name.wrappedValue.isEmpty
             }
         }
-    }
-
-    // MARK: - Private Methods
-
-    private func donateAddNewActivityIntent() {
-        let intent = AddNewActivityIntent()
-        intent.name = self.name
-        let totalDuration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
-        intent.durationInMinutes = NSNumber(value: (totalDuration / TimeInterval.oneHour) * TimeInterval.oneMinute)
-        let interaction = INInteraction(intent: intent, response: nil)
-        interaction.donate(completion: nil)
+        .navigationBarItems(leading: cancelButton, trailing: doneButton)
     }
 }
 
-// MARK: - Core Data
-
 extension AddNewActivityView {
-
-    private func addActivity() {
-        let activity = self.activity ?? Activity(context: managedObjectContext)
-        activity.name = name
-        activity.category = category
-        activity.duration = TimeInterval.calculateTotalDurationFrom(hours: hoursDuration, minutes: minutesDuration)
-        activity.notes = notes
-        activity.createdAt = createdAt
-        Activity.save(with: managedObjectContext)
+    static func forTesting() -> AddNewActivityView {
+        let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
+        let mockViewModel = AddNewActivityViewModel(dataStore: mockDataStore)
+        return Self(viewModel: mockViewModel)
     }
 }
 
 struct AddNewActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let activity = Activity.mockActivity()
         return Group {
-            AddNewActivityView { }
-            AddNewActivityView(activity: activity) { }
-                .environment(\.colorScheme, .dark)
-
-        }.environment(\.managedObjectContext, context)
+            // Wrapped in a ZStack to fix previews bug
+            // See here: https://www.hackingwithswift.com/forums/swiftui/focusstate-breaking-preview/11396
+            ZStack {
+                AddNewActivityView.forTesting()
+            }
+            ZStack {
+                AddNewActivityView.forTesting()
+                    .environment(\.colorScheme, .dark)
+            }
+        }
     }
 }

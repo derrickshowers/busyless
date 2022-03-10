@@ -15,19 +15,6 @@ import XCTest
 extension LogView: Inspectable {}
 
 class LogViewTests: XCTestCase {
-    func DISABLEtestAddButton() {
-        var logView = LogView.forTesting()
-        let expectation = logView.on(\.didAppear) { view in
-            let addButton = try? view.find(button: "+")
-            XCTAssertNotNil(addButton)
-            XCTAssertFalse(try view.actualView().isAddNewActivityViewPresented)
-            try addButton?.tap()
-            XCTAssertTrue(try view.actualView().isAddNewActivityViewPresented)
-        }
-        ViewHosting.host(view: logView)
-        wait(for: [expectation], timeout: 0.1)
-    }
-
     func DISABLEtestActivity() {
         let dataStoreMock = DataStoreMock()
         var logView = LogView.forTesting()
