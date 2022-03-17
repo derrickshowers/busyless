@@ -17,6 +17,7 @@ struct AddNewActivityView: View {
     // MARK: - Environment
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
 
     // MARK: - State
 
@@ -27,14 +28,16 @@ struct AddNewActivityView: View {
     private var cancelButton: some View {
         Button("Cancel") {
             dismiss()
-        }
+        }.foregroundColor(.white)
     }
 
     private var doneButton: some View {
         Button("Done") {
             viewModel.save()
             dismiss()
-        }.disabled(!viewModel.readyToSave)
+        }
+        .disabled(!viewModel.readyToSave)
+        .foregroundColor(viewModel.readyToSave ? .white : .white.opacity(0.2))
     }
 
     private var activityNameTextField: some View {
@@ -45,7 +48,7 @@ struct AddNewActivityView: View {
             .font(.title)
             .textCase(.none)
             .padding(.bottom, 10)
-            .foregroundColor(Color.mainColor)
+            .foregroundColor(colorScheme == .light ? Color.mainColor : Color.secondaryColor)
     }
 
     private func datePicker(for component: DatePickerComponents) -> some View {
@@ -58,9 +61,9 @@ struct AddNewActivityView: View {
 
     private func identifierIcon(systemName: String) -> some View {
         Image(systemName: systemName)
-            .foregroundColor(.white)
+            .foregroundColor(colorScheme == .light ? .white : .black)
             .padding(5)
-            .background(Color.mainColor)
+            .background(colorScheme == .light ? Color.mainColor : Color.secondaryColor)
             .cornerRadius(10)
     }
 
