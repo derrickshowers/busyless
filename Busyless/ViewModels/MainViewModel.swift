@@ -11,9 +11,11 @@ import Foundation
 class MainViewModel: ObservableObject {
     let addNewActivityView: AddNewActivityView
     let logView: LogView
+    let monthView: MonthView
 
-    init(addNewActivityView: AddNewActivityView, logView: LogView) {
+    init(addNewActivityView: AddNewActivityView, logView: LogView, monthView: MonthView) {
         self.addNewActivityView = addNewActivityView
         self.logView = logView
+        self.monthView = monthView
     }
 }

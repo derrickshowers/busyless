@@ -15,6 +15,7 @@
 		70D7150B27935FD800590034 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150A27935FD800590034 /* ActionBar.swift */; };
 		70E4215D279113C600945F9F /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E4215C279113C600945F9F /* ViewModelFactory.swift */; };
 		70E4215F2791194D00945F9F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E4215E2791194D00945F9F /* MainViewModel.swift */; };
+		70EABB4A27E2B76C00649FCE /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EABB4927E2B76C00649FCE /* MonthViewModel.swift */; };
 		70FEF35C278F60620013630C /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF35B278F60620013630C /* LogViewModel.swift */; };
 		E701F62825B136BA00B78551 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E701F62A25B136BA00B78551 /* Localizable.strings */; };
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
@@ -136,6 +137,7 @@
 		70D7150A27935FD800590034 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
 		70E4215C279113C600945F9F /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		70E4215E2791194D00945F9F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		70EABB4927E2B76C00649FCE /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
 		70FEF35B278F60620013630C /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		E701F62925B136BA00B78551 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E701F63025B136ED00B78551 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */,
 				70FEF35B278F60620013630C /* LogViewModel.swift */,
 				70E4215E2791194D00945F9F /* MainViewModel.swift */,
+				70EABB4927E2B76C00649FCE /* MonthViewModel.swift */,
 				70E4215C279113C600945F9F /* ViewModelFactory.swift */,
 			);
 			path = ViewModels;
@@ -728,6 +731,7 @@
 				E70A8987259969E7009EF078 /* InitialOnboardingView.swift in Sources */,
 				E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */,
 				E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */,
+				70EABB4A27E2B76C00649FCE /* MonthViewModel.swift in Sources */,
 				70A516362797B549005B37F8 /* AddNewActivityViewModel.swift in Sources */,
 				E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */,
 				E7947FC524DF7CD5006B7859 /* BusylessApp.swift in Sources */,

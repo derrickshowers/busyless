@@ -39,7 +39,7 @@ struct MainView: View {
                 viewModel.logView.tabItem { Label("Activities", systemImage: "list.dash") }
                 DayView().tabItem { Label("Day", systemImage: "sun.min") }
                 Text("New").tabItem {}
-                MonthView().tabItem { Label("Month", systemImage: "calendar") }
+                viewModel.monthView.tabItem { Label("Month", systemImage: "calendar") }
                 SettingsView().tabItem { Label("Settings", systemImage: "gear") }
             }
             .accentColor(colorScheme == .light ? .mainColor : .secondaryColor)
@@ -81,9 +81,11 @@ extension MainView {
     static func forTesting() -> MainView {
         let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
         let mockLogViewModel = LogViewModel(dataStore: mockDataStore) { _ in AddNewActivityView.forTesting() }
+        let mockMonthViewModel = MonthViewModel(dataStore: mockDataStore)
         let mockViewModel = MainViewModel(
             addNewActivityView: AddNewActivityView.forTesting(),
-            logView: LogView(viewModel: mockLogViewModel)
+            logView: LogView(viewModel: mockLogViewModel),
+            monthView: MonthView(viewModel: mockMonthViewModel)
         )
         return Self(viewModel: mockViewModel)
     }

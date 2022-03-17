@@ -15,9 +15,11 @@ class ViewModelFactory {
     func makeMainViewModel() -> MainViewModel {
         let addNewActivityView = AddNewActivityView(viewModel: makeAddNewActivityViewModel())
         let logView = LogView(viewModel: makeLogViewModel())
+        let monthView = MonthView(viewModel: makeMonthViewModel())
         return MainViewModel(
             addNewActivityView: addNewActivityView,
-            logView: logView
+            logView: logView,
+            monthView: monthView
         )
     }
 
@@ -29,5 +31,9 @@ class ViewModelFactory {
         return LogViewModel(dataStore: dataStore) { [unowned self] in
             AddNewActivityView(viewModel: self.makeAddNewActivityViewModel(with: $0))
         }
+    }
+
+    private func makeMonthViewModel() -> MonthViewModel {
+        return MonthViewModel(dataStore: dataStore)
     }
 }

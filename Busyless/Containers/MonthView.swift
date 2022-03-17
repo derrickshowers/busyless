@@ -10,59 +10,30 @@ import BusylessDataLayer
 import SwiftUI
 
 struct MonthView: View {
-    // MARK: - Private Properties
+    // MARK: - Properties
 
-    @Environment(\.managedObjectContext)
-    private var managedObjectContext
+    @ObservedObject private var viewModel: MonthViewModel
 
-    @Environment(\.dataStore)
-    private var dataStore
+    // MARK: - Initialization
 
-    private var categories: [BLCategory] {
-        return dataStore?.wrappedValue.categoryStore.allCategoriesSortedByTimeSpentThisMonth ?? []
+    init(viewModel: MonthViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Lifecycle
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Where have I been spending my time this month?")
-                        .font(.title)
-                        .padding(.trailing, 100)
-                    Text("Tap a category for details")
-                        .font(.caption)
-                    VStack {
-                        ForEach(categories, id: \.self) { category in
-                            if category.trackMonthly {
-                                NavigationLink(destination: CategoryDetailView(
-                                    category: category,
-                                    overviewType: .month
-                                )) {
-                                    HStack {
-                                        Text(category.name ?? "Uncategorized")
-                                        Spacer()
-                                        Text(category.timeSpentThisMonth.hoursMinutesString).bold()
-                                    }
-                                }
-                                if let lastItem = self.categories.last, category != lastItem {
-                                    Divider()
-                                }
-                            }
-                        }
-                    }
-                    .foregroundColor(Color(UIColor.label))
-                    .padding(.vertical, 20)
-                }
-                .padding(15)
-                .frame(maxWidth: .infinity)
-                .background(Color.customWhite)
-            }
-            .background(Color(UIColor.systemGray6))
-            .edgesIgnoringSafeArea(.bottom)
-            .navigationBarTitle("This Month")
-        }
+        Text("Month View")
+    }
+}
+
+// MARK: - Testing/Previews
+
+extension MonthView {
+    static func forTesting() -> MonthView {
+        let mockDataStore = DataStore(managedObjectContext: PersistenceController.preview.container.viewContext)
+        let mockViewModel = MonthViewModel(dataStore: mockDataStore)
+        return Self(viewModel: mockViewModel)
     }
 }
 
@@ -71,10 +42,10 @@ struct MonthView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let dataStore = ObservedObject(initialValue: DataStore(managedObjectContext: context))
         return Group {
-            MonthView()
+            MonthView.forTesting()
                 .environment(\.managedObjectContext, context)
                 .environment(\.dataStore, dataStore)
-            MonthView()
+            MonthView.forTesting()
                 .environment(\.managedObjectContext, context)
                 .environment(\.dataStore, dataStore)
                 .environment(\.colorScheme, .dark)
