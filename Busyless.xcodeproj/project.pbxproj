@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		70A516362797B549005B37F8 /* AddNewActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */; };
+		70C8878727E680860058841F /* BusylessDataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 70C8878627E680860058841F /* BusylessDataLayer */; };
+		70C8878927E6808A0058841F /* BusylessDataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 70C8878827E6808A0058841F /* BusylessDataLayer */; };
 		70D2E7CE2792188100CD1183 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2E7CD2792188100CD1183 /* Date+.swift */; };
 		70D7150927935FAF00590034 /* ActivityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150827935FAF00590034 /* ActivityRow.swift */; };
 		70D7150B27935FD800590034 /* ActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7150A27935FD800590034 /* ActionBar.swift */; };
@@ -17,32 +19,24 @@
 		E701F62825B136BA00B78551 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E701F62A25B136BA00B78551 /* Localizable.strings */; };
 		E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
 		E709A85F25085A7600C518EE /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709A85E25085A7600C518EE /* ActivityViewController.swift */; };
-		E70A893A25910A0D009EF078 /* ContextCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A893925910A0D009EF078 /* ContextCategory.swift */; };
 		E70A89462591126E009EF078 /* ContextCategorySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A89452591126E009EF078 /* ContextCategorySelection.swift */; };
 		E70A8987259969E7009EF078 /* InitialOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A8986259969E7009EF078 /* InitialOnboardingView.swift */; };
 		E70A8993259969F4009EF078 /* LogOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A8992259969F4009EF078 /* LogOnboardingView.swift */; };
 		E70A899B259C239A009EF078 /* OnboardingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A899A259C239A009EF078 /* OnboardingContent.swift */; };
 		E70A89A2259C23B5009EF078 /* OnboardingShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70A89A1259C23B5009EF078 /* OnboardingShell.swift */; };
-		E70DCC47257C16E400B4F13D /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC46257C16E400B4F13D /* CategoryStore.swift */; };
-		E70DCC5E257D636400B4F13D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC5D257D636400B4F13D /* DataStore.swift */; };
 		E70DCC74257D66B900B4F13D /* EnvironmentValues+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */; };
-		E70DCC80257D692100B4F13D /* ActivityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC7F257D692100B4F13D /* ActivityStore.swift */; };
-		E70DCC87257D692A00B4F13D /* UserConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DCC86257D692A00B4F13D /* UserConfigStore.swift */; };
-		E71B3BAE255CCE210056677E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B3BA0255CCDAE0056677E /* Date+.swift */; };
 		E726EEE5250B0D3700CBEAF5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726EEE4250B0D3700CBEAF5 /* Color+.swift */; };
 		E72C19AD25378D070009C935 /* AddNewActivityIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */; };
 		E7336F97252D4FE8001414B4 /* TimeIntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */; };
 		E73524F62536911600A60541 /* FirstResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73524F52536911600A60541 /* FirstResponderTextField.swift */; };
 		E736236A24E328BA00C6FFD3 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736236924E328BA00C6FFD3 /* CategoryRow.swift */; };
 		E737A9F324FF1F570094746D /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737A9F224FF1F570094746D /* ExportManager.swift */; };
-		E75079A6253926E50060D010 /* BusylessDataLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */; };
 		E75BFE4A254B93DF000A947B /* StatefullPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75BFE49254B93DF000A947B /* StatefullPreviewWrapper.swift */; };
 		E7619B522550EC9F00B06A24 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7619B512550EC9F00B06A24 /* MonthView.swift */; };
 		E77AF01324EB2B7500E621C6 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */; };
 		E77AF01524EB612A00E621C6 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */; };
 		E780FC4824E9945000F9C2B6 /* NSManagedObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */; };
 		E780FC4E24E9A5BE00F9C2B6 /* CategorySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC4D24E9A5BE00F9C2B6 /* CategorySelection.swift */; };
-		E780FC5324E9A7E000F9C2B6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */; };
 		E780FC5524E9B37500F9C2B6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780FC5424E9B37500F9C2B6 /* LogView.swift */; };
 		E786CA4324E488FF00B27D8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4224E488FF00B27D8E /* MainView.swift */; };
 		E786CA4524E4967D00B27D8E /* TodayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786CA4424E4967D00B27D8E /* TodayStatus.swift */; };
@@ -57,8 +51,7 @@
 		E796F20725479C8200F7106B /* DurationSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796F20625479C8200F7106B /* DurationSlider.swift */; };
 		E7A79BA425B36C1B00D8CB9D /* ManageContextCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BA325B36C1B00D8CB9D /* ManageContextCategoryView.swift */; };
 		E7A79BBA25B3707B00D8CB9D /* AddNewCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BB925B3707B00D8CB9D /* AddNewCategoryView.swift */; };
-		E7A79BCB25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; };
-		E7A79BCC25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
+		E7A79BCC25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
 		E7AE16A7252EA03000B5654F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE16A6252EA03000B5654F /* IntentHandler.swift */; };
 		E7AE16AB252EA03000B5654F /* BusylessIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7AE16A4252EA03000B5654F /* BusylessIntents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E7B24FF325BCBA780012556C /* CommonFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B24FF225BCBA780012556C /* CommonFlows.swift */; };
@@ -66,18 +59,8 @@
 		E7B2501D25BCCAAE0012556C /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = E7B2501C25BCCAAE0012556C /* ViewInspector */; };
 		E7BB91B725CDA4C4007F764A /* DataStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BB91B625CDA4C4007F764A /* DataStoreMock.swift */; };
 		E7BB91C825CDA88F007F764A /* LogViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BB91C725CDA88F007F764A /* LogViewTests.swift */; };
-		E7CBC98D25B4CD7500533117 /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
+		E7CBC98D25B4CD7500533117 /* BusylessIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E7A79BCE25B3742D00D8CB9D /* BusylessIntents.intentdefinition */; settings = {ATTRIBUTES = (project_codegen, ); }; };
 		E7F178752537E54E009F59D1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */; };
-		E7F1789C25391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
-		E7F178A525391A4B009F59D1 /* BusylessDataLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E7F178A825391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
-		E7F178A925391A4B009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */; };
-		E7F178C225391B10009F59D1 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74AEC142515031A00502907 /* Persistence.swift */; };
-		E7F178D825391BDC009F59D1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B724E98F4D0095DBDD /* Activity.swift */; };
-		E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA78B924E98F590095DBDD /* BLCategory.swift */; };
-		E7F178E425391BE1009F59D1 /* UserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B8CFA924F6E5930026C983 /* UserConfig.swift */; };
-		E7F1792725391CBB009F59D1 /* BusylessDataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */; };
 		E7F6115A24E22A2600CFABC8 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115924E22A2600CFABC8 /* AddButton.swift */; };
 		E7F6115C24E22F4200CFABC8 /* DurationPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F6115B24E22F4200CFABC8 /* DurationPill.swift */; };
 		E7FD702E24E4C4F9001E2A95 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */; };
@@ -119,34 +102,6 @@
 			remoteGlobalIDString = E7AE16A3252EA03000B5654F;
 			remoteInfo = BusylessIntents;
 		};
-		E7F1789D25391A4B009F59D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E7F1789225391A4B009F59D1;
-			remoteInfo = BusylessDataLayer;
-		};
-		E7F1789F25391A4B009F59D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E7947FC024DF7CD5006B7859;
-			remoteInfo = Busyless;
-		};
-		E7F178A625391A4B009F59D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E7F1789225391A4B009F59D1;
-			remoteInfo = BusylessDataLayer;
-		};
-		E7F1792925391CBB009F59D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7947FB924DF7CD5006B7859 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E7F1789225391A4B009F59D1;
-			remoteInfo = BusylessDataLayer;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -167,7 +122,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7F178A925391A4B009F59D1 /* BusylessDataLayer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +130,7 @@
 
 /* Begin PBXFileReference section */
 		70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityViewModel.swift; sourceTree = "<group>"; };
+		70C8878527E680500058841F /* BusylessDataLayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BusylessDataLayer; sourceTree = "<group>"; };
 		70D2E7CD2792188100CD1183 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		70D7150827935FAF00590034 /* ActivityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRow.swift; sourceTree = "<group>"; };
 		70D7150A27935FD800590034 /* ActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBar.swift; sourceTree = "<group>"; };
@@ -188,33 +143,24 @@
 		E708AAE824EDF21800ECE5F8 /* Busyless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Busyless.entitlements; sourceTree = "<group>"; };
 		E708AAEA24EDF3F500ECE5F8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E709A85E25085A7600C518EE /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		E70A893925910A0D009EF078 /* ContextCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCategory.swift; sourceTree = "<group>"; };
 		E70A89452591126E009EF078 /* ContextCategorySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCategorySelection.swift; sourceTree = "<group>"; };
 		E70A8986259969E7009EF078 /* InitialOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialOnboardingView.swift; sourceTree = "<group>"; };
 		E70A8992259969F4009EF078 /* LogOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOnboardingView.swift; sourceTree = "<group>"; };
 		E70A899A259C239A009EF078 /* OnboardingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent.swift; sourceTree = "<group>"; };
 		E70A89A1259C23B5009EF078 /* OnboardingShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingShell.swift; sourceTree = "<group>"; };
-		E70DCC46257C16E400B4F13D /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
-		E70DCC5D257D636400B4F13D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		E70DCC73257D66B900B4F13D /* EnvironmentValues+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+.swift"; sourceTree = "<group>"; };
-		E70DCC7F257D692100B4F13D /* ActivityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStore.swift; sourceTree = "<group>"; };
-		E70DCC86257D692A00B4F13D /* UserConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfigStore.swift; sourceTree = "<group>"; };
-		E71B3BA0255CCDAE0056677E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		E726EEE4250B0D3700CBEAF5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E72C19AC25378D070009C935 /* AddNewActivityIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityIntentHandler.swift; sourceTree = "<group>"; };
 		E7336F96252D4FE8001414B4 /* TimeIntervalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalTests.swift; sourceTree = "<group>"; };
 		E73524F52536911600A60541 /* FirstResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponderTextField.swift; sourceTree = "<group>"; };
 		E736236924E328BA00C6FFD3 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E737A9F224FF1F570094746D /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
-		E74AEC142515031A00502907 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusylessDataLayerTests.swift; sourceTree = "<group>"; };
 		E75BFE49254B93DF000A947B /* StatefullPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefullPreviewWrapper.swift; sourceTree = "<group>"; };
 		E7619B512550EC9F00B06A24 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		E77AF01224EB2B7500E621C6 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		E77AF01424EB612A00E621C6 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		E780FC4724E9945000F9C2B6 /* NSManagedObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+.swift"; sourceTree = "<group>"; };
 		E780FC4D24E9A5BE00F9C2B6 /* CategorySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelection.swift; sourceTree = "<group>"; };
-		E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
 		E780FC5424E9B37500F9C2B6 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		E786CA4224E488FF00B27D8E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E786CA4424E4967D00B27D8E /* TodayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStatus.swift; sourceTree = "<group>"; };
@@ -233,7 +179,6 @@
 		E7947FEB24DF7CD6006B7859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7947FF724DF8072006B7859 /* AddNewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityView.swift; sourceTree = "<group>"; };
 		E796F20625479C8200F7106B /* DurationSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSlider.swift; sourceTree = "<group>"; };
-		E79F6A3C24EC752E004F44B5 /* Busyless.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Busyless.xcdatamodel; sourceTree = "<group>"; };
 		E7A79BA325B36C1B00D8CB9D /* ManageContextCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageContextCategoryView.swift; sourceTree = "<group>"; };
 		E7A79BB925B3707B00D8CB9D /* AddNewCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryView.swift; sourceTree = "<group>"; };
 		E7A79BCD25B3742D00D8CB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/BusylessIntents.intentdefinition; sourceTree = "<group>"; };
@@ -242,19 +187,11 @@
 		E7AE16A8252EA03000B5654F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B24FF225BCBA780012556C /* CommonFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFlows.swift; sourceTree = "<group>"; };
 		E7B2500725BCC8980012556C /* DayViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewTests.swift; sourceTree = "<group>"; };
-		E7B8CFA924F6E5930026C983 /* UserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfig.swift; sourceTree = "<group>"; };
 		E7BB91B625CDA4C4007F764A /* DataStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreMock.swift; sourceTree = "<group>"; };
 		E7BB91C725CDA88F007F764A /* LogViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewTests.swift; sourceTree = "<group>"; };
-		E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BusylessDataLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusylessDataLayer.h; sourceTree = "<group>"; };
-		E7F1789625391A4B009F59D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7F1789B25391A4B009F59D1 /* BusylessDataLayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusylessDataLayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7F178A425391A4B009F59D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7F382532537813500F27CFC /* BusylessIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusylessIntents.entitlements; sourceTree = "<group>"; };
 		E7F6115924E22A2600CFABC8 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		E7F6115B24E22F4200CFABC8 /* DurationPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPill.swift; sourceTree = "<group>"; };
-		E7FA78B724E98F4D0095DBDD /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		E7FA78B924E98F590095DBDD /* BLCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLCategory.swift; sourceTree = "<group>"; };
 		E7FD702D24E4C4F9001E2A95 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7F178A825391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */,
+				70C8878727E680860058841F /* BusylessDataLayer in Frameworks */,
 				E708AAEB24EDF3F500ECE5F8 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,23 +224,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7F1792725391CBB009F59D1 /* BusylessDataLayer.framework in Frameworks */,
+				70C8878927E6808A0058841F /* BusylessDataLayer in Frameworks */,
 				E7F178752537E54E009F59D1 /* CloudKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7F1789025391A4B009F59D1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7F1789825391A4B009F59D1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7F1789C25391A4B009F59D1 /* BusylessDataLayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +239,14 @@
 				70D7150827935FAF00590034 /* ActivityRow.swift */,
 			);
 			path = LogView;
+			sourceTree = "<group>";
+		};
+		70DEE9E427E67BE100185EA4 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				70C8878527E680500058841F /* BusylessDataLayer */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		70FEF35A278F602E0013630C /* ViewModels */ = {
@@ -378,25 +308,6 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		E70DCC45257C16B400B4F13D /* DataStore */ = {
-			isa = PBXGroup;
-			children = (
-				E70DCC5D257D636400B4F13D /* DataStore.swift */,
-				E70DCC5C257D634F00B4F13D /* Models */,
-			);
-			path = DataStore;
-			sourceTree = "<group>";
-		};
-		E70DCC5C257D634F00B4F13D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E70DCC7F257D692100B4F13D /* ActivityStore.swift */,
-				E70DCC46257C16E400B4F13D /* CategoryStore.swift */,
-				E70DCC86257D692A00B4F13D /* UserConfigStore.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		E715087924E32A0E004B080A /* DayView */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,22 +319,6 @@
 				E7A79BB925B3707B00D8CB9D /* AddNewCategoryView.swift */,
 			);
 			path = DayView;
-			sourceTree = "<group>";
-		};
-		E71B3BAC255CCE0D0056677E /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				E71B3BAD255CCE150056677E /* Extensions */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		E71B3BAD255CCE150056677E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E71B3BA0255CCDAE0056677E /* Date+.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E7336F94252D4FBE001414B4 /* Utility */ = {
@@ -448,14 +343,6 @@
 				E737A9F224FF1F570094746D /* ExportManager.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		E7507998253926530060D010 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E780FC5224E9A7E000F9C2B6 /* CategoryTests.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		E780FC4C24E9A59900F9C2B6 /* AddNewActivity */ = {
@@ -484,11 +371,10 @@
 			isa = PBXGroup;
 			children = (
 				E7947FC324DF7CD5006B7859 /* Busyless */,
-				E7F1789425391A4B009F59D1 /* BusylessDataLayer */,
 				E7AE16A5252EA03000B5654F /* BusylessIntents */,
 				E7947FDD24DF7CD6006B7859 /* BusylessTests */,
 				E7947FE824DF7CD6006B7859 /* BusylessUITests */,
-				E7F178A125391A4B009F59D1 /* BusylessDataLayerTests */,
+				70DEE9E427E67BE100185EA4 /* Packages */,
 				E7947FC224DF7CD5006B7859 /* Products */,
 				E708AAE924EDF3F500ECE5F8 /* Frameworks */,
 			);
@@ -501,8 +387,6 @@
 				E7947FDA24DF7CD6006B7859 /* BusylessTests.xctest */,
 				E7947FE524DF7CD6006B7859 /* BusylessUITests.xctest */,
 				E7AE16A4252EA03000B5654F /* BusylessIntents.appex */,
-				E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */,
-				E7F1789B25391A4B009F59D1 /* BusylessDataLayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -604,38 +488,6 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		E7F1789425391A4B009F59D1 /* BusylessDataLayer */ = {
-			isa = PBXGroup;
-			children = (
-				E7F178BB25391AD1009F59D1 /* CoreData */,
-				E7FA78B624E98F100095DBDD /* Models */,
-				E71B3BAC255CCE0D0056677E /* Utility */,
-				E70DCC45257C16B400B4F13D /* DataStore */,
-				E7F1789525391A4B009F59D1 /* BusylessDataLayer.h */,
-				E7F1789625391A4B009F59D1 /* Info.plist */,
-			);
-			path = BusylessDataLayer;
-			sourceTree = "<group>";
-		};
-		E7F178A125391A4B009F59D1 /* BusylessDataLayerTests */ = {
-			isa = PBXGroup;
-			children = (
-				E7507998253926530060D010 /* Models */,
-				E75079A5253926E50060D010 /* BusylessDataLayerTests.swift */,
-				E7F178A425391A4B009F59D1 /* Info.plist */,
-			);
-			path = BusylessDataLayerTests;
-			sourceTree = "<group>";
-		};
-		E7F178BB25391AD1009F59D1 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */,
-				E74AEC142515031A00502907 /* Persistence.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		E7F6115724E229AB00CFABC8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,17 +514,6 @@
 			path = Containers;
 			sourceTree = "<group>";
 		};
-		E7FA78B624E98F100095DBDD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E7FA78B724E98F4D0095DBDD /* Activity.swift */,
-				E70A893925910A0D009EF078 /* ContextCategory.swift */,
-				E7FA78B924E98F590095DBDD /* BLCategory.swift */,
-				E7B8CFA924F6E5930026C983 /* UserConfig.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		E7FD702F24E4C8E0001E2A95 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,17 +525,6 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		E7F1788E25391A4B009F59D1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7F178A525391A4B009F59D1 /* BusylessDataLayer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		E7947FC024DF7CD5006B7859 /* Busyless */ = {
@@ -713,10 +543,10 @@
 			);
 			dependencies = (
 				E7AE16AA252EA03000B5654F /* PBXTargetDependency */,
-				E7F178A725391A4B009F59D1 /* PBXTargetDependency */,
 			);
 			name = Busyless;
 			packageProductDependencies = (
+				70C8878627E680860058841F /* BusylessDataLayer */,
 			);
 			productName = Busyless;
 			productReference = E7947FC124DF7CD5006B7859 /* Busyless.app */;
@@ -772,49 +602,14 @@
 			buildRules = (
 			);
 			dependencies = (
-				E7F1792A25391CBB009F59D1 /* PBXTargetDependency */,
 			);
 			name = BusylessIntents;
+			packageProductDependencies = (
+				70C8878827E6808A0058841F /* BusylessDataLayer */,
+			);
 			productName = BusylessIntents;
 			productReference = E7AE16A4252EA03000B5654F /* BusylessIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
-		};
-		E7F1789225391A4B009F59D1 /* BusylessDataLayer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E7F178AF25391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayer" */;
-			buildPhases = (
-				E7F1788E25391A4B009F59D1 /* Headers */,
-				E7F1788F25391A4B009F59D1 /* Sources */,
-				E7F1789025391A4B009F59D1 /* Frameworks */,
-				E7F1789125391A4B009F59D1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BusylessDataLayer;
-			productName = BusylessDataLayer;
-			productReference = E7F1789325391A4B009F59D1 /* BusylessDataLayer.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E7F1789A25391A4B009F59D1 /* BusylessDataLayerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E7F178B025391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayerTests" */;
-			buildPhases = (
-				E7F1789725391A4B009F59D1 /* Sources */,
-				E7F1789825391A4B009F59D1 /* Frameworks */,
-				E7F1789925391A4B009F59D1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E7F1789E25391A4B009F59D1 /* PBXTargetDependency */,
-				E7F178A025391A4B009F59D1 /* PBXTargetDependency */,
-			);
-			name = BusylessDataLayerTests;
-			productName = BusylessDataLayerTests;
-			productReference = E7F1789B25391A4B009F59D1 /* BusylessDataLayerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -840,14 +635,6 @@
 					E7AE16A3252EA03000B5654F = {
 						CreatedOnToolsVersion = 12.0;
 					};
-					E7F1789225391A4B009F59D1 = {
-						CreatedOnToolsVersion = 12.0;
-					};
-					E7F1789A25391A4B009F59D1 = {
-						CreatedOnToolsVersion = 12.0;
-						LastSwiftMigration = 1200;
-						TestTargetID = E7947FC024DF7CD5006B7859;
-					};
 				};
 			};
 			buildConfigurationList = E7947FBC24DF7CD5006B7859 /* Build configuration list for PBXProject "Busyless" */;
@@ -868,11 +655,9 @@
 			projectRoot = "";
 			targets = (
 				E7947FC024DF7CD5006B7859 /* Busyless */,
-				E7F1789225391A4B009F59D1 /* BusylessDataLayer */,
 				E7AE16A3252EA03000B5654F /* BusylessIntents */,
 				E7947FD924DF7CD6006B7859 /* BusylessTests */,
 				E7947FE424DF7CD6006B7859 /* BusylessUITests */,
-				E7F1789A25391A4B009F59D1 /* BusylessDataLayerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -904,20 +689,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E7AE16A2252EA03000B5654F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7F1789125391A4B009F59D1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7F1789925391A4B009F59D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1000,7 +771,6 @@
 				E7B2500825BCC8980012556C /* DayViewTests.swift in Sources */,
 				E7947FDF24DF7CD6006B7859 /* BusylessTests.swift in Sources */,
 				E7BB91C825CDA88F007F764A /* LogViewTests.swift in Sources */,
-				E780FC5324E9A7E000F9C2B6 /* CategoryTests.swift in Sources */,
 				E7BB91B725CDA4C4007F764A /* DataStoreMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1024,33 +794,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7F1788F25391A4B009F59D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E71B3BAE255CCE210056677E /* Date+.swift in Sources */,
-				E7F178BC25391B0D009F59D1 /* Busyless.xcdatamodeld in Sources */,
-				E7F178DE25391BDF009F59D1 /* BLCategory.swift in Sources */,
-				E70DCC47257C16E400B4F13D /* CategoryStore.swift in Sources */,
-				E70DCC87257D692A00B4F13D /* UserConfigStore.swift in Sources */,
-				E70DCC5E257D636400B4F13D /* DataStore.swift in Sources */,
-				E7A79BCB25B3742D00D8CB9D /* BusylessIntents.intentdefinition in Sources */,
-				E70A893A25910A0D009EF078 /* ContextCategory.swift in Sources */,
-				E70DCC80257D692100B4F13D /* ActivityStore.swift in Sources */,
-				E7F178D825391BDC009F59D1 /* Activity.swift in Sources */,
-				E7F178E425391BE1009F59D1 /* UserConfig.swift in Sources */,
-				E7F178C225391B10009F59D1 /* Persistence.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7F1789725391A4B009F59D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E75079A6253926E50060D010 /* BusylessDataLayerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1069,26 +812,6 @@
 			platformFilter = ios;
 			target = E7AE16A3252EA03000B5654F /* BusylessIntents */;
 			targetProxy = E7AE16A9252EA03000B5654F /* PBXContainerItemProxy */;
-		};
-		E7F1789E25391A4B009F59D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E7F1789225391A4B009F59D1 /* BusylessDataLayer */;
-			targetProxy = E7F1789D25391A4B009F59D1 /* PBXContainerItemProxy */;
-		};
-		E7F178A025391A4B009F59D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E7947FC024DF7CD5006B7859 /* Busyless */;
-			targetProxy = E7F1789F25391A4B009F59D1 /* PBXContainerItemProxy */;
-		};
-		E7F178A725391A4B009F59D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E7F1789225391A4B009F59D1 /* BusylessDataLayer */;
-			targetProxy = E7F178A625391A4B009F59D1 /* PBXContainerItemProxy */;
-		};
-		E7F1792A25391CBB009F59D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E7F1789225391A4B009F59D1 /* BusylessDataLayer */;
-			targetProxy = E7F1792925391CBB009F59D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1174,6 +897,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INTENTS_CODEGEN_LANGUAGE = Swift;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1230,6 +954,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INTENTS_CODEGEN_LANGUAGE = Swift;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1253,6 +978,7 @@
 				DEVELOPMENT_TEAM = DJPFLH48H5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Busyless/SupportingFiles/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1280,6 +1006,7 @@
 				DEVELOPMENT_TEAM = DJPFLH48H5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Busyless/SupportingFiles/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1380,6 +1107,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DJPFLH48H5;
 				INFOPLIST_FILE = BusylessIntents/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1404,6 +1132,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DJPFLH48H5;
 				INFOPLIST_FILE = BusylessIntents/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1417,108 +1146,6 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		E7F178AB25391A4B009F59D1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = DJPFLH48H5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = BusylessDataLayer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayer;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E7F178AC25391A4B009F59D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = DJPFLH48H5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = BusylessDataLayer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayer;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E7F178AD25391A4B009F59D1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DJPFLH48H5;
-				INFOPLIST_FILE = BusylessDataLayerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Busyless.app/Busyless";
-			};
-			name = Debug;
-		};
-		E7F178AE25391A4B009F59D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DJPFLH48H5;
-				INFOPLIST_FILE = BusylessDataLayerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.derrickshowers.BusylessDataLayerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Busyless.app/Busyless";
 			};
 			name = Release;
 		};
@@ -1570,24 +1197,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7F178AF25391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7F178AB25391A4B009F59D1 /* Debug */,
-				E7F178AC25391A4B009F59D1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7F178B025391A4B009F59D1 /* Build configuration list for PBXNativeTarget "BusylessDataLayerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7F178AD25391A4B009F59D1 /* Debug */,
-				E7F178AE25391A4B009F59D1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1602,25 +1211,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		70C8878627E680860058841F /* BusylessDataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BusylessDataLayer;
+		};
+		70C8878827E6808A0058841F /* BusylessDataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BusylessDataLayer;
+		};
 		E7B2501C25BCCAAE0012556C /* ViewInspector */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E7B2501B25BCCAAE0012556C /* XCRemoteSwiftPackageReference "ViewInspector" */;
 			productName = ViewInspector;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		E79F6A3B24EC752E004F44B5 /* Busyless.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E79F6A3C24EC752E004F44B5 /* Busyless.xcdatamodel */,
-			);
-			currentVersion = E79F6A3C24EC752E004F44B5 /* Busyless.xcdatamodel */;
-			path = Busyless.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E7947FB924DF7CD5006B7859 /* Project object */;
 }
