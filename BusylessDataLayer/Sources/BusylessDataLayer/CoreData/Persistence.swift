@@ -47,10 +47,20 @@ public struct PersistenceController {
     public let container: GroupedPersistentCloudKitContainer
 
     public init(inMemory: Bool = false) {
-        container = GroupedPersistentCloudKitContainer(name: "Busyless")
+        if let modelURL = Bundle.module.url(forResource: "Busyless", withExtension: "momd"),
+           let model = NSManagedObjectModel(contentsOf: modelURL) {
+            container = GroupedPersistentCloudKitContainer(name: "Busyless", managedObjectModel: model)
+        } else {
+            // If we get here, we likely won't be able to load the persistent container.
+            // Setting it anyway to avoid making container an optional.
+            assertionFailure("Could not load persistent container")
+            container = GroupedPersistentCloudKitContainer(name: "Busyless")
+        }
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
