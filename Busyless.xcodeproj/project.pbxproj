@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7013D79E27E9516C00F6E256 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7013D79D27E9516C00F6E256 /* PieChartView.swift */; };
 		70A516362797B549005B37F8 /* AddNewActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */; };
 		70C8878727E680860058841F /* BusylessDataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 70C8878627E680860058841F /* BusylessDataLayer */; };
 		70C8878927E6808A0058841F /* BusylessDataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 70C8878827E6808A0058841F /* BusylessDataLayer */; };
@@ -130,6 +131,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7013D79D27E9516C00F6E256 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		70A516352797B549005B37F8 /* AddNewActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActivityViewModel.swift; sourceTree = "<group>"; };
 		70C8878527E680500058841F /* BusylessDataLayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BusylessDataLayer; sourceTree = "<group>"; };
 		70D2E7CD2792188100CD1183 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7013D79C27E9514800F6E256 /* MonthView */ = {
+			isa = PBXGroup;
+			children = (
+				7013D79D27E9516C00F6E256 /* PieChartView.swift */,
+			);
+			path = MonthView;
+			sourceTree = "<group>";
+		};
 		70D7150727935FA100590034 /* LogView */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +508,7 @@
 				E796F1F925479BDC00F7106B /* CategoryDetail */,
 				E715087924E32A0E004B080A /* DayView */,
 				70D7150727935FA100590034 /* LogView */,
+				7013D79C27E9514800F6E256 /* MonthView */,
 				E70A8985259969C3009EF078 /* Onboarding */,
 			);
 			path = Components;
@@ -741,6 +752,7 @@
 				E7CBC98D25B4CD7500533117 /* BusylessIntents.intentdefinition in Sources */,
 				E7947FCC24DF7CD5006B7859 /* DayView.swift in Sources */,
 				E70A89A2259C23B5009EF078 /* OnboardingShell.swift in Sources */,
+				7013D79E27E9516C00F6E256 /* PieChartView.swift in Sources */,
 				E70A89462591126E009EF078 /* ContextCategorySelection.swift in Sources */,
 				E70A8993259969F4009EF078 /* LogOnboardingView.swift in Sources */,
 				E796F20725479C8200F7106B /* DurationSlider.swift in Sources */,

@@ -17,9 +17,6 @@ public class CategoryStore: NSObject, ObservableObject {
     public private(set) var allCategories: [BLCategory] = []
 
     @Published
-    public private(set) var allCategoriesSortedByTimeSpentThisMonth: [BLCategory] = []
-
-    @Published
     public private(set) var allContextCategories: [ContextCategory] = []
 
     // MARK: - Private Properties
@@ -52,8 +49,6 @@ public class CategoryStore: NSObject, ObservableObject {
             try allCategoriesController.performFetch()
             try allContextCategoriesController.performFetch()
             allCategories = allCategoriesController.fetchedObjects ?? []
-            allCategoriesSortedByTimeSpentThisMonth = allCategories
-                .sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
             allContextCategories = allContextCategoriesController.fetchedObjects ?? []
         } catch {
             Logger().error("Failed to fetch categories or context categories")
@@ -66,8 +61,6 @@ extension CategoryStore: NSFetchedResultsControllerDelegate {
         if controller.fetchRequest.entity?.managedObjectClassName == String(describing: BLCategory.self),
            let categories = controller.fetchedObjects as? [BLCategory] {
             allCategories = categories
-            allCategoriesSortedByTimeSpentThisMonth = categories
-                .sorted { $0.timeSpentThisMonth > $1.timeSpentThisMonth }
         }
         if controller.fetchRequest.entity?.managedObjectClassName == String(describing: ContextCategory.self),
            let contextCategories = controller.fetchedObjects as? [ContextCategory] {

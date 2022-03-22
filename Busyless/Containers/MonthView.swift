@@ -23,7 +23,11 @@ struct MonthView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        Text("Month View")
+        VStack {
+            PieChartView(slices: viewModel.slices)
+            PieChartRows(slices: viewModel.slices)
+        }
+        .padding()
     }
 }
 
