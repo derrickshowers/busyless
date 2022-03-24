@@ -52,7 +52,7 @@ struct PieChartRows: View {
 
     var body: some View {
         VStack {
-            ForEach(slices, id: \.value) { value, color, name in
+            ForEach(slices, id: \.name) { value, color, name in
                 HStack {
                     RoundedRectangle(cornerRadius: 5.0)
                         .fill(color)

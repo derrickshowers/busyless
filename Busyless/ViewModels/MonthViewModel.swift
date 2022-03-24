@@ -7,6 +7,7 @@
 //
 
 import BusylessDataLayer
+import CoreData
 import SwiftUI
 
 class MonthViewModel: ObservableObject {
@@ -27,13 +28,28 @@ class MonthViewModel: ObservableObject {
 
     var colors: [Color] = [.blue, .red, .orange, .green, .yellow]
 
+    private var selectedMonthStartDate = Calendar.current.dateInterval(of: .month, for: Date())?.start ?? Date()
+
     // MARK: - Initialization
 
     private let dataStore: DataStore
-    @Published private var categories: [BLCategory]
+    private var fetchedResultsController: NSFetchedResultsController<Activity>?
+    @Published private var activities: [Activity]
+
+    private var categories: [BLCategory] {
+        var categories = Set<BLCategory>()
+        activities.forEach { activity in
+            guard let category = activity.category else { return }
+            categories.insert(category)
+        }
+        return Array(categories)
+    }
 
     init(dataStore: DataStore) {
         self.dataStore = dataStore
-        categories = dataStore.categoryStore.allCategories
+        if let fetchRequest = Activity.activitiesFetchRequest(forMonthStartingOn: selectedMonthStartDate) {
+            fetchedResultsController = dataStore.fetch(using: fetchRequest)
+        }
+        activities = fetchedResultsController?.fetchedObjects ?? []
     }
 }

@@ -52,6 +52,19 @@ public class DataStore: ObservableObject {
 
         return true
     }
+
+    // MARK: - Public Methods
+
+    public func fetch<T: NSFetchRequestResult>(using fetchRequest: NSFetchRequest<T>) -> NSFetchedResultsController<T> {
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        try? fetchedResultsController.performFetch()
+        return fetchedResultsController
+    }
 }
 
 extension DataStore {

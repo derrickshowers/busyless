@@ -21,6 +21,17 @@ public extension Activity {
         return request
     }
 
+    static func activitiesFetchRequest(forMonthStartingOn startDate: Date) -> NSFetchRequest<Activity>? {
+        guard let endDate = Calendar.current.date(byAdding: .month, value: 1, to: startDate) else { return nil }
+        let request = allActivitiesFetchRequest
+        request.predicate = NSPredicate(
+            format: "(createdAt >= %@) AND (createdAt < %@)",
+            startDate as NSDate,
+            endDate as NSDate
+        )
+        return request
+    }
+
     override func copy() -> Any {
         guard let context = managedObjectContext else {
             return Activity()
