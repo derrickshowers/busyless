@@ -10,40 +10,87 @@ import BusylessDataLayer
 import CoreData
 import SwiftUI
 
+enum SelectedMonth {
+    case currentMonth
+    case lastMonth
+}
+
 class MonthViewModel: ObservableObject {
     // MARK: - Properties
 
-    var slices: [(value: Double, color: Color, name: String)] {
-        // TODO: Refactor to use something other than tuple
-        var colorIndex = 0
-        return categories.map {
-            colorIndex += 1
-            return (
-                value: $0.timeSpentThisMonth,
-                color: colors[colorIndex],
-                name: $0.name ?? ""
-            )
+    private var selectedMonthStartDate = Calendar.current.dateInterval(of: .month, for: Date())?.start ?? Date()
+
+    @Published private var activities: [Activity]
+
+    @Published var selectedMonth: SelectedMonth = .currentMonth {
+        didSet {
+            var date = Date()
+            if selectedMonth == .lastMonth {
+                date = Calendar.current.date(byAdding: .month, value: -1, to: Date()) ?? Date()
+            }
+            selectedMonthStartDate = Calendar.current.dateInterval(of: .month, for: date)?.start ?? Date()
+
+            // TODO: Move to shared method
+            if let fetchRequest = Activity.activitiesFetchRequest(forMonthStartingOn: selectedMonthStartDate) {
+                fetchedResultsController = dataStore.fetch(using: fetchRequest)
+            }
+            activities = fetchedResultsController?.fetchedObjects ?? []
         }
     }
 
-    var colors: [Color] = [.blue, .red, .orange, .green, .yellow]
-
-    private var selectedMonthStartDate = Calendar.current.dateInterval(of: .month, for: Date())?.start ?? Date()
-
-    // MARK: - Initialization
-
-    private let dataStore: DataStore
-    private var fetchedResultsController: NSFetchedResultsController<Activity>?
-    @Published private var activities: [Activity]
-
-    private var categories: [BLCategory] {
+    var categories: [PieChartViewData] {
         var categories = Set<BLCategory>()
         activities.forEach { activity in
             guard let category = activity.category else { return }
             categories.insert(category)
         }
-        return Array(categories)
+
+        // TODO: There's got to be a better way to do this. But for now...
+        var colors: [Color] = [
+            .blue,
+            .red,
+            .green,
+            .yellow,
+            .cyan,
+            .pink,
+            .brown,
+            .mint,
+            .orange,
+            .blue,
+            .red,
+            .green,
+            .yellow,
+            .cyan,
+            .pink,
+            .brown,
+            .mint,
+            .orange,
+            .blue,
+            .red,
+            .green,
+            .yellow,
+            .cyan,
+            .pink,
+            .brown,
+            .mint,
+            .orange,
+        ]
+
+        return categories.map { category in
+            PieChartViewData(
+                name: category.name ?? "Uncategorized",
+                value: activities
+                    .filter { $0.category == category }
+                    .reduce(0) { $0 + $1.duration },
+                color: colors.popLast() ?? .black
+            )
+        }
     }
+
+    // MARK: - Initialization
+
+    private let dataStore: DataStore
+    private var fetchedResultsController: NSFetchedResultsController<Activity>?
 
     init(dataStore: DataStore) {
         self.dataStore = dataStore

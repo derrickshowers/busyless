@@ -8,8 +8,14 @@
 
 import SwiftUI
 
+struct PieChartViewData: Hashable {
+    let name: String
+    let value: Double
+    let color: Color
+}
+
 struct PieChartView: View {
-    let slices: [(value: Double, color: Color, name: String)]
+    let slices: [PieChartViewData]
 
     @State private var activeSlice: PieSliceData?
 
@@ -19,12 +25,12 @@ struct PieChartView: View {
         var endDegrees: Double = 0
         var tempSlices: [PieSliceData] = []
 
-        slices.forEach { value, color, _ in
-            let degrees = value * 360 / sum
+        slices.forEach { viewData in
+            let degrees = viewData.value * 360 / sum
             tempSlices.append(PieSliceData(
                 startAngle: Angle(degrees: endDegrees),
                 endAngle: Angle(degrees: endDegrees + degrees),
-                color: color
+                color: viewData.color
             ))
             endDegrees += degrees
         }
@@ -38,28 +44,36 @@ struct PieChartView: View {
                 ForEach(slicesData, id: \.self) { sliceData in
                     PieSliceView(pieSliceData: sliceData)
                 }
+                .frame(
+                    width: geometry.size.width,
+                    height: geometry.size.height
+                )
 
                 Circle()
                     .fill(.white)
-                    .frame(width: geometry.size.width * 0.6, height: geometry.size.width * 0.6)
+                    .frame(
+                        width: geometry.size.width * 0.6,
+                        height: geometry.size.width * 0.6
+                    )
             }
         }
+        .aspectRatio(1, contentMode: .fit)
     }
 }
 
 struct PieChartRows: View {
-    let slices: [(value: Double, color: Color, name: String)]
+    let slices: [PieChartViewData]
 
     var body: some View {
         VStack {
-            ForEach(slices, id: \.name) { value, color, name in
+            ForEach(slices, id: \.name) { viewData in
                 HStack {
                     RoundedRectangle(cornerRadius: 5.0)
-                        .fill(color)
+                        .fill(viewData.color)
                         .frame(width: 20, height: 20)
-                    Text(name)
+                    Text(viewData.name)
                     Spacer()
-                    Text(value.hoursMinutesString)
+                    Text(viewData.value.hoursMinutesString)
                 }
             }
         }
@@ -93,15 +107,14 @@ private struct PieSliceView: View {
             }
             .fill(pieSliceData.color)
         }
-        .aspectRatio(1, contentMode: .fit)
     }
 }
 
 struct PieChartView_Previews: PreviewProvider {
-    static let slices: [(value: Double, color: Color, name: String)] = [
-        (1300, .blue, ""),
-        (500, .green, ""),
-        (300, .orange, ""),
+    static let slices: [PieChartViewData] = [
+        PieChartViewData(name: "", value: 1300, color: .blue),
+        PieChartViewData(name: "", value: 500, color: .green),
+        PieChartViewData(name: "", value: 300, color: .orange),
     ]
     static var previews: some View {
         PieChartView(slices: slices)

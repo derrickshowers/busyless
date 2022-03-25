@@ -17,7 +17,6 @@ struct CategoryDetailView: View {
     // MARK: - Public Properties
 
     let category: BLCategory
-    let overviewType: OverviewType
 
     // MARK: - Private Properties
 
@@ -37,10 +36,6 @@ struct CategoryDetailView: View {
             return []
         }
 
-        if overviewType == .month {
-            return activities.filter(byMonth: Calendar.current.component(.month, from: Date()))
-        }
-
         return activities.filter(byDate: Date())
     }
 
@@ -56,9 +51,8 @@ struct CategoryDetailView: View {
 
     // MARK: - Lifecycle
 
-    init(category: BLCategory, overviewType: OverviewType) {
+    init(category: BLCategory) {
         self.category = category
-        self.overviewType = overviewType
         _duration = State(initialValue: category.dailyBudgetDuration)
         _notes = State(initialValue: category.notes ?? "")
         _contextCategory = State(initialValue: category.contextCategory)
@@ -68,39 +62,31 @@ struct CategoryDetailView: View {
         ZStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    if overviewType == .day {
-                        HStack {
-                            DurationSlider(duration: $duration, maxDuration: 8 * TimeInterval.oneHour)
-                                .frame(
-                                    maxWidth: CategoryDetailView.durationSliderHeight,
-                                    minHeight: CategoryDetailView.durationSliderHeight,
-                                    maxHeight: CategoryDetailView.durationSliderHeight
-                                )
-                                .padding(.vertical, 10)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .background(Color.customWhite)
+                    HStack {
+                        DurationSlider(duration: $duration, maxDuration: 8 * TimeInterval.oneHour)
+                            .frame(
+                                maxWidth: CategoryDetailView.durationSliderHeight,
+                                minHeight: CategoryDetailView.durationSliderHeight,
+                                maxHeight: CategoryDetailView.durationSliderHeight
+                            )
+                            .padding(.vertical, 10)
                     }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.customWhite)
 
                     VStack(spacing: 15) {
                         HStack {
                             Text("Time spent")
                             Spacer()
-                            if overviewType == .day {
-                                Text(category.timeSpentToday.hoursMinutesString).bold()
-                            } else {
-                                Text(category.timeSpentThisMonth.hoursMinutesString).bold()
-                            }
+                            Text(category.timeSpentToday.hoursMinutesString).bold()
                         }
-                        if overviewType == .day {
-                            Divider()
-                            HStack {
-                                Text("Time left in \(category.name?.lowercased() ?? "category")")
-                                Spacer()
-                                Text(abs(timeLeftInCurrentCategory).hoursMinutesString)
-                                    .foregroundColor(timeLeftInCurrentCategory >= 0 ? Color(UIColor.label) : Color.red)
-                                    .bold()
-                            }
+                        Divider()
+                        HStack {
+                            Text("Time left in \(category.name?.lowercased() ?? "category")")
+                            Spacer()
+                            Text(abs(timeLeftInCurrentCategory).hoursMinutesString)
+                                .foregroundColor(timeLeftInCurrentCategory >= 0 ? Color(UIColor.label) : Color.red)
+                                .bold()
                         }
                         Divider()
                         HStack {
@@ -144,10 +130,6 @@ struct CategoryDetailView: View {
                             VStack(spacing: 15) {
                                 ForEach(activities, id: \.self) { (activity: Activity) in
                                     HStack {
-                                        if overviewType == .month, let date = activity.createdAt {
-                                            Text(dateFormatter.string(from: date))
-                                                .font(.caption)
-                                        }
                                         Text(activity.name ?? "")
                                             .font(.body)
                                         Spacer()
@@ -199,23 +181,11 @@ struct CategoryDetailView: View {
     }
 }
 
-extension CategoryDetailView {
-    enum OverviewType {
-        case day
-        case month
-    }
-}
-
 struct CategoryDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .day)
-            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .day)
-                .environment(\.colorScheme, .dark)
-        }
-        Group {
-            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .month)
-            CategoryDetailView(category: BLCategory.mockCategory(), overviewType: .month)
+            CategoryDetailView(category: BLCategory.mockCategory())
+            CategoryDetailView(category: BLCategory.mockCategory())
                 .environment(\.colorScheme, .dark)
         }
     }

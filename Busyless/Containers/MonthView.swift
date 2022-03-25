@@ -23,11 +23,21 @@ struct MonthView: View {
     // MARK: - Lifecycle
 
     var body: some View {
-        VStack {
-            PieChartView(slices: viewModel.slices)
-            PieChartRows(slices: viewModel.slices)
+        NavigationView {
+            VStack {
+                Picker("Month Selection", selection: $viewModel.selectedMonth) {
+                    Text("This Month").tag(SelectedMonth.currentMonth)
+                    Text("Last Month").tag(SelectedMonth.lastMonth)
+                }
+
+                PieChartView(slices: viewModel.categories)
+                    .padding(50)
+                PieChartRows(slices: viewModel.categories)
+                    .padding(.horizontal, 15)
+                Spacer()
+            }
+            .navigationBarTitle("This Month")
         }
-        .padding()
     }
 }
 

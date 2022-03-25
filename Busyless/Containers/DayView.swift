@@ -143,7 +143,7 @@ struct DayView: View {
             ForEach(categories, id: \.name) { category in
                 ZStack {
                     CategoryRow(category: category)
-                    NavigationLink(destination: CategoryDetailView(category: category, overviewType: .day)) {}
+                    NavigationLink(destination: CategoryDetailView(category: category)) {}
                         .opacity(0)
                 }
             }
