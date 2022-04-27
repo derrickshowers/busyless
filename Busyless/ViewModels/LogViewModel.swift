@@ -42,6 +42,10 @@ class LogViewModel: ObservableObject {
         Activity.save(with: dataStore.context)
     }
 
+    func refresh() {
+        dataStore.activityStore.fetch()
+    }
+
     func deleteActivity(_ activity: Activity) {
         activity.deleteAndSave(with: dataStore.context)
     }

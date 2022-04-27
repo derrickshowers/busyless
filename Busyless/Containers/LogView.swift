@@ -28,6 +28,7 @@ struct LogView: View {
 
     init(viewModel: LogViewModel) {
         self.viewModel = viewModel
+        UIRefreshControl.appearance().tintColor = UIColor.white
     }
 
     // MARK: - Views
@@ -116,6 +117,11 @@ struct LogView: View {
                                     .font(.subheadline)
                             }
                         }
+                    }
+                    .refreshable {
+                        let duration = UInt64(1 * 1_000_000_000) // one second
+                        try? await Task.sleep(nanoseconds: duration)
+                        viewModel.refresh()
                     }
                     .environment(\.editMode, $editMode)
                     .listStyle(.grouped)
