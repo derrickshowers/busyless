@@ -200,7 +200,7 @@ struct CategoryDetailView: View {
 }
 
 extension CategoryDetailView {
-    enum OverviewType {
+    enum OverviewType: Equatable {
         case day
         case month
     }

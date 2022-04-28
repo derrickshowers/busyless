@@ -14,7 +14,7 @@ import SwiftUI
 struct DayView: View {
     // MARK: - Properties
 
-    enum ActiveSheet: Identifiable {
+    enum ActiveSheet: Identifiable, Equatable {
         case addNewCategory
         case manageContextCategory
 
